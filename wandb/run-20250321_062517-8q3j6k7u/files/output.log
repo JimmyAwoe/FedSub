@@ -1,0 +1,30 @@
+[32m2025-03-21 06:25:21.806[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] start loading arguments
+[32m2025-03-21 06:25:21.806[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] ****************************************
+[32m2025-03-21 06:25:21.807[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] rank                           5
+[32m2025-03-21 06:25:21.807[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] dim                            8
+[32m2025-03-21 06:25:21.807[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] batch_size                     32
+[32m2025-03-21 06:25:21.807[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] tau                            20
+[32m2025-03-21 06:25:21.807[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] lr                             0.001
+[32m2025-03-21 06:25:21.807[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] epoch                          10
+[32m2025-03-21 06:25:21.807[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] ****************************************
+[32m2025-03-21 06:25:23.431[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] start training
+[32m2025-03-21 06:25:23.431[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute 0 epoch
+/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/autograd/__init__.py:266: UserWarning: c10d::broadcast_: an autograd kernel was not registered to the Autograd key(s) but we are trying to backprop through it. This may lead to silently incorrect behavior. This behavior is deprecated and will be removed in a future version of PyTorch. If your operator is differentiable, please ensure you have registered an autograd kernel to the correct Autograd key (e.g. DispatchKey::Autograd, DispatchKey::CompositeImplicitAutograd). If your operator is not differentiable, or to squash this warning and use the previous behavior, please register torch::CppFunction::makeFallthrough() to DispatchKey::Autograd. (Triggered internally at ../torch/csrc/autograd/autograd_not_implemented_fallback.cpp:63.)
+  Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/xyq/SubScaf/SS_simple.py:32: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha) (Triggered internally at ../torch/csrc/utils/python_arg_parser.cpp:1630.)
+  p.data.add_(-lr, update)
+[32m2025-03-21 06:25:24.184[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute 1 epoch
+[32m2025-03-21 06:25:24.685[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute 2 epoch
+[32m2025-03-21 06:25:25.143[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute 3 epoch
+[32m2025-03-21 06:25:25.631[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute 4 epoch
+[32m2025-03-21 06:25:26.065[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute 5 epoch
+[32m2025-03-21 06:25:26.617[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute 6 epoch
+[32m2025-03-21 06:25:27.156[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute 7 epoch
+[32m2025-03-21 06:25:27.663[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute 8 epoch
+[32m2025-03-21 06:25:28.127[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute 9 epoch
+[32m2025-03-21 06:25:28.637[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] finish training
+[32m2025-03-21 06:25:28.637[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] start eval
+[32m2025-03-21 06:25:28.642[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] eval loss is 80.11630249023438

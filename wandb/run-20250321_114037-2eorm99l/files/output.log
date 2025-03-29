@@ -1,0 +1,47 @@
+[32m2025-03-21 11:40:42.257[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] start loading arguments
+[32m2025-03-21 11:40:42.258[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] ****************************************
+[32m2025-03-21 11:40:42.258[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] rank                           3
+[32m2025-03-21 11:40:42.259[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] dim                            8
+[32m2025-03-21 11:40:42.259[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] batch_size                     32
+[32m2025-03-21 11:40:42.259[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] tau                            10
+[32m2025-03-21 11:40:42.259[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] lr                             0.001
+[32m2025-03-21 11:40:42.259[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] epoch                          10
+[32m2025-03-21 11:40:42.259[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] record                         True
+[32m2025-03-21 11:40:42.259[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] ****************************************
+[32m2025-03-21 11:40:44.074[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] start training
+[32m2025-03-21 11:40:44.074[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] exercute 0 epoch
+[32m2025-03-21 11:40:44.167[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] eval loss in 0 epoch: 12.731688499450684
+[32m2025-03-21 11:40:45.368[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] exercute 1 epoch
+[32m2025-03-21 11:40:45.369[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] eval loss in 1 epoch: 5.721665859222412
+[32m2025-03-21 11:40:46.458[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] exercute 2 epoch
+[32m2025-03-21 11:40:46.460[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] eval loss in 2 epoch: 3.553457021713257
+[32m2025-03-21 11:40:47.580[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] exercute 3 epoch
+[32m2025-03-21 11:40:47.581[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] eval loss in 3 epoch: 2.462028980255127
+[32m2025-03-21 11:40:48.647[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] exercute 4 epoch
+[32m2025-03-21 11:40:48.648[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] eval loss in 4 epoch: 1.8906553983688354
+[32m2025-03-21 11:40:49.649[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] exercute 5 epoch
+[32m2025-03-21 11:40:49.651[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] eval loss in 5 epoch: 1.5522117614746094
+[32m2025-03-21 11:40:50.729[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] exercute 6 epoch
+[32m2025-03-21 11:40:50.730[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] eval loss in 6 epoch: 1.2313874959945679
+[32m2025-03-21 11:40:51.699[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] exercute 7 epoch
+[32m2025-03-21 11:40:51.700[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] eval loss in 7 epoch: 1.1526130437850952
+[32m2025-03-21 11:40:52.707[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] exercute 8 epoch
+[32m2025-03-21 11:40:52.708[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] eval loss in 8 epoch: 1.0806007385253906
+[32m2025-03-21 11:40:53.788[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] exercute 9 epoch
+[32m2025-03-21 11:40:53.789[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] eval loss in 9 epoch: 1.0225564241409302
+[32m2025-03-21 11:40:54.901[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] finish training
+[32m2025-03-21 11:40:54.902[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] start eval
+[32m2025-03-21 11:40:54.903[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] eval loss is 0.9809525609016418
+[32m2025-03-21 11:40:54.924[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m82[39m - [1m[0] baseline start training
+Traceback (most recent call last):
+  File "/home/xyq/SubScaf/SS_simple.py", line 276, in <module>
+    baseline(args)
+  File "/home/xyq/SubScaf/SS_simple.py", line 249, in baseline
+    dist.all_reduce(loss_eval, op=dist.ReduceOp.AVG)
+UnboundLocalError: local variable 'loss_eval' referenced before assignment
+Traceback (most recent call last):
+  File "/home/xyq/SubScaf/SS_simple.py", line 276, in <module>
+    baseline(args)
+  File "/home/xyq/SubScaf/SS_simple.py", line 249, in baseline
+    dist.all_reduce(loss_eval, op=dist.ReduceOp.AVG)
+UnboundLocalError: local variable 'loss_eval' referenced before assignment

@@ -1,0 +1,173 @@
+[32m2025-03-21 06:23:18.042[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] start loading arguments
+[32m2025-03-21 06:23:18.043[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] ****************************************
+[32m2025-03-21 06:23:18.043[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] rank                           3
+[32m2025-03-21 06:23:18.044[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] dim                            8
+[32m2025-03-21 06:23:18.044[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] batch_size                     32
+[32m2025-03-21 06:23:18.044[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] tau                            10
+[32m2025-03-21 06:23:18.044[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] lr                             0.001
+[32m2025-03-21 06:23:18.044[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] epoch                          3
+[32m2025-03-21 06:23:18.044[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] ****************************************
+[32m2025-03-21 06:23:19.671[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] start training
+/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/autograd/__init__.py:266: UserWarning: c10d::broadcast_: an autograd kernel was not registered to the Autograd key(s) but we are trying to backprop through it. This may lead to silently incorrect behavior. This behavior is deprecated and will be removed in a future version of PyTorch. If your operator is differentiable, please ensure you have registered an autograd kernel to the correct Autograd key (e.g. DispatchKey::Autograd, DispatchKey::CompositeImplicitAutograd). If your operator is not differentiable, or to squash this warning and use the previous behavior, please register torch::CppFunction::makeFallthrough() to DispatchKey::Autograd. (Triggered internally at ../torch/csrc/autograd/autograd_not_implemented_fallback.cpp:63.)
+  Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/xyq/SubScaf/SS_simple.py:32: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha) (Triggered internally at ../torch/csrc/utils/python_arg_parser.cpp:1630.)
+  p.data.add_(-lr, update)
+[32m2025-03-21 06:23:19.782[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 10 step
+[32m2025-03-21 06:23:19.853[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 20 step
+[32m2025-03-21 06:23:19.863[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 30 step
+[32m2025-03-21 06:23:19.872[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 40 step
+[32m2025-03-21 06:23:19.880[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 50 step
+[32m2025-03-21 06:23:19.889[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 60 step
+[32m2025-03-21 06:23:19.898[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 70 step
+[32m2025-03-21 06:23:19.907[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 80 step
+[32m2025-03-21 06:23:19.916[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 90 step
+[32m2025-03-21 06:23:19.924[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 100 step
+[32m2025-03-21 06:23:19.933[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 110 step
+[32m2025-03-21 06:23:19.942[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 120 step
+[32m2025-03-21 06:23:19.951[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 130 step
+[32m2025-03-21 06:23:19.959[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 140 step
+[32m2025-03-21 06:23:19.968[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 150 step
+[32m2025-03-21 06:23:19.977[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 160 step
+[32m2025-03-21 06:23:19.985[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 170 step
+[32m2025-03-21 06:23:19.994[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 180 step
+[32m2025-03-21 06:23:20.004[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 190 step
+[32m2025-03-21 06:23:20.014[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 200 step
+[32m2025-03-21 06:23:20.023[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 210 step
+[32m2025-03-21 06:23:20.033[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 220 step
+[32m2025-03-21 06:23:20.042[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 230 step
+[32m2025-03-21 06:23:20.052[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 240 step
+[32m2025-03-21 06:23:20.061[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 250 step
+[32m2025-03-21 06:23:20.077[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 260 step
+[32m2025-03-21 06:23:20.092[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 270 step
+[32m2025-03-21 06:23:20.103[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 280 step
+[32m2025-03-21 06:23:20.113[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 290 step
+[32m2025-03-21 06:23:20.121[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 300 step
+[32m2025-03-21 06:23:20.130[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 310 step
+[32m2025-03-21 06:23:20.140[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 320 step
+[32m2025-03-21 06:23:20.150[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 330 step
+[32m2025-03-21 06:23:20.159[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 340 step
+[32m2025-03-21 06:23:20.169[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 350 step
+[32m2025-03-21 06:23:20.178[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 360 step
+[32m2025-03-21 06:23:20.188[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 370 step
+[32m2025-03-21 06:23:20.197[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 380 step
+[32m2025-03-21 06:23:20.206[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 390 step
+[32m2025-03-21 06:23:20.216[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 400 step
+[32m2025-03-21 06:23:20.225[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 410 step
+[32m2025-03-21 06:23:20.235[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 420 step
+[32m2025-03-21 06:23:20.245[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 430 step
+[32m2025-03-21 06:23:20.258[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 440 step
+[32m2025-03-21 06:23:20.271[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 450 step
+[32m2025-03-21 06:23:20.283[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 460 step
+[32m2025-03-21 06:23:20.296[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 470 step
+[32m2025-03-21 06:23:20.312[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 480 step
+[32m2025-03-21 06:23:20.324[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 490 step
+[32m2025-03-21 06:23:20.334[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 500 step
+[32m2025-03-21 06:23:20.346[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 510 step
+[32m2025-03-21 06:23:20.365[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 10 step
+[32m2025-03-21 06:23:20.376[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 20 step
+[32m2025-03-21 06:23:20.386[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 30 step
+[32m2025-03-21 06:23:20.395[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 40 step
+[32m2025-03-21 06:23:20.404[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 50 step
+[32m2025-03-21 06:23:20.414[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 60 step
+[32m2025-03-21 06:23:20.423[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 70 step
+[32m2025-03-21 06:23:20.432[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 80 step
+[32m2025-03-21 06:23:20.442[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 90 step
+[32m2025-03-21 06:23:20.454[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 100 step
+[32m2025-03-21 06:23:20.464[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 110 step
+[32m2025-03-21 06:23:20.472[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 120 step
+[32m2025-03-21 06:23:20.481[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 130 step
+[32m2025-03-21 06:23:20.490[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 140 step
+[32m2025-03-21 06:23:20.499[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 150 step
+[32m2025-03-21 06:23:20.508[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 160 step
+[32m2025-03-21 06:23:20.517[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 170 step
+[32m2025-03-21 06:23:20.526[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 180 step
+[32m2025-03-21 06:23:20.535[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 190 step
+[32m2025-03-21 06:23:20.549[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 200 step
+[32m2025-03-21 06:23:20.564[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 210 step
+[32m2025-03-21 06:23:20.575[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 220 step
+[32m2025-03-21 06:23:20.585[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 230 step
+[32m2025-03-21 06:23:20.594[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 240 step
+[32m2025-03-21 06:23:20.603[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 250 step
+[32m2025-03-21 06:23:20.611[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 260 step
+[32m2025-03-21 06:23:20.620[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 270 step
+[32m2025-03-21 06:23:20.629[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 280 step
+[32m2025-03-21 06:23:20.638[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 290 step
+[32m2025-03-21 06:23:20.646[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 300 step
+[32m2025-03-21 06:23:20.655[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 310 step
+[32m2025-03-21 06:23:20.664[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 320 step
+[32m2025-03-21 06:23:20.673[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 330 step
+[32m2025-03-21 06:23:20.681[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 340 step
+[32m2025-03-21 06:23:20.690[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 350 step
+[32m2025-03-21 06:23:20.699[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 360 step
+[32m2025-03-21 06:23:20.707[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 370 step
+[32m2025-03-21 06:23:20.716[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 380 step
+[32m2025-03-21 06:23:20.725[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 390 step
+[32m2025-03-21 06:23:20.734[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 400 step
+[32m2025-03-21 06:23:20.742[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 410 step
+[32m2025-03-21 06:23:20.751[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 420 step
+[32m2025-03-21 06:23:20.760[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 430 step
+[32m2025-03-21 06:23:20.768[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 440 step
+[32m2025-03-21 06:23:20.777[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 450 step
+[32m2025-03-21 06:23:20.785[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 460 step
+[32m2025-03-21 06:23:20.795[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 470 step
+[32m2025-03-21 06:23:20.804[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 480 step
+[32m2025-03-21 06:23:20.813[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 490 step
+[32m2025-03-21 06:23:20.821[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 500 step
+[32m2025-03-21 06:23:20.840[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 510 step
+[32m2025-03-21 06:23:20.860[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 10 step
+[32m2025-03-21 06:23:20.870[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 20 step
+[32m2025-03-21 06:23:20.885[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 30 step
+[32m2025-03-21 06:23:20.899[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 40 step
+[32m2025-03-21 06:23:20.910[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 50 step
+[32m2025-03-21 06:23:20.919[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 60 step
+[32m2025-03-21 06:23:20.928[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 70 step
+[32m2025-03-21 06:23:20.937[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 80 step
+[32m2025-03-21 06:23:20.945[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 90 step
+[32m2025-03-21 06:23:20.954[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 100 step
+[32m2025-03-21 06:23:20.967[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 110 step
+[32m2025-03-21 06:23:20.976[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 120 step
+[32m2025-03-21 06:23:20.984[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 130 step
+[32m2025-03-21 06:23:20.993[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 140 step
+[32m2025-03-21 06:23:21.001[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 150 step
+[32m2025-03-21 06:23:21.010[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 160 step
+[32m2025-03-21 06:23:21.019[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 170 step
+[32m2025-03-21 06:23:21.028[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 180 step
+[32m2025-03-21 06:23:21.040[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 190 step
+[32m2025-03-21 06:23:21.055[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 200 step
+[32m2025-03-21 06:23:21.069[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 210 step
+[32m2025-03-21 06:23:21.081[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 220 step
+[32m2025-03-21 06:23:21.089[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 230 step
+[32m2025-03-21 06:23:21.098[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 240 step
+[32m2025-03-21 06:23:21.107[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 250 step
+[32m2025-03-21 06:23:21.115[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 260 step
+[32m2025-03-21 06:23:21.124[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 270 step
+[32m2025-03-21 06:23:21.133[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 280 step
+[32m2025-03-21 06:23:21.141[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 290 step
+[32m2025-03-21 06:23:21.150[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 300 step
+[32m2025-03-21 06:23:21.159[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 310 step
+[32m2025-03-21 06:23:21.168[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 320 step
+[32m2025-03-21 06:23:21.177[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 330 step
+[32m2025-03-21 06:23:21.186[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 340 step
+[32m2025-03-21 06:23:21.195[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 350 step
+[32m2025-03-21 06:23:21.204[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 360 step
+[32m2025-03-21 06:23:21.212[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 370 step
+[32m2025-03-21 06:23:21.221[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 380 step
+[32m2025-03-21 06:23:21.230[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 390 step
+[32m2025-03-21 06:23:21.242[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 400 step
+[32m2025-03-21 06:23:21.250[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 410 step
+[32m2025-03-21 06:23:21.259[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 420 step
+[32m2025-03-21 06:23:21.268[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 430 step
+[32m2025-03-21 06:23:21.277[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 440 step
+[32m2025-03-21 06:23:21.286[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 450 step
+[32m2025-03-21 06:23:21.295[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 460 step
+[32m2025-03-21 06:23:21.303[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 470 step
+[32m2025-03-21 06:23:21.312[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 480 step
+[32m2025-03-21 06:23:21.321[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 490 step
+[32m2025-03-21 06:23:21.330[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 500 step
+[32m2025-03-21 06:23:21.338[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] exercute propagate in 510 step
+[32m2025-03-21 06:23:21.344[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] finish training
+[32m2025-03-21 06:23:21.344[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] start eval
+[32m2025-03-21 06:23:21.349[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m79[39m - [1m[0] eval loss is 19.42254638671875

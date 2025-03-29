@@ -1,0 +1,27 @@
+[32m2025-03-21 09:44:35.760[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m81[39m - [1m[0] start loading arguments
+[32m2025-03-21 09:44:35.761[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m81[39m - [1m[0] ****************************************
+[32m2025-03-21 09:44:35.762[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m81[39m - [1m[0] rank                           3
+[32m2025-03-21 09:44:35.762[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m81[39m - [1m[0] dim                            8
+[32m2025-03-21 09:44:35.762[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m81[39m - [1m[0] batch_size                     32
+[32m2025-03-21 09:44:35.762[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m81[39m - [1m[0] tau                            10
+[32m2025-03-21 09:44:35.762[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m81[39m - [1m[0] lr                             0.001
+[32m2025-03-21 09:44:35.762[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m81[39m - [1m[0] epoch                          10
+[32m2025-03-21 09:44:35.762[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m81[39m - [1m[0] ****************************************
+Traceback (most recent call last):
+  File "/home/xyq/SubScaf/SS_simple.py", line 266, in <module>
+    SubScaf(args)
+  File "/home/xyq/SubScaf/SS_simple.py", line 128, in SubScaf
+    X = standarize(torch.tensor(housing.data, dtype=torch.float32)).to(device)
+RuntimeError: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+Traceback (most recent call last):
+  File "/home/xyq/SubScaf/SS_simple.py", line 266, in <module>
+    SubScaf(args)
+  File "/home/xyq/SubScaf/SS_simple.py", line 128, in SubScaf
+    X = standarize(torch.tensor(housing.data, dtype=torch.float32)).to(device)
+RuntimeError: CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.

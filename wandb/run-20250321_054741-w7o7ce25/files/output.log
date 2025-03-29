@@ -1,0 +1,14 @@
+[32m2025-03-21 05:47:46.133[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m72[39m - [1m[0] start loading arguments
+[32m2025-03-21 05:47:46.134[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m72[39m - [1m[0] ****************************************
+Traceback (most recent call last):
+  File "/home/xyq/SubScaf/SS_simple.py", line 183, in <module>
+    SubScaf(args)
+  File "/home/xyq/SubScaf/SS_simple.py", line 103, in SubScaf
+    log(f"{k:30 } {v}")
+ValueError: Unknown format code '\x20' for object of type 'str'
+Traceback (most recent call last):
+  File "/home/xyq/SubScaf/SS_simple.py", line 183, in <module>
+    SubScaf(args)
+  File "/home/xyq/SubScaf/SS_simple.py", line 103, in SubScaf
+    log(f"{k:30 } {v}")
+ValueError: Unknown format code '\x20' for object of type 'str'

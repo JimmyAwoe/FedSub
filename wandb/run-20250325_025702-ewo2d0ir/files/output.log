@@ -1,0 +1,66 @@
+[32m2025-03-25 02:57:04.551[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m36[39m - [1m[0] start loading arguments
+[32m2025-03-25 02:57:04.552[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m36[39m - [1m[0] ****************************************
+[32m2025-03-25 02:57:04.553[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m36[39m - [1m[0] rank                           4
+[32m2025-03-25 02:57:04.553[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m36[39m - [1m[0] dim                            8
+[32m2025-03-25 02:57:04.553[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m36[39m - [1m[0] batch_size                     1024
+[32m2025-03-25 02:57:04.554[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m36[39m - [1m[0] tau                            10
+[32m2025-03-25 02:57:04.554[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m36[39m - [1m[0] lr                             0.001
+[32m2025-03-25 02:57:04.554[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m36[39m - [1m[0] epoch                          2
+[32m2025-03-25 02:57:04.554[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m36[39m - [1m[0] record                         True
+[32m2025-03-25 02:57:04.554[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m36[39m - [1m[0] ****************************************
+Traceback (most recent call last):
+  File "/home/xyq/SubScaf/SS_simple.py", line 160, in <module>
+    SubScaf(args)
+  File "/home/xyq/SubScaf/SS_simple.py", line 104, in SubScaf
+    optimizer = SubScaffoldSGD(model.parameters(), args.lr, init_comp_mat, lbd, args.tau)
+  File "/home/xyq/SubScaf/utils.py", line 9, in __init__
+    super().__init__(params=params, defaults=defaults)
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/optim/optimizer.py", line 278, in __init__
+    self.add_param_group(cast(dict, param_group))
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/_compile.py", line 22, in inner
+    import torch._dynamo
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/_dynamo/__init__.py", line 2, in <module>
+    from . import allowed_functions, convert_frame, eval_frame, resume_execution
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/_dynamo/allowed_functions.py", line 30, in <module>
+    from .utils import hashable, is_safe_constant, NP_SUPPORTED_MODULES
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/_dynamo/utils.py", line 89, in <module>
+    import torch.fx.experimental.symbolic_shapes
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/fx/experimental/symbolic_shapes.py", line 739, in <module>
+    class EqualityConstraint(Constraint):
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/dataclasses.py", line 1013, in wrap
+    return _process_class(cls, init, repr, eq, order, unsafe_hash, frozen)
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/dataclasses.py", line 927, in _process_class
+    _init_fn(flds,
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/dataclasses.py", line 531, in _init_fn
+    return _create_fn('__init__',
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/dataclasses.py", line 400, in _create_fn
+    exec(txt, globals, ns)
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/home/xyq/SubScaf/SS_simple.py", line 160, in <module>
+    SubScaf(args)
+  File "/home/xyq/SubScaf/SS_simple.py", line 104, in SubScaf
+    optimizer = SubScaffoldSGD(model.parameters(), args.lr, init_comp_mat, lbd, args.tau)
+  File "/home/xyq/SubScaf/utils.py", line 9, in __init__
+    super().__init__(params=params, defaults=defaults)
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/optim/optimizer.py", line 278, in __init__
+    self.add_param_group(cast(dict, param_group))
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/_compile.py", line 22, in inner
+    import torch._dynamo
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/_dynamo/__init__.py", line 2, in <module>
+    from . import allowed_functions, convert_frame, eval_frame, resume_execution
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/_dynamo/allowed_functions.py", line 30, in <module>
+    from .utils import hashable, is_safe_constant, NP_SUPPORTED_MODULES
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/_dynamo/utils.py", line 89, in <module>
+    import torch.fx.experimental.symbolic_shapes
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/site-packages/torch/fx/experimental/symbolic_shapes.py", line 739, in <module>
+    class EqualityConstraint(Constraint):
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/dataclasses.py", line 1013, in wrap
+    return _process_class(cls, init, repr, eq, order, unsafe_hash, frozen)
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/dataclasses.py", line 927, in _process_class
+    _init_fn(flds,
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/dataclasses.py", line 531, in _init_fn
+    return _create_fn('__init__',
+  File "/home/xyq/miniconda3/envs/diloco/lib/python3.9/dataclasses.py", line 400, in _create_fn
+    exec(txt, globals, ns)
+KeyboardInterrupt

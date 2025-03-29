@@ -1,0 +1,4 @@
+
+[32m2025-03-21 11:07:06.458[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m35[39m - [1m[0] start loading arguments
+[32m2025-03-21 11:08:59.267[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m35[39m - [1m[0] baseline start evaulation
+[32m2025-03-21 11:08:59.279[39m | [1mINFO    [22m | [36m__main__[39m:[36mlog[39m:[36m35[39m - [1m[0] baseline eval loss is 0.887458086013794
