@@ -1,4 +1,4 @@
-from datasets import load_dataset 
+from datasets import load_dataset
 from transformers import (
     AutoTokenizer,
     AutoConfig,
@@ -43,7 +43,8 @@ def parse_args(args):
 
 
 def log(info):
-    logger.info(f"[{int(os.environ.get("RANK"))}]: " + info)
+    if dist.get_rank == 0:
+        logger.info(f"[{int(os.environ.get("RANK"))}]: " + info)
 
 def ddp_setup():
     dist.init_process_group(backend="nccl")
@@ -84,7 +85,7 @@ def main(args):
         return output
 
     dataset = ds.map(tokenize_fun, batched=True, remove_columns=["url", "text", "timestamp"])
-    dataset = split_
+    dataset = split_dataset
     collate_fn = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
     dataloader = DataLoader(dataset, batch_size=args.batch_size, collate_fn=collate_fn)
 
