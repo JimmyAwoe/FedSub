@@ -10,7 +10,7 @@ import wandb
 import tqdm
 from loguru import logger
 from copy import deepcopy
-from utils import *
+from utils.utils_linear import *
 
 
 class MyDataset(Dataset):

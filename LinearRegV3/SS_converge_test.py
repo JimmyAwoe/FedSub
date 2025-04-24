@@ -1,5 +1,5 @@
 import numpy as np
-from utils import *
+from utils.utils_linear import *
 import matplotlib.pyplot as plt
 import argparse
 import os
