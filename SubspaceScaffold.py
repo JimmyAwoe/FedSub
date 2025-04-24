@@ -131,9 +131,14 @@ def main(args):
 
     if 'subscaf' in args.optimizer.lower():
         target_modules_list = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+        # define nonlocal variables for replace module
+        num_subscaf_params = 0
+        subscaf_params = []
+        lbd = []
+        comp_mat_rec = []
         def replace_module(model, target_modules_list):
             """replace Linear module in model into SubScafLinear module"""
-            global num_subscaf_params, subscaf_params, lbd, comp_mat_rec
+            nonlocal num_subscaf_params, subscaf_params, lbd, comp_mat_rec
             for name, module in model.named_children():
                 # only revise module with param_name has "mlp" or "attn"
                 if isinstance(module, nn.Linear) and any(target_key in name for target_key in target_modules_list):
@@ -240,7 +245,9 @@ def main(args):
                 "world_size": world_size,
                 "devive": str(device),
             })
-            args.wandb_run_name = "Llama"
+            args.wandb_run_name = f"{args.wandb_run_name}-lr{args.lr}-{args.optimizer}"
+            if args.optimizer == 'subscaf':
+                args.wandb_run_name += f"-tau{args.tau}-CPDim{args.comp_dim}"
             wandb.init(project="SubScaf", name=args.wandb_run_name)
             wandb.config.update(run_config, allow_val_change=True)
 
@@ -281,6 +288,10 @@ def main(args):
 
         if rank == 0:
             pbar.update(1)
+        
+        if args.optimizer in baseline_optimizer:
+            for params in model.parameters():
+                dist.all_reduce(params, op=dist.ReduceOp.AVG)
 
         # because warmup will make the first step with lr 0, and it will cause lbd
         # to be nan. So we choose to update lr before step.
@@ -321,12 +332,9 @@ def main(args):
 if __name__ == "__main__":
     ddp_setup()
     args = parse_args(None)
-    # define some global variable
-    num_subscaf_params = 0
-    subscaf_params = []
-    lbd = []
-    comp_mat_rec = []
-    idx = 0
+    # setting baseline optimizer list, if we choose one of optimizer in that,
+    # then the optimizer procedure would be a little bit different
+    baseline_optimizer = ['sgd']
     main(args)
 
 
