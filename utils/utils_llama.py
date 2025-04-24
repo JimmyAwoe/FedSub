@@ -109,7 +109,8 @@ class SubScafSGD(Optimizer):
     def update_lbd(self, lbd):
         for group in self.param_groups:
             if 'lbd' in group.keys():
-                group['lbd'] = lbd
+                # XXX learning rate is changing dynamically, how to set lbd under such case
+                group['lbd'] = lbd / (group['lr'] * group['tau'])
         
 
     @_use_grad_for_differentiable

@@ -40,6 +40,8 @@ def parse_args(args):
     # subscaf
     parser.add_argument("--comp_dim", default=64, type=int, help="the compression dimension")
     parser.add_argument("--tau", type=int, help="inner loop steps")
+    parser.add_argument("--gene_method", default='nd', type=str, 
+                        help="set the method to generate compression matrix")
 
     # model
     parser.add_argument("--model_config", type=str, default="configs/llama_20m.json")
@@ -63,22 +65,37 @@ def ddp_setup():
     dist.init_process_group(backend="nccl")
 
 
-def gene_random_matrix(in_dim, out_dim):
-    # HACK optimze switch method
-    #return torch.randn(in_dim, out_dim) / math.sqrt(out_dim)
-    return Coordinate_descend_genep(in_dim, out_dim)
+def gene_random_matrix(dim, comp_dim, method='nd'):
+    if method.lower() == 'nd':
+        return Normal_distribution_genep(dim, comp_dim)
+    elif method.lower() == 'cd':
+        return Coordinate_descend_genep(dim, comp_dim)
+    elif method.lower() == 'ss':
+        return Spherical_smoothing_genep(dim, comp_dim)
+    else:
+        assert False, "haven't define chosen compression matrix generation method"
 
-def Coordinate_descend_genep(dim, comp_dim, n=1):
+def Normal_distribution_genep(dim, comp_dim):
+    return torch.randn(dim, comp_dim) / math.sqrt(comp_dim)
+
+def Coordinate_descend_genep(dim, comp_dim):
     assert dim >= comp_dim, "compression dimension must be smaller than dimension"
-    sum_p = torch.zeros(dim, comp_dim) 
-    for _ in range(n):
-        ide = torch.eye(dim)
-        select_col = torch.randperm(dim)[:comp_dim]
-        sign = torch.randint(0, 2, (comp_dim, ))
-        sign = sign * 2 - 1
-        P = ide[:, select_col] * sign
-        sum_p += P
-    P = sum_p / n
+    ide = torch.eye(dim)
+    select_col = torch.randperm(dim)[:comp_dim]
+    sign = torch.randint(0, 2, (comp_dim, ))
+    sign = sign * 2 - 1
+    # XXX make clear whether PTP is I or PPT is I
+    P = ide[:, select_col] * sign
+    return P
+
+def Spherical_smoothing_genep(dim, comp_dim):
+    z = torch.randn(dim, dim)
+    Q, R = torch.linalg.qr(z)
+    D = torch.diag(torch.sign(torch.diag(R)))
+    Q = torch.matmul(Q, D)
+    R = torch.matmul(D, R)
+    assert torch.allclose(torch.matmul(Q, R), z, atol=1e-5), "the QR decomposion is not accuracy"
+    P = torch.sqrt(torch.tensor(dim / comp_dim)) * Q[:, :comp_dim]
     return P
 
 def main(args):
@@ -135,7 +152,7 @@ def main(args):
         num_subscaf_params = 0
         subscaf_params = []
         lbd = []
-        comp_mat_rec = []
+        comp_mat_rec = {} 
         def replace_module(model, target_modules_list):
             """replace Linear module in model into SubScafLinear module"""
             nonlocal num_subscaf_params, subscaf_params, lbd, comp_mat_rec
@@ -144,9 +161,13 @@ def main(args):
                 if isinstance(module, nn.Linear) and any(target_key in name for target_key in target_modules_list):
                     log(f"enable Subspace Scaffold for weights in module: {name}")
 
-                    # create compression matrix
-                    comp_mat = gene_random_matrix(module.out_features, args.comp_dim).to(device)
-                    dist.broadcast(comp_mat, src=0)
+                    # create compression matrix only when new shape demand occur
+                    if (module.out_features, args.comp_dim) not in comp_mat_rec.keys():
+                        comp_mat = gene_random_matrix(module.out_features, args.comp_dim, args.gene_method).to(device)
+                        dist.broadcast(comp_mat, src=0)
+                        comp_mat_rec[(module.out_features, args.comp_dim)] = comp_mat
+                    else:
+                        comp_mat = comp_mat_rec[(module.out_features, args.comp_dim)]
 
                     # substitue all Linear module into SubScafLinear module
                     new_layer = SubScafLinear(args.comp_dim, comp_mat, module)
@@ -161,8 +182,6 @@ def main(args):
                     # initialize lambda
                     lbd.append(torch.zeros((args.comp_dim, module.in_features), device=device, requires_grad=False))
 
-                    # record compression matrix
-                    comp_mat_rec.append(comp_mat)
                 else:
                     replace_module(module, target_modules_list)
 
@@ -170,7 +189,7 @@ def main(args):
         def outer_update(model, lbd, comp_mat_rec, target_modules_list):
             def subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list):
                 """carry out one outer update for subspace scaffold algorithm"""
-                nonlocal idx
+                nonlocal idx, new_comp_mat_rec
                 for name, module in model.named_children():
                     if isinstance(module, nn.Linear) and any(target_key in name for target_key in target_modules_list):
                         # all_reduce b
@@ -178,7 +197,7 @@ def main(args):
                         dist.all_reduce(avg_b, op=dist.ReduceOp.AVG)
 
                         # generate new compression matrix
-                        new_comp_mat = gene_random_matrix(module.out_features, args.comp_dim).to(device)
+                        new_comp_mat = gene_random_matrix(module.out_features, args.comp_dim, args.gene_method).to(device)
                         dist.broadcast(new_comp_mat, src=0)
 
                         # update lbd for every modules
@@ -197,6 +216,7 @@ def main(args):
                     else:
                         subscaf_outer_update(module, lbd, comp_mat_rec, target_modules_list)
             idx = 0
+            new_comp_mat_rec = {}
             subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list)
 
         replace_module(model, target_modules_list)
