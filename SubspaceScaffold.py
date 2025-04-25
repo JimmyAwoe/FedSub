@@ -40,7 +40,7 @@ def parse_args(args):
     # subscaf
     parser.add_argument("--comp_dim", default=64, type=int, help="the compression dimension")
     parser.add_argument("--tau", type=int, help="inner loop steps")
-    parser.add_argument("--gene_method", default='nd', type=str, 
+    parser.add_argument("--gene_method", default='cd', type=str, 
                         help="set the method to generate compression matrix")
 
     # model
@@ -50,6 +50,7 @@ def parse_args(args):
     parser.add_argument("--optimizer", choices=['subscaf', 'scaf', 'sgd'], default='subscaf',
                         type=str, help="assign the optimization algorithm")
     parser.add_argument("--momentum", default=0, type=float)
+    parser.add_argument("--nesterov", action="store_true")
 
     # wandb
     parser.add_argument("--wandb_run_name", default='subscaf_sgd')
@@ -66,8 +67,8 @@ def ddp_setup():
 
 
 def gene_random_matrix(dim, comp_dim, method='nd'):
-    if method.lower() == 'nd':
-        return Normal_distribution_genep(dim, comp_dim)
+    if method.lower() == 'rd':
+        return Random_Normal_genep(dim, comp_dim)
     elif method.lower() == 'cd':
         return Coordinate_descend_genep(dim, comp_dim)
     elif method.lower() == 'ss':
@@ -75,7 +76,7 @@ def gene_random_matrix(dim, comp_dim, method='nd'):
     else:
         assert False, "haven't define chosen compression matrix generation method"
 
-def Normal_distribution_genep(dim, comp_dim):
+def Random_Normal_genep(dim, comp_dim):
     return torch.randn(dim, comp_dim) / math.sqrt(comp_dim)
 
 def Coordinate_descend_genep(dim, comp_dim):
@@ -197,19 +198,20 @@ def main(args):
                         dist.all_reduce(avg_b, op=dist.ReduceOp.AVG)
 
                         # generate new compression matrix
-                        new_comp_mat = gene_random_matrix(module.out_features, args.comp_dim, args.gene_method).to(device)
-                        dist.broadcast(new_comp_mat, src=0)
+                        if (module.out_features, args.comp_dim) not in new_comp_mat_rec.keys():
+                            new_comp_mat = gene_random_matrix(module.out_features, args.comp_dim, args.gene_method).to(device)
+                            dist.broadcast(new_comp_mat, src=0)
+                            new_comp_mat_rec[(module.out_features, args.comp_dim)] = new_comp_mat
+                        else:
+                            new_comp_mat = new_comp_mat_rec[(module.out_features, args.comp_dim)]
 
                         # update lbd for every modules
-                        lbd[idx] = new_comp_mat.T @ comp_mat_rec[idx] @ (lbd[idx] + module.b - avg_b)
+                        lbd[idx] = new_comp_mat.T @ comp_mat_rec[(module.out_features, args.comp_dim)] @ (lbd[idx] + module.b - avg_b)
                         assert lbd[idx].shape == (args.comp_dim, module.in_features)
 
                         # update compression matrix, b and x
-                        new_x = module.x + comp_mat_rec[idx] @ avg_b
+                        new_x = module.x + comp_mat_rec[(module.out_features, args.comp_dim)] @ avg_b
                         module.update(comp_mat=new_comp_mat, x=new_x, b=True)
-
-                        # record compression matrix
-                        comp_mat_rec[idx] = new_comp_mat
 
                         # update idx
                         idx += 1
@@ -218,6 +220,7 @@ def main(args):
             idx = 0
             new_comp_mat_rec = {}
             subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list)
+            comp_mat_rec = new_comp_mat_rec
 
         replace_module(model, target_modules_list)
         id_subscaf_params = [id(p) for p in subscaf_params]
@@ -244,7 +247,10 @@ def main(args):
                                compression_dim=args.comp_dim,
                                )
     elif args.optimizer == 'sgd':
-        optimizer = torch.optim.SGD(trainable_param, lr=args.lr)
+        optimizer = torch.optim.SGD(trainable_param, 
+                                    lr=args.lr, 
+                                    momentum=args.momentum,
+                                    nesterov=args.nesterov)
 
     # schedule
     # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
@@ -265,7 +271,7 @@ def main(args):
                 "world_size": world_size,
                 "devive": str(device),
             })
-            args.wandb_run_name = f"{args.wandb_run_name}-lr{args.lr}-{args.optimizer}"
+            args.wandb_run_name = f"{args.wandb_run_name}-lr{args.lr}"
             if args.optimizer == 'subscaf':
                 args.wandb_run_name += f"-tau{args.tau}-CPDim{args.comp_dim}"
             wandb.init(project="SubScaf", name=args.wandb_run_name)
