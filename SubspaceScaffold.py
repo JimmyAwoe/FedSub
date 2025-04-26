@@ -20,6 +20,7 @@ import time
 import torch.nn as nn
 from utils import SubScafSGD, SubScafLinear
 import math
+from pickle import dump
 
 
 
@@ -44,7 +45,7 @@ def parse_args(args):
                         help="set the method to generate compression matrix")
 
     # model
-    parser.add_argument("--model_config", type=str, default="configs/llama_20m.json")
+    parser.add_argument("--model_config", type=str, default="configs/llama_60m.json")
 
     # optimizer
     parser.add_argument("--optimizer", choices=['subscaf', 'scaf', 'sgd'], default='subscaf',
@@ -54,7 +55,11 @@ def parse_args(args):
 
     # wandb
     parser.add_argument("--wandb_run_name", default='subscaf_sgd')
+
+    # memory monitor
+    parser.add_argument("--mem_monitor", action="store_true")
     args = parser.parse_args(args)
+
     return args
 
 
@@ -99,12 +104,20 @@ def Spherical_smoothing_genep(dim, comp_dim):
     P = torch.sqrt(torch.tensor(dim / comp_dim)) * Q[:, :comp_dim]
     return P
 
+def mem():
+    torch.cuda.empty_cache()
+    log('memory allocated: ' + str((torch.cuda.memory_allocated() / (1024 ** 3))) + 'GB')
+    log('memory reserved: ' + str(torch.cuda.memory_reserved() / (1024 ** 3)) + 'GB')
+    log('max memory allocated: ' + str(torch.cuda.max_memory_allocated() / (1024 ** 3)) + 'GB')
+    log('max memory reserved: ' + str(torch.cuda.max_memory_reserved() / (1024 ** 3)) + 'GB')
+
 def main(args):
     rank = int(os.environ.get("RANK", 0))
     local_rank = int(os.environ.get("LOCAL_RANK", 0))
     world_size = int(os.environ.get("WORLD_SIZE", 1))
-
-
+    
+    if rank == 0 and args.mem_monitor:
+        torch.cuda.memory._record_memory_history(enabled='all')
     log("Process group initialize")
     log("*" * 40)
     log("Start training with arguments")
@@ -239,18 +252,19 @@ def main(args):
     else: 
         log(f"Trainable params: {sum(p.numel() for p in model.parameters() if p.requires_grad) / 1_000_000:.2f}M")
 
-
     if args.optimizer == 'subscaf':
         optimizer = SubScafSGD(param_groups, 
                                lr=args.lr, 
                                tau=args.tau, 
                                compression_dim=args.comp_dim,
+                               foreach=False,
                                )
     elif args.optimizer == 'sgd':
         optimizer = torch.optim.SGD(trainable_param, 
                                     lr=args.lr, 
                                     momentum=args.momentum,
-                                    nesterov=args.nesterov)
+                                    nesterov=args.nesterov,
+                                    foreach=False)
 
     # schedule
     # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
@@ -290,8 +304,6 @@ def main(args):
             log(f"attain assigned training step {args.num_training_steps}. Stop Training")
             print(f"Rank {rank} stopping training")
             break
-    
-        
         batch = {k: v.to(device) for k, v in batch.items()}
         labels = batch["input_ids"].clone()
         labels[labels == pad_idx] = -100
@@ -324,6 +336,7 @@ def main(args):
         schedule.step()
         optimizer.step()
         optimizer.zero_grad()
+        mem() 
 
         if args.optimizer == "subscaf" and (local_step // grad_accumulation) % args.tau == 0:
             outer_update(model, lbd, comp_mat_rec, target_modules_list)
@@ -351,6 +364,12 @@ def main(args):
 
     log("finish training")
     if rank == 0:
+        if args.mem_monitor:
+            # NOTE this will generate a giant file to record the memory consumption during training
+            # so make sure the training step is few enough to make this file possible to store.
+            s = torch.cuda.memory._snapshot()
+        with open(f"snapshot.pickle", "wb") as f:
+            dump(s, f)
         pbar.close()
         if args.use_wandb:
             wandb.finish()

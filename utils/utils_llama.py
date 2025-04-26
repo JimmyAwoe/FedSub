@@ -63,8 +63,6 @@ class SubScafSGD(Optimizer):
             The frequency to synchronize among nodes.
         compression_dim (`int`, *optional*, default to 64):
             The expectd compression dimension.
-        lbd (`torch.Tensor`, *optional*):
-            Scaffold variable for optimize.
     """
     def __init__(
         self,
