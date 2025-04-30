@@ -18,7 +18,7 @@ from torch.utils.data import DataLoader
 import wandb
 import time
 import torch.nn as nn
-from utils import SubScafSGD, SubScafLinear
+from utils import SubScafSGD, SubScafLinear, SubScafAdam
 import math
 from pickle import dump
 
@@ -48,10 +48,11 @@ def parse_args(args):
     parser.add_argument("--model_config", type=str, default="configs/llama_60m.json")
 
     # optimizer
-    parser.add_argument("--optimizer", choices=['subscaf', 'scaf', 'sgd'], default='subscaf',
+    parser.add_argument("--optimizer", choices=['subscafsgd', 'subscafadam', 'scaf', 'sgd', 'adam'], default='subscafsgd',
                         type=str, help="assign the optimization algorithm")
     parser.add_argument("--momentum", default=0, type=float)
     parser.add_argument("--nesterov", action="store_true")
+    parser.add_argument("--per_layer_weight_update", action="store_true")
 
     # wandb
     parser.add_argument("--wandb_run_name", default='subscaf_sgd')
@@ -71,37 +72,37 @@ def ddp_setup():
     dist.init_process_group(backend="nccl")
 
 
-def gene_random_matrix(dim, comp_dim, method='nd'):
+def gene_random_matrix(comp_dim, dim, method='nd'):
     if method.lower() == 'rd':
-        return Random_Normal_genep(dim, comp_dim)
+        return Random_Normal_genep(comp_dim, dim)
     elif method.lower() == 'cd':
-        return Coordinate_descend_genep(dim, comp_dim)
+        return Coordinate_descend_genep(comp_dim, dim)
     elif method.lower() == 'ss':
-        return Spherical_smoothing_genep(dim, comp_dim)
+        return Spherical_smoothing_genep(comp_dim, dim)
     else:
         assert False, "haven't define chosen compression matrix generation method"
 
-def Random_Normal_genep(dim, comp_dim):
-    return torch.randn(dim, comp_dim) / math.sqrt(comp_dim)
+def Random_Normal_genep(comp_dim, dim):
+    return torch.randn(comp_dim, dim) / math.sqrt(dim)
 
-def Coordinate_descend_genep(dim, comp_dim):
+def Coordinate_descend_genep(comp_dim, dim):
+    # XXX the variable name is inversed 
     assert dim >= comp_dim, "compression dimension must be smaller than dimension"
     ide = torch.eye(dim)
-    select_col = torch.randperm(dim)[:comp_dim]
+    select_row = torch.randperm(dim)[:comp_dim]
     sign = torch.randint(0, 2, (comp_dim, ))
     sign = sign * 2 - 1
-    # XXX make clear whether PTP is I or PPT is I
-    P = ide[:, select_col] * sign
+    P = ide[select_row, :] * sign.unsqueeze(1)
     return P
 
-def Spherical_smoothing_genep(dim, comp_dim):
+def Spherical_smoothing_genep(comp_dim, dim):
     z = torch.randn(dim, dim)
     Q, R = torch.linalg.qr(z)
     D = torch.diag(torch.sign(torch.diag(R)))
     Q = torch.matmul(Q, D)
     R = torch.matmul(D, R)
     assert torch.allclose(torch.matmul(Q, R), z, atol=1e-5), "the QR decomposion is not accuracy"
-    P = torch.sqrt(torch.tensor(dim / comp_dim)) * Q[:, :comp_dim]
+    P = torch.sqrt(torch.tensor(dim / comp_dim)) * Q[:comp_dim, :]
     return P
 
 def mem():
@@ -159,7 +160,6 @@ def main(args):
     trainable_param = [p for p in model.parameters() if p.requires_grad == True]
     param_before_comp = sum(p.numel() for p in model.parameters()) / 1_000_000
     trainable_param_before_comp = sum(p.numel() for p in model.parameters() if p.requires_grad == True) / 1_000_000
-
     if 'subscaf' in args.optimizer.lower():
         target_modules_list = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
         # define nonlocal variables for replace module
@@ -176,12 +176,13 @@ def main(args):
                     log(f"enable Subspace Scaffold for weights in module: {name}")
 
                     # create compression matrix only when new shape demand occur
-                    if (module.out_features, args.comp_dim) not in comp_mat_rec.keys():
-                        comp_mat = gene_random_matrix(module.out_features, args.comp_dim, args.gene_method).to(device)
+                    if (args.comp_dim, module.in_features) not in comp_mat_rec.keys():
+                        #comp_mat = gene_random_matrix(module.out_features, args.comp_dim, args.gene_method).to(device)
+                        comp_mat = gene_random_matrix(args.comp_dim, module.in_features, args.gene_method).to(device)
                         dist.broadcast(comp_mat, src=0)
-                        comp_mat_rec[(module.out_features, args.comp_dim)] = comp_mat
+                        comp_mat_rec[(args.comp_dim, module.in_features)] = comp_mat
                     else:
-                        comp_mat = comp_mat_rec[(module.out_features, args.comp_dim)]
+                        comp_mat = comp_mat_rec[(args.comp_dim, module.in_features)]
 
                     # substitue all Linear module into SubScafLinear module
                     new_layer = SubScafLinear(args.comp_dim, comp_mat, module)
@@ -194,11 +195,13 @@ def main(args):
                     subscaf_params += [p for p in new_layer.parameters()]
 
                     # initialize lambda
-                    lbd.append(torch.zeros((args.comp_dim, module.in_features), device=device, requires_grad=False))
+                    #lbd.append(torch.zeros((args.comp_dim, module.in_features), device=device, requires_grad=False))
+                    lbd.append(torch.zeros((module.out_features, args.comp_dim), device=device, requires_grad=False))
+
 
                 else:
                     replace_module(module, target_modules_list)
-
+        
         @torch.no_grad()
         def outer_update(model, lbd, comp_mat_rec, target_modules_list):
             def subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list):
@@ -211,19 +214,20 @@ def main(args):
                         dist.all_reduce(avg_b, op=dist.ReduceOp.AVG)
 
                         # generate new compression matrix
-                        if (module.out_features, args.comp_dim) not in new_comp_mat_rec.keys():
-                            new_comp_mat = gene_random_matrix(module.out_features, args.comp_dim, args.gene_method).to(device)
+                        if (args.comp_dim, module.in_features) not in new_comp_mat_rec.keys():
+                            #new_comp_mat = gene_random_matrix(module.out_features, args.comp_dim, args.gene_method).to(device)
+                            new_comp_mat = gene_random_matrix(args.comp_dim, module.in_features, args.gene_method).to(device)
                             dist.broadcast(new_comp_mat, src=0)
-                            new_comp_mat_rec[(module.out_features, args.comp_dim)] = new_comp_mat
+                            new_comp_mat_rec[(args.comp_dim, module.in_features)] = new_comp_mat
                         else:
-                            new_comp_mat = new_comp_mat_rec[(module.out_features, args.comp_dim)]
+                            new_comp_mat = new_comp_mat_rec[(args.comp_dim, module.in_features)]
 
                         # update lbd for every modules
-                        lbd[idx] = new_comp_mat.T @ comp_mat_rec[(module.out_features, args.comp_dim)] @ (lbd[idx] + module.b - avg_b)
-                        assert lbd[idx].shape == (args.comp_dim, module.in_features)
+                        lbd[idx] = (lbd[idx] + module.b - avg_b) @ comp_mat_rec[(args.comp_dim, module.in_features)] @ new_comp_mat.T
+                        assert lbd[idx].shape == (module.out_features, args.comp_dim)
 
                         # update compression matrix, b and x
-                        new_x = module.x + comp_mat_rec[(module.out_features, args.comp_dim)] @ avg_b
+                        new_x = module.x + avg_b @ comp_mat_rec[(args.comp_dim, module.in_features)] 
                         module.update(comp_mat=new_comp_mat, x=new_x, b=True)
 
                         # update idx
@@ -234,14 +238,16 @@ def main(args):
             new_comp_mat_rec = {}
             subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list)
             comp_mat_rec = new_comp_mat_rec
-
+        mem()
         replace_module(model, target_modules_list)
+        mem()
         id_subscaf_params = [id(p) for p in subscaf_params]
         # make parameters without "is_comp" to another group
         regular_params = [p for p in model.parameters() if id(p) not in id_subscaf_params]
         # make parameters with "is_comp" to a single group
         param_groups = [{'params': regular_params, 'is_comp': False}, 
-                        {'params': subscaf_params, 'is_comp': True, 'lbd': lbd}]
+                        {'params': subscaf_params, 'is_comp': True, 'lbd': lbd, 'tau': args.tau, 
+                         'compression_dim': args.comp_dim}]
 
     log(f"\n{model}\n")
     log(f"Total params: {param_before_comp:.2f}M")
@@ -252,26 +258,103 @@ def main(args):
     else: 
         log(f"Trainable params: {sum(p.numel() for p in model.parameters() if p.requires_grad) / 1_000_000:.2f}M")
 
-    if args.optimizer == 'subscaf':
-        optimizer = SubScafSGD(param_groups, 
-                               lr=args.lr, 
-                               tau=args.tau, 
-                               compression_dim=args.comp_dim,
-                               foreach=False,
-                               )
+    if args.optimizer == 'subscafsgd':
+        if not args.per_layer_weight_update:
+            optimizer = SubScafSGD(param_groups, 
+                                lr=args.lr, 
+                                tau=args.tau, 
+                                compression_dim=args.comp_dim,
+                                foreach=False,
+                                )
+            # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
+            # lbd to be nan
+            schedule = get_cosine_schedule_with_warmup(optimizer,
+                                                    num_warmup_steps=args.warmup,
+                                                    num_training_steps=args.num_training_steps + 1)
+        else:
+            optimizer_dict = {p: SubScafSGD([{'params': p, 'is_comp': False}], 
+                                            lr=args.lr, 
+                                            tau=args.tau, 
+                                            compression_dim=args.comp_dim,
+                                            foreach=False) for p in regular_params}
+            for (p, l) in zip(subscaf_params, lbd):
+                optimizer_dict.update({p: SubScafSGD([{'params':p, 'is_comp': True, 'lbd': [l]}],
+                                                    lr=args.lr,
+                                                    tau=args.tau,
+                                                    compression_dim=args.comp_dim,
+                                                    foreach=False)})
+            def optimizer_hook(p):
+                if p.grad is None:
+                    return
+                schedule_dict[p].step()
+                optimizer_dict[p].step()
+                optimizer_dict[p].zero_grad()
+            schedule_dict = {}
+            for p in model.parameters():
+                if p.requires_grad:
+                    # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
+                    # lbd to be nan
+                    schedule_dict[p] = get_cosine_schedule_with_warmup(optimizer_dict[p],
+                                                                    num_warmup_steps=args.warmup,
+                                                                    num_training_steps=args.num_training_steps + 1)
+                    p.register_post_accumulate_grad_hook(optimizer_hook)
+    
+    elif args.optimizer == 'subscafadam':
+        if not args.per_layer_weight_update:
+            optimizer = SubScafAdam(param_groups, 
+                                lr=args.lr, 
+                                foreach=False,
+                                fused=True,
+                                )
+            # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
+            # lbd to be nan
+            schedule = get_cosine_schedule_with_warmup(optimizer,
+                                                    num_warmup_steps=args.warmup,
+                                                    num_training_steps=args.num_training_steps + 1)
+        else:
+            optimizer_dict = {p: SubScafAdam([{'params': p, 'is_comp': False}], 
+                                            lr=args.lr, 
+                                            foreach=False,
+                                            fused=True) for p in regular_params}
+            for (p, l) in zip(subscaf_params, lbd):
+                optimizer_dict.update({p: SubScafAdam([{'params':p, 'is_comp': True, 'lbd': [l]}],
+                                                    lr=args.lr,
+                                                    foreach=False,
+                                                    fused=True)})
+            def optimizer_hook(p):
+                if p.grad is None:
+                    return
+                schedule_dict[p].step()
+                optimizer_dict[p].step()
+                optimizer_dict[p].zero_grad()
+            schedule_dict = {}
+            for p in model.parameters():
+                if p.requires_grad:
+                    # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
+                    # lbd to be nan
+                    schedule_dict[p] = get_cosine_schedule_with_warmup(optimizer_dict[p],
+                                                                    num_warmup_steps=args.warmup,
+                                                                    num_training_steps=args.num_training_steps + 1)
+                    p.register_post_accumulate_grad_hook(optimizer_hook)
     elif args.optimizer == 'sgd':
         optimizer = torch.optim.SGD(trainable_param, 
                                     lr=args.lr, 
                                     momentum=args.momentum,
                                     nesterov=args.nesterov,
                                     foreach=False)
+        # schedule
+        schedule = get_cosine_schedule_with_warmup(optimizer,
+                                                num_warmup_steps=args.warmup,
+                                                num_training_steps=args.num_training_steps + 1)
+    elif args.optimizer == 'adam':
+        optimizer = torch.optim.Adam(trainable_param,
+                                     lr=args.lr,
+                                     )
 
-    # schedule
-    # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
-    # lbd to be nan
-    schedule = get_cosine_schedule_with_warmup(optimizer,
-                                               num_warmup_steps=args.warmup,
-                                               num_training_steps=args.num_training_steps + 1)
+        # schedule
+        schedule = get_cosine_schedule_with_warmup(optimizer,
+                                                num_warmup_steps=args.warmup,
+                                                num_training_steps=args.num_training_steps + 1)
 
     n_total_params = sum(p.numel() for p in model.parameters())
     if rank == 0: 
@@ -309,9 +392,11 @@ def main(args):
         labels[labels == pad_idx] = -100
         token_seen += (batch["input_ids"] != pad_idx).sum().item() * world_size
 
+        mem()
         loss = model(**batch).loss
         scaled_loss = loss / grad_accumulation
         scaled_loss.backward()
+        mem()
 
 
 
@@ -333,14 +418,17 @@ def main(args):
 
         # because warmup will make the first step with lr 0, and it will cause lbd
         # to be nan. So we choose to update lr before step.
-        schedule.step()
-        optimizer.step()
-        optimizer.zero_grad()
-        mem() 
+            schedule.step()
+            optimizer.step()
+            optimizer.zero_grad()
 
-        if args.optimizer == "subscaf" and (local_step // grad_accumulation) % args.tau == 0:
+        if "subscaf" in args.optimizer.lower() and (local_step // grad_accumulation) % args.tau == 0:
             outer_update(model, lbd, comp_mat_rec, target_modules_list)
-            optimizer.update_lbd(lbd=lbd)
+            if not args.per_layer_weight_update:
+                optimizer.update_lbd(lbd)
+            else:
+                for (p, l) in zip(subscaf_params, lbd):
+                    optimizer_dict[p].update_lbd(lbd=[l])
 
 
         update_step += 1
@@ -379,7 +467,7 @@ if __name__ == "__main__":
     args = parse_args(None)
     # setting baseline optimizer list, if we choose one of optimizer in that,
     # then the optimizer procedure would be a little bit different
-    baseline_optimizer = ['sgd']
+    baseline_optimizer = ['sgd', 'adam']
     main(args)
 
 

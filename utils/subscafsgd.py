@@ -1,54 +1,13 @@
-from transformers.models.llama.modeling_llama import (
-    LlamaMLP, 
-    LlamaAttention,
-    LlamaDecoderLayer,
-    LlamaForCausalLM,
-)
 from transformers.activations import ACT2FN
 from torch.optim.optimizer import Optimizer, _use_grad_for_differentiable, _default_to_fused_or_foreach
-from torch.optim import SGD
 from torch import Tensor
 import torch.nn as nn
-import torch.distributed as dist
-from typing import Iterable, Tuple, Callable, Optional, List 
+from typing import Iterable, Callable, Optional, List 
 import torch
-import torch.nn.functional as F
-import numpy as np
+from torch.optim import SGD
 
-class SubScafLinear(nn.Linear):
-    """
-    Linear network with compressed dimension
-    """
-    def __init__(self, comp_dim: int, comp_mat: torch.Tensor, wraped_model: nn.Linear):
-        self.comp_mat = comp_mat
-        self.comp_dim = comp_dim
-        device = wraped_model.weight.device
-        dtype = wraped_model.weight.dtype
-        factory_kwargs = {'device': device, 'dtype': dtype}
-        bias = wraped_model.bias is not None
-        super().__init__(wraped_model.in_features, wraped_model.out_features, 
-                         bias, device, dtype)
-        self.x = self.weight.detach().clone()
-        self.b = nn.Parameter(torch.zeros((comp_dim, wraped_model.in_features), **factory_kwargs))
-        del self.weight
 
-    def forward(self, input):
-        return F.linear(input, self.comp_mat @ self.b + self.x, self.bias)
-    
-    def update(self, comp_mat=None, x=None, b=False):
-        """
-        Update compression matrix, x or b
-        
-        Be careful when update compressino before update x because that need the
-        compressino matrix.
-        """
-        with torch.no_grad():
-            if x is not None:
-                self.x = x
-            if comp_mat is not None:
-                self.comp_mat = comp_mat
-            if b:
-                self.b.data = torch.zeros_like(self.b.data)
+# create Subspace Scaffold optimizer based on sgd 
 
 class SubScafSGD(Optimizer):
     """
@@ -107,7 +66,6 @@ class SubScafSGD(Optimizer):
     def update_lbd(self, lbd):
         for group in self.param_groups:
             if 'lbd' in group.keys():
-                # XXX learning rate is changing dynamically, how to set lbd under such case
                 group['lbd'] = lbd
         
 
@@ -131,7 +89,7 @@ class SubScafSGD(Optimizer):
 
             has_sparse_grad = self._init_group(group, params_with_grad, d_p_list, momentum_buffer_list)
 
-            sgd(params_with_grad,
+            subscafsgd(params_with_grad,
                 d_p_list,
                 momentum_buffer_list,
                 weight_decay=group['weight_decay'],
@@ -156,7 +114,7 @@ class SubScafSGD(Optimizer):
 
 # below are three functions copied from torch.optim.SGD
 # Only few changes implemented to achieve subspace scaffold optimize.
-def sgd(params: List[Tensor],
+def subscafsgd(params: List[Tensor],
         d_p_list: List[Tensor],
         momentum_buffer_list: List[Optional[Tensor]],
         # kwonly args with defaults are not supported by functions compiled with torchscript issue #70627
@@ -191,9 +149,9 @@ def sgd(params: List[Tensor],
         raise RuntimeError('torch.jit.script not supported with foreach optimizers')
 
     if foreach and not torch.jit.is_scripting():
-        func = _multi_tensor_sgd
+        func = _subscaf_multi_tensor_sgd
     else:
-        func = _single_tensor_sgd
+        func = _subscaf_single_tensor_sgd
 
     func(params,
         d_p_list,
@@ -210,7 +168,7 @@ def sgd(params: List[Tensor],
         maximize=maximize,
         )
 
-def _single_tensor_sgd(params: List[Tensor],
+def _subscaf_single_tensor_sgd(params: List[Tensor],
                     d_p_list: List[Tensor],
                     momentum_buffer_list: List[Optional[Tensor]],
                     tau,
@@ -250,7 +208,7 @@ def _single_tensor_sgd(params: List[Tensor],
         param.add_(d_p, alpha=-lr)
 
 
-def _multi_tensor_sgd(params: List[Tensor],
+def _subscaf_multi_tensor_sgd(params: List[Tensor],
                     grads: List[Tensor],
                     momentum_buffer_list: List[Optional[Tensor]],
                     tau,
@@ -334,4 +292,3 @@ def _multi_tensor_sgd(params: List[Tensor],
             # foreach APIs don't support sparse
             for i in range(len(device_params)):
                 device_params[i].add_(device_grads[i], alpha=-lr)
-        
