@@ -238,9 +238,9 @@ def main(args):
             new_comp_mat_rec = {}
             subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list)
             comp_mat_rec = new_comp_mat_rec
-        mem()
+        #mem()
         replace_module(model, target_modules_list)
-        mem()
+        #mem()
         id_subscaf_params = [id(p) for p in subscaf_params]
         # make parameters without "is_comp" to another group
         regular_params = [p for p in model.parameters() if id(p) not in id_subscaf_params]
@@ -289,14 +289,18 @@ def main(args):
                 schedule_dict[p].step()
                 optimizer_dict[p].step()
                 optimizer_dict[p].zero_grad()
+
             schedule_dict = {}
             for p in model.parameters():
                 if p.requires_grad:
                     # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
                     # lbd to be nan
+                    # because in this condition, every backward would call optimizer_hook once, hence push the lr,
+                    # so in the case of gradient accumulation, we should correspondily longer the warmup and training 
+                    # step
                     schedule_dict[p] = get_cosine_schedule_with_warmup(optimizer_dict[p],
-                                                                    num_warmup_steps=args.warmup,
-                                                                    num_training_steps=args.num_training_steps + 1)
+                                                                    num_warmup_steps=args.warmup * grad_accumulation,
+                                                                    num_training_steps=args.num_training_steps * grad_accumulation + 1)
                     p.register_post_accumulate_grad_hook(optimizer_hook)
     
     elif args.optimizer == 'subscafadam':
@@ -392,11 +396,11 @@ def main(args):
         labels[labels == pad_idx] = -100
         token_seen += (batch["input_ids"] != pad_idx).sum().item() * world_size
 
-        mem()
+        #mem()
         loss = model(**batch).loss
         scaled_loss = loss / grad_accumulation
         scaled_loss.backward()
-        mem()
+        #mem()
 
 
 
@@ -417,7 +421,13 @@ def main(args):
                 dist.all_reduce(params, op=dist.ReduceOp.AVG)
 
         # because warmup will make the first step with lr 0, and it will cause lbd
-        # to be nan. So we choose to update lr before step.
+        # to be nan. So we choose to update lr before step. And for consistency, sgd
+        # also follow this setup
+            schedule.step()
+            optimizer.step()
+            optimizer.zero_grad()
+
+        if not args.per_layer_weight_update:
             schedule.step()
             optimizer.step()
             optimizer.zero_grad()
@@ -438,15 +448,19 @@ def main(args):
         batch_in_update = grad_accumulation * world_size
 
         if rank == 0 and args.use_wandb:
-            wandb.log({
+            record_dict = {
                 "loss": loss.item(),
-                "lr": optimizer.param_groups[0]["lr"],
                 "update_step": update_step,
                 "throughput_tokens": token_in_update / update_time,
                 "throughput_examples": args.total_batch_size * world_size / update_time,
                 "throughput_batchs": batch_in_update,
-            },
-            step=update_step,)
+            }
+            if "subscaf" in args.optimizer and args.per_layer_weight_update:
+                record_dict.update({"lr": optimizer_dict[next(model.parameters())].param_groups[0]["lr"]})
+            else:
+                record_dict.update({"lr": optimizer.param_groups[0]["lr"]})
+
+            wandb.log(record_dict, step=update_step,)
 
         update_time = time.time()
 
