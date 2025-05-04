@@ -72,7 +72,7 @@ def ddp_setup():
     dist.init_process_group(backend="nccl")
 
 
-def gene_random_matrix(comp_dim, dim, method='nd'):
+def gene_random_matrix(comp_dim, dim, method='cd'):
     if method.lower() == 'rd':
         return Random_Normal_genep(comp_dim, dim)
     elif method.lower() == 'cd':
@@ -203,7 +203,7 @@ def main(args):
                     replace_module(module, target_modules_list)
         
         @torch.no_grad()
-        def outer_update(model, lbd, comp_mat_rec, target_modules_list):
+        def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt):
             def subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list):
                 """carry out one outer update for subspace scaffold algorithm"""
                 nonlocal idx, new_comp_mat_rec
@@ -222,8 +222,17 @@ def main(args):
                         else:
                             new_comp_mat = new_comp_mat_rec[(args.comp_dim, module.in_features)]
 
+                        update_factor = comp_mat_rec[(args.comp_dim, module.in_features)] @ new_comp_mat.T
+
+                        # update momentum_buffer
+                        if args.momentum > 0:
+                            if not args.per_layer_weight_update:
+                                opt.update_m(module.b, avg_b @ update_factor / (args.lr * args.tau))
+                            else:
+                                opt[module.b].update_m(module.b, avg_b @ update_factor / (args.lr * args.tau))
+                                
                         # update lbd for every modules
-                        lbd[idx] = (lbd[idx] + module.b - avg_b) @ comp_mat_rec[(args.comp_dim, module.in_features)] @ new_comp_mat.T
+                        lbd[idx] = (lbd[idx] + module.b - avg_b) @ update_factor 
                         assert lbd[idx].shape == (module.out_features, args.comp_dim)
 
                         # update compression matrix, b and x
@@ -238,6 +247,13 @@ def main(args):
             new_comp_mat_rec = {}
             subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list)
             comp_mat_rec = new_comp_mat_rec
+
+            # update lbd
+            if not args.per_layer_weight_update:
+                opt.update_lbd(lbd)
+            else:
+                for (p, l) in zip(subscaf_params, lbd):
+                    opt[p].update_lbd(lbd=[l])
         #mem()
         replace_module(model, target_modules_list)
         #mem()
@@ -265,6 +281,7 @@ def main(args):
                                 tau=args.tau, 
                                 compression_dim=args.comp_dim,
                                 foreach=False,
+                                momentum=args.momentum,
                                 )
             # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
             # lbd to be nan
@@ -282,7 +299,8 @@ def main(args):
                                                     lr=args.lr,
                                                     tau=args.tau,
                                                     compression_dim=args.comp_dim,
-                                                    foreach=False)})
+                                                    foreach=False,
+                                                    momentum=args.momentum)})
             def optimizer_hook(p):
                 if p.grad is None:
                     return
@@ -433,12 +451,10 @@ def main(args):
             optimizer.zero_grad()
 
         if "subscaf" in args.optimizer.lower() and (local_step // grad_accumulation) % args.tau == 0:
-            outer_update(model, lbd, comp_mat_rec, target_modules_list)
-            if not args.per_layer_weight_update:
-                optimizer.update_lbd(lbd)
+            if args.per_layer_weight_update:
+                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer_dict)
             else:
-                for (p, l) in zip(subscaf_params, lbd):
-                    optimizer_dict[p].update_lbd(lbd=[l])
+                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer)
 
 
         update_step += 1
@@ -470,8 +486,8 @@ def main(args):
             # NOTE this will generate a giant file to record the memory consumption during training
             # so make sure the training step is few enough to make this file possible to store.
             s = torch.cuda.memory._snapshot()
-        with open(f"snapshot.pickle", "wb") as f:
-            dump(s, f)
+            with open(f"snapshot.pickle", "wb") as f:
+                dump(s, f)
         pbar.close()
         if args.use_wandb:
             wandb.finish()

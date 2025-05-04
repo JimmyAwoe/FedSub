@@ -20,6 +20,7 @@ class SubScafLinear(nn.Linear):
         self.x = self.weight.detach().clone()
         #self.b = nn.Parameter(torch.zeros((comp_dim, wraped_model.in_features), **factory_kwargs))
         self.b = nn.Parameter(torch.zeros((wraped_model.out_features, comp_dim), **factory_kwargs))
+        #nn.init.kaiming_uniform_(self.b, a=0, mode='fan_in', nonlinearity='relu')
         self.layer = _subscaflinear.apply
         del self.weight
 

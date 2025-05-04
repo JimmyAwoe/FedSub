@@ -67,7 +67,12 @@ class SubScafSGD(Optimizer):
         for group in self.param_groups:
             if 'lbd' in group.keys():
                 group['lbd'] = lbd
-        
+
+    @torch.no_grad()
+    def update_m(self, params, m):
+        for group in self.param_groups:
+            if group['is_comp'] == True:
+                self.state[params]['momentum_buffer'] = m
 
     @_use_grad_for_differentiable
     def step(self, closure: Callable = None):
@@ -197,7 +202,7 @@ def _subscaf_single_tensor_sgd(params: List[Tensor],
                 momentum_buffer_list[i] = buf
             else:
                 buf.mul_(momentum).add_(d_p, alpha=1 - dampening)
-
+            
             if nesterov:
                 d_p = d_p.add(buf, alpha=momentum)
             else:
