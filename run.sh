@@ -1,5 +1,5 @@
 export CUDA_VISIBLE_DEVICES=0,1,2,3
-opt=("subscafsgd" "sgd")
+opt=("subscafsgd")
 #opt=("sgd")
 for opt in "${opt[@]}"
 do

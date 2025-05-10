@@ -18,7 +18,7 @@ from torch.utils.data import DataLoader
 import wandb
 import time
 import torch.nn as nn
-from utils import SubScafSGD, SubScafLinear, SubScafAdam
+from utils import SubScafSGD, SubScafLinear, gene_random_matrix 
 import math
 from pickle import dump
 
@@ -227,9 +227,11 @@ def main(args):
                         # update momentum_buffer
                         if args.momentum > 0:
                             if not args.per_layer_weight_update:
-                                opt.update_m(module.b, avg_b @ update_factor / (args.lr * args.tau))
+                                opt.update_m(module.b, - avg_b @ update_factor / (args.lr * args.tau))
+                                #opt.update_m(module.b, update_factor = update_factor)
                             else:
-                                opt[module.b].update_m(module.b, avg_b @ update_factor / (args.lr * args.tau))
+                                opt[module.b].update_m(module.b, - avg_b @ update_factor / (args.lr * args.tau))
+                                #opt[module.b].update_m(module.b, update_factor=update_factor)
                                 
                         # update lbd for every modules
                         lbd[idx] = (lbd[idx] + module.b - avg_b) @ update_factor 

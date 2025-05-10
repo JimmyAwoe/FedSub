@@ -36,7 +36,8 @@ class SubScafSGD(Optimizer):
         *,
         maximize: bool = False, 
         foreach: Optional[bool] = None,
-        differentiable: bool = False
+        differentiable: bool = False,
+        fused: Optional[bool] = None,
     ):
         if lr < 0.0:
             raise ValueError(f"Invalid learning rate: {lr}")
@@ -51,7 +52,7 @@ class SubScafSGD(Optimizer):
                         weight_decay=weight_decay, nesterov=nesterov,
                         maximize=maximize, foreach=foreach,
                         differentiable=differentiable, tau=tau,
-                        compression_dim=compression_dim)
+                        compression_dim=compression_dim,fused=fused)
         super().__init__(params, defaults)
 
     # directly inherit form torch.optim.SGD
@@ -69,9 +70,10 @@ class SubScafSGD(Optimizer):
                 group['lbd'] = lbd
 
     @torch.no_grad()
-    def update_m(self, params, m):
+    def update_m(self, params, m=None, update_factor=None):
         for group in self.param_groups:
             if group['is_comp'] == True:
+                #self.state[params]['momentum_buffer'] = self.state[params]['momentum_buffer'] @ update_factor
                 self.state[params]['momentum_buffer'] = m
 
     @_use_grad_for_differentiable

@@ -55,7 +55,7 @@ class _subscaflinear(torch.autograd.Function):
         grad_comp_mat = grad_x = None
         grad_input = grad_output @ act_for_input
         grad_b = grad_output.transpose(1, 2) @ act_for_b
-        return grad_input, grad_b, grad_comp_mat, grad_x
+        return grad_input, grad_comp_mat, grad_b, grad_x
 
 
         
