@@ -3,7 +3,7 @@ opt=("subscafsgd")
 #opt=("sgd")
 for opt in "${opt[@]}"
 do
-torchrun --nproc-per-node 4 --master-port 25902 SubspaceScaffold.py \
+torchrun --nproc-per-node 2 --master-port 25902 SubspaceScaffold.py \
     --comp_dim 128 \
     --model_config configs/llama_60m.json \
     --optimizer "${opt}" \
@@ -15,5 +15,6 @@ torchrun --nproc-per-node 4 --master-port 25902 SubspaceScaffold.py \
     --use_wandb \
     --per_layer_weight_update \
     --momentum 0.9 \
-    --wandb_run_name "0.9m-60m-${opt}" 
+    --wandb_run_name "0.9m-60m-${opt}" \
+    --gene_method cd
 done

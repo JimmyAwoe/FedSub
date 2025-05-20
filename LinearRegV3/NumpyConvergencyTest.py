@@ -9,6 +9,19 @@ def genLS(total_sample_size, d):
     b = a @ ans + 0.1 * np.random.randn(total_sample_size, 1)
     return a, b
 
+def genHeLS(total_sample_size, d, worker_num):
+    assert total_sample_size % worker_num == 0, "please make sure total_sample can be divided for each worker equally"
+    mean = np.random.uniform(low=-1, high=1, size=worker_num)
+    scale = np.sqrt(np.random.uniform(low=0.5, high=1.5, size=worker_num))
+    a_list = []
+    for i in range(worker_num):
+        a_list.append(np.random.normal(loc=mean[i], scale=scale[i], size=(total_sample_size // worker_num, d)))
+    a = np.concatenate(a_list, axis=0)
+    ans = np.random.randn(d, 1)
+    b = a @ ans + 0.1 * np.random.randn(total_sample_size, 1)
+    return a, b
+
+
 # Solution utility
 def solLS(A, b):
     x_sol = np.linalg.inv(A.T@A)@(A.T@b)
@@ -88,6 +101,17 @@ def multiply_with_row(a, b):
     return result
 
 def Scaf(X, y, N, A, alpha, alpha_bar, noise, inner_iter_num=10, maxite=500, epochs=10):
+    """
+    X: 输入数据
+    y: label
+    N: worker数量
+    alpha: 学习率
+    alpha_bar: 外部学习率
+    noise: 梯度的噪声
+    inner_iter_num: 内部迭代次数
+    maxite: 外部迭代次数
+    epochs: 进行多少次重复来平均msd
+    """
     R = np.ones((N,N))/N
     _, M = X.shape
     msd_mean = np.zeros((maxite * inner_iter_num, 1))
@@ -115,7 +139,18 @@ def Scaf(X, y, N, A, alpha, alpha_bar, noise, inner_iter_num=10, maxite=500, epo
     return msd_mean
 
 def SubScaf(X, y, N, A, alpha, noise, compress_rank, inner_iter_num=10, maxite=500, epochs=10):
-
+    """
+    X: 输入数据
+    y: label
+    N: worker数量
+    alpha: 学习率
+    alpha_bar: 外部学习率
+    noise: 梯度的噪声
+    compress_rank: 压缩维度
+    inner_iter_num: 内部迭代次数
+    maxite: 外部迭代次数
+    epochs: 进行多少次重复来平均msd
+    """
     R = np.ones((N,N))/N
     _, M = X.shape
     msd_mean = np.zeros((maxite * inner_iter_num, 1))
@@ -143,6 +178,19 @@ def SubScaf(X, y, N, A, alpha, noise, compress_rank, inner_iter_num=10, maxite=5
 
 
 def SubScafLowGrad(X, y, N, A, alpha, noise, compress_rank, inner_iter_num=10, maxite=500, epochs=10):
+    """
+    梯度会除500
+    X: 输入数据
+    y: label
+    N: worker数量
+    alpha: 学习率
+    alpha_bar: 外部学习率
+    noise: 梯度的噪声
+    compress_rank: 压缩维度
+    inner_iter_num: 内部迭代次数
+    maxite: 外部迭代次数
+    epochs: 进行多少次重复来平均msd
+    """
 
     R = np.ones((N,N))/N
     _, M = X.shape
@@ -171,6 +219,19 @@ def SubScafLowGrad(X, y, N, A, alpha, noise, compress_rank, inner_iter_num=10, m
     return msd_mean
 
 def SubScafLowGradLowLr(X, y, N, A, alpha, noise, compress_rank, inner_iter_num=10, maxite=500, epochs=10):
+    """
+    学习率会逐步下降
+    X: 输入数据
+    y: label
+    N: worker数量
+    alpha: 学习率
+    alpha_bar: 外部学习率
+    noise: 梯度的噪声
+    compress_rank: 压缩维度
+    inner_iter_num: 内部迭代次数
+    maxite: 外部迭代次数
+    epochs: 进行多少次重复来平均msd
+    """
 
     R = np.ones((N,N))/N
     _, M = X.shape
@@ -205,6 +266,20 @@ def SubScafLowGradLowLr(X, y, N, A, alpha, noise, compress_rank, inner_iter_num=
 
 
 def SubScafLowGradLowLrDualReProj(X, y, N, gene_fun, alpha, noise, compress_rank, inner_iter_num=10, maxite=500, epochs=10):
+    """
+    阶段性降低学习率，梯度/500，对偶变量重投影
+    X: 输入数据
+    y: label
+    N: worker数量
+    gene_fun: 生成随机矩阵的方式
+    alpha: 学习率
+    alpha_bar: 外部学习率
+    noise: 梯度的噪声
+    compress_rank: 压缩维度
+    inner_iter_num: 内部迭代次数
+    maxite: 外部迭代次数
+    epochs: 进行多少次重复来平均msd
+    """
 
     R = np.ones((N,N))/N
     _, M = X.shape
@@ -241,6 +316,20 @@ def SubScafLowGradLowLrDualReProj(X, y, N, gene_fun, alpha, noise, compress_rank
     
 
 def SubScafLowGradLowLrSOTA(X, y, N, gene_fun, alpha, noise, compress_rank, subspace_iter_num, inner_iter_num=10, maxite=500, epochs=10):
+    """
+
+    X: 输入数据
+    y: label
+    N: worker数量
+    gene_fun: 生成随机矩阵的方式
+    alpha: 学习率
+    alpha_bar: 外部学习率
+    noise: 梯度的噪声
+    compress_rank: 压缩维度
+    inner_iter_num: 内部迭代次数
+    maxite: 外部迭代次数
+    epochs: 进行多少次重复来平均msd
+    """
 
     R = np.ones((N,N))/N
     _, M = X.shape
@@ -270,8 +359,7 @@ def SubScafLowGradLowLrSOTA(X, y, N, gene_fun, alpha, noise, compress_rank, subs
                 G = ls_full_grad_dist_compression(X, y, W + multiply_with_row(P, b), P) + noise * np.random.randn(N, compress_rank)
                 G /= 500
                 #f = sign / (sign + 1)
-                f = 0.5
-                b -= alpha * ((2 - 2 * f) * G + 2 * f * lbd / (alpha * inner_iter_num))
+                b -= alpha * (G + lbd / (alpha * inner_iter_num))
                 msd[ite * inner_iter_num + in_ite] = np.sum(((W + multiply_with_row(P, b))-Ws)**2)/N / (np.sum((Ws)**2)/N)
             W += multiply_with_row(P, R.dot(b))
             lbd += b - R.dot(b)
@@ -282,6 +370,19 @@ def SubScafLowGradLowLrSOTA(X, y, N, gene_fun, alpha, noise, compress_rank, subs
 
 def SubScafLowGradLowLrIntOut(X, y, N, A, alpha, noise, compress_rank, 
                               subspace_iter_num, inner_iter_num=10, maxite=500, epochs=10):
+    """
+    学习率会逐步下降
+    X: 输入数据
+    y: label
+    N: worker数量
+    alpha: 学习率
+    alpha_bar: 外部学习率
+    noise: 梯度的噪声
+    compress_rank: 压缩维度
+    inner_iter_num: 内部迭代次数
+    maxite: 外部迭代次数
+    epochs: 进行多少次重复来平均msd
+    """
 
     R = np.ones((N,N))/N
     _, M = X.shape
@@ -316,6 +417,19 @@ def SubScafLowGradLowLrIntOut(X, y, N, A, alpha, noise, compress_rank,
 
 
 def SubScafLowGradLowLrCP(X, y, N, gene_fun, alpha, noise, compress_rank, inner_iter_num=10, maxite=500, epochs=10):
+    """
+    学习率会逐步下降
+    X: 输入数据
+    y: label
+    N: worker数量
+    alpha: 学习率
+    alpha_bar: 外部学习率
+    noise: 梯度的噪声
+    compress_rank: 压缩维度
+    inner_iter_num: 内部迭代次数
+    maxite: 外部迭代次数
+    epochs: 进行多少次重复来平均msd
+    """
     R = np.ones((N,N))/N
     _, M = X.shape
     msd_mean = np.zeros((maxite * inner_iter_num, 1))
@@ -348,6 +462,20 @@ def SubScafLowGradLowLrCP(X, y, N, gene_fun, alpha, noise, compress_rank, inner_
 
 
 def SubScafLowGradLowLrVarIn(X, y, N, gene_fun, alpha, noise, compress_rank, inner_iter_num=10, maxite=500, epochs=10):
+    """
+    学习率会逐步下降
+    X: 输入数据
+    y: label
+    N: worker数量
+    gene_fun: 生成压缩矩阵方式
+    alpha: 学习率
+    alpha_bar: 外部学习率
+    noise: 梯度的噪声
+    compress_rank: 压缩维度
+    inner_iter_num: 内部迭代次数
+    maxite: 外部迭代次数
+    epochs: 进行多少次重复来平均msd
+    """
     R = np.ones((N,N))/N
     _, M = X.shape
     msd_mean = np.zeros((maxite * 50, 1))
@@ -385,6 +513,19 @@ def SubScafLowGradLowLrVarIn(X, y, N, gene_fun, alpha, noise, compress_rank, inn
 
 
 def SubScafNoCP(X, y, N, A, alpha, noise, compress_rank, inner_iter_num=10, maxite=500, epochs=10):
+    """
+    学习率会逐步下降
+    X: 输入数据
+    y: label
+    N: worker数量
+    alpha: 学习率
+    alpha_bar: 外部学习率
+    noise: 梯度的噪声
+    compress_rank: 压缩维度
+    inner_iter_num: 内部迭代次数
+    maxite: 外部迭代次数
+    epochs: 进行多少次重复来平均msd
+    """
 
     R = np.ones((N,N))/N
     _, M = X.shape
@@ -440,8 +581,14 @@ Ws = np.ones((N,1))@w_sol.T
 
 
 #msd_mean_subscaf = SubScaf(X, y, N, None, 0.01, 0, 5, 10, 3, 5).squeeze()
-#msd_mean_scaf = Scaf(X, y, N, None, 0.01, 0.01, 0, 10, 10000, 1).squeeze()
+msd_mean_scaf = Scaf(X, y, N, None, 0.01, 0.01, 0, 10, 10000, 1).squeeze()
 
+
+dis_dict = {
+            'NonSubspace Scaffold': msd_mean_scaf,
+            }
+
+plot(dis_dict, 'test', 'test')
 
 
 #dis_dict = {'Subspace Scaffold': msd_mean_subscaf,
@@ -599,14 +746,14 @@ Ws = np.ones((N,1))@w_sol.T
 #plot(dis_dict, 'Different Generation Method', 'DiffGene')
 
 
-msd_mean_subscaf_lowg_lowlr_sota = SubScafLowGradLowLrSOTA(X, y, N, Coordinate_descend_genep, 0.01, 0, 5, 
-                                                                       50, 2, 50000, 1).squeeze()
-msd_mean_subscaf_lowg_lowlr = SubScafLowGradLowLr(X, y, N, None, 0.01, 0, 5, 10, 10000, 1).squeeze()
+#msd_mean_subscaf_lowg_lowlr_sota = SubScafLowGradLowLrSOTA(X, y, N, Coordinate_descend_genep, 0.01, 0, 5, 
+                                                                       #50, 2, 50000, 1).squeeze()
+#msd_mean_subscaf_lowg_lowlr = SubScafLowGradLowLr(X, y, N, None, 0.01, 0, 5, 10, 10000, 1).squeeze()
 
-dis_dict = {
-            'SubScaf SOTA': msd_mean_subscaf_lowg_lowlr_sota,
-            'SubScaf LowGrad & LowLr ': msd_mean_subscaf_lowg_lowlr,
-            'NonSubspace Scaffold': msd_mean_scaf,
-            }
+#dis_dict = {
+            #'SubScaf SOTA': msd_mean_subscaf_lowg_lowlr_sota,
+            #'SubScaf LowGrad & LowLr ': msd_mean_subscaf_lowg_lowlr,
+            #'NonSubspace Scaffold': msd_mean_scaf,
+            #}
 
-plot(dis_dict, 'SOTA', 'sota')
+#plot(dis_dict, 'SOTA', 'sota')

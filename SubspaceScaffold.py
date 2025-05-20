@@ -18,9 +18,9 @@ from torch.utils.data import DataLoader
 import wandb
 import time
 import torch.nn as nn
-from utils import SubScafSGD, SubScafLinear, gene_random_matrix 
-import math
+from utils import SubScafSGD, SubScafLinear, gene_random_matrix, log, set_seed, init_process_group
 from pickle import dump
+from torch.amp import GradScaler
 
 
 
@@ -37,6 +37,8 @@ def parse_args(args):
     parser.add_argument("--grad_clip", type=float, default=0.0)
     parser.add_argument("--warmup", type=int, default=1000)
     parser.add_argument("--use_wandb", action="store_true")
+    parser.add_argument("--seed", default=42, type=int)
+    parser.add_argument("--mixed_precision", default=None, type=str, choices=['bf16', 'fp16'])
 
     # subscaf
     parser.add_argument("--comp_dim", default=64, type=int, help="the compression dimension")
@@ -64,47 +66,6 @@ def parse_args(args):
     return args
 
 
-def log(info):
-    if dist.get_rank() == 0:
-        logger.info(f"[{int(os.environ.get('RANK'))}]: " + info)
-
-def ddp_setup():
-    dist.init_process_group(backend="nccl")
-
-
-def gene_random_matrix(comp_dim, dim, method='cd'):
-    if method.lower() == 'rd':
-        return Random_Normal_genep(comp_dim, dim)
-    elif method.lower() == 'cd':
-        return Coordinate_descend_genep(comp_dim, dim)
-    elif method.lower() == 'ss':
-        return Spherical_smoothing_genep(comp_dim, dim)
-    else:
-        assert False, "haven't define chosen compression matrix generation method"
-
-def Random_Normal_genep(comp_dim, dim):
-    return torch.randn(comp_dim, dim) / math.sqrt(dim)
-
-def Coordinate_descend_genep(comp_dim, dim):
-    # XXX the variable name is inversed 
-    assert dim >= comp_dim, "compression dimension must be smaller than dimension"
-    ide = torch.eye(dim)
-    select_row = torch.randperm(dim)[:comp_dim]
-    sign = torch.randint(0, 2, (comp_dim, ))
-    sign = sign * 2 - 1
-    P = ide[select_row, :] * sign.unsqueeze(1)
-    return P
-
-def Spherical_smoothing_genep(comp_dim, dim):
-    z = torch.randn(dim, dim)
-    Q, R = torch.linalg.qr(z)
-    D = torch.diag(torch.sign(torch.diag(R)))
-    Q = torch.matmul(Q, D)
-    R = torch.matmul(D, R)
-    assert torch.allclose(torch.matmul(Q, R), z, atol=1e-5), "the QR decomposion is not accuracy"
-    P = torch.sqrt(torch.tensor(dim / comp_dim)) * Q[:comp_dim, :]
-    return P
-
 def mem():
     torch.cuda.empty_cache()
     log('memory allocated: ' + str((torch.cuda.memory_allocated() / (1024 ** 3))) + 'GB')
@@ -116,7 +77,7 @@ def main(args):
     rank = int(os.environ.get("RANK", 0))
     local_rank = int(os.environ.get("LOCAL_RANK", 0))
     world_size = int(os.environ.get("WORLD_SIZE", 1))
-    
+    set_seed(args.seed)
     if rank == 0 and args.mem_monitor:
         torch.cuda.memory._record_memory_history(enabled='all')
     log("Process group initialize")
@@ -197,7 +158,6 @@ def main(args):
                     # initialize lambda
                     #lbd.append(torch.zeros((args.comp_dim, module.in_features), device=device, requires_grad=False))
                     lbd.append(torch.zeros((module.out_features, args.comp_dim), device=device, requires_grad=False))
-
 
                 else:
                     replace_module(module, target_modules_list)
@@ -295,6 +255,7 @@ def main(args):
                                             lr=args.lr, 
                                             tau=args.tau, 
                                             compression_dim=args.comp_dim,
+                                            momentum=args.momentum,
                                             foreach=False) for p in regular_params}
             for (p, l) in zip(subscaf_params, lbd):
                 optimizer_dict.update({p: SubScafSGD([{'params':p, 'is_comp': True, 'lbd': [l]}],
@@ -322,44 +283,43 @@ def main(args):
                                                                     num_warmup_steps=args.warmup * grad_accumulation,
                                                                     num_training_steps=args.num_training_steps * grad_accumulation + 1)
                     p.register_post_accumulate_grad_hook(optimizer_hook)
-    
-    elif args.optimizer == 'subscafadam':
-        if not args.per_layer_weight_update:
-            optimizer = SubScafAdam(param_groups, 
-                                lr=args.lr, 
-                                foreach=False,
-                                fused=True,
-                                )
-            # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
-            # lbd to be nan
-            schedule = get_cosine_schedule_with_warmup(optimizer,
-                                                    num_warmup_steps=args.warmup,
-                                                    num_training_steps=args.num_training_steps + 1)
-        else:
-            optimizer_dict = {p: SubScafAdam([{'params': p, 'is_comp': False}], 
-                                            lr=args.lr, 
-                                            foreach=False,
-                                            fused=True) for p in regular_params}
-            for (p, l) in zip(subscaf_params, lbd):
-                optimizer_dict.update({p: SubScafAdam([{'params':p, 'is_comp': True, 'lbd': [l]}],
-                                                    lr=args.lr,
-                                                    foreach=False,
-                                                    fused=True)})
-            def optimizer_hook(p):
-                if p.grad is None:
-                    return
-                schedule_dict[p].step()
-                optimizer_dict[p].step()
-                optimizer_dict[p].zero_grad()
-            schedule_dict = {}
-            for p in model.parameters():
-                if p.requires_grad:
-                    # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
-                    # lbd to be nan
-                    schedule_dict[p] = get_cosine_schedule_with_warmup(optimizer_dict[p],
-                                                                    num_warmup_steps=args.warmup,
-                                                                    num_training_steps=args.num_training_steps + 1)
-                    p.register_post_accumulate_grad_hook(optimizer_hook)
+    #elif args.optimizer == 'subscafadam':
+        #if not args.per_layer_weight_update:
+            #optimizer = SubScafAdam(param_groups, 
+                                #lr=args.lr, 
+                                #foreach=False,
+                                #fused=True,
+                                #)
+            ## we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
+            ## lbd to be nan
+            #schedule = get_cosine_schedule_with_warmup(optimizer,
+                                                    #num_warmup_steps=args.warmup,
+                                                    #num_training_steps=args.num_training_steps + 1)
+        #else:
+            #optimizer_dict = {p: SubScafAdam([{'params': p, 'is_comp': False}], 
+                                            #lr=args.lr, 
+                                            #foreach=False,
+                                            #fused=True) for p in regular_params}
+            #for (p, l) in zip(subscaf_params, lbd):
+                #optimizer_dict.update({p: SubScafAdam([{'params':p, 'is_comp': True, 'lbd': [l]}],
+                                                    #lr=args.lr,
+                                                    #foreach=False,
+                                                    #fused=True)})
+            #def optimizer_hook(p):
+                #if p.grad is None:
+                    #return
+                #schedule_dict[p].step()
+                #optimizer_dict[p].step()
+                #optimizer_dict[p].zero_grad()
+            #schedule_dict = {}
+            #for p in model.parameters():
+                #if p.requires_grad:
+                    ## we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
+                    ## lbd to be nan
+                    #schedule_dict[p] = get_cosine_schedule_with_warmup(optimizer_dict[p],
+                                                                    #num_warmup_steps=args.warmup,
+                                                                    #num_training_steps=args.num_training_steps + 1)
+                    #p.register_post_accumulate_grad_hook(optimizer_hook)
     elif args.optimizer == 'sgd':
         optimizer = torch.optim.SGD(trainable_param, 
                                     lr=args.lr, 
@@ -404,6 +364,10 @@ def main(args):
     token_seen_before = 0
     pad_idx = tokenizer.pad_token_id
     update_time = time.time()
+    if args.mixed_precision:
+        scaler = GradScaler()
+        precision_map_dict = {'fp16': torch.float16, 'bf16': torch.bfloat16}
+        precision = precision_map_dict[args.mixed_precision]
 
     for batch_idx, batch in enumerate(dataloader):
         local_step += 1
@@ -416,11 +380,16 @@ def main(args):
         labels[labels == pad_idx] = -100
         token_seen += (batch["input_ids"] != pad_idx).sum().item() * world_size
 
-        #mem()
-        loss = model(**batch).loss
-        scaled_loss = loss / grad_accumulation
-        scaled_loss.backward()
-        #mem()
+        if args.mixed_precision:
+            with torch.amp.autocast(device_type='cuda', dtype=precision):
+                loss = model(**batch).loss
+            scaler.scale(loss / grad_accumulation).backward()
+        else:
+            loss = model(**batch).loss
+            scaled_loss = loss / grad_accumulation
+            scaled_loss.backward()
+        if rank == 0:
+            pbar.set_postfix({"loss": loss.item()})
 
 
 
@@ -466,12 +435,14 @@ def main(args):
         batch_in_update = grad_accumulation * world_size
 
         if rank == 0 and args.use_wandb:
+            torch.cuda.empty_cache()
             record_dict = {
                 "loss": loss.item(),
                 "update_step": update_step,
                 "throughput_tokens": token_in_update / update_time,
                 "throughput_examples": args.total_batch_size * world_size / update_time,
                 "throughput_batchs": batch_in_update,
+                "cuda_max_memory(GB)": torch.cuda.max_memory_allocated() / (1024 ** 3),
             }
             if "subscaf" in args.optimizer and args.per_layer_weight_update:
                 record_dict.update({"lr": optimizer_dict[next(model.parameters())].param_groups[0]["lr"]})
@@ -495,7 +466,7 @@ def main(args):
             wandb.finish()
 
 if __name__ == "__main__":
-    ddp_setup()
+    init_process_group()
     args = parse_args(None)
     # setting baseline optimizer list, if we choose one of optimizer in that,
     # then the optimizer procedure would be a little bit different

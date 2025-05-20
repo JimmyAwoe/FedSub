@@ -15,12 +15,12 @@ def Random_Normal_genep(comp_dim, dim):
     return torch.randn(comp_dim, dim) / math.sqrt(dim)
 
 def Coordinate_descend_genep(comp_dim, dim):
-    # XXX the variable name is inversed 
     assert dim >= comp_dim, "compression dimension must be smaller than dimension"
     ide = torch.eye(dim)
     select_row = torch.randperm(dim)[:comp_dim]
     sign = torch.randint(0, 2, (comp_dim, ))
     sign = sign * 2 - 1
+    #P = torch.sqrt(torch.tensor(dim / comp_dim)) * ide[select_row, :] * sign.unsqueeze(1)
     P = ide[select_row, :] * sign.unsqueeze(1)
     return P
 

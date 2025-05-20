@@ -74,6 +74,12 @@ class SubScafSGD(Optimizer):
         for group in self.param_groups:
             if group['is_comp'] == True:
                 #self.state[params]['momentum_buffer'] = self.state[params]['momentum_buffer'] @ update_factor
+                # align magnitude 
+                m_mean = torch.mean(m, dim=0, keepdim=True)
+                m_std = torch.std(m, dim=0, keepdim=True) + 1e-10
+                past_m_mean = torch.mean(self.state[params]['momentum_buffer'], dim=0, keepdim=True)
+                past_m_std = torch.std(self.state[params]['momentum_buffer'], dim=0, keepdim=True)
+                m = ((m - m_mean) / m_std + past_m_mean) * past_m_std
                 self.state[params]['momentum_buffer'] = m
 
     @_use_grad_for_differentiable
@@ -210,6 +216,10 @@ def _subscaf_single_tensor_sgd(params: List[Tensor],
             else:
                 d_p = buf
         if is_comp == True:
+            # TODO add m / r coefficient for all possible update and 
+            # make clear how to combine it with momentum optimize
+            # m / r coefficient
+            m ,r = lbd[i].shape
             d_p.add_(lbd[i] / (lr * tau))
 
         param.add_(d_p, alpha=-lr)

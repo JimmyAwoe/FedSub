@@ -1,5 +1,6 @@
 import torch.distributed as dist
 from loguru import logger
+import torch
 
 def init_process_group():
     dist.init_process_group(
