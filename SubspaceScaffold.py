@@ -97,7 +97,7 @@ def main(args):
     tokenizer = AutoTokenizer.from_pretrained("t5-base")
 
     # dataset
-    ds = load_dataset("/data/datasets/c4_en", split="train", streaming=True)
+    ds = load_dataset("/data/datasets/c4/en", split="train", streaming=True)
     
     def tokenize_fun(data):
         output = tokenizer(data["text"],
@@ -267,6 +267,7 @@ def main(args):
             def optimizer_hook(p):
                 if p.grad is None:
                     return
+                dist.all_reduce(p.grad, op=dist.ReduceOp.AVG)
                 schedule_dict[p].step()
                 optimizer_dict[p].step()
                 optimizer_dict[p].zero_grad()
@@ -405,18 +406,13 @@ def main(args):
         if rank == 0:
             pbar.update(1)
         
-        if args.optimizer in baseline_optimizer:
+        if not args.per_layer_weight_update or 'subscaf' not in args.optimizer.lower(): 
             for params in model.parameters():
-                dist.all_reduce(params, op=dist.ReduceOp.AVG)
+                dist.all_reduce(params.grad, op=dist.ReduceOp.AVG)
 
         # because warmup will make the first step with lr 0, and it will cause lbd
         # to be nan. So we choose to update lr before step. And for consistency, sgd
         # also follow this setup
-            schedule.step()
-            optimizer.step()
-            optimizer.zero_grad()
-
-        if not args.per_layer_weight_update:
             schedule.step()
             optimizer.step()
             optimizer.zero_grad()
