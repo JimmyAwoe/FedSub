@@ -358,9 +358,6 @@ def main(args):
                 "world_size": world_size,
                 "devive": str(device),
             })
-            args.wandb_run_name = f"{args.wandb_run_name}-lr{args.lr}"
-            if args.optimizer == 'subscaf':
-                args.wandb_run_name += f"-tau{args.tau}-CPDim{args.comp_dim}"
             wandb.init(project="SubScaf", name=args.wandb_run_name)
             wandb.config.update(run_config, allow_val_change=True)
 
