@@ -75,10 +75,17 @@ class SubScafSGD(Optimizer):
             if group['is_comp'] == True:
                 #self.state[params]['momentum_buffer'] = self.state[params]['momentum_buffer'] @ update_factor
                 # align magnitude 
+                # SubScaf-CA
                 m_mean = torch.mean(m, dim=0, keepdim=True)
                 m_std = torch.std(m, dim=0, keepdim=True) + 1e-10
                 past_m_mean = torch.mean(self.state[params]['momentum_buffer'], dim=0, keepdim=True)
                 past_m_std = torch.std(self.state[params]['momentum_buffer'], dim=0, keepdim=True)
+                # below is SubScaf-MA
+                #m_mean = torch.mean(m)
+                #m_std = torch.std(m)
+                #past_m_mean = torch.mean(self.state[params]['momentum_buffer'])
+                #past_m_std = torch.std(self.state[params]['momentum_buffer'])
+
                 m = ((m - m_mean) / m_std + past_m_mean) * past_m_std
                 self.state[params]['momentum_buffer'] = m
 
@@ -216,10 +223,9 @@ def _subscaf_single_tensor_sgd(params: List[Tensor],
             else:
                 d_p = buf
         if is_comp == True:
-            # TODO add m / r coefficient for all possible update and 
-            # make clear how to combine it with momentum optimize
-            # m / r coefficient
+            # r / m coefficient
             m ,r = lbd[i].shape
+            d_p.mul_(r / m)
             d_p.add_(lbd[i] / (lr * tau))
 
         param.add_(d_p, alpha=-lr)
@@ -301,7 +307,10 @@ def _subscaf_multi_tensor_sgd(params: List[Tensor],
         # carry out subspace scaffold
         if is_comp:
             # HACK revise to avoid repeat computation
+            m, r = lbd[0].shape
             scaled_lbd = torch._foreach_div(lbd, lr * tau)
+            # r/m coffeicient
+            torch._foreach_mul_(device_grads, r / m)
             torch._foreach_add_(device_grads, scaled_lbd, alpha=1)
         if not device_has_sparse_grad:
             torch._foreach_add_(device_params, device_grads, alpha=-lr)

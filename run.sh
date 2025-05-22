@@ -15,6 +15,7 @@ torchrun --nproc-per-node 2 --master-port 25902 SubspaceScaffold.py \
     --use_wandb \
     --per_layer_weight_update \
     --momentum 0.9 \
-    --wandb_run_name "0.9m-60m-${opt}" \
+    --dampening 0.9 \
+    --wandb_run_name "dampening" \
     --gene_method cd
 done

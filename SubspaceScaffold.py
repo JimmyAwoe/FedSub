@@ -53,6 +53,7 @@ def parse_args(args):
     parser.add_argument("--optimizer", choices=['subscafsgd', 'subscafadam', 'scaf', 'sgd', 'adam'], default='subscafsgd',
                         type=str, help="assign the optimization algorithm")
     parser.add_argument("--momentum", default=0, type=float)
+    parser.add_argument("--dampening", default=0, type=float)
     parser.add_argument("--nesterov", action="store_true")
     parser.add_argument("--per_layer_weight_update", action="store_true")
 
@@ -97,7 +98,7 @@ def main(args):
     tokenizer = AutoTokenizer.from_pretrained("t5-base")
 
     # dataset
-    ds = load_dataset("/data/datasets/c4/en", split="train", streaming=True)
+    ds = load_dataset("/data/datasets/c4_en", split="train", streaming=True)
     
     def tokenize_fun(data):
         output = tokenizer(data["text"],
@@ -244,6 +245,7 @@ def main(args):
                                 compression_dim=args.comp_dim,
                                 foreach=False,
                                 momentum=args.momentum,
+                                dampening=args.dampening,
                                 )
             # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
             # lbd to be nan
@@ -256,6 +258,7 @@ def main(args):
                                             tau=args.tau, 
                                             compression_dim=args.comp_dim,
                                             momentum=args.momentum,
+                                            dampening=args.dampening,
                                             foreach=False) for p in regular_params}
             for (p, l) in zip(subscaf_params, lbd):
                 optimizer_dict.update({p: SubScafSGD([{'params':p, 'is_comp': True, 'lbd': [l]}],
@@ -263,6 +266,7 @@ def main(args):
                                                     tau=args.tau,
                                                     compression_dim=args.comp_dim,
                                                     foreach=False,
+                                                    dampening=args.dampening,
                                                     momentum=args.momentum)})
             def optimizer_hook(p):
                 if p.grad is None:
@@ -326,6 +330,7 @@ def main(args):
                                     lr=args.lr, 
                                     momentum=args.momentum,
                                     nesterov=args.nesterov,
+                                    dampening=args.dampening,
                                     foreach=False)
         # schedule
         schedule = get_cosine_schedule_with_warmup(optimizer,
