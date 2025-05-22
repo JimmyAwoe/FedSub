@@ -271,7 +271,6 @@ def main(args):
             def optimizer_hook(p):
                 if p.grad is None:
                     return
-                dist.all_reduce(p.grad, op=dist.ReduceOp.AVG)
                 schedule_dict[p].step()
                 optimizer_dict[p].step()
                 optimizer_dict[p].zero_grad()
@@ -408,13 +407,18 @@ def main(args):
         if rank == 0:
             pbar.update(1)
         
-        if not args.per_layer_weight_update or 'subscaf' not in args.optimizer.lower(): 
+        if 'subscaf' not in args.optimizer.lower(): 
             for params in model.parameters():
                 dist.all_reduce(params.grad, op=dist.ReduceOp.AVG)
+
+            schedule.step()
+            optimizer.step()
+            optimizer.zero_grad()
 
         # because warmup will make the first step with lr 0, and it will cause lbd
         # to be nan. So we choose to update lr before step. And for consistency, sgd
         # also follow this setup
+        if not args.per_layer_weight_update and 'subscaf' in args.optimizer.lower():
             schedule.step()
             optimizer.step()
             optimizer.zero_grad()

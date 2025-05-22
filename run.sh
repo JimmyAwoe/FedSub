@@ -1,6 +1,6 @@
 export CUDA_VISIBLE_DEVICES=0,1,2,3
 opt=("subscafsgd")
-#opt=("sgd")
+#opt=("sgd" "subscafsgd")
 for opt in "${opt[@]}"
 do
 torchrun --nproc-per-node 2 --master-port 25902 SubspaceScaffold.py \
@@ -15,7 +15,6 @@ torchrun --nproc-per-node 2 --master-port 25902 SubspaceScaffold.py \
     --use_wandb \
     --per_layer_weight_update \
     --momentum 0.9 \
-    --dampening 0.9 \
-    --wandb_run_name "dampening" \
+    --wandb_run_name "coff-${opt}" \
     --gene_method cd
 done
