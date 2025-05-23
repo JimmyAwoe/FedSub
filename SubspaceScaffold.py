@@ -45,6 +45,7 @@ def parse_args(args):
     parser.add_argument("--tau", type=int, help="inner loop steps")
     parser.add_argument("--gene_method", default='cd', type=str, 
                         help="set the method to generate compression matrix")
+    parser.add_argument("--jump_certain_modules", action="store_true")
 
     # model
     parser.add_argument("--model_config", type=str, default="configs/llama_60m.json")
@@ -124,12 +125,13 @@ def main(args):
     trainable_param_before_comp = sum(p.numel() for p in model.parameters() if p.requires_grad == True) / 1_000_000
     if 'subscaf' in args.optimizer.lower():
         target_modules_list = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+        jump_modules_list = ['5', '6', '7']
         # define nonlocal variables for replace module
         num_subscaf_params = 0
         subscaf_params = []
         lbd = []
         comp_mat_rec = {} 
-        def replace_module(model, target_modules_list):
+        def replace_module(model, target_modules_list, jump_modules_list=None):
             """replace Linear module in model into SubScafLinear module"""
             nonlocal num_subscaf_params, subscaf_params, lbd, comp_mat_rec
             for name, module in model.named_children():
@@ -161,11 +163,13 @@ def main(args):
                     lbd.append(torch.zeros((module.out_features, args.comp_dim), device=device, requires_grad=False))
 
                 else:
-                    replace_module(module, target_modules_list)
+                    if args.jump_certain_modules and name in jump_modules_list:
+                        continue
+                    replace_module(module, target_modules_list, jump_modules_list)
         
         @torch.no_grad()
-        def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt):
-            def subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list):
+        def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, jump_modules_list=None):
+            def subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list, jump_modules_list):
                 """carry out one outer update for subspace scaffold algorithm"""
                 nonlocal idx, new_comp_mat_rec
                 for name, module in model.named_children():
@@ -205,10 +209,12 @@ def main(args):
                         # update idx
                         idx += 1
                     else:
-                        subscaf_outer_update(module, lbd, comp_mat_rec, target_modules_list)
+                        if args.jump_certain_modules and name in jump_modules_list:
+                            continue
+                        subscaf_outer_update(module, lbd, comp_mat_rec, target_modules_list, jump_modules_list)
             idx = 0
             new_comp_mat_rec = {}
-            subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list)
+            subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list, jump_modules_list)
             comp_mat_rec = new_comp_mat_rec
 
             # update lbd
@@ -218,7 +224,7 @@ def main(args):
                 for (p, l) in zip(subscaf_params, lbd):
                     opt[p].update_lbd(lbd=[l])
         #mem()
-        replace_module(model, target_modules_list)
+        replace_module(model, target_modules_list, jump_modules_list)
         #mem()
         id_subscaf_params = [id(p) for p in subscaf_params]
         # make parameters without "is_comp" to another group
@@ -425,9 +431,9 @@ def main(args):
 
         if "subscaf" in args.optimizer.lower() and (local_step // grad_accumulation) % args.tau == 0:
             if args.per_layer_weight_update:
-                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer_dict)
+                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer_dict, jump_modules_list)
             else:
-                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer)
+                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, jump_modules_list)
 
 
         update_step += 1

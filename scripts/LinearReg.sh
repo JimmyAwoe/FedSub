@@ -8,7 +8,7 @@ python3 LinearRegExp/linearplot.py \
     --worker_num 20 \
     --cp_rank 5 \
     --cp_gene_method rd \
-    --epochs 5 \
+    --epochs 1 \
     --dim 10 \
     --total_sample 10000 \
     --grad_down_lr \

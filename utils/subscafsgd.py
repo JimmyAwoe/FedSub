@@ -209,6 +209,11 @@ def _subscaf_single_tensor_sgd(params: List[Tensor],
         if weight_decay != 0:
             d_p = d_p.add(param, alpha=weight_decay)
 
+        if is_comp == True:
+            # r / m coefficient
+            m ,r = lbd[i].shape
+            d_p.mul_(r / m)
+            
         if momentum != 0:
             buf = momentum_buffer_list[i]
 
@@ -223,9 +228,6 @@ def _subscaf_single_tensor_sgd(params: List[Tensor],
             else:
                 d_p = buf
         if is_comp == True:
-            # r / m coefficient
-            m ,r = lbd[i].shape
-            d_p.mul_(r / m)
             d_p.add_(lbd[i] / (lr * tau))
 
         param.add_(d_p, alpha=-lr)
@@ -273,6 +275,11 @@ def _subscaf_multi_tensor_sgd(params: List[Tensor],
                 torch._foreach_add_(device_grads, device_params, alpha=weight_decay)
             else:
                 device_grads = torch._foreach_add(device_grads, device_params, alpha=weight_decay)
+        
+        if is_comp == True:
+            m, r = lbd[0].shape
+            # r/m coffeicient
+            torch._foreach_mul_(device_grads, r / m)
 
         if momentum != 0:
             bufs = []
@@ -307,10 +314,7 @@ def _subscaf_multi_tensor_sgd(params: List[Tensor],
         # carry out subspace scaffold
         if is_comp:
             # HACK revise to avoid repeat computation
-            m, r = lbd[0].shape
             scaled_lbd = torch._foreach_div(lbd, lr * tau)
-            # r/m coffeicient
-            torch._foreach_mul_(device_grads, r / m)
             torch._foreach_add_(device_grads, scaled_lbd, alpha=1)
         if not device_has_sparse_grad:
             torch._foreach_add_(device_params, device_grads, alpha=-lr)

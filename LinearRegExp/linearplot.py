@@ -162,7 +162,6 @@ def parser_args(args):
     parser.add_argument("--out_iter_num", default=1000, type=int)
     parser.add_argument("--grad_noise", default=0, type=float)
     parser.add_argument("--worker_num", default=20, type=int)
-    parser.add_argument("--cp_rank", default=5, type=int)
     parser.add_argument("--cp_gene_method", default='rd', type=str)
     parser.add_argument("--epochs", default=5, type=int)
     parser.add_argument("--dim", default=10, type=int)
@@ -175,6 +174,7 @@ def parser_args(args):
     parser.add_argument("--hete", action="store_true")
 
     # subscaf
+    parser.add_argument("--cp_rank", default=5, type=int)
     parser.add_argument("--grad_down_lr", action="store_true")
     parser.add_argument("--grad_divide", default=None, type=float)
     parser.add_argument("--dual_re_proj", action="store_true")
@@ -363,101 +363,133 @@ if __name__ == "__main__":
     #plot(dis_dict, 'Different Generation Method', 'DiffGene')
 
     # experiment 1
-    rd = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
-                 gene_random_matrix, args.cp_rank, args.inner_iter_num, args.out_iter_num, 
-                 args.epochs, args)
-    args.dual_re_proj = True
-    cd = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
-                 Coordinate_descend_genep, args.cp_rank, args.inner_iter_num, args.out_iter_num, 
-                 args.epochs, args)
-    args.dual_re_proj = False
-    ss = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
-                 Spherical_smoothing_genep, args.cp_rank, args.inner_iter_num, args.out_iter_num, 
-                 args.epochs, args)
-    args.grad_down_lr = False
-    ide = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
-                 gene_ide_matrix, args.dim, args.inner_iter_num, args.out_iter_num, 
-                 args.epochs, args)
-    args.grad_down_lr = True 
-    rd, cd, ss, ide = get_outer_round_value(args.inner_iter_num, rd, cd, ss, ide)
-    exp1 = {
-            'our-CD': cd,
-            'our-RD': rd,
-            'our-SS': ss,
-            r'our-$P^k$=I': ide,
-            }
+    #rd = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
+                 #gene_random_matrix, args.cp_rank, args.inner_iter_num, args.out_iter_num, 
+                 #args.epochs, args)
+    #args.dual_re_proj = True
+    #cd = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
+                 #Coordinate_descend_genep, args.cp_rank, args.inner_iter_num, args.out_iter_num, 
+                 #args.epochs, args)
+    #args.dual_re_proj = False
+    #ss = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
+                 #Spherical_smoothing_genep, args.cp_rank, args.inner_iter_num, args.out_iter_num, 
+                 #args.epochs, args)
+    #args.grad_down_lr = False
+    #ide = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
+                 #gene_ide_matrix, args.dim, args.inner_iter_num, args.out_iter_num, 
+                 #args.epochs, args)
+    #args.grad_down_lr = True 
+    #rd, cd, ss, ide = get_outer_round_value(args.inner_iter_num, rd, cd, ss, ide)
+    #exp1 = {
+            #'our-CD': cd,
+            #'our-RD': rd,
+            #'our-SS': ss,
+            #r'our-$P^k$=I': ide,
+            #}
 
-    plot(exp1, '', 'exp1')
+    #plot(exp1, '', 'exp1')
 
     # experiment2
-    args.dual_re_proj = True
-    cd = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
-                 Coordinate_descend_genep, args.cp_rank, args.inner_iter_num, args.out_iter_num, 
-                 args.epochs, args)
-    args.dual_re_proj = False
-    sub_opt = subopt(data, label, args.worker_num, args.lr, args.grad_noise, 
-                     Coordinate_descend_genep, args.cp_rank, args.inner_iter_num, args.out_iter_num,
-                     args.epochs, args)
-    fed_avg = fedavg(data, label, args.worker_num, args.lr, args.grad_noise, args.inner_iter_num,
-                     args.out_iter_num, args.epochs, args)
-    args.grad_down_lr = False
-    ide = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
-                 gene_ide_matrix, args.dim, args.inner_iter_num, args.out_iter_num, 
-                 args.epochs, args)
-    args.grad_down_lr = True
-    cd, ide, sub_opt, fed_avg = get_outer_round_value(args.inner_iter_num, cd, ide, sub_opt, fed_avg)
-    exp2 = {
-        "our-CD": cd,
-        r'our-$P^k$=I': ide,
-        "FedAvg-CD": sub_opt,
-        "FedAvg": fed_avg,
-    }
+    #args.dual_re_proj = True
+    #cd = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
+                 #Coordinate_descend_genep, args.cp_rank, args.inner_iter_num, args.out_iter_num, 
+                 #args.epochs, args)
+    #args.dual_re_proj = False
+    #sub_opt = subopt(data, label, args.worker_num, args.lr, args.grad_noise, 
+                     #Coordinate_descend_genep, args.cp_rank, args.inner_iter_num, args.out_iter_num,
+                     #args.epochs, args)
+    #fed_avg = fedavg(data, label, args.worker_num, args.lr, args.grad_noise, args.inner_iter_num,
+                     #args.out_iter_num, args.epochs, args)
+    #args.grad_down_lr = False
+    #ide = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
+                 #gene_ide_matrix, args.dim, args.inner_iter_num, args.out_iter_num, 
+                 #args.epochs, args)
+    #args.grad_down_lr = True
+    #cd, ide, sub_opt, fed_avg = get_outer_round_value(args.inner_iter_num, cd, ide, sub_opt, fed_avg)
+    #exp2 = {
+        #"our-CD": cd,
+        #r'our-$P^k$=I': ide,
+        #"FedAvg-CD": sub_opt,
+        #"FedAvg": fed_avg,
+    #}
 
-    plot(exp2, '', 'exp2')
+    #plot(exp2, '', 'exp2')
 
     # experiment3
 
+    #args.dual_re_proj = True
+    #cd1 = subscaf(data, label, args.worker_num, args.lr * 10, args.grad_noise,
+                 #Coordinate_descend_genep, args.cp_rank, 1, args.out_iter_num , 
+                 #args.epochs, args)
+    #cd5 = subscaf(data, label, args.worker_num, args.lr * 2, args.grad_noise,
+                 #Coordinate_descend_genep, args.cp_rank, 5, args.out_iter_num, 
+                 #args.epochs, args)
+    #cd10 = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
+                 #Coordinate_descend_genep, args.cp_rank, args.inner_iter_num, args.out_iter_num , 
+                 #args.epochs, args)
+    #cd20 = subscaf(data, label, args.worker_num, args.lr / 2, args.grad_noise,
+                 #Coordinate_descend_genep, args.cp_rank, 20, int(args.out_iter_num), 
+                 #args.epochs, args)
+    #cd50 = subscaf(data, label, args.worker_num, args.lr / 5, args.grad_noise,
+                 #Coordinate_descend_genep, args.cp_rank, 50, int(args.out_iter_num), 
+                 #args.epochs, args)
+    #args.dual_re_proj = False
+    #args.grad_down_lr = False
+    #ide = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
+                 #gene_ide_matrix, args.dim, args.inner_iter_num, args.out_iter_num, 
+                 #args.epochs, args)
+    #args.grad_down_lr = True
+
+    #cd1 = get_outer_round_value(1, cd1)[0]
+    #cd5 = get_outer_round_value(5, cd5)[0]
+    #cd10 = get_outer_round_value(10, cd10)[0]
+    #cd20 = get_outer_round_value(20, cd20)[0]
+    #cd50 = get_outer_round_value(50, cd50)[0]
+    #ide = get_outer_round_value(10, ide)[0]
+    #exp3 = {
+        #"tau=1": cd1,
+        #"tau=5": cd5,
+        #"tau=10": cd10,
+        #"tau=20": cd20,
+        #"tau=50": cd50,
+        #r'our-$P^k$=I': ide,
+    #}
+
+    #plot(exp3, '', 'exp3')
+
+
     args.dual_re_proj = True
-    cd1 = subscaf(data, label, args.worker_num, args.lr * 10, args.grad_noise,
-                 Coordinate_descend_genep, args.cp_rank, 1, args.out_iter_num , 
+    cd1 = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
+                 Coordinate_descend_genep, 1, args.inner_iter_num, args.out_iter_num , 
                  args.epochs, args)
-    cd5 = subscaf(data, label, args.worker_num, args.lr * 2, args.grad_noise,
-                 Coordinate_descend_genep, args.cp_rank, 5, args.out_iter_num, 
+    cd3 = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
+                 Coordinate_descend_genep, 3, args.inner_iter_num, args.out_iter_num , 
                  args.epochs, args)
-    cd10 = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
+    cd5 = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
                  Coordinate_descend_genep, args.cp_rank, args.inner_iter_num, args.out_iter_num , 
                  args.epochs, args)
-    cd20 = subscaf(data, label, args.worker_num, args.lr / 2, args.grad_noise,
-                 Coordinate_descend_genep, args.cp_rank, 20, int(args.out_iter_num), 
+    cd7 = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
+                 Coordinate_descend_genep, 7, args.inner_iter_num, args.out_iter_num , 
                  args.epochs, args)
-    cd50 = subscaf(data, label, args.worker_num, args.lr / 5, args.grad_noise,
-                 Coordinate_descend_genep, args.cp_rank, 50, int(args.out_iter_num), 
+    cd10 = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
+                 Coordinate_descend_genep, 10, args.inner_iter_num, args.out_iter_num , 
                  args.epochs, args)
     args.dual_re_proj = False
-    args.grad_down_lr = False
-    ide = subscaf(data, label, args.worker_num, args.lr, args.grad_noise,
-                 gene_ide_matrix, args.dim, args.inner_iter_num, args.out_iter_num, 
-                 args.epochs, args)
-    args.grad_down_lr = True
 
-    cd1 = get_outer_round_value(1, cd1)[0]
-    cd5 = get_outer_round_value(5, cd5)[0]
+    cd1 = get_outer_round_value(10, cd1)[0]
+    cd3 = get_outer_round_value(10, cd3)[0]
+    cd5 = get_outer_round_value(10, cd5)[0]
+    cd7 = get_outer_round_value(10, cd7)[0]
     cd10 = get_outer_round_value(10, cd10)[0]
-    cd20 = get_outer_round_value(20, cd20)[0]
-    cd50 = get_outer_round_value(50, cd50)[0]
-    ide = get_outer_round_value(10, ide)[0]
     exp3 = {
-        "tau=1": cd1,
-        "tau=5": cd5,
-        "tau=10": cd10,
-        "tau=20": cd20,
-        "tau=50": cd50,
-        r'our-$P^k$=I': ide,
+        "CPDim=1": cd1,
+        "CPDim=3": cd3,
+        "CPDim=5": cd5,
+        "CPDim=7": cd7,
+        "CPDim=10": cd10,
     }
 
-    plot(exp3, '', 'exp3')
-
-
+    plot(exp3, '', 'test')
 
 
 

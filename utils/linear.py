@@ -42,6 +42,9 @@ class SubScafLinear(nn.Linear):
                 self.comp_mat = comp_mat
             if b:
                 self.b.data = torch.zeros_like(self.b.data)
+    
+    def extra_repr(self):
+        return f"in_feartures={self.comp_dim}, out_features={self.out_features}"
 
 class _subscaflinear(torch.autograd.Function):
     @staticmethod
