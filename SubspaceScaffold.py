@@ -46,6 +46,7 @@ def parse_args(args):
     parser.add_argument("--gene_method", default='cd', type=str, 
                         help="set the method to generate compression matrix")
     parser.add_argument("--jump_certain_modules", action="store_true")
+    parser.add_argument("--update_cp_freq", type=int, default=1, help="inner loop steps")
 
     # model
     parser.add_argument("--model_config", type=str, default="configs/llama_60m.json")
@@ -79,7 +80,7 @@ def main(args):
     rank = int(os.environ.get("RANK", 0))
     local_rank = int(os.environ.get("LOCAL_RANK", 0))
     world_size = int(os.environ.get("WORLD_SIZE", 1))
-    set_seed(args.seed)
+    #set_seed(args.seed)
     if rank == 0 and args.mem_monitor:
         torch.cuda.memory._record_memory_history(enabled='all')
     log("Process group initialize")
@@ -168,7 +169,7 @@ def main(args):
                     replace_module(module, target_modules_list, jump_modules_list)
         
         @torch.no_grad()
-        def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, jump_modules_list=None):
+        def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, jump_modules_list=None, gene_new_cp=True):
             def subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list, jump_modules_list):
                 """carry out one outer update for subspace scaffold algorithm"""
                 nonlocal idx, new_comp_mat_rec
@@ -213,7 +214,11 @@ def main(args):
                             continue
                         subscaf_outer_update(module, lbd, comp_mat_rec, target_modules_list, jump_modules_list)
             idx = 0
-            new_comp_mat_rec = {}
+            if gene_new_cp == False:
+                # not update compression matrix
+                new_comp_mat_rec = comp_mat_rec
+            else:
+                new_comp_mat_rec = {}
             subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list, jump_modules_list)
             comp_mat_rec = new_comp_mat_rec
 
@@ -250,6 +255,7 @@ def main(args):
                                 tau=args.tau, 
                                 compression_dim=args.comp_dim,
                                 foreach=False,
+                                nesterov=args.nesterov,
                                 momentum=args.momentum,
                                 dampening=args.dampening,
                                 )
@@ -263,6 +269,7 @@ def main(args):
                                             lr=args.lr, 
                                             tau=args.tau, 
                                             compression_dim=args.comp_dim,
+                                            nesterov=args.nesterov,
                                             momentum=args.momentum,
                                             dampening=args.dampening,
                                             foreach=False) for p in regular_params}
@@ -272,6 +279,7 @@ def main(args):
                                                     tau=args.tau,
                                                     compression_dim=args.comp_dim,
                                                     foreach=False,
+                                                    nesterov=args.nesterov,
                                                     dampening=args.dampening,
                                                     momentum=args.momentum)})
             def optimizer_hook(p):
@@ -430,10 +438,14 @@ def main(args):
             optimizer.zero_grad()
 
         if "subscaf" in args.optimizer.lower() and (local_step // grad_accumulation) % args.tau == 0:
-            if args.per_layer_weight_update:
-                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer_dict, jump_modules_list)
+            if (local_step // grad_accumulation) % (local_step // grad_accumulation) % args.update_cp_freq != 0:
+                gene_new_cp = False 
             else:
-                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, jump_modules_list)
+                gene_new_cp = True
+            if args.per_layer_weight_update:
+                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer_dict, jump_modules_list, gene_new_cp)
+            else:
+                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, jump_modules_list, gene_new_cp)
 
 
         update_step += 1

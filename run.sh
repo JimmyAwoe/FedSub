@@ -15,7 +15,9 @@ torchrun --nproc-per-node 2 --master-port 25902 SubspaceScaffold.py \
     --lr 1e-3 \
     --use_wandb \
     --per_layer_weight_update \
+    --nesterov \
     --momentum 0.9 \
-    --wandb_run_name "tau2" \
-    --gene_method cd
+    --update_cp_freq 8 \
+    --wandb_run_name "slow_update_ss" \
+    --gene_method ss
 done
