@@ -18,6 +18,7 @@ from utils import (
     replace_with_subscaf_linear,
     outer_update,
     set_seed,
+    SubScafSGD
 )
 
 
@@ -165,7 +166,7 @@ def main(args):
     device = f"cuda:{rank}"
     
     # Load model and tokenizer
-    model = AutoModelForCausalLM.from_pretrained("/data/datasets/Llama-3.2-1b")
+    model = AutoModelForCausalLM.from_pretrained("/data/pretrained_models/Llama-3.2-1b")
     tokenizer = AutoTokenizer.from_pretrained("t5-base")
     
     # Load dataset
@@ -214,6 +215,45 @@ def main(args):
         optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, nesterov=args.nesterov)
     elif args.optimizer == 'adam':
         optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
+    elif args.optimizer == 'subscafsgd':
+        optimizer_dict = {p: SubScafSGD([{'params': p, 'is_comp': False}], 
+                                        lr=args.lr, 
+                                        tau=args.tau, 
+                                        compression_dim=args.comp_dim,
+                                        nesterov=args.nesterov,
+                                        momentum=args.momentum,
+                                        weight_decay=args.weight_decay,
+                                        dampening=args.dampening,
+                                        foreach=False) for p in regular_params}
+        for (p, l) in zip(subscaf_params, lbd):
+            optimizer_dict.update({p: SubScafSGD([{'params':p, 'is_comp': True, 'lbd': [l]}],
+                                                lr=args.lr,
+                                                tau=args.tau,
+                                                compression_dim=args.comp_dim,
+                                                foreach=False,
+                                                weight_decay=args.weight_decay,
+                                                nesterov=args.nesterov,
+                                                dampening=args.dampening,
+                                                momentum=args.momentum)})
+        def optimizer_hook(p):
+            if p.grad is None:
+                return
+            schedule_dict[p].step()
+            optimizer_dict[p].step()
+            optimizer_dict[p].zero_grad()
+
+        schedule_dict = {}
+        for p in model.parameters():
+            if p.requires_grad:
+                # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
+                # lbd to be nan
+                # because in this condition, every backward would call optimizer_hook once, hence push the lr,
+                # so in the case of gradient accumulation, we should correspondily longer the warmup and training 
+                # step
+                schedule_dict[p] = get_cosine_schedule_with_warmup(optimizer_dict[p],
+                                                                num_warmup_steps=args.warmup * grad_accumulation,
+                                                                num_training_steps=args.num_training_steps * grad_accumulation + 1)
+                p.register_post_accumulate_grad_hook(optimizer_hook)
     
     n_total_param = sum(p.numel() for p in model.parameters() if p.require_grads is True)
 

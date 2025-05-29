@@ -56,6 +56,7 @@ def parse_args(args):
                         type=str, help="assign the optimization algorithm")
     parser.add_argument("--momentum", default=0, type=float)
     parser.add_argument("--dampening", default=0, type=float)
+    parser.add_argument("--weight_decay", default=0, type=float)
     parser.add_argument("--nesterov", action="store_true")
     parser.add_argument("--per_layer_weight_update", action="store_true")
 
@@ -191,16 +192,27 @@ def main(args):
                         update_factor = comp_mat_rec[(args.comp_dim, module.in_features)] @ new_comp_mat.T
 
                         # update momentum_buffer
-                        if args.momentum > 0:
+                        if args.momentum > 0 and gene_new_cp:
                             if not args.per_layer_weight_update:
-                                opt.update_m(module.b, - avg_b @ update_factor / (args.lr * args.tau))
+                                opt.update_m(module.b, 
+                                             - avg_b @ update_factor / (args.lr * args.tau), 
+                                             avg_b, 
+                                             comp_mat_rec[(args.comp_dim, module.in_features)],
+                                             new_comp_mat)
                                 #opt.update_m(module.b, update_factor = update_factor)
                             else:
-                                opt[module.b].update_m(module.b, - avg_b @ update_factor / (args.lr * args.tau))
+                                opt[module.b].update_m(module.b, 
+                                                       - avg_b @ update_factor / (args.lr * args.tau), 
+                                                       avg_b, 
+                                                        comp_mat_rec[(args.comp_dim, module.in_features)],
+                                                        new_comp_mat)
                                 #opt[module.b].update_m(module.b, update_factor=update_factor)
                                 
                         # update lbd for every modules
-                        lbd[idx] = (lbd[idx] + module.b - avg_b) @ update_factor 
+                        if gene_new_cp:
+                            lbd[idx] = (lbd[idx] + module.b - avg_b) @ update_factor 
+                        else:
+                            lbd[idx] = (lbd[idx] + module.b - avg_b)
                         assert lbd[idx].shape == (module.out_features, args.comp_dim)
 
                         # update compression matrix, b and x
@@ -256,6 +268,7 @@ def main(args):
                                 compression_dim=args.comp_dim,
                                 foreach=False,
                                 nesterov=args.nesterov,
+                                weight_decay=args.weight_decay,
                                 momentum=args.momentum,
                                 dampening=args.dampening,
                                 )
@@ -271,6 +284,7 @@ def main(args):
                                             compression_dim=args.comp_dim,
                                             nesterov=args.nesterov,
                                             momentum=args.momentum,
+                                            weight_decay=args.weight_decay,
                                             dampening=args.dampening,
                                             foreach=False) for p in regular_params}
             for (p, l) in zip(subscaf_params, lbd):
@@ -279,6 +293,7 @@ def main(args):
                                                     tau=args.tau,
                                                     compression_dim=args.comp_dim,
                                                     foreach=False,
+                                                    weight_decay=args.weight_decay,
                                                     nesterov=args.nesterov,
                                                     dampening=args.dampening,
                                                     momentum=args.momentum)})
@@ -343,6 +358,7 @@ def main(args):
                                     lr=args.lr, 
                                     momentum=args.momentum,
                                     nesterov=args.nesterov,
+                                    weight_decay=args.weight_decay,
                                     dampening=args.dampening,
                                     foreach=False)
         # schedule
@@ -438,7 +454,7 @@ def main(args):
             optimizer.zero_grad()
 
         if "subscaf" in args.optimizer.lower() and (local_step // grad_accumulation) % args.tau == 0:
-            if (local_step // grad_accumulation) % (local_step // grad_accumulation) % args.update_cp_freq != 0:
+            if (local_step // grad_accumulation) % args.update_cp_freq != 0:
                 gene_new_cp = False 
             else:
                 gene_new_cp = True

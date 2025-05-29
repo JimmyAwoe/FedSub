@@ -70,9 +70,15 @@ class SubScafSGD(Optimizer):
                 group['lbd'] = lbd
 
     @torch.no_grad()
-    def update_m(self, params, m=None, update_factor=None):
+    def update_m(self, params, m, avg_b=None, past_p=None, new_p=None):
         for group in self.param_groups:
             if group['is_comp'] == True:
+                #if avg_b is not None:
+                    # carry out error feedback
+                    #past_m = past
+
+                #error = m 
+                #m = - avg_b @ update_factor / (args.lr * args.tau)
                 #self.state[params]['momentum_buffer'] = self.state[params]['momentum_buffer'] @ update_factor
                 # align magnitude 
                 # SubScaf-CA
