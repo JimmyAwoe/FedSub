@@ -2,7 +2,7 @@ import torch.nn as nn
 import torch
 from .common import log
 from .random_matrix_gene import gene_random_matrix
-from .linear import SubScafLinear
+from .subscaflinear import SubScafLinear
 import torch.distributed as dist
 
 def replace_with_subscaf_linear(model, target_modules_list, device, args, jump_modules_list=[]):
@@ -15,7 +15,7 @@ def replace_with_subscaf_linear(model, target_modules_list, device, args, jump_m
                 log(f"enable Subspace Scaffold for weights in module: {name}")
                 if args.adaptive_cp_rate != 0:
                     record_cp_dim = args.comp_dim
-                    args.comp_dim = min(int(module.in_features * args.adaptive_cp_rate), module.in_features, args.comp_dim)
+                    args.comp_dim = min(max(int(module.in_features * args.adaptive_cp_rate), args.comp_dim), module.in_features)
 
                 # create compression matrix only when new shape demand occur
                 if (args.comp_dim, module.in_features) not in comp_mat_rec.keys():
@@ -69,7 +69,7 @@ def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, subscaf_par
                 dist.all_reduce(avg_b, op=dist.ReduceOp.AVG)
                 if args.adaptive_cp_rate != 0:
                     record_cp_dim = args.comp_dim
-                    args.comp_dim = min(int(module.in_features * args.adaptive_cp_rate), module.in_features, args.comp_dim)
+                    args.comp_dim = min(max(int(module.in_features * args.adaptive_cp_rate), args.comp_dim), module.in_features)
 
                 # generate new compression matrix
                 if (args.comp_dim, module.in_features) not in new_comp_mat_rec.keys():

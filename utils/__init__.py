@@ -1,4 +1,4 @@
-from .linear import SubScafLinear
+from .subscaflinear import SubScafLinear
 from .subscafsgd import SubScafSGD, get_subscaf_optimizer
 from .random_matrix_gene import *
 #from .subscafadam import SubScafAdam

@@ -20,57 +20,27 @@ from utils import (
     main_parse_args,
 )
 
-def parse_args(args):
+def parse_args(args, remaining_args):
     parser = argparse.ArgumentParser()
     
     parser.add_argument("--epoch", default=2, type=int)
+    parser.add_argument("--use_tqdm", action="store_true")
+    parser.add_argument("--use_log", action="store_true")
+    parser.add_argument("--eval_freq", default=1000, type=int)
 
-    new_args, _ = parser.parse_known_args()
+    new_args, _ = parser.parse_known_args(remaining_args)
     args = argparse.Namespace(**vars(args), **vars(new_args))
 
     return args
 
-
-
-def train_step(model, batch):
-    # Forward pass
-    output = model(**batch)
-        
-    # Compute loss (only on the last stage)
-    logits = output.logits
-    loss = output.loss
-    #shift_logits = logits[..., :-1, :].contiguous()
-    #shift_labels = labels[..., 1:].contiguous() 
-    #loss = F.cross_entropy(
-        #shift_logits.view(-1, shift_logits.size(-1)),
-        #shift_labels.view(-1)
-    #)
-    # eval state
-    return loss, logits
-    
-    ## Backward pass
-    #if loss is not None:
-        #loss.backward()
-        #if args.optimizer == 'sgd':
-            #for params in model.parameters():
-                #dist.all_reduce(params.grad, op=dist.ReduceOp.AVG)
-            #schedule.step()
-            #optimizer.step()
-            #optimizer.zero_grad()
-        #if not args.per_layer_weight_update and 'subscaf' in args.optimizer.lower():
-            #schedule.step()
-            #optimizer.step()
-            #optimizer.zero_grad()
-        
-    #return loss
-
-
 def evaluate(model,  eval_dataloader, epoch, device, rank, args):
+    model.eval()
     eval_losses = []
     eval_accuracies = []
     log(f"start eval in {epoch} epoch")
     
-    #pbar = tqdm(eval_dataloader, desc="Evaulation", ncols=100)
+    if rank == 0 and args.use_tqdm:
+        pbar = tqdm(eval_dataloader, desc="Evaulation", ncols=100)
     
     with torch.no_grad():
         idx = 0
@@ -90,7 +60,9 @@ def evaluate(model,  eval_dataloader, epoch, device, rank, args):
                     predictions = shift_logits.argmax(dim=-1)
                     correct = (predictions == shift_labels).float().mean()
                     eval_accuracies.append(correct.item())
-            if idx % 50 == 0:
+                if args.use_tqdm:
+                    pbar.set_postfix({"loss": loss.item()})
+            if idx % 50 == 0 and args.use_log:
                 log(f"finish {idx}\{len(eval_dataloader)}, please wait...")
             idx += 1
     
@@ -121,6 +93,12 @@ def main(args):
     # Load model and tokenizer
     model = AutoModelForCausalLM.from_pretrained("/data/pretrained_models/llama-3.2-1b").to(device)
     tokenizer = AutoTokenizer.from_pretrained("t5-base")
+
+    log("*" * 40)
+    log("Start training with arguments")
+    for k, v in vars(args).items():
+        log(f"{k:30} {v}")
+    log("*" * 40)
     
     # Load dataset
     dataset = load_dataset("wikitext", "wikitext-2-raw-v1")
@@ -236,7 +214,6 @@ def main(args):
         # Evaluation first
         log(f"start epoch: {epoch}")
 
-        model.eval()
         if epoch != 0:
             _ = evaluate(model, eval_dataloader, epoch, device, rank, args)
         
@@ -245,10 +222,9 @@ def main(args):
         if epoch == 0:
             update_time = time.time()
 
-        if rank == 0:
-            #pbar = tqdm(train_dataloader, desc=f"Epoch {epoch}", ncols=100)
-            training_length = len(train_dataloader)
-            #pbar.close()
+        if rank == 0 and args.use_tqdm:
+            pbar = tqdm(train_dataloader, desc=f"Epoch {epoch}", ncols=100)
+        training_length = len(train_dataloader)
     
         update_step = 0
         local_step = 0
@@ -258,8 +234,8 @@ def main(args):
             loss = model(**batch).loss
             scaled_loss = loss / grad_accumulation
             scaled_loss.backward()
-            #if rank == 0:
-                #pbar.set_postfix({"loss": loss.item()})
+            if rank == 0 and args.use_tqdm:
+                pbar.set_postfix({"loss": loss.item()})
 
             if local_step % grad_accumulation != 0 or local_step == 0:
                 continue
@@ -323,27 +299,39 @@ def main(args):
             else:
                 lr = optimizer.param_groups[0]["lr"]
 
-            if rank == 0:
+            if rank == 0 and args.use_log:
                 #torch.cuda.empty_cache()
                 cuda_mem_usage = f"{torch.cuda.max_memory_allocated() / (1024 ** 3):.3} GB"
-                log(f"step: {update_step}/{training_length} Loss: {loss:.8f} Lr: {lr * 10000:.5f}e-5 Mem: {cuda_mem_usage}")
+                log(f"step: {update_step}/{training_length} Loss: {loss:.8f} Lr: {lr * 10000:.5f}e-4 Mem: {cuda_mem_usage}")
                 if update_step % 10 == 0:
                     hours = int(remain_total_seconds // 3600)
                     minutes = int((remain_total_seconds % 3600) // 60)
                     seconds = int(remain_total_seconds % 60)
                     log(f"ETA: {hours:02d}:{minutes:02d}:{seconds:02d}")
-                update_time = time.time()
+            
+            if update_step % args.eval_freq == 0:
+                _ = evaluate(model, eval_dataloader, epoch, device, rank, args)
+                model.train()
+            update_time = time.time()
             
     
     # Final evaluation
-    model.eval()
     _ = evaluate(model, eval_dataloader, epoch, device, rank, args)
 
     dist.destroy_process_group()
+    if args.use_tqdm and rank == 0:
+        pbar.close()
 
 if __name__ == "__main__":
+    s_time = time.time()
     # Initialize distributed training first
     init_process_group()
-    args = main_parse_args(None)
-    args = parse_args(args)
+    args, unknown_args = main_parse_args(None)
+    args = parse_args(args, unknown_args)
     main(args)
+    if args.use_log and dist.get_rank() == 0:
+        total_time = time.time() - s_time
+        hours = int(total_time // 3600)
+        minutes = int((total_time % 3600) // 60)
+        seconds = int(total_time % 60)
+        log(f"Total Time: {hours:02d}:{minutes:02d}:{seconds:02d}")

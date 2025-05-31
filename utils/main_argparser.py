@@ -41,6 +41,8 @@ def main_parse_args(args):
 
     # memory monitor
     parser.add_argument("--mem_monitor", action="store_true")
-    args = parser.parse_args(args)
 
-    return args
+    args, unknown_args = parser.parse_known_args()
+    #args = parser.parse_args(args)
+
+    return args, unknown_args

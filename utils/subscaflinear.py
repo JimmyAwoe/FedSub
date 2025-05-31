@@ -18,7 +18,7 @@ class SubScafLinear(nn.Linear):
         super().__init__(wraped_model.in_features, wraped_model.out_features, 
                          bias, device, dtype)
         # we don't need the param initialized by nn.Linaer
-        del self.weight, self.bias   
+        del self.weight
         self.x = wraped_model.weight.detach().clone()
         #self.b = nn.Parameter(torch.zeros((comp_dim, wraped_model.in_features), **factory_kwargs))
         self.b = nn.Parameter(torch.zeros((wraped_model.out_features, comp_dim), **factory_kwargs))
