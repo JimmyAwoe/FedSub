@@ -1,0 +1,432 @@
+W0531 16:25:41.127000 1032467 site-packages/torch/distributed/run.py:766] 
+W0531 16:25:41.127000 1032467 site-packages/torch/distributed/run.py:766] *****************************************
+W0531 16:25:41.127000 1032467 site-packages/torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0531 16:25:41.127000 1032467 site-packages/torch/distributed/run.py:766] *****************************************
+Running tokenizer on dataset:   0%|          | 0/4358 [00:00<?, ? examples/s]Running tokenizer on dataset:  23%|██▎       | 1000/4358 [00:00<00:00, 7515.41 examples/s]Running tokenizer on dataset:  46%|████▌     | 2000/4358 [00:00<00:00, 8136.80 examples/s]Running tokenizer on dataset:  69%|██████▉   | 3000/4358 [00:00<00:00, 8277.65 examples/s]Running tokenizer on dataset:  92%|█████████▏| 4000/4358 [00:00<00:00, 8671.78 examples/s]Running tokenizer on dataset: 100%|██████████| 4358/4358 [00:00<00:00, 8385.66 examples/s]
+Running tokenizer on dataset:   0%|          | 0/36718 [00:00<?, ? examples/s]Running tokenizer on dataset:   3%|▎         | 1000/36718 [00:00<00:04, 8533.63 examples/s]Running tokenizer on dataset:   5%|▌         | 2000/36718 [00:00<00:04, 8177.88 examples/s]Running tokenizer on dataset:   8%|▊         | 3000/36718 [00:00<00:03, 8482.92 examples/s]Running tokenizer on dataset:  11%|█         | 4000/36718 [00:00<00:03, 8479.26 examples/s]Running tokenizer on dataset:  14%|█▎        | 5000/36718 [00:00<00:03, 8642.94 examples/s]Running tokenizer on dataset:  16%|█▋        | 6000/36718 [00:00<00:03, 8641.30 examples/s]Running tokenizer on dataset:  19%|█▉        | 7000/36718 [00:01<00:05, 5441.47 examples/s]Running tokenizer on dataset:  22%|██▏       | 8000/36718 [00:01<00:04, 6148.70 examples/s]Running tokenizer on dataset:  25%|██▍       | 9000/36718 [00:01<00:04, 6738.33 examples/s]Running tokenizer on dataset:  27%|██▋       | 10000/36718 [00:01<00:03, 7166.41 examples/s]Running tokenizer on dataset:  30%|██▉       | 11000/36718 [00:01<00:03, 7478.25 examples/s]Running tokenizer on dataset:  33%|███▎      | 12000/36718 [00:01<00:03, 7779.99 examples/s]Running tokenizer on dataset:  35%|███▌      | 13000/36718 [00:01<00:02, 7917.06 examples/s]Running tokenizer on dataset:  38%|███▊      | 14000/36718 [00:01<00:02, 8138.77 examples/s]Running tokenizer on dataset:  41%|████      | 15000/36718 [00:01<00:02, 8350.89 examples/s]Running tokenizer on dataset:  44%|████▎     | 16000/36718 [00:02<00:02, 8324.42 examples/s]Running tokenizer on dataset:  46%|████▋     | 17000/36718 [00:02<00:02, 8390.81 examples/s]Running tokenizer on dataset:  49%|████▉     | 18000/36718 [00:02<00:02, 8496.95 examples/s]Running tokenizer on dataset:  52%|█████▏    | 19000/36718 [00:02<00:02, 8619.20 examples/s]Running tokenizer on dataset:  54%|█████▍    | 20000/36718 [00:02<00:01, 8541.43 examples/s]Running tokenizer on dataset:   0%|          | 0/36718 [00:00<?, ? examples/s]Running tokenizer on dataset:  57%|█████▋    | 21000/36718 [00:02<00:01, 8414.46 examples/s]Running tokenizer on dataset:   3%|▎         | 1000/36718 [00:00<00:04, 7347.55 examples/s]Running tokenizer on dataset:  60%|█████▉    | 22000/36718 [00:02<00:01, 8156.83 examples/s]Running tokenizer on dataset:   5%|▌         | 2000/36718 [00:00<00:04, 8027.48 examples/s]Running tokenizer on dataset:  63%|██████▎   | 23000/36718 [00:02<00:01, 8146.71 examples/s]Running tokenizer on dataset:   8%|▊         | 3000/36718 [00:00<00:04, 8295.98 examples/s]Running tokenizer on dataset:  65%|██████▌   | 24000/36718 [00:03<00:01, 8360.16 examples/s]Running tokenizer on dataset:  11%|█         | 4000/36718 [00:00<00:03, 8469.64 examples/s]Running tokenizer on dataset:  14%|█▎        | 5000/36718 [00:00<00:03, 8744.07 examples/s]Running tokenizer on dataset:  68%|██████▊   | 25000/36718 [00:03<00:01, 8432.45 examples/s]Running tokenizer on dataset:  16%|█▋        | 6000/36718 [00:00<00:03, 8590.62 examples/s]Running tokenizer on dataset:  71%|███████   | 26000/36718 [00:03<00:01, 8325.17 examples/s]Running tokenizer on dataset:  19%|█▉        | 7000/36718 [00:00<00:03, 8334.85 examples/s]Running tokenizer on dataset:  74%|███████▎  | 27000/36718 [00:03<00:01, 8287.81 examples/s]Running tokenizer on dataset:  22%|██▏       | 8000/36718 [00:00<00:03, 8380.23 examples/s]Running tokenizer on dataset:  76%|███████▋  | 28000/36718 [00:03<00:01, 8228.03 examples/s]Running tokenizer on dataset:  25%|██▍       | 9000/36718 [00:01<00:03, 8357.09 examples/s]Running tokenizer on dataset:  79%|███████▉  | 29000/36718 [00:03<00:00, 8344.69 examples/s]Running tokenizer on dataset:  27%|██▋       | 10000/36718 [00:01<00:03, 8381.10 examples/s]Running tokenizer on dataset:  82%|████████▏ | 30000/36718 [00:03<00:00, 8368.68 examples/s]Running tokenizer on dataset:  30%|██▉       | 11000/36718 [00:01<00:03, 8264.99 examples/s]Running tokenizer on dataset:  84%|████████▍ | 31000/36718 [00:03<00:00, 8190.54 examples/s]Running tokenizer on dataset:  33%|███▎      | 12000/36718 [00:01<00:02, 8253.31 examples/s]Running tokenizer on dataset:  87%|████████▋ | 32000/36718 [00:04<00:00, 8297.01 examples/s]Running tokenizer on dataset:  90%|████████▉ | 33000/36718 [00:04<00:00, 8305.55 examples/s]Running tokenizer on dataset:  35%|███▌      | 13000/36718 [00:01<00:02, 8125.60 examples/s]Running tokenizer on dataset:  93%|█████████▎| 34000/36718 [00:04<00:00, 8269.22 examples/s]Running tokenizer on dataset:  95%|█████████▌| 35000/36718 [00:04<00:00, 8495.96 examples/s]Running tokenizer on dataset:  98%|█████████▊| 36000/36718 [00:04<00:00, 8610.63 examples/s]Running tokenizer on dataset:  38%|███▊      | 14000/36718 [00:02<00:05, 4414.55 examples/s]Running tokenizer on dataset: 100%|██████████| 36718/36718 [00:04<00:00, 7872.72 examples/s]
+Running tokenizer on dataset:   0%|          | 0/3760 [00:00<?, ? examples/s]Running tokenizer on dataset:  41%|████      | 15000/36718 [00:02<00:04, 5195.42 examples/s]Running tokenizer on dataset:  27%|██▋       | 1000/3760 [00:00<00:00, 7781.11 examples/s]Running tokenizer on dataset:  44%|████▎     | 16000/36718 [00:02<00:03, 5933.83 examples/s]Running tokenizer on dataset:  53%|█████▎    | 2000/3760 [00:00<00:00, 7731.81 examples/s]Running tokenizer on dataset:  46%|████▋     | 17000/36718 [00:02<00:02, 6580.61 examples/s]Running tokenizer on dataset:  49%|████▉     | 18000/36718 [00:02<00:02, 7119.42 examples/s]Running tokenizer on dataset:  80%|███████▉  | 3000/3760 [00:00<00:00, 8061.82 examples/s]Running tokenizer on dataset: 100%|██████████| 3760/3760 [00:00<00:00, 8006.84 examples/s]
+2025-05-31 16:26:07.973 | INFO     | utils.common:log:12 - 
+LlamaForCausalLM(
+  (model): LlamaModel(
+    (embed_tokens): Embedding(128256, 2048)
+    (layers): ModuleList(
+      (0-15): 16 x LlamaDecoderLayer(
+        (self_attn): LlamaAttention(
+          (q_proj): Linear(in_features=2048, out_features=2048, bias=False)
+          (k_proj): Linear(in_features=2048, out_features=512, bias=False)
+          (v_proj): Linear(in_features=2048, out_features=512, bias=False)
+          (o_proj): Linear(in_features=2048, out_features=2048, bias=False)
+        )
+        (mlp): LlamaMLP(
+          (gate_proj): Linear(in_features=2048, out_features=8192, bias=False)
+          (up_proj): Linear(in_features=2048, out_features=8192, bias=False)
+          (down_proj): Linear(in_features=8192, out_features=2048, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): LlamaRMSNorm((2048,), eps=1e-05)
+        (post_attention_layernorm): LlamaRMSNorm((2048,), eps=1e-05)
+      )
+    )
+    (norm): LlamaRMSNorm((2048,), eps=1e-05)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=2048, out_features=128256, bias=False)
+)
+
+2025-05-31 16:26:07.973 | INFO     | utils.common:log:12 - Total params: 1235.81M
+2025-05-31 16:26:07.974 | INFO     | utils.common:log:12 - Trainable params: 1235.81M
+2025-05-31 16:26:07.974 | INFO     | utils.common:log:12 - start epoch: 0
+Running tokenizer on dataset:  52%|█████▏    | 19000/36718 [00:02<00:02, 7704.94 examples/s]Running tokenizer on dataset:  54%|█████▍    | 20000/36718 [00:02<00:02, 8199.49 examples/s]Running tokenizer on dataset:  57%|█████▋    | 21000/36718 [00:02<00:01, 8528.01 examples/s]Running tokenizer on dataset:  60%|█████▉    | 22000/36718 [00:02<00:01, 8737.10 examples/s]Running tokenizer on dataset:  63%|██████▎   | 23000/36718 [00:03<00:01, 8882.37 examples/s]Running tokenizer on dataset:  65%|██████▌   | 24000/36718 [00:03<00:01, 9102.57 examples/s]Running tokenizer on dataset:  68%|██████▊   | 25000/36718 [00:03<00:01, 9327.61 examples/s]Running tokenizer on dataset:  71%|███████   | 26000/36718 [00:03<00:01, 9199.46 examples/s]Running tokenizer on dataset:  74%|███████▎  | 27000/36718 [00:03<00:01, 9046.04 examples/s]Running tokenizer on dataset:  76%|███████▋  | 28000/36718 [00:03<00:00, 8970.80 examples/s]Running tokenizer on dataset:  79%|███████▉  | 29000/36718 [00:03<00:00, 9112.46 examples/s]Running tokenizer on dataset:  82%|████████▏ | 30000/36718 [00:03<00:00, 9015.56 examples/s]Running tokenizer on dataset:  84%|████████▍ | 31000/36718 [00:03<00:00, 8820.64 examples/s]Running tokenizer on dataset:  87%|████████▋ | 32000/36718 [00:04<00:00, 8980.80 examples/s]Running tokenizer on dataset:  90%|████████▉ | 33000/36718 [00:04<00:00, 9035.55 examples/s]Running tokenizer on dataset:  93%|█████████▎| 34000/36718 [00:04<00:00, 8924.26 examples/s]Running tokenizer on dataset:  95%|█████████▌| 35000/36718 [00:04<00:00, 9000.22 examples/s]Running tokenizer on dataset:  98%|█████████▊| 36000/36718 [00:04<00:00, 9019.78 examples/s]Running tokenizer on dataset: 100%|██████████| 36718/36718 [00:04<00:00, 7805.37 examples/s]
+2025-05-31 16:26:12.435 | INFO     | utils.common:log:12 - step: 1/4590 Loss: 9.09164333 Lr: 1.00000e-5 Mem: 14.2 GB
+2025-05-31 16:26:15.124 | INFO     | utils.common:log:12 - step: 2/4590 Loss: 8.56466198 Lr: 1.00000e-5 Mem: 31.6 GB
+2025-05-31 16:26:17.531 | INFO     | utils.common:log:12 - step: 3/4590 Loss: 7.81716061 Lr: 1.00000e-5 Mem: 31.6 GB
+2025-05-31 16:26:19.198 | INFO     | utils.common:log:12 - step: 4/4590 Loss: 8.64713287 Lr: 1.00000e-5 Mem: 31.6 GB
+2025-05-31 16:26:20.897 | INFO     | utils.common:log:12 - step: 5/4590 Loss: 8.20736599 Lr: 1.00000e-5 Mem: 31.6 GB
+2025-05-31 16:26:22.928 | INFO     | utils.common:log:12 - step: 6/4590 Loss: 7.46012592 Lr: 1.00000e-5 Mem: 31.6 GB
+2025-05-31 16:26:24.733 | INFO     | utils.common:log:12 - step: 7/4590 Loss: 8.08150673 Lr: 1.00000e-5 Mem: 31.6 GB
+2025-05-31 16:26:26.606 | INFO     | utils.common:log:12 - step: 8/4590 Loss: 8.31394100 Lr: 1.00000e-5 Mem: 31.6 GB
+2025-05-31 16:26:28.824 | INFO     | utils.common:log:12 - step: 9/4590 Loss: 7.28803682 Lr: 1.00000e-5 Mem: 31.6 GB
+2025-05-31 16:26:30.884 | INFO     | utils.common:log:12 - step: 10/4590 Loss: 7.30597019 Lr: 1.00000e-5 Mem: 31.6 GB
+2025-05-31 16:26:30.884 | INFO     | utils.common:log:12 - ETA: 02:42:38
+2025-05-31 16:26:32.382 | INFO     | utils.common:log:12 - step: 11/4590 Loss: 7.36314487 Lr: 1.00000e-5 Mem: 31.6 GB
+2025-05-31 16:26:34.472 | INFO     | utils.common:log:12 - step: 12/4590 Loss: 7.26510334 Lr: 1.00000e-5 Mem: 31.6 GB
+2025-05-31 16:26:36.297 | INFO     | utils.common:log:12 - step: 13/4590 Loss: 7.50442648 Lr: 1.00000e-5 Mem: 31.6 GB
+2025-05-31 16:26:37.793 | INFO     | utils.common:log:12 - step: 14/4590 Loss: 7.14335585 Lr: 1.00000e-5 Mem: 31.6 GB
+2025-05-31 16:26:39.702 | INFO     | utils.common:log:12 - step: 15/4590 Loss: 7.35243607 Lr: 0.99999e-5 Mem: 31.6 GB
+2025-05-31 16:26:41.649 | INFO     | utils.common:log:12 - step: 16/4590 Loss: 7.00728369 Lr: 0.99999e-5 Mem: 31.6 GB
+2025-05-31 16:26:43.148 | INFO     | utils.common:log:12 - step: 17/4590 Loss: 6.84994650 Lr: 0.99999e-5 Mem: 31.6 GB
+2025-05-31 16:26:45.241 | INFO     | utils.common:log:12 - step: 18/4590 Loss: 6.88304472 Lr: 0.99999e-5 Mem: 31.6 GB
+2025-05-31 16:26:46.738 | INFO     | utils.common:log:12 - step: 19/4590 Loss: 7.09883928 Lr: 0.99999e-5 Mem: 31.6 GB
+2025-05-31 16:26:48.238 | INFO     | utils.common:log:12 - step: 20/4590 Loss: 7.06114388 Lr: 0.99999e-5 Mem: 31.6 GB
+2025-05-31 16:26:48.238 | INFO     | utils.common:log:12 - ETA: 01:43:57
+2025-05-31 16:26:50.313 | INFO     | utils.common:log:12 - step: 21/4590 Loss: 6.81271029 Lr: 0.99999e-5 Mem: 31.6 GB
+2025-05-31 16:26:52.393 | INFO     | utils.common:log:12 - step: 22/4590 Loss: 7.01256609 Lr: 0.99999e-5 Mem: 31.6 GB
+2025-05-31 16:26:54.020 | INFO     | utils.common:log:12 - step: 23/4590 Loss: 6.78209925 Lr: 0.99999e-5 Mem: 31.6 GB
+2025-05-31 16:26:56.037 | INFO     | utils.common:log:12 - step: 24/4590 Loss: 6.99849939 Lr: 0.99999e-5 Mem: 31.6 GB
+2025-05-31 16:26:57.985 | INFO     | utils.common:log:12 - step: 25/4590 Loss: 7.01466990 Lr: 0.99998e-5 Mem: 31.6 GB
+2025-05-31 16:26:59.976 | INFO     | utils.common:log:12 - step: 26/4590 Loss: 6.98904705 Lr: 0.99998e-5 Mem: 31.6 GB
+2025-05-31 16:27:01.574 | INFO     | utils.common:log:12 - step: 27/4590 Loss: 6.70066643 Lr: 0.99998e-5 Mem: 31.6 GB
+2025-05-31 16:27:04.646 | INFO     | utils.common:log:12 - step: 28/4590 Loss: 6.68856859 Lr: 0.99998e-5 Mem: 31.6 GB
+2025-05-31 16:27:06.339 | INFO     | utils.common:log:12 - step: 29/4590 Loss: 6.65003777 Lr: 0.99998e-5 Mem: 31.6 GB
+2025-05-31 16:27:08.331 | INFO     | utils.common:log:12 - step: 30/4590 Loss: 6.86117744 Lr: 0.99998e-5 Mem: 31.6 GB
+2025-05-31 16:27:08.331 | INFO     | utils.common:log:12 - ETA: 01:23:42
+2025-05-31 16:27:10.138 | INFO     | utils.common:log:12 - step: 31/4590 Loss: 6.50772238 Lr: 0.99998e-5 Mem: 31.6 GB
+2025-05-31 16:27:11.750 | INFO     | utils.common:log:12 - step: 32/4590 Loss: 6.92497826 Lr: 0.99997e-5 Mem: 31.6 GB
+2025-05-31 16:27:14.201 | INFO     | utils.common:log:12 - step: 33/4590 Loss: 6.42016268 Lr: 0.99997e-5 Mem: 31.6 GB
+2025-05-31 16:27:15.702 | INFO     | utils.common:log:12 - step: 34/4590 Loss: 6.81944466 Lr: 0.99997e-5 Mem: 31.6 GB
+2025-05-31 16:27:17.333 | INFO     | utils.common:log:12 - step: 35/4590 Loss: 6.92968845 Lr: 0.99997e-5 Mem: 31.6 GB
+2025-05-31 16:27:19.211 | INFO     | utils.common:log:12 - step: 36/4590 Loss: 6.56347656 Lr: 0.99997e-5 Mem: 31.6 GB
+2025-05-31 16:27:21.481 | INFO     | utils.common:log:12 - step: 37/4590 Loss: 6.99453974 Lr: 0.99997e-5 Mem: 31.6 GB
+2025-05-31 16:27:23.083 | INFO     | utils.common:log:12 - step: 38/4590 Loss: 6.85885191 Lr: 0.99996e-5 Mem: 31.6 GB
+2025-05-31 16:27:24.584 | INFO     | utils.common:log:12 - step: 39/4590 Loss: 6.56169367 Lr: 0.99996e-5 Mem: 31.6 GB
+2025-05-31 16:27:26.413 | INFO     | utils.common:log:12 - step: 40/4590 Loss: 6.99570513 Lr: 0.99996e-5 Mem: 31.6 GB
+2025-05-31 16:27:26.413 | INFO     | utils.common:log:12 - ETA: 01:18:13
+2025-05-31 16:27:28.143 | INFO     | utils.common:log:12 - step: 41/4590 Loss: 6.42612314 Lr: 0.99996e-5 Mem: 31.6 GB
+2025-05-31 16:27:29.835 | INFO     | utils.common:log:12 - step: 42/4590 Loss: 6.68387938 Lr: 0.99996e-5 Mem: 31.6 GB
+2025-05-31 16:27:31.333 | INFO     | utils.common:log:12 - step: 43/4590 Loss: 6.40582943 Lr: 0.99995e-5 Mem: 31.6 GB
+2025-05-31 16:27:32.829 | INFO     | utils.common:log:12 - step: 44/4590 Loss: 7.02399158 Lr: 0.99995e-5 Mem: 31.6 GB
+2025-05-31 16:27:34.885 | INFO     | utils.common:log:12 - step: 45/4590 Loss: 5.68686914 Lr: 0.99995e-5 Mem: 31.6 GB
+2025-05-31 16:27:36.373 | INFO     | utils.common:log:12 - step: 46/4590 Loss: 6.30733776 Lr: 0.99995e-5 Mem: 31.6 GB
+2025-05-31 16:27:37.859 | INFO     | utils.common:log:12 - step: 47/4590 Loss: 6.93432188 Lr: 0.99995e-5 Mem: 31.6 GB
+2025-05-31 16:27:39.638 | INFO     | utils.common:log:12 - step: 48/4590 Loss: 6.23346710 Lr: 0.99994e-5 Mem: 31.6 GB
+2025-05-31 16:27:41.659 | INFO     | utils.common:log:12 - step: 49/4590 Loss: 6.41965771 Lr: 0.99994e-5 Mem: 31.6 GB
+2025-05-31 16:27:43.143 | INFO     | utils.common:log:12 - step: 50/4590 Loss: 6.79247713 Lr: 0.99994e-5 Mem: 31.6 GB
+2025-05-31 16:27:43.144 | INFO     | utils.common:log:12 - ETA: 01:12:47
+2025-05-31 16:27:44.841 | INFO     | utils.common:log:12 - step: 51/4590 Loss: 6.61344147 Lr: 0.99994e-5 Mem: 31.6 GB
+2025-05-31 16:27:46.935 | INFO     | utils.common:log:12 - step: 52/4590 Loss: 6.19124699 Lr: 0.99993e-5 Mem: 31.6 GB
+2025-05-31 16:27:48.429 | INFO     | utils.common:log:12 - step: 53/4590 Loss: 7.00288391 Lr: 0.99993e-5 Mem: 31.6 GB
+2025-05-31 16:27:50.333 | INFO     | utils.common:log:12 - step: 54/4590 Loss: 6.82175016 Lr: 0.99993e-5 Mem: 31.6 GB
+2025-05-31 16:27:51.824 | INFO     | utils.common:log:12 - step: 55/4590 Loss: 5.64361382 Lr: 0.99993e-5 Mem: 31.6 GB
+2025-05-31 16:27:53.454 | INFO     | utils.common:log:12 - step: 56/4590 Loss: 6.37599564 Lr: 0.99992e-5 Mem: 31.6 GB
+2025-05-31 16:27:55.113 | INFO     | utils.common:log:12 - step: 57/4590 Loss: 6.28888416 Lr: 0.99992e-5 Mem: 31.6 GB
+2025-05-31 16:27:56.661 | INFO     | utils.common:log:12 - step: 58/4590 Loss: 6.71667910 Lr: 0.99992e-5 Mem: 31.6 GB
+2025-05-31 16:27:58.167 | INFO     | utils.common:log:12 - step: 59/4590 Loss: 6.54463243 Lr: 0.99991e-5 Mem: 31.6 GB
+2025-05-31 16:28:00.033 | INFO     | utils.common:log:12 - step: 60/4590 Loss: 6.22861385 Lr: 0.99991e-5 Mem: 31.6 GB
+2025-05-31 16:28:00.033 | INFO     | utils.common:log:12 - ETA: 01:10:13
+2025-05-31 16:28:01.531 | INFO     | utils.common:log:12 - step: 61/4590 Loss: 6.95423555 Lr: 0.99991e-5 Mem: 31.6 GB
+2025-05-31 16:28:03.620 | INFO     | utils.common:log:12 - step: 62/4590 Loss: 6.73544693 Lr: 0.99991e-5 Mem: 31.6 GB
+2025-05-31 16:28:05.119 | INFO     | utils.common:log:12 - step: 63/4590 Loss: 6.76281166 Lr: 0.99990e-5 Mem: 31.6 GB
+2025-05-31 16:28:06.907 | INFO     | utils.common:log:12 - step: 64/4590 Loss: 5.96866131 Lr: 0.99990e-5 Mem: 31.6 GB
+2025-05-31 16:28:08.727 | INFO     | utils.common:log:12 - step: 65/4590 Loss: 6.38944864 Lr: 0.99990e-5 Mem: 31.6 GB
+2025-05-31 16:28:10.618 | INFO     | utils.common:log:12 - step: 66/4590 Loss: 6.89361620 Lr: 0.99989e-5 Mem: 31.6 GB
+2025-05-31 16:28:12.112 | INFO     | utils.common:log:12 - step: 67/4590 Loss: 6.56131601 Lr: 0.99989e-5 Mem: 31.6 GB
+2025-05-31 16:28:14.014 | INFO     | utils.common:log:12 - step: 68/4590 Loss: 6.95338631 Lr: 0.99989e-5 Mem: 31.6 GB
+2025-05-31 16:28:16.115 | INFO     | utils.common:log:12 - step: 69/4590 Loss: 6.61711693 Lr: 0.99988e-5 Mem: 31.6 GB
+2025-05-31 16:28:17.837 | INFO     | utils.common:log:12 - step: 70/4590 Loss: 6.45829391 Lr: 0.99988e-5 Mem: 31.6 GB
+2025-05-31 16:28:17.838 | INFO     | utils.common:log:12 - ETA: 01:10:58
+2025-05-31 16:28:19.820 | INFO     | utils.common:log:12 - step: 71/4590 Loss: 6.65617943 Lr: 0.99988e-5 Mem: 31.6 GB
+2025-05-31 16:28:21.418 | INFO     | utils.common:log:12 - step: 72/4590 Loss: 6.39310217 Lr: 0.99987e-5 Mem: 31.6 GB
+2025-05-31 16:28:23.318 | INFO     | utils.common:log:12 - step: 73/4590 Loss: 6.69311047 Lr: 0.99987e-5 Mem: 31.6 GB
+2025-05-31 16:28:24.842 | INFO     | utils.common:log:12 - step: 74/4590 Loss: 6.15605211 Lr: 0.99986e-5 Mem: 31.6 GB
+2025-05-31 16:28:26.371 | INFO     | utils.common:log:12 - step: 75/4590 Loss: 6.73747206 Lr: 0.99986e-5 Mem: 31.6 GB
+2025-05-31 16:28:28.192 | INFO     | utils.common:log:12 - step: 76/4590 Loss: 6.95519066 Lr: 0.99986e-5 Mem: 31.6 GB
+2025-05-31 16:28:30.050 | INFO     | utils.common:log:12 - step: 77/4590 Loss: 6.57419586 Lr: 0.99985e-5 Mem: 31.6 GB
+2025-05-31 16:28:31.661 | INFO     | utils.common:log:12 - step: 78/4590 Loss: 6.54858398 Lr: 0.99985e-5 Mem: 31.6 GB
+2025-05-31 16:28:33.172 | INFO     | utils.common:log:12 - step: 79/4590 Loss: 6.53758430 Lr: 0.99985e-5 Mem: 31.6 GB
+2025-05-31 16:28:35.185 | INFO     | utils.common:log:12 - step: 80/4590 Loss: 6.47684145 Lr: 0.99984e-5 Mem: 31.6 GB
+2025-05-31 16:28:35.185 | INFO     | utils.common:log:12 - ETA: 01:08:25
+2025-05-31 16:28:37.392 | INFO     | utils.common:log:12 - step: 81/4590 Loss: 6.28855944 Lr: 0.99984e-5 Mem: 31.6 GB
+2025-05-31 16:28:39.107 | INFO     | utils.common:log:12 - step: 82/4590 Loss: 6.27864170 Lr: 0.99983e-5 Mem: 31.6 GB
+2025-05-31 16:28:43.378 | INFO     | utils.common:log:12 - step: 83/4590 Loss: 6.23806477 Lr: 0.99983e-5 Mem: 31.6 GB
+2025-05-31 16:28:44.876 | INFO     | utils.common:log:12 - step: 84/4590 Loss: 6.60721159 Lr: 0.99983e-5 Mem: 31.6 GB
+2025-05-31 16:28:46.374 | INFO     | utils.common:log:12 - step: 85/4590 Loss: 6.75501776 Lr: 0.99982e-5 Mem: 31.6 GB
+2025-05-31 16:28:48.476 | INFO     | utils.common:log:12 - step: 86/4590 Loss: 6.66598034 Lr: 0.99982e-5 Mem: 31.6 GB
+2025-05-31 16:28:50.664 | INFO     | utils.common:log:12 - step: 87/4590 Loss: 5.83357620 Lr: 0.99981e-5 Mem: 31.6 GB
+2025-05-31 16:28:53.453 | INFO     | utils.common:log:12 - step: 88/4590 Loss: 6.47715855 Lr: 0.99981e-5 Mem: 31.6 GB
+2025-05-31 16:28:54.960 | INFO     | utils.common:log:12 - step: 89/4590 Loss: 6.36013937 Lr: 0.99980e-5 Mem: 31.6 GB
+2025-05-31 16:28:56.672 | INFO     | utils.common:log:12 - step: 90/4590 Loss: 6.12062550 Lr: 0.99980e-5 Mem: 31.6 GB
+2025-05-31 16:28:56.672 | INFO     | utils.common:log:12 - ETA: 01:09:31
+2025-05-31 16:28:58.761 | INFO     | utils.common:log:12 - step: 91/4590 Loss: 5.95597506 Lr: 0.99980e-5 Mem: 31.6 GB
+2025-05-31 16:29:00.260 | INFO     | utils.common:log:12 - step: 92/4590 Loss: 6.62200117 Lr: 0.99979e-5 Mem: 31.6 GB
+2025-05-31 16:29:02.067 | INFO     | utils.common:log:12 - step: 93/4590 Loss: 6.65403414 Lr: 0.99979e-5 Mem: 31.6 GB
+2025-05-31 16:29:03.674 | INFO     | utils.common:log:12 - step: 94/4590 Loss: 6.90543461 Lr: 0.99978e-5 Mem: 31.6 GB
+2025-05-31 16:29:05.678 | INFO     | utils.common:log:12 - step: 95/4590 Loss: 6.42323065 Lr: 0.99978e-5 Mem: 31.6 GB
+2025-05-31 16:29:07.384 | INFO     | utils.common:log:12 - step: 96/4590 Loss: 6.43187523 Lr: 0.99977e-5 Mem: 31.6 GB
+2025-05-31 16:29:08.901 | INFO     | utils.common:log:12 - step: 97/4590 Loss: 6.36308765 Lr: 0.99977e-5 Mem: 31.6 GB
+2025-05-31 16:29:10.759 | INFO     | utils.common:log:12 - step: 98/4590 Loss: 6.01353025 Lr: 0.99976e-5 Mem: 31.6 GB
+2025-05-31 16:29:12.455 | INFO     | utils.common:log:12 - step: 99/4590 Loss: 6.77862310 Lr: 0.99976e-5 Mem: 31.6 GB
+2025-05-31 16:29:13.973 | INFO     | utils.common:log:12 - step: 100/4590 Loss: 6.70223522 Lr: 0.99975e-5 Mem: 31.6 GB
+2025-05-31 16:29:13.973 | INFO     | utils.common:log:12 - ETA: 01:05:40
+2025-05-31 16:29:15.603 | INFO     | utils.common:log:12 - step: 101/4590 Loss: 6.66770124 Lr: 0.99975e-5 Mem: 31.6 GB
+2025-05-31 16:29:17.694 | INFO     | utils.common:log:12 - step: 102/4590 Loss: 6.70654392 Lr: 0.99974e-5 Mem: 31.6 GB
+2025-05-31 16:29:19.777 | INFO     | utils.common:log:12 - step: 103/4590 Loss: 6.42582035 Lr: 0.99974e-5 Mem: 31.6 GB
+2025-05-31 16:29:21.537 | INFO     | utils.common:log:12 - step: 104/4590 Loss: 6.86891174 Lr: 0.99973e-5 Mem: 31.6 GB
+2025-05-31 16:29:23.426 | INFO     | utils.common:log:12 - step: 105/4590 Loss: 6.71928406 Lr: 0.99973e-5 Mem: 31.6 GB
+2025-05-31 16:29:24.916 | INFO     | utils.common:log:12 - step: 106/4590 Loss: 6.80129242 Lr: 0.99972e-5 Mem: 31.6 GB
+2025-05-31 16:29:27.726 | INFO     | utils.common:log:12 - step: 107/4590 Loss: 6.70240355 Lr: 0.99972e-5 Mem: 31.6 GB
+2025-05-31 16:29:29.796 | INFO     | utils.common:log:12 - step: 108/4590 Loss: 6.63035536 Lr: 0.99971e-5 Mem: 31.6 GB
+2025-05-31 16:29:31.468 | INFO     | utils.common:log:12 - step: 109/4590 Loss: 6.76715183 Lr: 0.99971e-5 Mem: 31.6 GB
+2025-05-31 16:29:33.055 | INFO     | utils.common:log:12 - step: 110/4590 Loss: 6.68974447 Lr: 0.99970e-5 Mem: 31.6 GB
+2025-05-31 16:29:33.055 | INFO     | utils.common:log:12 - ETA: 01:07:24
+2025-05-31 16:29:34.767 | INFO     | utils.common:log:12 - step: 111/4590 Loss: 6.62981319 Lr: 0.99970e-5 Mem: 31.6 GB
+2025-05-31 16:29:36.433 | INFO     | utils.common:log:12 - step: 112/4590 Loss: 6.51545668 Lr: 0.99969e-5 Mem: 31.6 GB
+2025-05-31 16:29:38.518 | INFO     | utils.common:log:12 - step: 113/4590 Loss: 6.24022388 Lr: 0.99969e-5 Mem: 31.6 GB
+2025-05-31 16:29:40.013 | INFO     | utils.common:log:12 - step: 114/4590 Loss: 6.81721449 Lr: 0.99968e-5 Mem: 31.6 GB
+2025-05-31 16:29:42.063 | INFO     | utils.common:log:12 - step: 115/4590 Loss: 6.58430529 Lr: 0.99967e-5 Mem: 31.6 GB
+2025-05-31 16:29:43.838 | INFO     | utils.common:log:12 - step: 116/4590 Loss: 6.49680424 Lr: 0.99967e-5 Mem: 31.6 GB
+2025-05-31 16:29:45.729 | INFO     | utils.common:log:12 - step: 117/4590 Loss: 6.50129604 Lr: 0.99966e-5 Mem: 31.6 GB
+2025-05-31 16:29:47.758 | INFO     | utils.common:log:12 - step: 118/4590 Loss: 6.60247040 Lr: 0.99966e-5 Mem: 31.6 GB
+2025-05-31 16:29:49.511 | INFO     | utils.common:log:12 - step: 119/4590 Loss: 6.52266693 Lr: 0.99965e-5 Mem: 31.6 GB
+2025-05-31 16:29:50.996 | INFO     | utils.common:log:12 - step: 120/4590 Loss: 6.80986738 Lr: 0.99964e-5 Mem: 31.6 GB
+2025-05-31 16:29:50.996 | INFO     | utils.common:log:12 - ETA: 01:05:33
+2025-05-31 16:29:52.665 | INFO     | utils.common:log:12 - step: 121/4590 Loss: 6.31210423 Lr: 0.99964e-5 Mem: 31.6 GB
+2025-05-31 16:29:54.748 | INFO     | utils.common:log:12 - step: 122/4590 Loss: 6.40958023 Lr: 0.99963e-5 Mem: 31.6 GB
+2025-05-31 16:29:56.788 | INFO     | utils.common:log:12 - step: 123/4590 Loss: 6.42505360 Lr: 0.99963e-5 Mem: 31.6 GB
+2025-05-31 16:29:58.290 | INFO     | utils.common:log:12 - step: 124/4590 Loss: 6.84139490 Lr: 0.99962e-5 Mem: 31.6 GB
+2025-05-31 16:30:00.361 | INFO     | utils.common:log:12 - step: 125/4590 Loss: 6.64865541 Lr: 0.99961e-5 Mem: 31.6 GB
+2025-05-31 16:30:01.851 | INFO     | utils.common:log:12 - step: 126/4590 Loss: 6.59290981 Lr: 0.99961e-5 Mem: 31.6 GB
+2025-05-31 16:30:03.343 | INFO     | utils.common:log:12 - step: 127/4590 Loss: 6.60153723 Lr: 0.99960e-5 Mem: 31.6 GB
+2025-05-31 16:30:05.426 | INFO     | utils.common:log:12 - step: 128/4590 Loss: 6.08113766 Lr: 0.99960e-5 Mem: 31.6 GB
+2025-05-31 16:30:07.433 | INFO     | utils.common:log:12 - step: 129/4590 Loss: 6.55741358 Lr: 0.99959e-5 Mem: 31.6 GB
+2025-05-31 16:30:10.214 | INFO     | utils.common:log:12 - step: 130/4590 Loss: 5.95537186 Lr: 0.99958e-5 Mem: 32.5 GB
+2025-05-31 16:30:10.214 | INFO     | utils.common:log:12 - ETA: 01:17:09
+2025-05-31 16:30:12.078 | INFO     | utils.common:log:12 - step: 131/4590 Loss: 6.12490654 Lr: 0.99958e-5 Mem: 32.5 GB
+2025-05-31 16:30:13.578 | INFO     | utils.common:log:12 - step: 132/4590 Loss: 6.77352571 Lr: 0.99957e-5 Mem: 32.5 GB
+2025-05-31 16:30:15.066 | INFO     | utils.common:log:12 - step: 133/4590 Loss: 6.44584799 Lr: 0.99956e-5 Mem: 32.5 GB
+2025-05-31 16:30:16.564 | INFO     | utils.common:log:12 - step: 134/4590 Loss: 6.55457401 Lr: 0.99956e-5 Mem: 32.5 GB
+2025-05-31 16:30:18.225 | INFO     | utils.common:log:12 - step: 135/4590 Loss: 6.54075003 Lr: 0.99955e-5 Mem: 32.5 GB
+2025-05-31 16:30:19.709 | INFO     | utils.common:log:12 - step: 136/4590 Loss: 6.41859484 Lr: 0.99954e-5 Mem: 32.5 GB
+2025-05-31 16:30:21.767 | INFO     | utils.common:log:12 - step: 137/4590 Loss: 6.58789778 Lr: 0.99954e-5 Mem: 32.5 GB
+2025-05-31 16:30:23.618 | INFO     | utils.common:log:12 - step: 138/4590 Loss: 6.54875946 Lr: 0.99953e-5 Mem: 32.5 GB
+2025-05-31 16:30:25.285 | INFO     | utils.common:log:12 - step: 139/4590 Loss: 6.38674974 Lr: 0.99952e-5 Mem: 32.5 GB
+2025-05-31 16:30:26.901 | INFO     | utils.common:log:12 - step: 140/4590 Loss: 6.43282080 Lr: 0.99952e-5 Mem: 32.5 GB
+2025-05-31 16:30:26.901 | INFO     | utils.common:log:12 - ETA: 01:07:10
+2025-05-31 16:30:28.889 | INFO     | utils.common:log:12 - step: 141/4590 Loss: 6.33195877 Lr: 0.99951e-5 Mem: 32.5 GB
+2025-05-31 16:30:30.509 | INFO     | utils.common:log:12 - step: 142/4590 Loss: 6.02116823 Lr: 0.99950e-5 Mem: 32.5 GB
+2025-05-31 16:30:33.126 | INFO     | utils.common:log:12 - step: 143/4590 Loss: 6.32033682 Lr: 0.99950e-5 Mem: 32.5 GB
+2025-05-31 16:30:34.852 | INFO     | utils.common:log:12 - step: 144/4590 Loss: 6.61804104 Lr: 0.99949e-5 Mem: 32.5 GB
+2025-05-31 16:30:36.572 | INFO     | utils.common:log:12 - step: 145/4590 Loss: 6.15789557 Lr: 0.99948e-5 Mem: 32.5 GB
+2025-05-31 16:30:38.064 | INFO     | utils.common:log:12 - step: 146/4590 Loss: 6.65070343 Lr: 0.99947e-5 Mem: 32.5 GB
+2025-05-31 16:30:39.896 | INFO     | utils.common:log:12 - step: 147/4590 Loss: 6.13245440 Lr: 0.99947e-5 Mem: 32.5 GB
+2025-05-31 16:30:41.686 | INFO     | utils.common:log:12 - step: 148/4590 Loss: 6.34925699 Lr: 0.99946e-5 Mem: 32.5 GB
+2025-05-31 16:30:43.745 | INFO     | utils.common:log:12 - step: 149/4590 Loss: 6.50014734 Lr: 0.99945e-5 Mem: 32.5 GB
+2025-05-31 16:30:45.766 | INFO     | utils.common:log:12 - step: 150/4590 Loss: 6.40736055 Lr: 0.99945e-5 Mem: 32.5 GB
+2025-05-31 16:30:45.766 | INFO     | utils.common:log:12 - ETA: 01:14:14
+2025-05-31 16:30:47.381 | INFO     | utils.common:log:12 - step: 151/4590 Loss: 6.45042944 Lr: 0.99944e-5 Mem: 32.5 GB
+2025-05-31 16:30:48.887 | INFO     | utils.common:log:12 - step: 152/4590 Loss: 6.60232353 Lr: 0.99943e-5 Mem: 32.5 GB
+2025-05-31 16:30:51.486 | INFO     | utils.common:log:12 - step: 153/4590 Loss: 6.35969210 Lr: 0.99942e-5 Mem: 32.5 GB
+2025-05-31 16:30:52.987 | INFO     | utils.common:log:12 - step: 154/4590 Loss: 6.43638420 Lr: 0.99942e-5 Mem: 32.5 GB
+2025-05-31 16:30:54.497 | INFO     | utils.common:log:12 - step: 155/4590 Loss: 6.63877535 Lr: 0.99941e-5 Mem: 32.5 GB
+2025-05-31 16:30:56.019 | INFO     | utils.common:log:12 - step: 156/4590 Loss: 6.31032133 Lr: 0.99940e-5 Mem: 32.5 GB
+2025-05-31 16:30:58.029 | INFO     | utils.common:log:12 - step: 157/4590 Loss: 5.99931431 Lr: 0.99939e-5 Mem: 32.5 GB
+2025-05-31 16:30:59.700 | INFO     | utils.common:log:12 - step: 158/4590 Loss: 6.21749830 Lr: 0.99938e-5 Mem: 32.5 GB
+2025-05-31 16:31:01.330 | INFO     | utils.common:log:12 - step: 159/4590 Loss: 6.58310938 Lr: 0.99938e-5 Mem: 32.5 GB
+2025-05-31 16:31:03.030 | INFO     | utils.common:log:12 - step: 160/4590 Loss: 6.48473978 Lr: 0.99937e-5 Mem: 32.5 GB
+2025-05-31 16:31:03.030 | INFO     | utils.common:log:12 - ETA: 01:06:52
+2025-05-31 16:31:04.744 | INFO     | utils.common:log:12 - step: 161/4590 Loss: 6.18540382 Lr: 0.99936e-5 Mem: 32.5 GB
+2025-05-31 16:31:06.232 | INFO     | utils.common:log:12 - step: 162/4590 Loss: 6.11027145 Lr: 0.99935e-5 Mem: 32.5 GB
+2025-05-31 16:31:07.725 | INFO     | utils.common:log:12 - step: 163/4590 Loss: 6.56552649 Lr: 0.99934e-5 Mem: 32.5 GB
+2025-05-31 16:31:09.694 | INFO     | utils.common:log:12 - step: 164/4590 Loss: 6.51185656 Lr: 0.99934e-5 Mem: 32.5 GB
+2025-05-31 16:31:11.320 | INFO     | utils.common:log:12 - step: 165/4590 Loss: 6.26791382 Lr: 0.99933e-5 Mem: 32.5 GB
+2025-05-31 16:31:12.822 | INFO     | utils.common:log:12 - step: 166/4590 Loss: 6.65457487 Lr: 0.99932e-5 Mem: 32.5 GB
+2025-05-31 16:31:14.531 | INFO     | utils.common:log:12 - step: 167/4590 Loss: 6.27913857 Lr: 0.99931e-5 Mem: 32.5 GB
+2025-05-31 16:31:16.151 | INFO     | utils.common:log:12 - step: 168/4590 Loss: 6.60261154 Lr: 0.99930e-5 Mem: 32.5 GB
+2025-05-31 16:31:18.038 | INFO     | utils.common:log:12 - step: 169/4590 Loss: 5.96398783 Lr: 0.99930e-5 Mem: 32.5 GB
+2025-05-31 16:31:19.903 | INFO     | utils.common:log:12 - step: 170/4590 Loss: 6.52507067 Lr: 0.99929e-5 Mem: 32.5 GB
+2025-05-31 16:31:19.903 | INFO     | utils.common:log:12 - ETA: 01:04:27
+2025-05-31 16:31:22.708 | INFO     | utils.common:log:12 - step: 171/4590 Loss: 5.97687101 Lr: 0.99928e-5 Mem: 32.5 GB
+2025-05-31 16:31:24.903 | INFO     | utils.common:log:12 - step: 172/4590 Loss: 6.65104437 Lr: 0.99927e-5 Mem: 32.5 GB
+2025-05-31 16:31:26.392 | INFO     | utils.common:log:12 - step: 173/4590 Loss: 6.38006544 Lr: 0.99926e-5 Mem: 32.5 GB
+2025-05-31 16:31:27.908 | INFO     | utils.common:log:12 - step: 174/4590 Loss: 6.51077795 Lr: 0.99925e-5 Mem: 32.5 GB
+2025-05-31 16:31:29.410 | INFO     | utils.common:log:12 - step: 175/4590 Loss: 6.39661503 Lr: 0.99924e-5 Mem: 32.5 GB
+2025-05-31 16:31:31.084 | INFO     | utils.common:log:12 - step: 176/4590 Loss: 6.74957609 Lr: 0.99924e-5 Mem: 32.5 GB
+2025-05-31 16:31:33.076 | INFO     | utils.common:log:12 - step: 177/4590 Loss: 6.14851046 Lr: 0.99923e-5 Mem: 32.5 GB
+2025-05-31 16:31:34.929 | INFO     | utils.common:log:12 - step: 178/4590 Loss: 6.49560499 Lr: 0.99922e-5 Mem: 32.5 GB
+2025-05-31 16:31:36.743 | INFO     | utils.common:log:12 - step: 179/4590 Loss: 6.41521740 Lr: 0.99921e-5 Mem: 32.5 GB
+2025-05-31 16:31:38.232 | INFO     | utils.common:log:12 - step: 180/4590 Loss: 6.05435514 Lr: 0.99920e-5 Mem: 32.5 GB
+2025-05-31 16:31:38.232 | INFO     | utils.common:log:12 - ETA: 01:05:06
+2025-05-31 16:31:39.726 | INFO     | utils.common:log:12 - step: 181/4590 Loss: 5.96077347 Lr: 0.99919e-5 Mem: 32.5 GB
+2025-05-31 16:31:41.542 | INFO     | utils.common:log:12 - step: 182/4590 Loss: 6.34488153 Lr: 0.99918e-5 Mem: 32.5 GB
+2025-05-31 16:31:44.872 | INFO     | utils.common:log:12 - step: 183/4590 Loss: 6.18693876 Lr: 0.99917e-5 Mem: 32.5 GB
+2025-05-31 16:31:46.559 | INFO     | utils.common:log:12 - step: 184/4590 Loss: 6.65621662 Lr: 0.99917e-5 Mem: 32.5 GB
+2025-05-31 16:31:48.359 | INFO     | utils.common:log:12 - step: 185/4590 Loss: 6.44774151 Lr: 0.99916e-5 Mem: 32.5 GB
+2025-05-31 16:31:50.089 | INFO     | utils.common:log:12 - step: 186/4590 Loss: 6.76781845 Lr: 0.99915e-5 Mem: 32.5 GB
+2025-05-31 16:31:51.683 | INFO     | utils.common:log:12 - step: 187/4590 Loss: 6.14243555 Lr: 0.99914e-5 Mem: 32.5 GB
+2025-05-31 16:31:53.269 | INFO     | utils.common:log:12 - step: 188/4590 Loss: 6.62230253 Lr: 0.99913e-5 Mem: 32.5 GB
+2025-05-31 16:31:55.132 | INFO     | utils.common:log:12 - step: 189/4590 Loss: 6.35803843 Lr: 0.99912e-5 Mem: 32.5 GB
+2025-05-31 16:31:56.617 | INFO     | utils.common:log:12 - step: 190/4590 Loss: 5.92100096 Lr: 0.99911e-5 Mem: 32.5 GB
+2025-05-31 16:31:56.617 | INFO     | utils.common:log:12 - ETA: 01:05:15
+2025-05-31 16:31:58.111 | INFO     | utils.common:log:12 - step: 191/4590 Loss: 6.53973818 Lr: 0.99910e-5 Mem: 32.5 GB
+2025-05-31 16:31:59.704 | INFO     | utils.common:log:12 - step: 192/4590 Loss: 6.72809267 Lr: 0.99909e-5 Mem: 32.5 GB
+2025-05-31 16:32:01.402 | INFO     | utils.common:log:12 - step: 193/4590 Loss: 6.78123856 Lr: 0.99908e-5 Mem: 32.5 GB
+2025-05-31 16:32:02.987 | INFO     | utils.common:log:12 - step: 194/4590 Loss: 6.13252735 Lr: 0.99907e-5 Mem: 32.5 GB
+2025-05-31 16:32:04.797 | INFO     | utils.common:log:12 - step: 195/4590 Loss: 6.18666792 Lr: 0.99906e-5 Mem: 32.5 GB
+2025-05-31 16:32:06.736 | INFO     | utils.common:log:12 - step: 196/4590 Loss: 6.37762403 Lr: 0.99905e-5 Mem: 32.5 GB
+2025-05-31 16:32:08.528 | INFO     | utils.common:log:12 - step: 197/4590 Loss: 6.36757755 Lr: 0.99904e-5 Mem: 32.5 GB
+2025-05-31 16:32:10.115 | INFO     | utils.common:log:12 - step: 198/4590 Loss: 6.53827429 Lr: 0.99903e-5 Mem: 32.5 GB
+2025-05-31 16:32:11.607 | INFO     | utils.common:log:12 - step: 199/4590 Loss: 6.34826899 Lr: 0.99902e-5 Mem: 32.5 GB
+2025-05-31 16:32:15.006 | INFO     | utils.common:log:12 - step: 200/4590 Loss: 6.12565231 Lr: 0.99901e-5 Mem: 32.5 GB
+2025-05-31 16:32:15.006 | INFO     | utils.common:log:12 - ETA: 01:05:47
+2025-05-31 16:32:17.220 | INFO     | utils.common:log:12 - step: 201/4590 Loss: 6.69467926 Lr: 0.99900e-5 Mem: 32.5 GB
+2025-05-31 16:32:19.014 | INFO     | utils.common:log:12 - step: 202/4590 Loss: 6.56309700 Lr: 0.99899e-5 Mem: 32.5 GB
+2025-05-31 16:32:21.032 | INFO     | utils.common:log:12 - step: 203/4590 Loss: 6.25360918 Lr: 0.99898e-5 Mem: 32.5 GB
+2025-05-31 16:32:23.059 | INFO     | utils.common:log:12 - step: 204/4590 Loss: 5.70308304 Lr: 0.99897e-5 Mem: 32.5 GB
+2025-05-31 16:32:24.682 | INFO     | utils.common:log:12 - step: 205/4590 Loss: 6.31960011 Lr: 0.99896e-5 Mem: 32.5 GB
+2025-05-31 16:32:26.666 | INFO     | utils.common:log:12 - step: 206/4590 Loss: 6.08516693 Lr: 0.99895e-5 Mem: 32.5 GB
+2025-05-31 16:32:28.510 | INFO     | utils.common:log:12 - step: 207/4590 Loss: 6.36062336 Lr: 0.99894e-5 Mem: 32.5 GB
+2025-05-31 16:32:30.558 | INFO     | utils.common:log:12 - step: 208/4590 Loss: 6.65124702 Lr: 0.99893e-5 Mem: 32.5 GB
+2025-05-31 16:32:32.256 | INFO     | utils.common:log:12 - step: 209/4590 Loss: 6.12584305 Lr: 0.99892e-5 Mem: 32.5 GB
+2025-05-31 16:32:33.773 | INFO     | utils.common:log:12 - step: 210/4590 Loss: 6.36767769 Lr: 0.99891e-5 Mem: 32.5 GB
+2025-05-31 16:32:33.773 | INFO     | utils.common:log:12 - ETA: 01:07:58
+2025-05-31 16:32:35.348 | INFO     | utils.common:log:12 - step: 211/4590 Loss: 6.12695932 Lr: 0.99890e-5 Mem: 32.5 GB
+2025-05-31 16:32:36.843 | INFO     | utils.common:log:12 - step: 212/4590 Loss: 6.39087725 Lr: 0.99889e-5 Mem: 32.5 GB
+2025-05-31 16:32:39.512 | INFO     | utils.common:log:12 - step: 213/4590 Loss: 6.26541376 Lr: 0.99888e-5 Mem: 32.5 GB
+2025-05-31 16:32:41.028 | INFO     | utils.common:log:12 - step: 214/4590 Loss: 6.11308670 Lr: 0.99887e-5 Mem: 32.5 GB
+2025-05-31 16:32:43.669 | INFO     | utils.common:log:12 - step: 215/4590 Loss: 6.51513481 Lr: 0.99886e-5 Mem: 32.5 GB
+2025-05-31 16:32:45.607 | INFO     | utils.common:log:12 - step: 216/4590 Loss: 6.42469025 Lr: 0.99885e-5 Mem: 32.5 GB
+2025-05-31 16:32:47.275 | INFO     | utils.common:log:12 - step: 217/4590 Loss: 6.61616135 Lr: 0.99884e-5 Mem: 32.5 GB
+2025-05-31 16:32:48.991 | INFO     | utils.common:log:12 - step: 218/4590 Loss: 5.57336855 Lr: 0.99883e-5 Mem: 32.5 GB
+2025-05-31 16:32:50.487 | INFO     | utils.common:log:12 - step: 219/4590 Loss: 6.22568226 Lr: 0.99882e-5 Mem: 32.5 GB
+2025-05-31 16:32:52.355 | INFO     | utils.common:log:12 - step: 220/4590 Loss: 5.34887934 Lr: 0.99881e-5 Mem: 32.5 GB
+2025-05-31 16:32:52.356 | INFO     | utils.common:log:12 - ETA: 01:09:54
+2025-05-31 16:32:53.948 | INFO     | utils.common:log:12 - step: 221/4590 Loss: 6.16191959 Lr: 0.99880e-5 Mem: 32.5 GB
+2025-05-31 16:32:56.746 | INFO     | utils.common:log:12 - step: 222/4590 Loss: 5.66135406 Lr: 0.99878e-5 Mem: 32.5 GB
+2025-05-31 16:32:58.261 | INFO     | utils.common:log:12 - step: 223/4590 Loss: 6.18098068 Lr: 0.99877e-5 Mem: 32.5 GB
+2025-05-31 16:33:00.358 | INFO     | utils.common:log:12 - step: 224/4590 Loss: 6.12335777 Lr: 0.99876e-5 Mem: 32.5 GB
+2025-05-31 16:33:01.944 | INFO     | utils.common:log:12 - step: 225/4590 Loss: 6.17896366 Lr: 0.99875e-5 Mem: 32.5 GB
+2025-05-31 16:33:03.881 | INFO     | utils.common:log:12 - step: 226/4590 Loss: 6.13684273 Lr: 0.99874e-5 Mem: 32.5 GB
+2025-05-31 16:33:05.380 | INFO     | utils.common:log:12 - step: 227/4590 Loss: 6.33747292 Lr: 0.99873e-5 Mem: 32.5 GB
+2025-05-31 16:33:07.100 | INFO     | utils.common:log:12 - step: 228/4590 Loss: 6.02720213 Lr: 0.99872e-5 Mem: 32.5 GB
+2025-05-31 16:33:09.152 | INFO     | utils.common:log:12 - step: 229/4590 Loss: 6.77338934 Lr: 0.99871e-5 Mem: 32.5 GB
+2025-05-31 16:33:11.228 | INFO     | utils.common:log:12 - step: 230/4590 Loss: 6.07664013 Lr: 0.99870e-5 Mem: 32.5 GB
+2025-05-31 16:33:11.229 | INFO     | utils.common:log:12 - ETA: 01:14:16
+2025-05-31 16:33:12.828 | INFO     | utils.common:log:12 - step: 231/4590 Loss: 6.45082998 Lr: 0.99868e-5 Mem: 32.5 GB
+2025-05-31 16:33:14.331 | INFO     | utils.common:log:12 - step: 232/4590 Loss: 6.47112703 Lr: 0.99867e-5 Mem: 32.5 GB
+2025-05-31 16:33:15.964 | INFO     | utils.common:log:12 - step: 233/4590 Loss: 6.22089720 Lr: 0.99866e-5 Mem: 32.5 GB
+2025-05-31 16:33:17.583 | INFO     | utils.common:log:12 - step: 234/4590 Loss: 6.33024073 Lr: 0.99865e-5 Mem: 32.5 GB
+2025-05-31 16:33:20.429 | INFO     | utils.common:log:12 - step: 235/4590 Loss: 6.22316217 Lr: 0.99864e-5 Mem: 32.5 GB
+2025-05-31 16:33:22.447 | INFO     | utils.common:log:12 - step: 236/4590 Loss: 6.39903402 Lr: 0.99863e-5 Mem: 32.5 GB
+2025-05-31 16:33:23.940 | INFO     | utils.common:log:12 - step: 237/4590 Loss: 4.83763695 Lr: 0.99862e-5 Mem: 32.5 GB
+2025-05-31 16:33:25.667 | INFO     | utils.common:log:12 - step: 238/4590 Loss: 6.13816977 Lr: 0.99860e-5 Mem: 32.5 GB
+2025-05-31 16:33:27.303 | INFO     | utils.common:log:12 - step: 239/4590 Loss: 6.79382944 Lr: 0.99859e-5 Mem: 32.5 GB
+2025-05-31 16:33:28.935 | INFO     | utils.common:log:12 - step: 240/4590 Loss: 6.01692820 Lr: 0.99858e-5 Mem: 32.5 GB
+2025-05-31 16:33:28.935 | INFO     | utils.common:log:12 - ETA: 01:07:15
+2025-05-31 16:33:30.563 | INFO     | utils.common:log:12 - step: 241/4590 Loss: 6.46737242 Lr: 0.99857e-5 Mem: 32.5 GB
+2025-05-31 16:33:32.500 | INFO     | utils.common:log:12 - step: 242/4590 Loss: 6.19062376 Lr: 0.99856e-5 Mem: 32.5 GB
+2025-05-31 16:33:34.563 | INFO     | utils.common:log:12 - step: 243/4590 Loss: 6.19507313 Lr: 0.99854e-5 Mem: 32.5 GB
+2025-05-31 16:33:36.459 | INFO     | utils.common:log:12 - step: 244/4590 Loss: 6.24564457 Lr: 0.99853e-5 Mem: 32.5 GB
+2025-05-31 16:33:38.146 | INFO     | utils.common:log:12 - step: 245/4590 Loss: 6.41237259 Lr: 0.99852e-5 Mem: 32.5 GB
+2025-05-31 16:33:39.672 | INFO     | utils.common:log:12 - step: 246/4590 Loss: 6.66183710 Lr: 0.99851e-5 Mem: 32.5 GB
+2025-05-31 16:33:41.290 | INFO     | utils.common:log:12 - step: 247/4590 Loss: 6.34829950 Lr: 0.99850e-5 Mem: 32.5 GB
+2025-05-31 16:33:42.783 | INFO     | utils.common:log:12 - step: 248/4590 Loss: 5.75963211 Lr: 0.99848e-5 Mem: 32.5 GB
+2025-05-31 16:33:44.760 | INFO     | utils.common:log:12 - step: 249/4590 Loss: 6.41358423 Lr: 0.99847e-5 Mem: 32.5 GB
+2025-05-31 16:33:46.859 | INFO     | utils.common:log:12 - step: 250/4590 Loss: 6.54192591 Lr: 0.99846e-5 Mem: 32.5 GB
+2025-05-31 16:33:46.859 | INFO     | utils.common:log:12 - ETA: 01:04:19
+2025-05-31 16:33:48.909 | INFO     | utils.common:log:12 - step: 251/4590 Loss: 6.52217722 Lr: 0.99845e-5 Mem: 32.5 GB
+2025-05-31 16:33:50.405 | INFO     | utils.common:log:12 - step: 252/4590 Loss: 6.43737555 Lr: 0.99843e-5 Mem: 32.5 GB
+2025-05-31 16:33:51.908 | INFO     | utils.common:log:12 - step: 253/4590 Loss: 6.36684799 Lr: 0.99842e-5 Mem: 32.5 GB
+2025-05-31 16:33:53.731 | INFO     | utils.common:log:12 - step: 254/4590 Loss: 5.84733963 Lr: 0.99841e-5 Mem: 32.5 GB
+2025-05-31 16:33:55.552 | INFO     | utils.common:log:12 - step: 255/4590 Loss: 6.16115570 Lr: 0.99840e-5 Mem: 32.5 GB
+2025-05-31 16:33:57.232 | INFO     | utils.common:log:12 - step: 256/4590 Loss: 6.39887762 Lr: 0.99838e-5 Mem: 32.5 GB
+2025-05-31 16:33:58.723 | INFO     | utils.common:log:12 - step: 257/4590 Loss: 6.35843658 Lr: 0.99837e-5 Mem: 32.5 GB
+2025-05-31 16:34:00.513 | INFO     | utils.common:log:12 - step: 258/4590 Loss: 6.11908627 Lr: 0.99836e-5 Mem: 32.5 GB
+2025-05-31 16:34:02.318 | INFO     | utils.common:log:12 - step: 259/4590 Loss: 6.03805971 Lr: 0.99835e-5 Mem: 32.5 GB
+2025-05-31 16:34:03.811 | INFO     | utils.common:log:12 - step: 260/4590 Loss: 6.66333294 Lr: 0.99833e-5 Mem: 32.5 GB
+2025-05-31 16:34:03.812 | INFO     | utils.common:log:12 - ETA: 01:04:00
+2025-05-31 16:34:06.083 | INFO     | utils.common:log:12 - step: 261/4590 Loss: 5.68836164 Lr: 0.99832e-5 Mem: 32.5 GB
+2025-05-31 16:34:07.582 | INFO     | utils.common:log:12 - step: 262/4590 Loss: 5.72501135 Lr: 0.99831e-5 Mem: 32.5 GB
+2025-05-31 16:34:09.098 | INFO     | utils.common:log:12 - step: 263/4590 Loss: 6.06160688 Lr: 0.99829e-5 Mem: 32.5 GB
+2025-05-31 16:34:10.904 | INFO     | utils.common:log:12 - step: 264/4590 Loss: 6.09081364 Lr: 0.99828e-5 Mem: 32.5 GB
+2025-05-31 16:34:12.701 | INFO     | utils.common:log:12 - step: 265/4590 Loss: 6.23285675 Lr: 0.99827e-5 Mem: 32.5 GB
+2025-05-31 16:34:14.204 | INFO     | utils.common:log:12 - step: 266/4590 Loss: 6.62199545 Lr: 0.99826e-5 Mem: 32.5 GB
+2025-05-31 16:34:16.020 | INFO     | utils.common:log:12 - step: 267/4590 Loss: 6.52510929 Lr: 0.99824e-5 Mem: 32.5 GB
+2025-05-31 16:34:18.216 | INFO     | utils.common:log:12 - step: 268/4590 Loss: 6.46307468 Lr: 0.99823e-5 Mem: 32.5 GB
+2025-05-31 16:34:19.928 | INFO     | utils.common:log:12 - step: 269/4590 Loss: 6.16967249 Lr: 0.99822e-5 Mem: 32.5 GB
+2025-05-31 16:34:21.418 | INFO     | utils.common:log:12 - step: 270/4590 Loss: 6.26165199 Lr: 0.99820e-5 Mem: 32.5 GB
+2025-05-31 16:34:21.418 | INFO     | utils.common:log:12 - ETA: 01:03:42
+2025-05-31 16:34:22.916 | INFO     | utils.common:log:12 - step: 271/4590 Loss: 6.87418365 Lr: 0.99819e-5 Mem: 32.5 GB
+2025-05-31 16:34:24.813 | INFO     | utils.common:log:12 - step: 272/4590 Loss: 6.25377369 Lr: 0.99818e-5 Mem: 32.5 GB
+2025-05-31 16:34:26.451 | INFO     | utils.common:log:12 - step: 273/4590 Loss: 6.03132057 Lr: 0.99816e-5 Mem: 32.5 GB
+2025-05-31 16:34:27.944 | INFO     | utils.common:log:12 - step: 274/4590 Loss: 6.16313982 Lr: 0.99815e-5 Mem: 32.5 GB
+2025-05-31 16:34:29.449 | INFO     | utils.common:log:12 - step: 275/4590 Loss: 6.11557436 Lr: 0.99814e-5 Mem: 32.5 GB
+2025-05-31 16:34:31.148 | INFO     | utils.common:log:12 - step: 276/4590 Loss: 6.18890524 Lr: 0.99812e-5 Mem: 32.5 GB
+2025-05-31 16:34:32.956 | INFO     | utils.common:log:12 - step: 277/4590 Loss: 6.47861814 Lr: 0.99811e-5 Mem: 32.5 GB
+2025-05-31 16:34:34.768 | INFO     | utils.common:log:12 - step: 278/4590 Loss: 6.15150928 Lr: 0.99809e-5 Mem: 32.5 GB
+2025-05-31 16:34:36.841 | INFO     | utils.common:log:12 - step: 279/4590 Loss: 6.03319168 Lr: 0.99808e-5 Mem: 32.5 GB
+2025-05-31 16:34:39.109 | INFO     | utils.common:log:12 - step: 280/4590 Loss: 6.61517763 Lr: 0.99807e-5 Mem: 32.5 GB
+2025-05-31 16:34:39.109 | INFO     | utils.common:log:12 - ETA: 01:10:44
+2025-05-31 16:34:40.602 | INFO     | utils.common:log:12 - step: 281/4590 Loss: 6.31338644 Lr: 0.99805e-5 Mem: 32.5 GB
+2025-05-31 16:34:42.478 | INFO     | utils.common:log:12 - step: 282/4590 Loss: 6.27670193 Lr: 0.99804e-5 Mem: 32.5 GB
+2025-05-31 16:34:44.337 | INFO     | utils.common:log:12 - step: 283/4590 Loss: 4.75091743 Lr: 0.99803e-5 Mem: 32.5 GB
+2025-05-31 16:34:45.946 | INFO     | utils.common:log:12 - step: 284/4590 Loss: 6.62381649 Lr: 0.99801e-5 Mem: 32.5 GB
+2025-05-31 16:34:47.454 | INFO     | utils.common:log:12 - step: 285/4590 Loss: 6.13447762 Lr: 0.99800e-5 Mem: 32.5 GB
+2025-05-31 16:34:49.851 | INFO     | utils.common:log:12 - step: 286/4590 Loss: 6.38952112 Lr: 0.99798e-5 Mem: 32.5 GB
+2025-05-31 16:34:51.560 | INFO     | utils.common:log:12 - step: 287/4590 Loss: 5.92947197 Lr: 0.99797e-5 Mem: 32.5 GB
+2025-05-31 16:34:53.361 | INFO     | utils.common:log:12 - step: 288/4590 Loss: 5.86738539 Lr: 0.99796e-5 Mem: 32.5 GB
+2025-05-31 16:34:55.058 | INFO     | utils.common:log:12 - step: 289/4590 Loss: 6.17328167 Lr: 0.99794e-5 Mem: 32.5 GB
+2025-05-31 16:34:56.799 | INFO     | utils.common:log:12 - step: 290/4590 Loss: 5.98565054 Lr: 0.99793e-5 Mem: 32.5 GB
+2025-05-31 16:34:56.800 | INFO     | utils.common:log:12 - ETA: 01:07:28
+2025-05-31 16:34:58.310 | INFO     | utils.common:log:12 - step: 291/4590 Loss: 6.54811716 Lr: 0.99791e-5 Mem: 32.5 GB
+2025-05-31 16:34:59.943 | INFO     | utils.common:log:12 - step: 292/4590 Loss: 6.13434601 Lr: 0.99790e-5 Mem: 32.5 GB
+2025-05-31 16:35:01.925 | INFO     | utils.common:log:12 - step: 293/4590 Loss: 5.95548964 Lr: 0.99788e-5 Mem: 32.5 GB
+2025-05-31 16:35:03.421 | INFO     | utils.common:log:12 - step: 294/4590 Loss: 6.08467770 Lr: 0.99787e-5 Mem: 32.5 GB
+2025-05-31 16:35:05.002 | INFO     | utils.common:log:12 - step: 295/4590 Loss: 6.66335106 Lr: 0.99785e-5 Mem: 32.5 GB
+2025-05-31 16:35:06.625 | INFO     | utils.common:log:12 - step: 296/4590 Loss: 6.47002554 Lr: 0.99784e-5 Mem: 32.5 GB
+2025-05-31 16:35:08.262 | INFO     | utils.common:log:12 - step: 297/4590 Loss: 3.94184351 Lr: 0.99783e-5 Mem: 32.5 GB
+2025-05-31 16:35:09.886 | INFO     | utils.common:log:12 - step: 298/4590 Loss: 5.83840799 Lr: 0.99781e-5 Mem: 32.5 GB
+2025-05-31 16:35:11.523 | INFO     | utils.common:log:12 - step: 299/4590 Loss: 6.28467083 Lr: 0.99780e-5 Mem: 32.5 GB
+2025-05-31 16:35:13.419 | INFO     | utils.common:log:12 - step: 300/4590 Loss: 6.46055555 Lr: 0.99778e-5 Mem: 32.5 GB
+2025-05-31 16:35:13.420 | INFO     | utils.common:log:12 - ETA: 01:04:54
+2025-05-31 16:35:15.439 | INFO     | utils.common:log:12 - step: 301/4590 Loss: 6.23568153 Lr: 0.99777e-5 Mem: 32.5 GB
+2025-05-31 16:35:16.971 | INFO     | utils.common:log:12 - step: 302/4590 Loss: 6.45824337 Lr: 0.99775e-5 Mem: 32.5 GB
+2025-05-31 16:35:18.834 | INFO     | utils.common:log:12 - step: 303/4590 Loss: 6.52169371 Lr: 0.99774e-5 Mem: 32.5 GB
+2025-05-31 16:35:21.620 | INFO     | utils.common:log:12 - step: 304/4590 Loss: 6.28308392 Lr: 0.99772e-5 Mem: 32.5 GB
+2025-05-31 16:35:23.118 | INFO     | utils.common:log:12 - step: 305/4590 Loss: 6.05359554 Lr: 0.99771e-5 Mem: 32.5 GB
+2025-05-31 16:35:24.911 | INFO     | utils.common:log:12 - step: 306/4590 Loss: 5.30819702 Lr: 0.99769e-5 Mem: 32.5 GB
+2025-05-31 16:35:26.416 | INFO     | utils.common:log:12 - step: 307/4590 Loss: 6.51135206 Lr: 0.99768e-5 Mem: 32.5 GB
+2025-05-31 16:35:28.085 | INFO     | utils.common:log:12 - step: 308/4590 Loss: 6.18826723 Lr: 0.99766e-5 Mem: 32.5 GB
+2025-05-31 16:35:29.586 | INFO     | utils.common:log:12 - step: 309/4590 Loss: 6.45110369 Lr: 0.99765e-5 Mem: 32.5 GB
+2025-05-31 16:35:31.204 | INFO     | utils.common:log:12 - step: 310/4590 Loss: 6.05031538 Lr: 0.99763e-5 Mem: 32.5 GB
+2025-05-31 16:35:31.204 | INFO     | utils.common:log:12 - ETA: 01:05:08
+2025-05-31 16:35:33.279 | INFO     | utils.common:log:12 - step: 311/4590 Loss: 6.27907467 Lr: 0.99762e-5 Mem: 32.5 GB
+2025-05-31 16:35:35.065 | INFO     | utils.common:log:12 - step: 312/4590 Loss: 6.34924078 Lr: 0.99760e-5 Mem: 32.5 GB
+2025-05-31 16:35:36.871 | INFO     | utils.common:log:12 - step: 313/4590 Loss: 6.35658789 Lr: 0.99759e-5 Mem: 32.5 GB
+2025-05-31 16:35:38.482 | INFO     | utils.common:log:12 - step: 314/4590 Loss: 5.47462845 Lr: 0.99757e-5 Mem: 32.5 GB
+2025-05-31 16:35:40.289 | INFO     | utils.common:log:12 - step: 315/4590 Loss: 5.97918034 Lr: 0.99755e-5 Mem: 32.5 GB
+2025-05-31 16:35:42.368 | INFO     | utils.common:log:12 - step: 316/4590 Loss: 6.02493429 Lr: 0.99754e-5 Mem: 32.5 GB
+2025-05-31 16:35:44.214 | INFO     | utils.common:log:12 - step: 317/4590 Loss: 6.37800169 Lr: 0.99752e-5 Mem: 32.5 GB
+2025-05-31 16:35:45.715 | INFO     | utils.common:log:12 - step: 318/4590 Loss: 6.16076422 Lr: 0.99751e-5 Mem: 32.5 GB
+2025-05-31 16:35:47.214 | INFO     | utils.common:log:12 - step: 319/4590 Loss: 6.74686193 Lr: 0.99749e-5 Mem: 32.5 GB
+2025-05-31 16:35:48.711 | INFO     | utils.common:log:12 - step: 320/4590 Loss: 6.61173391 Lr: 0.99748e-5 Mem: 32.5 GB
+2025-05-31 16:35:48.711 | INFO     | utils.common:log:12 - ETA: 01:04:51
+2025-05-31 16:35:50.584 | INFO     | utils.common:log:12 - step: 321/4590 Loss: 6.56927586 Lr: 0.99746e-5 Mem: 32.5 GB
+2025-05-31 16:35:52.490 | INFO     | utils.common:log:12 - step: 322/4590 Loss: 6.28994322 Lr: 0.99744e-5 Mem: 32.5 GB
+2025-05-31 16:35:54.113 | INFO     | utils.common:log:12 - step: 323/4590 Loss: 6.21049643 Lr: 0.99743e-5 Mem: 32.5 GB
+2025-05-31 16:35:55.612 | INFO     | utils.common:log:12 - step: 324/4590 Loss: 5.91688156 Lr: 0.99741e-5 Mem: 32.5 GB
+2025-05-31 16:35:58.065 | INFO     | utils.common:log:12 - step: 325/4590 Loss: 5.76312065 Lr: 0.99740e-5 Mem: 32.5 GB
+2025-05-31 16:36:00.347 | INFO     | utils.common:log:12 - step: 326/4590 Loss: 6.23977375 Lr: 0.99738e-5 Mem: 32.5 GB
+2025-05-31 16:36:02.751 | INFO     | utils.common:log:12 - step: 327/4590 Loss: 6.05492973 Lr: 0.99736e-5 Mem: 32.5 GB
+2025-05-31 16:36:04.439 | INFO     | utils.common:log:12 - step: 328/4590 Loss: 6.03073645 Lr: 0.99735e-5 Mem: 32.5 GB
+2025-05-31 16:36:05.928 | INFO     | utils.common:log:12 - step: 329/4590 Loss: 6.02819586 Lr: 0.99733e-5 Mem: 32.5 GB
+2025-05-31 16:36:07.763 | INFO     | utils.common:log:12 - step: 330/4590 Loss: 6.19448662 Lr: 0.99732e-5 Mem: 32.5 GB
+2025-05-31 16:36:07.763 | INFO     | utils.common:log:12 - ETA: 01:08:36
+2025-05-31 16:36:09.790 | INFO     | utils.common:log:12 - step: 331/4590 Loss: 6.09341288 Lr: 0.99730e-5 Mem: 32.5 GB
+2025-05-31 16:36:11.495 | INFO     | utils.common:log:12 - step: 332/4590 Loss: 5.72389030 Lr: 0.99728e-5 Mem: 32.5 GB
+2025-05-31 16:36:12.992 | INFO     | utils.common:log:12 - step: 333/4590 Loss: 6.19292879 Lr: 0.99727e-5 Mem: 32.5 GB
+2025-05-31 16:36:14.989 | INFO     | utils.common:log:12 - step: 334/4590 Loss: 6.40615416 Lr: 0.99725e-5 Mem: 32.5 GB
+2025-05-31 16:36:17.019 | INFO     | utils.common:log:12 - step: 335/4590 Loss: 6.20515919 Lr: 0.99723e-5 Mem: 32.5 GB
+2025-05-31 16:36:18.506 | INFO     | utils.common:log:12 - step: 336/4590 Loss: 5.55381060 Lr: 0.99722e-5 Mem: 32.5 GB
+2025-05-31 16:36:20.959 | INFO     | utils.common:log:12 - step: 337/4590 Loss: 6.21286249 Lr: 0.99720e-5 Mem: 32.5 GB
+2025-05-31 16:36:22.855 | INFO     | utils.common:log:12 - step: 338/4590 Loss: 5.85623884 Lr: 0.99718e-5 Mem: 32.5 GB
+2025-05-31 16:36:24.919 | INFO     | utils.common:log:12 - step: 339/4590 Loss: 6.54655743 Lr: 0.99717e-5 Mem: 32.5 GB
+2025-05-31 16:36:26.636 | INFO     | utils.common:log:12 - step: 340/4590 Loss: 6.28601885 Lr: 0.99715e-5 Mem: 32.5 GB
+2025-05-31 16:36:26.636 | INFO     | utils.common:log:12 - ETA: 01:12:44
+2025-05-31 16:36:28.422 | INFO     | utils.common:log:12 - step: 341/4590 Loss: 6.13178301 Lr: 0.99713e-5 Mem: 32.5 GB
+2025-05-31 16:36:30.440 | INFO     | utils.common:log:12 - step: 342/4590 Loss: 5.97380781 Lr: 0.99712e-5 Mem: 32.5 GB
+2025-05-31 16:36:31.945 | INFO     | utils.common:log:12 - step: 343/4590 Loss: 6.07320690 Lr: 0.99710e-5 Mem: 32.5 GB
+2025-05-31 16:36:33.835 | INFO     | utils.common:log:12 - step: 344/4590 Loss: 6.40944433 Lr: 0.99708e-5 Mem: 32.5 GB
+2025-05-31 16:36:35.473 | INFO     | utils.common:log:12 - step: 345/4590 Loss: 6.36693382 Lr: 0.99707e-5 Mem: 32.5 GB
+2025-05-31 16:36:37.501 | INFO     | utils.common:log:12 - step: 346/4590 Loss: 5.71075058 Lr: 0.99705e-5 Mem: 32.5 GB
+2025-05-31 16:36:39.130 | INFO     | utils.common:log:12 - step: 347/4590 Loss: 6.16207886 Lr: 0.99703e-5 Mem: 32.5 GB
+2025-05-31 16:36:40.703 | INFO     | utils.common:log:12 - step: 348/4590 Loss: 6.08151197 Lr: 0.99702e-5 Mem: 32.5 GB
+2025-05-31 16:36:42.492 | INFO     | utils.common:log:12 - step: 349/4590 Loss: 6.18025017 Lr: 0.99700e-5 Mem: 32.5 GB
+2025-05-31 16:36:44.468 | INFO     | utils.common:log:12 - step: 350/4590 Loss: 6.10763597 Lr: 0.99698e-5 Mem: 32.5 GB
+2025-05-31 16:36:44.468 | INFO     | utils.common:log:12 - ETA: 01:10:12
+2025-05-31 16:36:45.980 | INFO     | utils.common:log:12 - step: 351/4590 Loss: 6.18249655 Lr: 0.99696e-5 Mem: 32.5 GB
+2025-05-31 16:36:47.691 | INFO     | utils.common:log:12 - step: 352/4590 Loss: 6.21751833 Lr: 0.99695e-5 Mem: 32.5 GB
+2025-05-31 16:36:49.174 | INFO     | utils.common:log:12 - step: 353/4590 Loss: 6.53601646 Lr: 0.99693e-5 Mem: 32.5 GB
+2025-05-31 16:36:50.667 | INFO     | utils.common:log:12 - step: 354/4590 Loss: 6.48306990 Lr: 0.99691e-5 Mem: 32.5 GB
+2025-05-31 16:36:52.164 | INFO     | utils.common:log:12 - step: 355/4590 Loss: 6.36637211 Lr: 0.99689e-5 Mem: 32.5 GB
+2025-05-31 16:36:53.842 | INFO     | utils.common:log:12 - step: 356/4590 Loss: 6.01467371 Lr: 0.99688e-5 Mem: 32.5 GB
+2025-05-31 16:36:55.630 | INFO     | utils.common:log:12 - step: 357/4590 Loss: 6.43956327 Lr: 0.99686e-5 Mem: 32.5 GB
+2025-05-31 16:36:57.124 | INFO     | utils.common:log:12 - step: 358/4590 Loss: 6.79852438 Lr: 0.99684e-5 Mem: 32.5 GB

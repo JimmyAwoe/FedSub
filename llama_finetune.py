@@ -3,66 +3,84 @@ import torch.distributed as dist
 from torch.utils.data import DataLoader
 import torch.nn.functional as F
 import torch.nn as nn
-from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorForLanguageModeling
+from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorForLanguageModeling, get_cosine_schedule_with_warmup
 from datasets import load_dataset
 import os
 from tqdm import tqdm
 import wandb
 import math
 import argparse
+import time
 from utils import (
-    gene_random_matrix,
-    SubScafLinear,
     log,
     init_process_group,
     replace_with_subscaf_linear,
     outer_update,
-    set_seed,
-    SubScafSGD
+    get_subscaf_optimizer,
+    main_parse_args,
 )
 
+def parse_args(args):
+    parser = argparse.ArgumentParser()
+    
+    parser.add_argument("--epoch", default=2, type=int)
+
+    new_args, _ = parser.parse_known_args()
+    args = argparse.Namespace(**vars(args), **vars(new_args))
+
+    return args
 
 
 
-def train_step(model, optimizer, batch, labels):
+def train_step(model, batch):
     # Forward pass
     output = model(**batch)
         
     # Compute loss (only on the last stage)
-    loss = None
-    logits = None
-    logits = output[0] if isinstance(output, tuple) else output
-    shift_logits = logits[..., :-1, :].contiguous()
-    shift_labels = labels[..., 1:].contiguous() 
-    loss = F.cross_entropy(
-        shift_logits.view(-1, shift_logits.size(-1)),
-        shift_labels.view(-1)
-    )
+    logits = output.logits
+    loss = output.loss
+    #shift_logits = logits[..., :-1, :].contiguous()
+    #shift_labels = labels[..., 1:].contiguous() 
+    #loss = F.cross_entropy(
+        #shift_logits.view(-1, shift_logits.size(-1)),
+        #shift_labels.view(-1)
+    #)
     # eval state
-    if model.training == False:
-        return loss, logits
+    return loss, logits
     
-    # Backward pass
-    if loss is not None:
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+    ## Backward pass
+    #if loss is not None:
+        #loss.backward()
+        #if args.optimizer == 'sgd':
+            #for params in model.parameters():
+                #dist.all_reduce(params.grad, op=dist.ReduceOp.AVG)
+            #schedule.step()
+            #optimizer.step()
+            #optimizer.zero_grad()
+        #if not args.per_layer_weight_update and 'subscaf' in args.optimizer.lower():
+            #schedule.step()
+            #optimizer.step()
+            #optimizer.zero_grad()
         
-    return loss
+    #return loss
 
 
-def evaluate(model, optimizer, eval_dataloader, epoch, device, rank, args):
+def evaluate(model,  eval_dataloader, epoch, device, rank, args):
     eval_losses = []
     eval_accuracies = []
+    log(f"start eval in {epoch} epoch")
     
-    pbar = tqdm(eval_dataloader, desc="Evaulation", ncols=160)
+    #pbar = tqdm(eval_dataloader, desc="Evaulation", ncols=100)
     
     with torch.no_grad():
-        for batch in pbar:
-            input_ids = batch['input_ids'].to(device)
-            labels = batch['labels'].to(device)
-            
-            loss, logits = train_step(model, optimizer, input_ids, labels)
+        idx = 0
+        for batch in eval_dataloader:
+            batch = {k:v.to(device) for k, v in batch.items()}
+            labels = batch['labels']
+
+            output = model(**batch)
+            logits = output.logits
+            loss = output.loss
 
             if rank == 0:
                 if loss is not None:
@@ -72,18 +90,19 @@ def evaluate(model, optimizer, eval_dataloader, epoch, device, rank, args):
                     predictions = shift_logits.argmax(dim=-1)
                     correct = (predictions == shift_labels).float().mean()
                     eval_accuracies.append(correct.item())
-                    # Update progress bar with current loss
-                    pbar.set_postfix({'loss': f'{loss.item():.4f}'})
+            if idx % 50 == 0:
+                log(f"finish {idx}\{len(eval_dataloader)}, please wait...")
+            idx += 1
     
     metrics = {}
     if rank == 0 and eval_losses:
         metrics["loss"] = sum(eval_losses) / len(eval_losses)
         metrics["accuracy"] = sum(eval_accuracies) / len(eval_accuracies)
         metrics["perplexity"] = math.exp(metrics["loss"])
-    if dist.get_rank() == dist.get_world_size() - 1:
-        print(f"Epoch {epoch}, Eval Loss: {metrics['loss']:.4f}, "
+    if rank == 0:
+        log(f"Epoch {epoch}, Eval Loss: {metrics['loss']:.4f}, "
                 f"Eval Accuracy: {metrics['accuracy']:.4f}")
-        if config.get('use_wandb', False):
+        if args.use_wandb:
             wandb.log({
                 "eval/loss": metrics["loss"],
                 "eval/accuracy": metrics["accuracy"],
@@ -93,80 +112,14 @@ def evaluate(model, optimizer, eval_dataloader, epoch, device, rank, args):
         
     return metrics
 
-def train_epoch(stage_module, schedule, optimizer, train_dataloader, epoch, config):
-    stage_module.train()
-    
-    if hasattr(train_dataloader.dataset, 'update_epoch'):
-        train_dataloader.dataset.update_epoch(epoch)
-    
-    # Progress bar only on main process
-    if dist.get_rank() == dist.get_world_size() - 1:
-        pbar = tqdm(train_dataloader, desc=f"Epoch {epoch}")
-    else:
-        pbar = train_dataloader
-        
-    for batch in pbar:
-        input_ids = batch["input_ids"].to(f"cuda:{dist.get_rank()}").contiguous()
-        labels = batch["labels"].to(f"cuda:{dist.get_rank()}").contiguous()
-        indices = batch.get("indices", None)
-        if indices is not None:
-            indices = indices.to(f"cuda:{dist.get_rank()}").contiguous()
-
-        loss = train_step(schedule, optimizer, input_ids, labels, indices, stage_module)
-        
-        if dist.get_rank() == dist.get_world_size() - 1:
-            if loss is not None:
-                pbar.set_postfix({'loss': f'{loss.item():.4f}'})
-
-
-def parse_args(args):
-    parser = argparse.ArgumentParser()
-
-    # Training 
-    parser.add_argument("--lr", type=float, default=1e-3)
-    parser.add_argument("--batch_size", default=16, type=int, help="batch size per round")
-    parser.add_argument("--total_batch_size", default=32, type=int, help="batch size per step")
-    parser.add_argument("--max_length", type=int, default=1024)
-    parser.add_argument("--num_training_steps", type=int, default=10000)
-    parser.add_argument("--grad_clip", type=float, default=0.0)
-    parser.add_argument("--warmup", type=int, default=1000)
-    parser.add_argument("--use_wandb", action="store_true")
-
-    # subscaf
-    parser.add_argument("--comp_dim", default=64, type=int, help="the compression dimension")
-    parser.add_argument("--tau", type=int, help="inner loop steps")
-    parser.add_argument("--gene_method", default='cd', type=str, 
-                        help="set the method to generate compression matrix")
-
-    # model
-    parser.add_argument("--model_config", type=str, default="configs/llama_60m.json")
-
-    # optimizer
-    parser.add_argument("--optimizer", choices=['subscafsgd', 'subscafadam', 'scaf', 'sgd', 'adam'], default='subscafsgd',
-                        type=str, help="assign the optimization algorithm")
-    parser.add_argument("--momentum", default=0, type=float)
-    parser.add_argument("--nesterov", action="store_true")
-    parser.add_argument("--per_layer_weight_update", action="store_true")
-
-    # wandb
-    parser.add_argument("--wandb_run_name", default='subscaf_sgd')
-
-    # memory monitor
-    parser.add_argument("--mem_monitor", action="store_true")
-    args = parser.parse_args(args)
-
-    return args
-
 def main(args):
     
-    set_seed(args.seed)
-    rank = os.environ.get("RANK", 0)
-    local_rank = os.environ.get("LOCAL_RANK", 0)
-    world_size = os.environ.get("WORLD_SIZE", 1)
+    rank = int(os.environ.get("RANK", 0))
+    world_size = int(os.environ.get("WORLD_SIZE", 1))
     device = f"cuda:{rank}"
     
     # Load model and tokenizer
-    model = AutoModelForCausalLM.from_pretrained("/data/pretrained_models/Llama-3.2-1b")
+    model = AutoModelForCausalLM.from_pretrained("/data/pretrained_models/llama-3.2-1b").to(device)
     tokenizer = AutoTokenizer.from_pretrained("t5-base")
     
     # Load dataset
@@ -177,7 +130,7 @@ def main(args):
         return tokenizer(
             examples["text"],
             truncation=False,  # Do not truncate, let group_texts handle lengths
-            max_lenth=args.max_length,
+            max_length=args.max_length,
             padding="max_length"
         )
     data_collator = DataCollatorForLanguageModeling(
@@ -208,57 +161,63 @@ def main(args):
         shuffle=False,
         collate_fn=data_collator
     )
+
+    # revise model architecture
+    trainable_param = [p for p in model.parameters() if p.requires_grad == True]
+    param_before_comp = sum(p.numel() for p in model.parameters()) / 1_000_000
+    trainable_param_before_comp = sum(p.numel() for p in model.parameters() if p.requires_grad == True) / 1_000_000
+    if 'subscaf' in args.optimizer.lower():
+        target_modules_list = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+        jump_modules_list = ['5', '6', '7']
+        num_subscaf_params, subscaf_params, lbd, comp_mat_rec = replace_with_subscaf_linear(model, 
+                                                                                            target_modules_list, 
+                                                                                            device, 
+                                                                                            args, 
+                                                                                            jump_modules_list)
+        id_subscaf_params = [id(p) for p in subscaf_params]
+        # make parameters without "is_comp" to another group
+        regular_params = [p for p in model.parameters() if id(p) not in id_subscaf_params]
+        # make parameters with "is_comp" to a single group
+        param_groups = [{'params': regular_params, 'is_comp': False}, 
+                        {'params': subscaf_params, 'is_comp': True, 'lbd': lbd, 'tau': args.tau, 
+                         'compression_dim': args.comp_dim}]
     
     
     # Create optimizer
     if args.optimizer == 'sgd':
-        optimizer = torch.optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum, nesterov=args.nesterov)
-    elif args.optimizer == 'adam':
-        optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
+        optimizer = torch.optim.SGD(trainable_param, 
+                                    lr=args.lr, 
+                                    momentum=args.momentum,
+                                    nesterov=args.nesterov,
+                                    weight_decay=args.weight_decay,
+                                    dampening=args.dampening,
+                                    foreach=False)
+        # schedule
+        schedule = get_cosine_schedule_with_warmup(optimizer,
+                                                num_warmup_steps=args.warmup,
+                                                num_training_steps=args.num_training_steps + 1)
     elif args.optimizer == 'subscafsgd':
-        optimizer_dict = {p: SubScafSGD([{'params': p, 'is_comp': False}], 
-                                        lr=args.lr, 
-                                        tau=args.tau, 
-                                        compression_dim=args.comp_dim,
-                                        nesterov=args.nesterov,
-                                        momentum=args.momentum,
-                                        weight_decay=args.weight_decay,
-                                        dampening=args.dampening,
-                                        foreach=False) for p in regular_params}
-        for (p, l) in zip(subscaf_params, lbd):
-            optimizer_dict.update({p: SubScafSGD([{'params':p, 'is_comp': True, 'lbd': [l]}],
-                                                lr=args.lr,
-                                                tau=args.tau,
-                                                compression_dim=args.comp_dim,
-                                                foreach=False,
-                                                weight_decay=args.weight_decay,
-                                                nesterov=args.nesterov,
-                                                dampening=args.dampening,
-                                                momentum=args.momentum)})
-        def optimizer_hook(p):
-            if p.grad is None:
-                return
-            schedule_dict[p].step()
-            optimizer_dict[p].step()
-            optimizer_dict[p].zero_grad()
-
-        schedule_dict = {}
-        for p in model.parameters():
-            if p.requires_grad:
-                # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
-                # lbd to be nan
-                # because in this condition, every backward would call optimizer_hook once, hence push the lr,
-                # so in the case of gradient accumulation, we should correspondily longer the warmup and training 
-                # step
-                schedule_dict[p] = get_cosine_schedule_with_warmup(optimizer_dict[p],
-                                                                num_warmup_steps=args.warmup * grad_accumulation,
-                                                                num_training_steps=args.num_training_steps * grad_accumulation + 1)
-                p.register_post_accumulate_grad_hook(optimizer_hook)
+        if args.per_layer_weight_update:
+            optimizer_dict = get_subscaf_optimizer(args, param_groups, regular_params, subscaf_params, lbd, model)
+        else:
+            optimizer, schedule = get_subscaf_optimizer(args, param_groups, regular_params, subscaf_params, lbd, model)
     
-    n_total_param = sum(p.numel() for p in model.parameters() if p.require_grads is True)
+    n_total_param = sum(p.numel() for p in model.parameters() if p.requires_grad is True)
+    grad_accumulation = args.total_batch_size // args.batch_size
+    log(f"\n{model}\n")
+    log(f"Total params: {param_before_comp:.2f}M")
+    if 'subscaf' in args.optimizer.lower():
+        # XXX need to consider model.x
+        all_param_after_replace = sum(p.numel() for p in model.parameters())
+        log(f"Trainable params before compression: {trainable_param_before_comp:.2f}M")
+        log(f"Trainable params after compression: {sum(p.numel() for p in model.parameters()) / 1_000_000:.2f}M")
+        log(f"Trainable params with Subspace Scaffold Linear Layer: {num_subscaf_params / 1_000_000:.2f}M")
+        log(f"All params: {all_param_after_replace / 1_000_000:.2f}M")
+    else: 
+        log(f"Trainable params: {sum(p.numel() for p in model.parameters() if p.requires_grad) / 1_000_000:.2f}M")
 
     # Setup Wandb after distributed initialization
-    if rank == 0:
+    if rank == 0 and args.use_wandb:
         run_config = dict(vars(args))
         run_config.update({
             "max_lr": run_config.pop("lr"),
@@ -277,70 +236,114 @@ def main(args):
         # Evaluation first
         log(f"start epoch: {epoch}")
 
-        evaluate(stage_module, schedule, optimizer, eval_dataloader,epoch,config)
-
-        stage_module.eval()
-        eval_losses = []
-        eval_accuracies = []
-    
-        # Add progress bar only on the last rank
-        if dist.get_rank() == dist.get_world_size() - 1:
-            pbar = tqdm(eval_dataloader, desc="Evaluating")
-        else:
-            pbar = eval_dataloader
-    
-        with torch.no_grad():
-            for batch in pbar:
-                input_ids = batch["input_ids"].to(f"cuda:{dist.get_rank()}")
-                labels = batch["labels"].to(f"cuda:{dist.get_rank()}")
-            
-                loss, logits = train_step(schedule, optimizer, input_ids, labels, stage_module=stage_module)
-
-                if dist.get_rank() == dist.get_world_size() - 1:
-                    if loss is not None:
-                        eval_losses.append(loss.item())
-                        shift_logits = logits[..., :-1, :].contiguous()
-                        shift_labels = labels[..., 1:].contiguous()
-                        predictions = shift_logits.argmax(dim=-1)
-                        correct = (predictions == shift_labels).float().mean()
-                        eval_accuracies.append(correct.item())
-                        # Update progress bar with current loss
-                        pbar.set_postfix({'loss': f'{loss.item():.4f}'})
-    
-        metrics = {}
-        if dist.get_rank() == dist.get_world_size() - 1 and eval_losses:
-            metrics["loss"] = sum(eval_losses) / len(eval_losses)
-            metrics["accuracy"] = sum(eval_accuracies) / len(eval_accuracies)
-            metrics["perplexity"] = math.exp(metrics["loss"])
-        if dist.get_rank() == dist.get_world_size() - 1:
-            print(f"Epoch {epoch}, Eval Loss: {metrics['loss']:.4f}, "
-                    f"Eval Accuracy: {metrics['accuracy']:.4f}")
-            if config.get('use_wandb', False):
-                wandb.log({
-                    "eval/loss": metrics["loss"],
-                    "eval/accuracy": metrics["accuracy"],
-                    "eval/perplexity": metrics["perplexity"],
-                    "epoch": epoch
-                })
+        model.eval()
+        if epoch != 0:
+            _ = evaluate(model, eval_dataloader, epoch, device, rank, args)
         
         # Then training
-        train_epoch(stage_module, schedule, optimizer, train_dataloader, epoch, config)
+        model.train()
+        if epoch == 0:
+            update_time = time.time()
+
+        if rank == 0:
+            #pbar = tqdm(train_dataloader, desc=f"Epoch {epoch}", ncols=100)
+            training_length = len(train_dataloader)
+            #pbar.close()
+    
+        update_step = 0
+        local_step = 0
+        for batch in train_dataloader:
+            local_step += 1
+            batch = {k:v.to(device) for k, v in batch.items()}
+            loss = model(**batch).loss
+            scaled_loss = loss / grad_accumulation
+            scaled_loss.backward()
+            #if rank == 0:
+                #pbar.set_postfix({"loss": loss.item()})
+
+            if local_step % grad_accumulation != 0 or local_step == 0:
+                continue
+
+            # the below code is only executed during the update step
+            if 'subscaf' not in args.optimizer.lower(): 
+                for params in model.parameters():
+                    dist.all_reduce(params.grad, op=dist.ReduceOp.AVG)
+                schedule.step()
+                optimizer.step()
+                optimizer.zero_grad()
+            elif not args.per_layer_weight_update and 'subscaf' in args.optimizer.lower():
+                # because warmup will make the first step with lr 0, and it will cause lbd
+                # to be nan. So we choose to update lr before step. And for consistency, sgd
+                # also follow this setup
+                schedule.step()
+                optimizer.step()
+                optimizer.zero_grad()
+
+            if "subscaf" in args.optimizer.lower() and (local_step // grad_accumulation) % args.tau == 0:
+                if (local_step // grad_accumulation) % args.update_cp_freq != 0:
+                    gene_new_cp = False 
+                else:
+                    gene_new_cp = True
+                if args.per_layer_weight_update:
+                    outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer_dict, 
+                                 subscaf_params, args, device, jump_modules_list, gene_new_cp)
+                else:
+                    outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
+                                 subscaf_params, args, device, jump_modules_list, gene_new_cp)
+
+
+            update_step += 1
+            update_time = time.time() - update_time
+
+            if update_step == 1 and epoch == 0 :
+                time_per_iter = update_time
+            else:
+                time_per_iter = 0.9 * time_per_iter + 0.1 * update_time
+            
+            if rank == 0:
+                remain_total_seconds = time_per_iter * (training_length - update_step)
+                #pbar.update(grad_accumulation)
+
+            if rank == 0 and args.use_wandb:
+                torch.cuda.empty_cache()
+                record_dict = {
+                    "loss": loss.item(),
+                    "update_step": update_step,
+                    "cuda_max_memory(GB)": torch.cuda.max_memory_allocated() / (1024 ** 3),
+                }
+                if "subscaf" in args.optimizer and args.per_layer_weight_update:
+                    record_dict.update({"lr": optimizer_dict[next(model.parameters())].param_groups[0]["lr"]})
+                else:
+                    record_dict.update({"lr": optimizer.param_groups[0]["lr"]})
+
+                wandb.log(record_dict, step=update_step,)
+
+            if "subscaf" in args.optimizer and args.per_layer_weight_update:
+                lr =  optimizer_dict[next(model.parameters())].param_groups[0]["lr"]
+            else:
+                lr = optimizer.param_groups[0]["lr"]
+
+            if rank == 0:
+                #torch.cuda.empty_cache()
+                cuda_mem_usage = f"{torch.cuda.max_memory_allocated() / (1024 ** 3):.3} GB"
+                log(f"step: {update_step}/{training_length} Loss: {loss:.8f} Lr: {lr * 10000:.5f}e-5 Mem: {cuda_mem_usage}")
+                if update_step % 10 == 0:
+                    hours = int(remain_total_seconds // 3600)
+                    minutes = int((remain_total_seconds % 3600) // 60)
+                    seconds = int(remain_total_seconds % 60)
+                    log(f"ETA: {hours:02d}:{minutes:02d}:{seconds:02d}")
+                update_time = time.time()
+            
     
     # Final evaluation
-    metrics = evaluate(stage_module, schedule, optimizer, eval_dataloader)
-    if dist.get_rank() == dist.get_world_size() - 1:
-        print(f"Final Eval Loss: {metrics['loss']:.4f}, "
-              f"Final Eval Accuracy: {metrics['accuracy']:.4f}")
-        if config.get('use_wandb', False):
-            wandb.log({
-                "eval/final_loss": metrics["loss"],
-                "eval/final_accuracy": metrics["accuracy"],
-                "eval/final_perplexity": metrics["perplexity"]
-            })
-            wandb.finish()
+    model.eval()
+    _ = evaluate(model, eval_dataloader, epoch, device, rank, args)
+
+    dist.destroy_process_group()
 
 if __name__ == "__main__":
     # Initialize distributed training first
     init_process_group()
-    args = parse_args(None)
+    args = main_parse_args(None)
+    args = parse_args(args)
     main(args)

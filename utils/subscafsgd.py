@@ -1,11 +1,78 @@
 from transformers.activations import ACT2FN
 from torch.optim.optimizer import Optimizer, _use_grad_for_differentiable, _default_to_fused_or_foreach
+from transformers import get_cosine_schedule_with_warmup
 from torch import Tensor
 import torch.nn as nn
 from typing import Iterable, Callable, Optional, List 
 import torch
 from torch.optim import SGD
 
+def get_subscaf_optimizer(args, param_groups=None, regular_params=None, subscaf_params=None, lbd=None, model=None):
+    if not args.per_layer_weight_update:
+        assert param_groups is not None, "Must input param_groups"
+        optimizer = SubScafSGD(param_groups, 
+                            lr=args.lr, 
+                            tau=args.tau, 
+                            compression_dim=args.comp_dim,
+                            foreach=False,
+                            nesterov=args.nesterov,
+                            weight_decay=args.weight_decay,
+                            momentum=args.momentum,
+                            dampening=args.dampening,
+                            )
+        # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
+        # lbd to be nan
+        schedule = get_cosine_schedule_with_warmup(optimizer,
+                                                num_warmup_steps=args.warmup,
+                                                num_training_steps=args.num_training_steps + 1)
+        return optimizer, schedule
+    else:
+        assert regular_params is not None, "Must input regular_params if you want to use layerwise update"
+        assert subscaf_params is not None, "Must input subscaf_params if you want to use layerwise update"
+        assert lbd is not None, "Must input lbd if you want to use layerwise update"
+        assert model is not None, "Must input model if you want to use layerwise update"
+
+        grad_accumulation = args.total_batch_size // args.batch_size
+        optimizer_dict = {p: SubScafSGD([{'params': p, 'is_comp': False}], 
+                                        lr=args.lr, 
+                                        tau=args.tau, 
+                                        compression_dim=args.comp_dim,
+                                        nesterov=args.nesterov,
+                                        momentum=args.momentum,
+                                        weight_decay=args.weight_decay,
+                                        dampening=args.dampening,
+                                        foreach=False) for p in regular_params}
+        for (p, l) in zip(subscaf_params, lbd):
+            optimizer_dict.update({p: SubScafSGD([{'params':p, 'is_comp': True, 'lbd': [l]}],
+                                                lr=args.lr,
+                                                tau=args.tau,
+                                                compression_dim=args.comp_dim,
+                                                foreach=False,
+                                                weight_decay=args.weight_decay,
+                                                nesterov=args.nesterov,
+                                                dampening=args.dampening,
+                                                momentum=args.momentum)})
+        def optimizer_hook(p):
+            if p.grad is None:
+                return
+            schedule_dict[p].step()
+            optimizer_dict[p].step()
+            optimizer_dict[p].zero_grad()
+
+        schedule_dict = {}
+        for p in model.parameters():
+            if p.requires_grad:
+                # NOTE
+                # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
+                # lbd to be nan
+                # because in this condition, every backward would call optimizer_hook once, hence push the lr,
+                # so in the case of gradient accumulation, we should correspondily longer the warmup and training 
+                # step
+                schedule_dict[p] = get_cosine_schedule_with_warmup(optimizer_dict[p],
+                                                                num_warmup_steps=args.warmup * grad_accumulation,
+                                                                num_training_steps=args.num_training_steps * grad_accumulation + 1)
+                p.register_post_accumulate_grad_hook(optimizer_hook)
+        return optimizer_dict
 
 # create Subspace Scaffold optimizer based on sgd 
 

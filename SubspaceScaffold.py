@@ -18,7 +18,14 @@ from torch.utils.data import DataLoader
 import wandb
 import time
 import torch.nn as nn
-from utils import SubScafSGD, SubScafLinear, gene_random_matrix, log, set_seed, init_process_group
+from utils import (
+    SubScafSGD, 
+    SubScafLinear, 
+    gene_random_matrix, 
+    log, 
+    init_process_group, 
+    main_parse_args, 
+)
 from pickle import dump
 from torch.amp import GradScaler
 
@@ -209,10 +216,7 @@ def main(args):
                                 #opt[module.b].update_m(module.b, update_factor=update_factor)
                                 
                         # update lbd for every modules
-                        if gene_new_cp:
-                            lbd[idx] = (lbd[idx] + module.b - avg_b) @ update_factor 
-                        else:
-                            lbd[idx] = (lbd[idx] + module.b - avg_b)
+                        lbd[idx] = (lbd[idx] + module.b - avg_b) @ update_factor 
                         assert lbd[idx].shape == (module.out_features, args.comp_dim)
 
                         # update compression matrix, b and x
@@ -240,9 +244,7 @@ def main(args):
             else:
                 for (p, l) in zip(subscaf_params, lbd):
                     opt[p].update_lbd(lbd=[l])
-        #mem()
         replace_module(model, target_modules_list, jump_modules_list)
-        #mem()
         id_subscaf_params = [id(p) for p in subscaf_params]
         # make parameters without "is_comp" to another group
         regular_params = [p for p in model.parameters() if id(p) not in id_subscaf_params]
@@ -459,9 +461,11 @@ def main(args):
             else:
                 gene_new_cp = True
             if args.per_layer_weight_update:
-                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer_dict, jump_modules_list, gene_new_cp)
+                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer_dict, 
+                             jump_modules_list, gene_new_cp)
             else:
-                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, jump_modules_list, gene_new_cp)
+                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
+                             jump_modules_list, gene_new_cp)
 
 
         update_step += 1
@@ -503,7 +507,8 @@ def main(args):
 
 if __name__ == "__main__":
     init_process_group()
-    args = parse_args(None)
+    args = main_parse_args(None)
+    #args = parse_args(args)
     # setting baseline optimizer list, if we choose one of optimizer in that,
     # then the optimizer procedure would be a little bit different
     baseline_optimizer = ['sgd', 'adam']

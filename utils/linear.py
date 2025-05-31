@@ -17,12 +17,14 @@ class SubScafLinear(nn.Linear):
         bias = wraped_model.bias is not None
         super().__init__(wraped_model.in_features, wraped_model.out_features, 
                          bias, device, dtype)
-        self.x = self.weight.detach().clone()
+        # we don't need the param initialized by nn.Linaer
+        del self.weight, self.bias   
+        self.x = wraped_model.weight.detach().clone()
         #self.b = nn.Parameter(torch.zeros((comp_dim, wraped_model.in_features), **factory_kwargs))
         self.b = nn.Parameter(torch.zeros((wraped_model.out_features, comp_dim), **factory_kwargs))
         #nn.init.kaiming_uniform_(self.b, a=0, mode='fan_in', nonlinearity='relu')
         self.layer = _subscaflinear.apply
-        del self.weight
+        del wraped_model
 
     def forward(self, input):
         #return F.linear(input, self.b @ self.comp_mat + self.x, self.bias)

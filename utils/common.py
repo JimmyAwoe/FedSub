@@ -5,7 +5,6 @@ import torch
 def init_process_group():
     dist.init_process_group(
         backend="nccl",
-        init_method="env://",
     )
 
 def log(message):
