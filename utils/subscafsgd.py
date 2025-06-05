@@ -22,9 +22,12 @@ def get_subscaf_optimizer(args, param_groups=None, regular_params=None, subscaf_
                             )
         # we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
         # lbd to be nan
-        schedule = get_cosine_schedule_with_warmup(optimizer,
-                                                num_warmup_steps=args.warmup,
+        if not args.constant_lr:
+            schedule = get_cosine_schedule_with_warmup(optimizer,
+                                                    num_warmup_steps=args.warmup,
                                                 num_training_steps=args.num_training_steps + 1)
+        else:
+            schedule = None
         return optimizer, schedule
     else:
         assert regular_params is not None, "Must input regular_params if you want to use layerwise update"
@@ -55,7 +58,8 @@ def get_subscaf_optimizer(args, param_groups=None, regular_params=None, subscaf_
         def optimizer_hook(p):
             if p.grad is None:
                 return
-            schedule_dict[p].step()
+            if not args.constant_lr:
+                schedule_dict[p].step()
             optimizer_dict[p].step()
             optimizer_dict[p].zero_grad()
 
@@ -68,9 +72,10 @@ def get_subscaf_optimizer(args, param_groups=None, regular_params=None, subscaf_
                 # because in this condition, every backward would call optimizer_hook once, hence push the lr,
                 # so in the case of gradient accumulation, we should correspondily longer the warmup and training 
                 # step
-                schedule_dict[p] = get_cosine_schedule_with_warmup(optimizer_dict[p],
-                                                                num_warmup_steps=args.warmup * grad_accumulation,
-                                                                num_training_steps=args.num_training_steps * grad_accumulation + 1)
+                if not args.constant_lr:
+                    schedule_dict[p] = get_cosine_schedule_with_warmup(optimizer_dict[p],
+                                                                    num_warmup_steps=args.warmup * grad_accumulation,
+                                                                    num_training_steps=args.num_training_steps * grad_accumulation + 1)
                 p.register_post_accumulate_grad_hook(optimizer_hook)
         return optimizer_dict
 
@@ -141,8 +146,8 @@ class SubScafSGD(Optimizer):
         for group in self.param_groups:
             if group['is_comp'] == True:
                 #if avg_b is not None:
-                    # carry out error feedback
-                    #past_m = past
+                    ## carry out error feedback
+                    #past_m = self.state[params]['momentum_buffer'] @ past_p
 
                 #error = m 
                 #m = - avg_b @ update_factor / (args.lr * args.tau)
@@ -160,7 +165,8 @@ class SubScafSGD(Optimizer):
                 #past_m_std = torch.std(self.state[params]['momentum_buffer'])
 
                 m = ((m - m_mean) / m_std + past_m_mean) * past_m_std
-                self.state[params]['momentum_buffer'] = m
+                #self.state[params]['momentum_buffer'] = m
+                self.state[params]['momentum_buffer'] = None
 
     @_use_grad_for_differentiable
     def step(self, closure: Callable = None):
@@ -285,6 +291,7 @@ def _subscaf_single_tensor_sgd(params: List[Tensor],
         if is_comp == True:
             # r / m coefficient
             m ,r = lbd[i].shape
+            #m = lbd[i].in_features
             d_p.mul_(r / m)
             
         if momentum != 0:

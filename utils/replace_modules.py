@@ -39,7 +39,10 @@ def replace_with_subscaf_linear(model, target_modules_list, device, args, jump_m
 
                 # initialize lambda
                 #lbd.append(torch.zeros((args.comp_dim, module.in_features), device=device, requires_grad=False))
-                lbd.append(torch.zeros((module.out_features, args.comp_dim), device=device, requires_grad=False))
+                layer_lbd = torch.zeros((module.out_features, args.comp_dim), device=device, requires_grad=False)
+                # in_features is needed for optimizer later
+                layer_lbd.in_features = module.in_features
+                lbd.append(layer_lbd)
                 if args.adaptive_cp_rate != 0:
                     # recover compression dimension
                     args.comp_dim = record_cp_dim
@@ -102,12 +105,14 @@ def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, subscaf_par
                 # update lbd for every modules
                 if gene_new_cp:
                     lbd[idx] = (lbd[idx] + module.b - avg_b) @ update_factor 
+                    lbd[idx].in_features = module.in_features
                 else:
                     lbd[idx] = (lbd[idx] + module.b - avg_b)
+                    lbd[idx].in_features = module.in_features
                 assert lbd[idx].shape == (module.out_features, args.comp_dim)
 
                 # update compression matrix, b and x
-                new_x = module.x + avg_b @ comp_mat_rec[(args.comp_dim, module.in_features)] 
+                new_x = (module.x + avg_b @ comp_mat_rec[(args.comp_dim, module.in_features)])
                 module.update(comp_mat=new_comp_mat, x=new_x, b=True)
 
                 # update idx

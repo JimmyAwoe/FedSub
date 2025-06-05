@@ -1,246 +1,0 @@
-W0531 21:11:10.423000 2089978 site-packages/torch/distributed/run.py:766] 
-W0531 21:11:10.423000 2089978 site-packages/torch/distributed/run.py:766] *****************************************
-W0531 21:11:10.423000 2089978 site-packages/torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
-W0531 21:11:10.423000 2089978 site-packages/torch/distributed/run.py:766] *****************************************
-2025-05-31 21:11:20.658 | INFO     | utils.common:log:12 - ****************************************
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - Start training with arguments
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - lr                             0.0001
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - batch_size                     8
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - total_batch_size               8
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - max_length                     256
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - num_training_steps             10000
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - grad_clip                      0.0
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - warmup                         0
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - use_wandb                      False
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - seed                           42
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - mixed_precision                None
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - comp_dim                       256
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - tau                            5
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - gene_method                    cd
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - jump_certain_modules           False
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - update_cp_freq                 4
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - adaptive_cp_rate               0.5
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - model_config                   configs/llama_60m.json
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - optimizer                      subscafsgd
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - momentum                       0.0
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - dampening                      0
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - weight_decay                   0.0
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - nesterov                       False
-2025-05-31 21:11:20.659 | INFO     | utils.common:log:12 - per_layer_weight_update        True
-2025-05-31 21:11:20.660 | INFO     | utils.common:log:12 - wandb_run_name                 vanilla finetune
-2025-05-31 21:11:20.660 | INFO     | utils.common:log:12 - mem_monitor                    False
-2025-05-31 21:11:20.660 | INFO     | utils.common:log:12 - epoch                          1
-2025-05-31 21:11:20.660 | INFO     | utils.common:log:12 - use_tqdm                       False
-2025-05-31 21:11:20.660 | INFO     | utils.common:log:12 - use_log                        True
-2025-05-31 21:11:20.660 | INFO     | utils.common:log:12 - eval_freq                      1000
-2025-05-31 21:11:20.660 | INFO     | utils.common:log:12 - ****************************************
-Running tokenizer on dataset:   0%|          | 0/4358 [00:00<?, ? examples/s]Running tokenizer on dataset:  23%|██▎       | 1000/4358 [00:00<00:00, 7421.92 examples/s]Running tokenizer on dataset:  46%|████▌     | 2000/4358 [00:00<00:00, 8141.32 examples/s]Running tokenizer on dataset:  69%|██████▉   | 3000/4358 [00:00<00:00, 8306.29 examples/s]Running tokenizer on dataset:  92%|█████████▏| 4000/4358 [00:00<00:00, 8685.41 examples/s]Running tokenizer on dataset: 100%|██████████| 4358/4358 [00:00<00:00, 8414.09 examples/s]
-Running tokenizer on dataset:   0%|          | 0/36718 [00:00<?, ? examples/s]Running tokenizer on dataset:   3%|▎         | 1000/36718 [00:00<00:04, 8072.71 examples/s]Running tokenizer on dataset:   5%|▌         | 2000/36718 [00:00<00:04, 8007.33 examples/s]Running tokenizer on dataset:   8%|▊         | 3000/36718 [00:00<00:04, 8274.16 examples/s]Running tokenizer on dataset:  11%|█         | 4000/36718 [00:00<00:03, 8382.01 examples/s]Running tokenizer on dataset:  14%|█▎        | 5000/36718 [00:00<00:03, 8658.15 examples/s]Running tokenizer on dataset:  16%|█▋        | 6000/36718 [00:00<00:03, 8715.02 examples/s]Running tokenizer on dataset:  19%|█▉        | 7000/36718 [00:01<00:05, 5581.16 examples/s]Running tokenizer on dataset:  22%|██▏       | 8000/36718 [00:01<00:04, 6324.14 examples/s]Running tokenizer on dataset:  25%|██▍       | 9000/36718 [00:01<00:04, 6880.03 examples/s]Running tokenizer on dataset:  27%|██▋       | 10000/36718 [00:01<00:03, 7284.80 examples/s]Running tokenizer on dataset:  30%|██▉       | 11000/36718 [00:01<00:03, 7548.54 examples/s]Running tokenizer on dataset:  33%|███▎      | 12000/36718 [00:01<00:03, 7722.85 examples/s]Running tokenizer on dataset:  35%|███▌      | 13000/36718 [00:01<00:03, 7839.09 examples/s]Running tokenizer on dataset:  38%|███▊      | 14000/36718 [00:01<00:02, 7987.67 examples/s]Running tokenizer on dataset:  41%|████      | 15000/36718 [00:01<00:02, 8105.37 examples/s]Running tokenizer on dataset:  44%|████▎     | 16000/36718 [00:02<00:02, 8110.65 examples/s]Running tokenizer on dataset:  46%|████▋     | 17000/36718 [00:02<00:02, 8309.81 examples/s]Running tokenizer on dataset:  49%|████▉     | 18000/36718 [00:02<00:02, 8484.81 examples/s]Running tokenizer on dataset:  52%|█████▏    | 19000/36718 [00:02<00:02, 8690.68 examples/s]Running tokenizer on dataset:  54%|█████▍    | 20000/36718 [00:02<00:01, 8740.67 examples/s]Running tokenizer on dataset:  57%|█████▋    | 21000/36718 [00:02<00:01, 8631.78 examples/s]Running tokenizer on dataset:  60%|█████▉    | 22000/36718 [00:02<00:01, 8594.40 examples/s]Running tokenizer on dataset:  63%|██████▎   | 23000/36718 [00:02<00:01, 8559.67 examples/s]Running tokenizer on dataset:  65%|██████▌   | 24000/36718 [00:03<00:01, 8762.89 examples/s]Running tokenizer on dataset:  68%|██████▊   | 25000/36718 [00:03<00:01, 8790.77 examples/s]Running tokenizer on dataset:  71%|███████   | 26000/36718 [00:03<00:01, 8659.08 examples/s]Running tokenizer on dataset:  74%|███████▎  | 27000/36718 [00:03<00:01, 8607.78 examples/s]Running tokenizer on dataset:  76%|███████▋  | 28000/36718 [00:03<00:01, 8549.43 examples/s]Running tokenizer on dataset:  79%|███████▉  | 29000/36718 [00:03<00:00, 8680.12 examples/s]Running tokenizer on dataset:  82%|████████▏ | 30000/36718 [00:03<00:00, 8647.35 examples/s]Running tokenizer on dataset:  84%|████████▍ | 31000/36718 [00:03<00:00, 8568.89 examples/s]Running tokenizer on dataset:  87%|████████▋ | 32000/36718 [00:03<00:00, 8629.80 examples/s]Running tokenizer on dataset:  90%|████████▉ | 33000/36718 [00:04<00:00, 8629.58 examples/s]Running tokenizer on dataset:   0%|          | 0/36718 [00:00<?, ? examples/s]Running tokenizer on dataset:  93%|█████████▎| 34000/36718 [00:04<00:00, 8320.59 examples/s]Running tokenizer on dataset:   3%|▎         | 1000/36718 [00:00<00:04, 7476.45 examples/s]Running tokenizer on dataset:  95%|█████████▌| 35000/36718 [00:04<00:00, 8199.48 examples/s]Running tokenizer on dataset:   5%|▌         | 2000/36718 [00:00<00:04, 7547.49 examples/s]Running tokenizer on dataset:  98%|█████████▊| 36000/36718 [00:04<00:00, 8175.12 examples/s]Running tokenizer on dataset:   8%|▊         | 3000/36718 [00:00<00:04, 7889.34 examples/s]Running tokenizer on dataset:  11%|█         | 4000/36718 [00:00<00:03, 8241.01 examples/s]Running tokenizer on dataset: 100%|██████████| 36718/36718 [00:04<00:00, 7833.84 examples/s]
-Running tokenizer on dataset:   0%|          | 0/3760 [00:00<?, ? examples/s]Running tokenizer on dataset:  14%|█▎        | 5000/36718 [00:00<00:03, 8562.94 examples/s]Running tokenizer on dataset:  27%|██▋       | 1000/3760 [00:00<00:00, 7989.18 examples/s]Running tokenizer on dataset:  16%|█▋        | 6000/36718 [00:00<00:03, 8635.16 examples/s]Running tokenizer on dataset:  53%|█████▎    | 2000/3760 [00:00<00:00, 7923.58 examples/s]Running tokenizer on dataset:  19%|█▉        | 7000/36718 [00:00<00:03, 8361.14 examples/s]Running tokenizer on dataset:  80%|███████▉  | 3000/3760 [00:00<00:00, 8063.83 examples/s]Running tokenizer on dataset:  22%|██▏       | 8000/36718 [00:00<00:03, 8341.82 examples/s]Running tokenizer on dataset: 100%|██████████| 3760/3760 [00:00<00:00, 7889.05 examples/s]
-2025-05-31 21:11:39.389 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-Running tokenizer on dataset:  25%|██▍       | 9000/36718 [00:01<00:03, 8345.12 examples/s]Running tokenizer on dataset:  27%|██▋       | 10000/36718 [00:01<00:03, 8536.98 examples/s]Running tokenizer on dataset:  30%|██▉       | 11000/36718 [00:01<00:02, 8641.34 examples/s]Running tokenizer on dataset:  33%|███▎      | 12000/36718 [00:01<00:02, 8710.32 examples/s]Running tokenizer on dataset:  35%|███▌      | 13000/36718 [00:01<00:02, 8702.81 examples/s]Running tokenizer on dataset:  38%|███▊      | 14000/36718 [00:01<00:03, 5833.34 examples/s]Running tokenizer on dataset:  41%|████      | 15000/36718 [00:01<00:03, 6475.97 examples/s]Running tokenizer on dataset:  44%|████▎     | 16000/36718 [00:02<00:02, 6964.14 examples/s]Running tokenizer on dataset:  46%|████▋     | 17000/36718 [00:02<00:02, 7465.17 examples/s]Running tokenizer on dataset:  49%|████▉     | 18000/36718 [00:02<00:02, 7818.38 examples/s]Running tokenizer on dataset:  52%|█████▏    | 19000/36718 [00:02<00:02, 8169.08 examples/s]Running tokenizer on dataset:  54%|█████▍    | 20000/36718 [00:02<00:02, 8346.96 examples/s]Running tokenizer on dataset:  57%|█████▋    | 21000/36718 [00:02<00:01, 8565.50 examples/s]Running tokenizer on dataset:  60%|█████▉    | 22000/36718 [00:02<00:01, 8627.33 examples/s]Running tokenizer on dataset:  63%|██████▎   | 23000/36718 [00:02<00:01, 8623.16 examples/s]Running tokenizer on dataset:  65%|██████▌   | 24000/36718 [00:02<00:01, 8759.54 examples/s]Running tokenizer on dataset:  68%|██████▊   | 25000/36718 [00:03<00:01, 8860.42 examples/s]Running tokenizer on dataset:  71%|███████   | 26000/36718 [00:03<00:01, 8804.23 examples/s]Running tokenizer on dataset:  74%|███████▎  | 27000/36718 [00:03<00:01, 8740.05 examples/s]Running tokenizer on dataset:  76%|███████▋  | 28000/36718 [00:03<00:00, 8882.98 examples/s]Running tokenizer on dataset:  79%|███████▉  | 29000/36718 [00:03<00:00, 9027.13 examples/s]Running tokenizer on dataset:  82%|████████▏ | 30000/36718 [00:03<00:00, 8900.66 examples/s]Running tokenizer on dataset:  84%|████████▍ | 31000/36718 [00:03<00:00, 8631.40 examples/s]Running tokenizer on dataset:  87%|████████▋ | 32000/36718 [00:03<00:00, 8003.89 examples/s]Running tokenizer on dataset:  90%|████████▉ | 33000/36718 [00:04<00:00, 8236.90 examples/s]Running tokenizer on dataset:  93%|█████████▎| 34000/36718 [00:04<00:00, 8299.94 examples/s]Running tokenizer on dataset:  95%|█████████▌| 35000/36718 [00:04<00:00, 8456.36 examples/s]Running tokenizer on dataset:  98%|█████████▊| 36000/36718 [00:04<00:00, 8522.56 examples/s]Running tokenizer on dataset: 100%|██████████| 36718/36718 [00:04<00:00, 7815.53 examples/s]
-2025-05-31 21:11:43.277 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.277 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.278 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.278 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.279 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.280 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.508 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.509 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.510 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.510 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.510 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.511 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.512 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.512 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.513 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.513 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.514 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.514 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.515 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.515 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.516 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.517 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.517 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.517 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.518 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.519 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.519 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.520 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.520 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.521 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.521 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.521 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.522 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.523 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.523 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.524 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.524 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.525 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.525 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.526 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.526 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.527 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.528 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.528 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.528 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.529 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.529 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.530 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.531 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.532 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.532 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.532 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.533 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.534 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.535 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.536 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.536 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.537 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.537 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.538 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.538 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.539 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.540 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.541 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.541 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.541 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.542 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.543 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.543 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.544 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.545 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.545 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.545 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.546 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.546 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.547 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.548 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.548 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.549 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.549 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.549 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.550 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.551 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.551 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.552 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.552 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.553 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.553 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.554 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.554 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.555 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.556 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.556 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.556 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.557 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.558 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.558 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.559 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.559 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.560 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.560 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.561 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.561 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.562 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.563 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-05-31 21:11:43.563 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-05-31 21:11:43.563 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-05-31 21:11:43.564 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-05-31 21:11:43.564 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-05-31 21:11:43.565 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-05-31 21:11:43.566 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-05-31 21:11:43.574 | INFO     | utils.common:log:12 - 
-LlamaForCausalLM(
-  (model): LlamaModel(
-    (embed_tokens): Embedding(128256, 2048)
-    (layers): ModuleList(
-      (0-15): 16 x LlamaDecoderLayer(
-        (self_attn): LlamaAttention(
-          (q_proj): SubScafLinear(in_feartures=1024, out_features=2048)
-          (k_proj): SubScafLinear(in_feartures=1024, out_features=512)
-          (v_proj): SubScafLinear(in_feartures=1024, out_features=512)
-          (o_proj): SubScafLinear(in_feartures=1024, out_features=2048)
-        )
-        (mlp): LlamaMLP(
-          (gate_proj): SubScafLinear(in_feartures=1024, out_features=8192)
-          (up_proj): SubScafLinear(in_feartures=1024, out_features=8192)
-          (down_proj): SubScafLinear(in_feartures=4096, out_features=2048)
-          (act_fn): SiLU()
-        )
-        (input_layernorm): LlamaRMSNorm((2048,), eps=1e-05)
-        (post_attention_layernorm): LlamaRMSNorm((2048,), eps=1e-05)
-      )
-    )
-    (norm): LlamaRMSNorm((2048,), eps=1e-05)
-    (rotary_emb): LlamaRotaryEmbedding()
-  )
-  (lm_head): Linear(in_features=2048, out_features=128256, bias=False)
-)
-
-2025-05-31 21:11:43.574 | INFO     | utils.common:log:12 - Total params: 1235.81M
-2025-05-31 21:11:43.574 | INFO     | utils.common:log:12 - Trainable params before compression: 1235.81M
-2025-05-31 21:11:43.575 | INFO     | utils.common:log:12 - Trainable params after compression: 749.28M
-2025-05-31 21:11:43.575 | INFO     | utils.common:log:12 - Trainable params with Subspace Scaffold Linear Layer: 486.54M
-2025-05-31 21:11:43.575 | INFO     | utils.common:log:12 - All params: 749.28M
-2025-05-31 21:11:43.575 | INFO     | utils.common:log:12 - start epoch: 0
-2025-05-31 21:11:45.282 | INFO     | utils.common:log:12 - step: 1/4590 Loss: 8.42090797 Lr: 1.00000e-4 Mem: 25.0 GB
-2025-05-31 21:11:47.020 | INFO     | utils.common:log:12 - step: 2/4590 Loss: 8.32737160 Lr: 1.00000e-4 Mem: 28.0 GB
-2025-05-31 21:11:48.544 | INFO     | utils.common:log:12 - step: 3/4590 Loss: 7.96353292 Lr: 1.00000e-4 Mem: 28.0 GB
-2025-05-31 21:11:49.948 | INFO     | utils.common:log:12 - step: 4/4590 Loss: 8.31939602 Lr: 1.00000e-4 Mem: 28.0 GB
-2025-05-31 21:11:53.552 | INFO     | utils.common:log:12 - step: 5/4590 Loss: 8.57413101 Lr: 1.00000e-4 Mem: 28.0 GB
-2025-05-31 21:11:55.959 | INFO     | utils.common:log:12 - step: 6/4590 Loss: 7.46507978 Lr: 1.00000e-4 Mem: 34.9 GB
-2025-05-31 21:11:57.477 | INFO     | utils.common:log:12 - step: 7/4590 Loss: 7.86993504 Lr: 1.00000e-4 Mem: 34.9 GB
-2025-05-31 21:11:59.013 | INFO     | utils.common:log:12 - step: 8/4590 Loss: 8.43533707 Lr: 1.00000e-4 Mem: 34.9 GB
-2025-05-31 21:12:00.422 | INFO     | utils.common:log:12 - step: 9/4590 Loss: 8.00074387 Lr: 1.00000e-4 Mem: 34.9 GB
-2025-05-31 21:12:03.056 | INFO     | utils.common:log:12 - step: 10/4590 Loss: 7.97965145 Lr: 1.00000e-4 Mem: 34.9 GB
-2025-05-31 21:12:03.057 | INFO     | utils.common:log:12 - ETA: 02:03:31
-2025-05-31 21:12:05.057 | INFO     | utils.common:log:12 - step: 11/4590 Loss: 7.90490580 Lr: 1.00000e-4 Mem: 34.9 GB
-2025-05-31 21:12:06.604 | INFO     | utils.common:log:12 - step: 12/4590 Loss: 7.81352758 Lr: 1.00000e-4 Mem: 34.9 GB
-2025-05-31 21:12:08.004 | INFO     | utils.common:log:12 - step: 13/4590 Loss: 8.78410816 Lr: 1.00000e-4 Mem: 34.9 GB
-2025-05-31 21:12:09.554 | INFO     | utils.common:log:12 - step: 14/4590 Loss: 7.63945389 Lr: 1.00000e-4 Mem: 34.9 GB
-2025-05-31 21:12:12.598 | INFO     | utils.common:log:12 - step: 15/4590 Loss: 7.87984896 Lr: 0.99999e-4 Mem: 34.9 GB
-2025-05-31 21:12:13.991 | INFO     | utils.common:log:12 - step: 16/4590 Loss: 8.17944908 Lr: 0.99999e-4 Mem: 34.9 GB
-2025-05-31 21:12:15.412 | INFO     | utils.common:log:12 - step: 17/4590 Loss: 8.30272198 Lr: 0.99999e-4 Mem: 34.9 GB
-2025-05-31 21:12:17.445 | INFO     | utils.common:log:12 - step: 18/4590 Loss: 8.07491493 Lr: 0.99999e-4 Mem: 34.9 GB
-2025-05-31 21:12:19.468 | INFO     | utils.common:log:12 - step: 19/4590 Loss: 7.49459505 Lr: 0.99999e-4 Mem: 34.9 GB
-2025-05-31 21:12:22.141 | INFO     | utils.common:log:12 - step: 20/4590 Loss: 8.48912907 Lr: 0.99999e-4 Mem: 34.9 GB
-2025-05-31 21:12:22.141 | INFO     | utils.common:log:12 - ETA: 02:03:24
-2025-05-31 21:12:23.541 | INFO     | utils.common:log:12 - step: 21/4590 Loss: 8.02739716 Lr: 0.99999e-4 Mem: 34.9 GB
-2025-05-31 21:12:25.368 | INFO     | utils.common:log:12 - step: 22/4590 Loss: 7.75056171 Lr: 0.99999e-4 Mem: 34.9 GB
-2025-05-31 21:12:26.780 | INFO     | utils.common:log:12 - step: 23/4590 Loss: 8.53131580 Lr: 0.99999e-4 Mem: 34.9 GB
-2025-05-31 21:12:28.334 | INFO     | utils.common:log:12 - step: 24/4590 Loss: 7.53345060 Lr: 0.99999e-4 Mem: 34.9 GB
-2025-05-31 21:12:30.424 | INFO     | utils.common:log:12 - step: 25/4590 Loss: 8.74882889 Lr: 0.99998e-4 Mem: 34.9 GB
-2025-05-31 21:12:31.819 | INFO     | utils.common:log:12 - step: 26/4590 Loss: 8.36875820 Lr: 0.99998e-4 Mem: 34.9 GB
-2025-05-31 21:12:33.224 | INFO     | utils.common:log:12 - step: 27/4590 Loss: 7.81551838 Lr: 0.99998e-4 Mem: 34.9 GB
-2025-05-31 21:12:35.193 | INFO     | utils.common:log:12 - step: 28/4590 Loss: 7.58739996 Lr: 0.99998e-4 Mem: 34.9 GB
-2025-05-31 21:12:37.138 | INFO     | utils.common:log:12 - step: 29/4590 Loss: 7.72510052 Lr: 0.99998e-4 Mem: 34.9 GB
-2025-05-31 21:12:39.793 | INFO     | utils.common:log:12 - step: 30/4590 Loss: 7.90021896 Lr: 0.99998e-4 Mem: 34.9 GB
-2025-05-31 21:12:39.793 | INFO     | utils.common:log:12 - ETA: 01:57:32
-2025-05-31 21:12:41.319 | INFO     | utils.common:log:12 - step: 31/4590 Loss: 7.92506599 Lr: 0.99998e-4 Mem: 34.9 GB
-2025-05-31 21:12:42.729 | INFO     | utils.common:log:12 - step: 32/4590 Loss: 8.33948612 Lr: 0.99997e-4 Mem: 34.9 GB
-2025-05-31 21:12:44.549 | INFO     | utils.common:log:12 - step: 33/4590 Loss: 7.96342468 Lr: 0.99997e-4 Mem: 34.9 GB
-2025-05-31 21:12:46.581 | INFO     | utils.common:log:12 - step: 34/4590 Loss: 7.85408592 Lr: 0.99997e-4 Mem: 34.9 GB
-2025-05-31 21:12:49.018 | INFO     | utils.common:log:12 - step: 35/4590 Loss: 7.69740772 Lr: 0.99997e-4 Mem: 34.9 GB
-2025-05-31 21:12:51.396 | INFO     | utils.common:log:12 - step: 36/4590 Loss: 7.39059114 Lr: 0.99997e-4 Mem: 34.9 GB
-2025-05-31 21:12:52.807 | INFO     | utils.common:log:12 - step: 37/4590 Loss: 7.89732838 Lr: 0.99997e-4 Mem: 34.9 GB
-2025-05-31 21:12:54.828 | INFO     | utils.common:log:12 - step: 38/4590 Loss: 7.81060600 Lr: 0.99996e-4 Mem: 34.9 GB
-2025-05-31 21:12:56.238 | INFO     | utils.common:log:12 - step: 39/4590 Loss: 7.94864368 Lr: 0.99996e-4 Mem: 34.9 GB
-2025-05-31 21:12:58.981 | INFO     | utils.common:log:12 - step: 40/4590 Loss: 7.81933737 Lr: 0.99996e-4 Mem: 34.9 GB
-2025-05-31 21:12:58.981 | INFO     | utils.common:log:12 - ETA: 02:00:29
-2025-05-31 21:13:01.173 | INFO     | utils.common:log:12 - step: 41/4590 Loss: 7.53410006 Lr: 0.99996e-4 Mem: 34.9 GB
-2025-05-31 21:13:02.576 | INFO     | utils.common:log:12 - step: 42/4590 Loss: 7.78477526 Lr: 0.99996e-4 Mem: 34.9 GB
-2025-05-31 21:13:03.977 | INFO     | utils.common:log:12 - step: 43/4590 Loss: 8.02765751 Lr: 0.99995e-4 Mem: 34.9 GB
-2025-05-31 21:13:06.204 | INFO     | utils.common:log:12 - step: 44/4590 Loss: 7.77621269 Lr: 0.99995e-4 Mem: 34.9 GB
-2025-05-31 21:13:08.300 | INFO     | utils.common:log:12 - step: 45/4590 Loss: 7.82285070 Lr: 0.99995e-4 Mem: 34.9 GB
-2025-05-31 21:13:10.310 | INFO     | utils.common:log:12 - step: 46/4590 Loss: 7.54423189 Lr: 0.99995e-4 Mem: 34.9 GB
-2025-05-31 21:13:11.742 | INFO     | utils.common:log:12 - step: 47/4590 Loss: 7.67297411 Lr: 0.99995e-4 Mem: 34.9 GB
-2025-05-31 21:13:13.148 | INFO     | utils.common:log:12 - step: 48/4590 Loss: 8.42019463 Lr: 0.99994e-4 Mem: 34.9 GB
-2025-05-31 21:13:14.553 | INFO     | utils.common:log:12 - step: 49/4590 Loss: 7.57929134 Lr: 0.99994e-4 Mem: 34.9 GB
-2025-05-31 21:13:17.258 | INFO     | utils.common:log:12 - step: 50/4590 Loss: 7.87739563 Lr: 0.99994e-4 Mem: 34.9 GB
-2025-05-31 21:13:17.259 | INFO     | utils.common:log:12 - ETA: 01:51:30
-2025-05-31 21:13:18.876 | INFO     | utils.common:log:12 - step: 51/4590 Loss: 7.84164906 Lr: 0.99994e-4 Mem: 34.9 GB
-2025-05-31 21:13:20.498 | INFO     | utils.common:log:12 - step: 52/4590 Loss: 7.53088570 Lr: 0.99993e-4 Mem: 34.9 GB
-2025-05-31 21:13:21.990 | INFO     | utils.common:log:12 - step: 53/4590 Loss: 8.08259583 Lr: 0.99993e-4 Mem: 34.9 GB
-2025-05-31 21:13:23.727 | INFO     | utils.common:log:12 - step: 54/4590 Loss: 6.93809032 Lr: 0.99993e-4 Mem: 34.9 GB
-2025-05-31 21:13:25.824 | INFO     | utils.common:log:12 - step: 55/4590 Loss: 8.12471962 Lr: 0.99993e-4 Mem: 34.9 GB

@@ -1,0 +1,561 @@
+nohup: ignoring input
+W0605 11:07:17.455000 1414013 site-packages/torch/distributed/run.py:766] 
+W0605 11:07:17.455000 1414013 site-packages/torch/distributed/run.py:766] *****************************************
+W0605 11:07:17.455000 1414013 site-packages/torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0605 11:07:17.455000 1414013 site-packages/torch/distributed/run.py:766] *****************************************
+2025-06-05 11:07:22.177 | INFO     | utils.common:log:12 - Process group initialize
+2025-06-05 11:07:22.177 | INFO     | utils.common:log:12 - ****************************************
+2025-06-05 11:07:22.177 | INFO     | utils.common:log:12 - Start training with arguments
+2025-06-05 11:07:22.177 | INFO     | utils.common:log:12 - lr                             0.01
+2025-06-05 11:07:22.177 | INFO     | utils.common:log:12 - batch_size                     256
+2025-06-05 11:07:22.177 | INFO     | utils.common:log:12 - total_batch_size               256
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - max_length                     256
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - num_training_steps             10000
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - grad_clip                      0.0
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - warmup                         1000
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - constant_lr                    True
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - seed                           42
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - mixed_precision                None
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - comp_dim                       256
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - tau                            3
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - gene_method                    cd
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - jump_certain_modules           False
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - update_cp_freq                 4
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - adaptive_cp_rate               0.0
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - model_config                   configs/llama_60m.json
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - optimizer                      sgd
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - momentum                       0.9
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - dampening                      0.9
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - weight_decay                   0
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - nesterov                       False
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - per_layer_weight_update        True
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - use_wandb                      False
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - wandb_run_name                 real_lazy_update
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - use_tqdm                       False
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - use_log                        True
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - mem_monitor                    False
+2025-06-05 11:07:22.178 | INFO     | utils.common:log:12 - ****************************************
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:606: UserWarning: `pad_token_id` should be positive but got -1. This will cause errors when batch generating, if there is padding. Please set `pad_token_id` explicitly as `model.generation_config.pad_token_id=PAD_TOKEN_ID` to avoid errors in generation
+  warnings.warn(
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:606: UserWarning: `pad_token_id` should be positive but got -1. This will cause errors when batch generating, if there is padding. Please set `pad_token_id` explicitly as `model.generation_config.pad_token_id=PAD_TOKEN_ID` to avoid errors in generation
+  warnings.warn(
+2025-06-05 11:07:25.743 | INFO     | utils.common:log:12 - 
+LlamaForCausalLM(
+  (model): LlamaModel(
+    (embed_tokens): Embedding(32000, 512, padding_idx=31999)
+    (layers): ModuleList(
+      (0-7): 8 x LlamaDecoderLayer(
+        (self_attn): LlamaAttention(
+          (q_proj): Linear(in_features=512, out_features=512, bias=False)
+          (k_proj): Linear(in_features=512, out_features=512, bias=False)
+          (v_proj): Linear(in_features=512, out_features=512, bias=False)
+          (o_proj): Linear(in_features=512, out_features=512, bias=False)
+        )
+        (mlp): LlamaMLP(
+          (gate_proj): Linear(in_features=512, out_features=1376, bias=False)
+          (up_proj): Linear(in_features=512, out_features=1376, bias=False)
+          (down_proj): Linear(in_features=1376, out_features=512, bias=False)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): LlamaRMSNorm((512,), eps=1e-06)
+        (post_attention_layernorm): LlamaRMSNorm((512,), eps=1e-06)
+      )
+    )
+    (norm): LlamaRMSNorm((512,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=512, out_features=32000, bias=False)
+)
+
+2025-06-05 11:07:25.744 | INFO     | utils.common:log:12 - Total params: 58.07M
+2025-06-05 11:07:25.744 | INFO     | utils.common:log:12 - Trainable params: 58.07M
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: c10d::broadcast_: an autograd kernel was not registered to the Autograd key(s) but we are trying to backprop through it. This may lead to silently incorrect behavior. This behavior is deprecated and will be removed in a future version of PyTorch. If your operator is differentiable, please ensure you have registered an autograd kernel to the correct Autograd key (e.g. DispatchKey::Autograd, DispatchKey::CompositeImplicitAutograd). If your operator is not differentiable, or to squash this warning and use the previous behavior, please register torch::CppFunction::makeFallthrough() to DispatchKey::Autograd. (Triggered internally at /pytorch/torch/csrc/autograd/autograd_not_implemented_fallback.cpp:62.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: c10d::broadcast_: an autograd kernel was not registered to the Autograd key(s) but we are trying to backprop through it. This may lead to silently incorrect behavior. This behavior is deprecated and will be removed in a future version of PyTorch. If your operator is differentiable, please ensure you have registered an autograd kernel to the correct Autograd key (e.g. DispatchKey::Autograd, DispatchKey::CompositeImplicitAutograd). If your operator is not differentiable, or to squash this warning and use the previous behavior, please register torch::CppFunction::makeFallthrough() to DispatchKey::Autograd. (Triggered internally at /pytorch/torch/csrc/autograd/autograd_not_implemented_fallback.cpp:62.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2025-06-05 11:07:27.811 | INFO     | utils.common:log:12 - step: 1/10000 Loss: 10.4835\10.483 Lr: 10.000e-3 Mem: 46.811 GB Throughput_tokens: 50039.9373
+2025-06-05 11:07:29.060 | INFO     | utils.common:log:12 - step: 2/10000 Loss: 10.4651\10.482 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 475288.6515
+2025-06-05 11:07:30.311 | INFO     | utils.common:log:12 - step: 3/10000 Loss: 10.4398\10.477 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 491921.2039
+2025-06-05 11:07:31.834 | INFO     | utils.common:log:12 - step: 4/10000 Loss: 10.4193\10.472 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 198773.5696
+2025-06-05 11:07:33.085 | INFO     | utils.common:log:12 - step: 5/10000 Loss: 10.3934\10.464 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 467883.4616
+2025-06-05 11:07:34.338 | INFO     | utils.common:log:12 - step: 6/10000 Loss: 10.3711\10.455 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471536.1843
+2025-06-05 11:07:35.595 | INFO     | utils.common:log:12 - step: 7/10000 Loss: 10.3458\10.444 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 483063.5704
+2025-06-05 11:07:37.301 | INFO     | utils.common:log:12 - step: 8/10000 Loss: 10.3248\10.432 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 151410.3406
+2025-06-05 11:07:38.556 | INFO     | utils.common:log:12 - step: 9/10000 Loss: 10.3002\10.419 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 463751.3619
+2025-06-05 11:07:39.810 | INFO     | utils.common:log:12 - step: 10/10000 Loss: 10.2775\10.405 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 472436.9564
+2025-06-05 11:07:39.810 | INFO     | utils.common:log:12 - ETA: 02:39:37 
+2025-06-05 11:07:41.065 | INFO     | utils.common:log:12 - step: 11/10000 Loss: 10.2603\10.390 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468420.5529
+2025-06-05 11:07:42.564 | INFO     | utils.common:log:12 - step: 12/10000 Loss: 10.2417\10.375 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 223761.3753
+2025-06-05 11:07:43.824 | INFO     | utils.common:log:12 - step: 13/10000 Loss: 10.2118\10.359 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456290.1917
+2025-06-05 11:07:45.082 | INFO     | utils.common:log:12 - step: 14/10000 Loss: 10.1789\10.341 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 458113.3939
+2025-06-05 11:07:46.340 | INFO     | utils.common:log:12 - step: 15/10000 Loss: 10.1621\10.323 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 473583.3257
+2025-06-05 11:07:47.948 | INFO     | utils.common:log:12 - step: 16/10000 Loss: 10.1209\10.303 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 178633.9494
+2025-06-05 11:07:49.208 | INFO     | utils.common:log:12 - step: 17/10000 Loss: 10.0857\10.281 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461561.4154
+2025-06-05 11:07:50.467 | INFO     | utils.common:log:12 - step: 18/10000 Loss: 10.0447\10.257 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 437454.5921
+2025-06-05 11:07:51.730 | INFO     | utils.common:log:12 - step: 19/10000 Loss: 10.0251\10.234 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 475839.5860
+2025-06-05 11:07:53.232 | INFO     | utils.common:log:12 - step: 20/10000 Loss: 9.9947\10.210 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 214361.0240
+2025-06-05 11:07:53.232 | INFO     | utils.common:log:12 - ETA: 01:28:32 
+2025-06-05 11:07:54.491 | INFO     | utils.common:log:12 - step: 21/10000 Loss: 9.9489\10.184 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456778.3605
+2025-06-05 11:07:55.750 | INFO     | utils.common:log:12 - step: 22/10000 Loss: 9.9005\10.156 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 436024.1871
+2025-06-05 11:07:57.012 | INFO     | utils.common:log:12 - step: 23/10000 Loss: 9.8579\10.126 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 467061.4464
+2025-06-05 11:07:58.482 | INFO     | utils.common:log:12 - step: 24/10000 Loss: 9.8133\10.095 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 242214.0842
+2025-06-05 11:07:59.743 | INFO     | utils.common:log:12 - step: 25/10000 Loss: 9.7805\10.063 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 457848.9324
+2025-06-05 11:08:01.007 | INFO     | utils.common:log:12 - step: 26/10000 Loss: 9.7350\10.030 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 462396.9273
+2025-06-05 11:08:02.273 | INFO     | utils.common:log:12 - step: 27/10000 Loss: 9.7055\9.998 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 452056.8342
+2025-06-05 11:08:03.732 | INFO     | utils.common:log:12 - step: 28/10000 Loss: 9.6653\9.965 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 232578.0010
+2025-06-05 11:08:04.994 | INFO     | utils.common:log:12 - step: 29/10000 Loss: 9.6077\9.929 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 443253.3465
+2025-06-05 11:08:06.261 | INFO     | utils.common:log:12 - step: 30/10000 Loss: 9.5764\9.894 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 496790.3635
+2025-06-05 11:08:06.261 | INFO     | utils.common:log:12 - ETA: 00:58:42 
+2025-06-05 11:08:07.527 | INFO     | utils.common:log:12 - step: 31/10000 Loss: 9.5718\9.862 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 475466.9879
+2025-06-05 11:08:09.009 | INFO     | utils.common:log:12 - step: 32/10000 Loss: 9.5051\9.826 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 235621.2314
+2025-06-05 11:08:10.276 | INFO     | utils.common:log:12 - step: 33/10000 Loss: 9.4747\9.791 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 490721.4713
+2025-06-05 11:08:11.541 | INFO     | utils.common:log:12 - step: 34/10000 Loss: 9.4344\9.755 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 458075.5915
+2025-06-05 11:08:12.809 | INFO     | utils.common:log:12 - step: 35/10000 Loss: 9.4270\9.722 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 465509.2127
+2025-06-05 11:08:14.450 | INFO     | utils.common:log:12 - step: 36/10000 Loss: 9.3745\9.688 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 170320.2648
+2025-06-05 11:08:15.714 | INFO     | utils.common:log:12 - step: 37/10000 Loss: 9.3305\9.652 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 438655.3620
+2025-06-05 11:08:16.980 | INFO     | utils.common:log:12 - step: 38/10000 Loss: 9.3097\9.618 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 444559.5010
+2025-06-05 11:08:18.247 | INFO     | utils.common:log:12 - step: 39/10000 Loss: 9.2665\9.582 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468331.2355
+2025-06-05 11:08:19.797 | INFO     | utils.common:log:12 - step: 40/10000 Loss: 9.2593\9.550 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 193898.3459
+2025-06-05 11:08:19.797 | INFO     | utils.common:log:12 - ETA: 00:54:14 
+2025-06-05 11:08:21.064 | INFO     | utils.common:log:12 - step: 41/10000 Loss: 9.1978\9.515 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 458356.8722
+2025-06-05 11:08:22.329 | INFO     | utils.common:log:12 - step: 42/10000 Loss: 9.1626\9.480 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 472004.7373
+2025-06-05 11:08:23.865 | INFO     | utils.common:log:12 - step: 43/10000 Loss: 9.1669\9.448 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 212314.6355
+2025-06-05 11:08:25.131 | INFO     | utils.common:log:12 - step: 44/10000 Loss: 9.1065\9.414 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 463269.8913
+2025-06-05 11:08:26.396 | INFO     | utils.common:log:12 - step: 45/10000 Loss: 9.0955\9.382 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 457594.5757
+2025-06-05 11:08:27.663 | INFO     | utils.common:log:12 - step: 46/10000 Loss: 9.0694\9.351 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468716.4653
+2025-06-05 11:08:29.157 | INFO     | utils.common:log:12 - step: 47/10000 Loss: 9.0399\9.320 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 222252.1766
+2025-06-05 11:08:30.423 | INFO     | utils.common:log:12 - step: 48/10000 Loss: 9.0344\9.291 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 459538.8073
+2025-06-05 11:08:31.687 | INFO     | utils.common:log:12 - step: 49/10000 Loss: 8.9936\9.262 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468807.1640
+2025-06-05 11:08:32.950 | INFO     | utils.common:log:12 - step: 50/10000 Loss: 8.9944\9.235 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 458808.7147
+2025-06-05 11:08:32.950 | INFO     | utils.common:log:12 - ETA: 00:47:09 
+2025-06-05 11:08:34.599 | INFO     | utils.common:log:12 - step: 51/10000 Loss: 8.9784\9.209 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 174857.8327
+2025-06-05 11:08:35.863 | INFO     | utils.common:log:12 - step: 52/10000 Loss: 8.9677\9.185 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 453972.4013
+2025-06-05 11:08:37.128 | INFO     | utils.common:log:12 - step: 53/10000 Loss: 8.9468\9.161 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 479113.8102
+2025-06-05 11:08:38.392 | INFO     | utils.common:log:12 - step: 54/10000 Loss: 8.9004\9.135 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456329.9057
+2025-06-05 11:08:39.883 | INFO     | utils.common:log:12 - step: 55/10000 Loss: 8.8919\9.111 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 223184.7950
+2025-06-05 11:08:41.146 | INFO     | utils.common:log:12 - step: 56/10000 Loss: 8.8905\9.089 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 466700.6948
+2025-06-05 11:08:42.409 | INFO     | utils.common:log:12 - step: 57/10000 Loss: 8.8293\9.063 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 462839.0118
+2025-06-05 11:08:43.672 | INFO     | utils.common:log:12 - step: 58/10000 Loss: 8.8787\9.044 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 450224.4071
+2025-06-05 11:08:45.153 | INFO     | utils.common:log:12 - step: 59/10000 Loss: 8.8347\9.023 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 233412.7925
+2025-06-05 11:08:46.417 | INFO     | utils.common:log:12 - step: 60/10000 Loss: 8.8365\9.005 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461439.1373
+2025-06-05 11:08:46.417 | INFO     | utils.common:log:12 - ETA: 00:47:40 
+2025-06-05 11:08:47.682 | INFO     | utils.common:log:12 - step: 61/10000 Loss: 8.8167\8.986 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 457461.9510
+2025-06-05 11:08:48.939 | INFO     | utils.common:log:12 - step: 62/10000 Loss: 8.7774\8.965 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 432446.6273
+2025-06-05 11:08:50.445 | INFO     | utils.common:log:12 - step: 63/10000 Loss: 8.8161\8.950 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 208323.5613
+2025-06-05 11:08:51.707 | INFO     | utils.common:log:12 - step: 64/10000 Loss: 8.7506\8.930 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464181.5141
+2025-06-05 11:08:52.969 | INFO     | utils.common:log:12 - step: 65/10000 Loss: 8.7653\8.914 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 473466.3958
+2025-06-05 11:08:54.231 | INFO     | utils.common:log:12 - step: 66/10000 Loss: 8.7566\8.898 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468533.1294
+2025-06-05 11:08:55.732 | INFO     | utils.common:log:12 - step: 67/10000 Loss: 8.7469\8.883 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 216047.3891
+2025-06-05 11:08:56.993 | INFO     | utils.common:log:12 - step: 68/10000 Loss: 8.7315\8.868 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 459536.0271
+2025-06-05 11:08:58.254 | INFO     | utils.common:log:12 - step: 69/10000 Loss: 8.7479\8.856 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 465387.3290
+2025-06-05 11:08:59.515 | INFO     | utils.common:log:12 - step: 70/10000 Loss: 8.6909\8.839 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 454555.1133
+2025-06-05 11:08:59.515 | INFO     | utils.common:log:12 - ETA: 00:44:41 
+2025-06-05 11:09:01.140 | INFO     | utils.common:log:12 - step: 71/10000 Loss: 8.7212\8.827 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 167244.7623
+2025-06-05 11:09:02.404 | INFO     | utils.common:log:12 - step: 72/10000 Loss: 8.6824\8.813 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 479294.2627
+2025-06-05 11:09:03.664 | INFO     | utils.common:log:12 - step: 73/10000 Loss: 8.6680\8.798 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471763.9740
+2025-06-05 11:09:04.924 | INFO     | utils.common:log:12 - step: 74/10000 Loss: 8.6737\8.786 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 474860.2653
+2025-06-05 11:09:06.397 | INFO     | utils.common:log:12 - step: 75/10000 Loss: 8.6544\8.773 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 231409.0718
+2025-06-05 11:09:07.661 | INFO     | utils.common:log:12 - step: 76/10000 Loss: 8.6781\8.763 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 480952.8943
+2025-06-05 11:09:08.919 | INFO     | utils.common:log:12 - step: 77/10000 Loss: 8.6756\8.755 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 427515.7302
+2025-06-05 11:09:10.179 | INFO     | utils.common:log:12 - step: 78/10000 Loss: 8.6715\8.746 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468753.5045
+2025-06-05 11:09:11.659 | INFO     | utils.common:log:12 - step: 79/10000 Loss: 8.6393\8.736 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 230256.1188
+2025-06-05 11:09:12.919 | INFO     | utils.common:log:12 - step: 80/10000 Loss: 8.6391\8.726 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 473755.4086
+2025-06-05 11:09:12.919 | INFO     | utils.common:log:12 - ETA: 00:46:27 
+2025-06-05 11:09:14.178 | INFO     | utils.common:log:12 - step: 81/10000 Loss: 8.6569\8.719 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 458173.5340
+2025-06-05 11:09:15.437 | INFO     | utils.common:log:12 - step: 82/10000 Loss: 8.6513\8.712 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464895.7165
+2025-06-05 11:09:16.940 | INFO     | utils.common:log:12 - step: 83/10000 Loss: 8.5974\8.701 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 224603.5035
+2025-06-05 11:09:18.201 | INFO     | utils.common:log:12 - step: 84/10000 Loss: 8.6171\8.692 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 472431.6370
+2025-06-05 11:09:19.460 | INFO     | utils.common:log:12 - step: 85/10000 Loss: 8.6331\8.686 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 478775.5620
+2025-06-05 11:09:21.055 | INFO     | utils.common:log:12 - step: 86/10000 Loss: 8.6198\8.680 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 168803.2417
+2025-06-05 11:09:22.314 | INFO     | utils.common:log:12 - step: 87/10000 Loss: 8.5897\8.671 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 449000.7246
+2025-06-05 11:09:23.571 | INFO     | utils.common:log:12 - step: 88/10000 Loss: 8.5918\8.663 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 444348.8175
+2025-06-05 11:09:24.832 | INFO     | utils.common:log:12 - step: 89/10000 Loss: 8.6012\8.657 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 480983.5740
+2025-06-05 11:09:26.305 | INFO     | utils.common:log:12 - step: 90/10000 Loss: 8.5845\8.650 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 240950.7148
+2025-06-05 11:09:26.306 | INFO     | utils.common:log:12 - ETA: 00:48:24 
+2025-06-05 11:09:27.563 | INFO     | utils.common:log:12 - step: 91/10000 Loss: 8.5588\8.640 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 465376.4227
+2025-06-05 11:09:28.823 | INFO     | utils.common:log:12 - step: 92/10000 Loss: 8.5554\8.632 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 457876.0297
+2025-06-05 11:09:30.081 | INFO     | utils.common:log:12 - step: 93/10000 Loss: 8.6012\8.629 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461789.6662
+2025-06-05 11:09:31.554 | INFO     | utils.common:log:12 - step: 94/10000 Loss: 8.5553\8.622 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 245185.2228
+2025-06-05 11:09:32.813 | INFO     | utils.common:log:12 - step: 95/10000 Loss: 8.5574\8.615 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461975.0370
+2025-06-05 11:09:34.074 | INFO     | utils.common:log:12 - step: 96/10000 Loss: 8.5281\8.606 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 481061.0900
+2025-06-05 11:09:35.333 | INFO     | utils.common:log:12 - step: 97/10000 Loss: 8.5385\8.600 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 466171.4064
+2025-06-05 11:09:36.803 | INFO     | utils.common:log:12 - step: 98/10000 Loss: 8.5483\8.594 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 235144.4777
+2025-06-05 11:09:38.062 | INFO     | utils.common:log:12 - step: 99/10000 Loss: 8.5029\8.585 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461362.3529
+2025-06-05 11:09:39.321 | INFO     | utils.common:log:12 - step: 100/10000 Loss: 8.5134\8.578 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 434970.1075
+2025-06-05 11:09:39.322 | INFO     | utils.common:log:12 - ETA: 00:44:42 
+2025-06-05 11:09:40.581 | INFO     | utils.common:log:12 - step: 101/10000 Loss: 8.5147\8.572 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 467221.3445
+2025-06-05 11:09:42.071 | INFO     | utils.common:log:12 - step: 102/10000 Loss: 8.5497\8.570 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 221956.4085
+2025-06-05 11:09:43.331 | INFO     | utils.common:log:12 - step: 103/10000 Loss: 8.5285\8.565 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 454727.2197
+2025-06-05 11:09:44.588 | INFO     | utils.common:log:12 - step: 104/10000 Loss: 8.4994\8.559 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 463810.0367
+2025-06-05 11:09:45.848 | INFO     | utils.common:log:12 - step: 105/10000 Loss: 8.4863\8.552 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 465322.0014
+2025-06-05 11:09:47.489 | INFO     | utils.common:log:12 - step: 106/10000 Loss: 8.5021\8.547 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 174153.9822
+2025-06-05 11:09:48.748 | INFO     | utils.common:log:12 - step: 107/10000 Loss: 8.4687\8.539 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 475672.7815
+2025-06-05 11:09:50.007 | INFO     | utils.common:log:12 - step: 108/10000 Loss: 8.5301\8.538 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 453843.6826
+2025-06-05 11:09:51.265 | INFO     | utils.common:log:12 - step: 109/10000 Loss: 8.4633\8.531 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 451504.3663
+2025-06-05 11:09:52.760 | INFO     | utils.common:log:12 - step: 110/10000 Loss: 8.4778\8.525 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 226979.8901
+2025-06-05 11:09:52.760 | INFO     | utils.common:log:12 - ETA: 00:48:16 
+2025-06-05 11:09:54.018 | INFO     | utils.common:log:12 - step: 111/10000 Loss: 8.4690\8.520 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 455260.1943
+2025-06-05 11:09:55.280 | INFO     | utils.common:log:12 - step: 112/10000 Loss: 8.4908\8.517 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 430574.0518
+2025-06-05 11:09:56.538 | INFO     | utils.common:log:12 - step: 113/10000 Loss: 8.4610\8.511 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 454782.2185
+2025-06-05 11:09:58.018 | INFO     | utils.common:log:12 - step: 114/10000 Loss: 8.4592\8.506 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 236262.5111
+2025-06-05 11:09:59.276 | INFO     | utils.common:log:12 - step: 115/10000 Loss: 8.4508\8.500 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 451412.7615
+2025-06-05 11:10:00.532 | INFO     | utils.common:log:12 - step: 116/10000 Loss: 8.4726\8.498 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 462960.7820
+2025-06-05 11:10:01.791 | INFO     | utils.common:log:12 - step: 117/10000 Loss: 8.4472\8.493 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456004.2410
+2025-06-05 11:10:03.273 | INFO     | utils.common:log:12 - step: 118/10000 Loss: 8.4471\8.488 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 224781.7318
+2025-06-05 11:10:04.532 | INFO     | utils.common:log:12 - step: 119/10000 Loss: 8.4525\8.485 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 480318.9875
+2025-06-05 11:10:05.789 | INFO     | utils.common:log:12 - step: 120/10000 Loss: 8.4739\8.483 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 441735.1947
+2025-06-05 11:10:05.789 | INFO     | utils.common:log:12 - ETA: 00:44:48 
+2025-06-05 11:10:07.046 | INFO     | utils.common:log:12 - step: 121/10000 Loss: 8.4774\8.483 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 453064.0266
+2025-06-05 11:10:08.703 | INFO     | utils.common:log:12 - step: 122/10000 Loss: 8.4441\8.479 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 159533.4065
+2025-06-05 11:10:09.959 | INFO     | utils.common:log:12 - step: 123/10000 Loss: 8.4396\8.475 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464978.9066
+2025-06-05 11:10:11.216 | INFO     | utils.common:log:12 - step: 124/10000 Loss: 8.4196\8.469 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464687.1382
+2025-06-05 11:10:12.473 | INFO     | utils.common:log:12 - step: 125/10000 Loss: 8.4488\8.467 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 447460.2773
+2025-06-05 11:10:14.133 | INFO     | utils.common:log:12 - step: 126/10000 Loss: 8.4109\8.462 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 165922.7427
+2025-06-05 11:10:15.391 | INFO     | utils.common:log:12 - step: 127/10000 Loss: 8.3996\8.456 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 479463.6475
+2025-06-05 11:10:16.649 | INFO     | utils.common:log:12 - step: 128/10000 Loss: 8.4056\8.451 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 458128.4794
+2025-06-05 11:10:18.110 | INFO     | utils.common:log:12 - step: 129/10000 Loss: 8.4066\8.446 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 233059.9140
+2025-06-05 11:10:19.368 | INFO     | utils.common:log:12 - step: 130/10000 Loss: 8.3950\8.441 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 474969.6628
+2025-06-05 11:10:19.368 | INFO     | utils.common:log:12 - ETA: 00:48:49 
+2025-06-05 11:10:20.627 | INFO     | utils.common:log:12 - step: 131/10000 Loss: 8.4039\8.437 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 459665.0716
+2025-06-05 11:10:21.885 | INFO     | utils.common:log:12 - step: 132/10000 Loss: 8.4002\8.434 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456135.2653
+2025-06-05 11:10:23.371 | INFO     | utils.common:log:12 - step: 133/10000 Loss: 8.4094\8.431 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 231562.9120
+2025-06-05 11:10:24.629 | INFO     | utils.common:log:12 - step: 134/10000 Loss: 8.3824\8.426 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456899.3137
+2025-06-05 11:10:25.886 | INFO     | utils.common:log:12 - step: 135/10000 Loss: 8.4165\8.425 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456958.6868
+2025-06-05 11:10:27.143 | INFO     | utils.common:log:12 - step: 136/10000 Loss: 8.4006\8.423 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456681.4865
+2025-06-05 11:10:28.612 | INFO     | utils.common:log:12 - step: 137/10000 Loss: 8.4172\8.422 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 225771.1861
+2025-06-05 11:10:29.871 | INFO     | utils.common:log:12 - step: 138/10000 Loss: 8.3836\8.418 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464187.5240
+2025-06-05 11:10:31.131 | INFO     | utils.common:log:12 - step: 139/10000 Loss: 8.3617\8.413 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 474359.3910
+2025-06-05 11:10:32.388 | INFO     | utils.common:log:12 - step: 140/10000 Loss: 8.3529\8.407 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 437060.2694
+2025-06-05 11:10:32.388 | INFO     | utils.common:log:12 - ETA: 00:44:19 
+2025-06-05 11:10:33.969 | INFO     | utils.common:log:12 - step: 141/10000 Loss: 8.3804\8.404 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 189390.6737
+2025-06-05 11:10:35.226 | INFO     | utils.common:log:12 - step: 142/10000 Loss: 8.3783\8.402 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 450971.6402
+2025-06-05 11:10:36.486 | INFO     | utils.common:log:12 - step: 143/10000 Loss: 8.3692\8.398 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 474582.5326
+2025-06-05 11:10:37.743 | INFO     | utils.common:log:12 - step: 144/10000 Loss: 8.3859\8.397 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464732.1379
+2025-06-05 11:10:39.234 | INFO     | utils.common:log:12 - step: 145/10000 Loss: 8.3493\8.392 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 216080.9521
+2025-06-05 11:10:40.493 | INFO     | utils.common:log:12 - step: 146/10000 Loss: 8.3736\8.390 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 457763.6722
+2025-06-05 11:10:41.755 | INFO     | utils.common:log:12 - step: 147/10000 Loss: 8.3253\8.384 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464935.8727
+2025-06-05 11:10:43.012 | INFO     | utils.common:log:12 - step: 148/10000 Loss: 8.3212\8.378 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 460645.5144
+2025-06-05 11:10:44.487 | INFO     | utils.common:log:12 - step: 149/10000 Loss: 8.3327\8.373 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 241458.3227
+2025-06-05 11:10:45.742 | INFO     | utils.common:log:12 - step: 150/10000 Loss: 8.3210\8.368 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 447534.9946
+2025-06-05 11:10:45.742 | INFO     | utils.common:log:12 - ETA: 00:45:58 
+2025-06-05 11:10:46.999 | INFO     | utils.common:log:12 - step: 151/10000 Loss: 8.3243\8.364 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 463928.4815
+2025-06-05 11:10:48.258 | INFO     | utils.common:log:12 - step: 152/10000 Loss: 8.3282\8.360 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 455593.0520
+2025-06-05 11:10:49.729 | INFO     | utils.common:log:12 - step: 153/10000 Loss: 8.3298\8.357 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 225211.7109
+2025-06-05 11:10:50.990 | INFO     | utils.common:log:12 - step: 154/10000 Loss: 8.3239\8.354 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464260.2803
+2025-06-05 11:10:52.249 | INFO     | utils.common:log:12 - step: 155/10000 Loss: 8.3161\8.350 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471534.8168
+2025-06-05 11:10:53.508 | INFO     | utils.common:log:12 - step: 156/10000 Loss: 8.3244\8.347 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461135.9856
+2025-06-05 11:10:54.995 | INFO     | utils.common:log:12 - step: 157/10000 Loss: 8.3332\8.346 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 216853.4059
+2025-06-05 11:10:56.255 | INFO     | utils.common:log:12 - step: 158/10000 Loss: 8.3223\8.344 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 455177.6298
+2025-06-05 11:10:57.512 | INFO     | utils.common:log:12 - step: 159/10000 Loss: 8.2740\8.337 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456294.3221
+2025-06-05 11:10:58.772 | INFO     | utils.common:log:12 - step: 160/10000 Loss: 8.3135\8.334 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 472853.5372
+2025-06-05 11:10:58.772 | INFO     | utils.common:log:12 - ETA: 00:43:23 
+2025-06-05 11:11:00.455 | INFO     | utils.common:log:12 - step: 161/10000 Loss: 8.3157\8.332 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 157390.4719
+2025-06-05 11:11:01.712 | INFO     | utils.common:log:12 - step: 162/10000 Loss: 8.3025\8.329 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 475630.1269
+2025-06-05 11:11:02.972 | INFO     | utils.common:log:12 - step: 163/10000 Loss: 8.3398\8.330 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 472987.9318
+2025-06-05 11:11:04.230 | INFO     | utils.common:log:12 - step: 164/10000 Loss: 8.3011\8.328 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 454393.9779
+2025-06-05 11:11:05.724 | INFO     | utils.common:log:12 - step: 165/10000 Loss: 8.2746\8.322 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 221654.1902
+2025-06-05 11:11:06.982 | INFO     | utils.common:log:12 - step: 166/10000 Loss: 8.2576\8.316 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471731.0804
+2025-06-05 11:11:08.240 | INFO     | utils.common:log:12 - step: 167/10000 Loss: 8.2600\8.310 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 465899.3298
+2025-06-05 11:11:09.735 | INFO     | utils.common:log:12 - step: 168/10000 Loss: 8.3106\8.310 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 222729.8688
+2025-06-05 11:11:10.996 | INFO     | utils.common:log:12 - step: 169/10000 Loss: 8.2722\8.306 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 462637.6237
+2025-06-05 11:11:12.255 | INFO     | utils.common:log:12 - step: 170/10000 Loss: 8.2497\8.301 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471988.6216
+2025-06-05 11:11:12.255 | INFO     | utils.common:log:12 - ETA: 00:46:08 
+2025-06-05 11:11:13.515 | INFO     | utils.common:log:12 - step: 171/10000 Loss: 8.2663\8.297 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 483973.7204
+2025-06-05 11:11:15.020 | INFO     | utils.common:log:12 - step: 172/10000 Loss: 8.2758\8.295 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 222123.8940
+2025-06-05 11:11:16.276 | INFO     | utils.common:log:12 - step: 173/10000 Loss: 8.2835\8.294 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 487507.8001
+2025-06-05 11:11:17.535 | INFO     | utils.common:log:12 - step: 174/10000 Loss: 8.2763\8.292 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 474652.1715
+2025-06-05 11:11:18.793 | INFO     | utils.common:log:12 - step: 175/10000 Loss: 8.2721\8.290 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 459895.8867
+2025-06-05 11:11:20.413 | INFO     | utils.common:log:12 - step: 176/10000 Loss: 8.2953\8.291 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 170581.4148
+2025-06-05 11:11:21.670 | INFO     | utils.common:log:12 - step: 177/10000 Loss: 8.2609\8.288 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461577.1262
+2025-06-05 11:11:22.929 | INFO     | utils.common:log:12 - step: 178/10000 Loss: 8.2688\8.286 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 474912.2673
+2025-06-05 11:11:24.189 | INFO     | utils.common:log:12 - step: 179/10000 Loss: 8.2776\8.285 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468215.2687
+2025-06-05 11:11:25.680 | INFO     | utils.common:log:12 - step: 180/10000 Loss: 8.2423\8.281 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 225026.2183
+2025-06-05 11:11:25.680 | INFO     | utils.common:log:12 - ETA: 00:48:22 
+2025-06-05 11:11:26.937 | INFO     | utils.common:log:12 - step: 181/10000 Loss: 8.2500\8.278 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464300.2833
+2025-06-05 11:11:28.197 | INFO     | utils.common:log:12 - step: 182/10000 Loss: 8.2450\8.274 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 488812.8067
+2025-06-05 11:11:29.457 | INFO     | utils.common:log:12 - step: 183/10000 Loss: 8.2576\8.273 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 476669.1189
+2025-06-05 11:11:30.917 | INFO     | utils.common:log:12 - step: 184/10000 Loss: 8.2394\8.269 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 230229.7272
+2025-06-05 11:11:32.174 | INFO     | utils.common:log:12 - step: 185/10000 Loss: 8.2317\8.266 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 438182.0899
+2025-06-05 11:11:33.436 | INFO     | utils.common:log:12 - step: 186/10000 Loss: 8.2618\8.265 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 479002.4890
+2025-06-05 11:11:34.695 | INFO     | utils.common:log:12 - step: 187/10000 Loss: 8.2470\8.263 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471178.9238
+2025-06-05 11:11:36.180 | INFO     | utils.common:log:12 - step: 188/10000 Loss: 8.2454\8.262 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 232188.2271
+2025-06-05 11:11:37.438 | INFO     | utils.common:log:12 - step: 189/10000 Loss: 8.2600\8.261 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 446177.2976
+2025-06-05 11:11:38.699 | INFO     | utils.common:log:12 - step: 190/10000 Loss: 8.2255\8.258 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 465527.1541
+2025-06-05 11:11:38.699 | INFO     | utils.common:log:12 - ETA: 00:44:27 
+2025-06-05 11:11:39.956 | INFO     | utils.common:log:12 - step: 191/10000 Loss: 8.2677\8.259 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 449363.6849
+2025-06-05 11:11:41.442 | INFO     | utils.common:log:12 - step: 192/10000 Loss: 8.2477\8.258 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 235681.8317
+2025-06-05 11:11:42.701 | INFO     | utils.common:log:12 - step: 193/10000 Loss: 8.1997\8.252 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 474752.1891
+2025-06-05 11:11:43.959 | INFO     | utils.common:log:12 - step: 194/10000 Loss: 8.1962\8.246 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 450070.9296
+2025-06-05 11:11:45.219 | INFO     | utils.common:log:12 - step: 195/10000 Loss: 8.1944\8.241 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 476740.4622
+2025-06-05 11:11:46.829 | INFO     | utils.common:log:12 - step: 196/10000 Loss: 8.2148\8.239 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 174123.0759
+2025-06-05 11:11:48.088 | INFO     | utils.common:log:12 - step: 197/10000 Loss: 8.2223\8.237 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 482968.6492
+2025-06-05 11:11:49.347 | INFO     | utils.common:log:12 - step: 198/10000 Loss: 8.2132\8.235 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 455636.0529
+2025-06-05 11:11:50.606 | INFO     | utils.common:log:12 - step: 199/10000 Loss: 8.2020\8.231 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464473.8725
+2025-06-05 11:11:52.084 | INFO     | utils.common:log:12 - step: 200/10000 Loss: 8.2185\8.230 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 226358.3631
+2025-06-05 11:11:52.085 | INFO     | utils.common:log:12 - ETA: 00:47:18 
+2025-06-05 11:11:53.343 | INFO     | utils.common:log:12 - step: 201/10000 Loss: 8.2344\8.230 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461321.2910
+2025-06-05 11:11:54.600 | INFO     | utils.common:log:12 - step: 202/10000 Loss: 8.2081\8.228 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456986.1896
+2025-06-05 11:11:55.859 | INFO     | utils.common:log:12 - step: 203/10000 Loss: 8.1851\8.224 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 459447.4527
+2025-06-05 11:11:57.361 | INFO     | utils.common:log:12 - step: 204/10000 Loss: 8.2049\8.222 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 224104.3090
+2025-06-05 11:11:58.618 | INFO     | utils.common:log:12 - step: 205/10000 Loss: 8.2133\8.221 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 439320.4255
+2025-06-05 11:11:59.878 | INFO     | utils.common:log:12 - step: 206/10000 Loss: 8.2002\8.219 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 450537.5482
+2025-06-05 11:12:01.137 | INFO     | utils.common:log:12 - step: 207/10000 Loss: 8.1784\8.215 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 467863.7803
+2025-06-05 11:12:02.627 | INFO     | utils.common:log:12 - step: 208/10000 Loss: 8.2180\8.215 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 218313.6005
+2025-06-05 11:12:03.883 | INFO     | utils.common:log:12 - step: 209/10000 Loss: 8.1761\8.211 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 466135.0486
+2025-06-05 11:12:05.143 | INFO     | utils.common:log:12 - step: 210/10000 Loss: 8.2534\8.216 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 457340.7847
+2025-06-05 11:12:05.143 | INFO     | utils.common:log:12 - ETA: 00:44:28 
+2025-06-05 11:12:06.623 | INFO     | utils.common:log:12 - step: 211/10000 Loss: 8.2015\8.214 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 226684.3881
+2025-06-05 11:12:07.883 | INFO     | utils.common:log:12 - step: 212/10000 Loss: 8.1867\8.211 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 477030.1257
+2025-06-05 11:12:09.142 | INFO     | utils.common:log:12 - step: 213/10000 Loss: 8.1869\8.209 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 478850.7232
+2025-06-05 11:12:10.402 | INFO     | utils.common:log:12 - step: 214/10000 Loss: 8.2012\8.208 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 455586.9023
+2025-06-05 11:12:12.008 | INFO     | utils.common:log:12 - step: 215/10000 Loss: 8.1810\8.205 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 174242.7653
+2025-06-05 11:12:13.266 | INFO     | utils.common:log:12 - step: 216/10000 Loss: 8.1653\8.201 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 460759.5075
+2025-06-05 11:12:14.524 | INFO     | utils.common:log:12 - step: 217/10000 Loss: 8.1816\8.199 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468467.5151
+2025-06-05 11:12:15.784 | INFO     | utils.common:log:12 - step: 218/10000 Loss: 8.2057\8.200 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 449454.8893
+2025-06-05 11:12:17.269 | INFO     | utils.common:log:12 - step: 219/10000 Loss: 8.1632\8.196 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 225971.5352
+2025-06-05 11:12:18.530 | INFO     | utils.common:log:12 - step: 220/10000 Loss: 8.1610\8.193 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 475503.4657
+2025-06-05 11:12:18.530 | INFO     | utils.common:log:12 - ETA: 00:46:22 
+2025-06-05 11:12:19.788 | INFO     | utils.common:log:12 - step: 221/10000 Loss: 8.1406\8.188 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 470104.5538
+2025-06-05 11:12:21.048 | INFO     | utils.common:log:12 - step: 222/10000 Loss: 8.1933\8.188 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 473599.4812
+2025-06-05 11:12:22.552 | INFO     | utils.common:log:12 - step: 223/10000 Loss: 8.1747\8.187 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 217158.2211
+2025-06-05 11:12:23.812 | INFO     | utils.common:log:12 - step: 224/10000 Loss: 8.1460\8.183 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471897.6486
+2025-06-05 11:12:25.070 | INFO     | utils.common:log:12 - step: 225/10000 Loss: 8.1777\8.182 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 447695.1036
+2025-06-05 11:12:26.328 | INFO     | utils.common:log:12 - step: 226/10000 Loss: 8.1749\8.182 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 455429.2864
+2025-06-05 11:12:27.837 | INFO     | utils.common:log:12 - step: 227/10000 Loss: 8.1523\8.179 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 211668.7146
+2025-06-05 11:12:29.097 | INFO     | utils.common:log:12 - step: 228/10000 Loss: 8.1288\8.174 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 499573.4590
+2025-06-05 11:12:30.354 | INFO     | utils.common:log:12 - step: 229/10000 Loss: 8.1317\8.169 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 455655.8316
+2025-06-05 11:12:31.614 | INFO     | utils.common:log:12 - step: 230/10000 Loss: 8.1905\8.172 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 463194.8015
+2025-06-05 11:12:31.614 | INFO     | utils.common:log:12 - ETA: 00:43:50 
+2025-06-05 11:12:33.234 | INFO     | utils.common:log:12 - step: 231/10000 Loss: 8.1748\8.172 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 172947.9064
+2025-06-05 11:12:34.493 | INFO     | utils.common:log:12 - step: 232/10000 Loss: 8.1239\8.167 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 486612.7326
+2025-06-05 11:12:35.753 | INFO     | utils.common:log:12 - step: 233/10000 Loss: 8.1807\8.168 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471141.5979
+2025-06-05 11:12:37.011 | INFO     | utils.common:log:12 - step: 234/10000 Loss: 8.1192\8.163 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468727.7228
+2025-06-05 11:12:38.679 | INFO     | utils.common:log:12 - step: 235/10000 Loss: 8.1299\8.160 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 152756.4661
+2025-06-05 11:12:39.938 | INFO     | utils.common:log:12 - step: 236/10000 Loss: 8.1893\8.163 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 473593.4224
+2025-06-05 11:12:41.197 | INFO     | utils.common:log:12 - step: 237/10000 Loss: 8.1348\8.160 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 479881.4675
+2025-06-05 11:12:42.458 | INFO     | utils.common:log:12 - step: 238/10000 Loss: 8.1504\8.159 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 479363.1184
+2025-06-05 11:12:43.962 | INFO     | utils.common:log:12 - step: 239/10000 Loss: 8.1375\8.157 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 222672.9817
+2025-06-05 11:12:45.223 | INFO     | utils.common:log:12 - step: 240/10000 Loss: 8.1244\8.154 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 475645.3099
+2025-06-05 11:12:45.223 | INFO     | utils.common:log:12 - ETA: 00:47:51 
+2025-06-05 11:12:46.483 | INFO     | utils.common:log:12 - step: 241/10000 Loss: 8.1309\8.152 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 463823.3462
+2025-06-05 11:12:47.743 | INFO     | utils.common:log:12 - step: 242/10000 Loss: 8.1079\8.147 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 449095.6553
+2025-06-05 11:12:49.206 | INFO     | utils.common:log:12 - step: 243/10000 Loss: 8.1442\8.147 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 221129.7520
+2025-06-05 11:12:50.464 | INFO     | utils.common:log:12 - step: 244/10000 Loss: 8.1280\8.145 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 460402.4392
+2025-06-05 11:12:51.722 | INFO     | utils.common:log:12 - step: 245/10000 Loss: 8.1185\8.142 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 450492.9367
+2025-06-05 11:12:52.983 | INFO     | utils.common:log:12 - step: 246/10000 Loss: 8.1573\8.144 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461832.7896
+2025-06-05 11:12:54.471 | INFO     | utils.common:log:12 - step: 247/10000 Loss: 8.1446\8.144 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 222224.4748
+2025-06-05 11:12:55.730 | INFO     | utils.common:log:12 - step: 248/10000 Loss: 8.1243\8.142 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 476858.5916
+2025-06-05 11:12:56.989 | INFO     | utils.common:log:12 - step: 249/10000 Loss: 8.1529\8.143 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 469894.2215
+2025-06-05 11:12:58.247 | INFO     | utils.common:log:12 - step: 250/10000 Loss: 8.1296\8.142 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471422.3384
+2025-06-05 11:12:58.248 | INFO     | utils.common:log:12 - ETA: 00:43:45 
+2025-06-05 11:12:59.855 | INFO     | utils.common:log:12 - step: 251/10000 Loss: 8.1255\8.140 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 178600.7843
+2025-06-05 11:13:01.114 | INFO     | utils.common:log:12 - step: 252/10000 Loss: 8.1161\8.138 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 470976.1024
+2025-06-05 11:13:02.373 | INFO     | utils.common:log:12 - step: 253/10000 Loss: 8.1514\8.139 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456972.2790
+2025-06-05 11:13:03.856 | INFO     | utils.common:log:12 - step: 254/10000 Loss: 8.0866\8.134 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 221390.7472
+2025-06-05 11:13:05.117 | INFO     | utils.common:log:12 - step: 255/10000 Loss: 8.1052\8.131 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471979.9146
+2025-06-05 11:13:06.377 | INFO     | utils.common:log:12 - step: 256/10000 Loss: 8.1592\8.134 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 450679.5719
+2025-06-05 11:13:07.639 | INFO     | utils.common:log:12 - step: 257/10000 Loss: 8.0826\8.129 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 463574.7581
+2025-06-05 11:13:09.138 | INFO     | utils.common:log:12 - step: 258/10000 Loss: 8.1273\8.129 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 221145.0284
+2025-06-05 11:13:10.401 | INFO     | utils.common:log:12 - step: 259/10000 Loss: 8.1205\8.128 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 466778.8717
+2025-06-05 11:13:11.661 | INFO     | utils.common:log:12 - step: 260/10000 Loss: 8.1320\8.128 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 475953.9441
+2025-06-05 11:13:11.661 | INFO     | utils.common:log:12 - ETA: 00:45:16 
+2025-06-05 11:13:12.921 | INFO     | utils.common:log:12 - step: 261/10000 Loss: 8.0916\8.124 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 453889.6607
+2025-06-05 11:13:14.414 | INFO     | utils.common:log:12 - step: 262/10000 Loss: 8.0896\8.121 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 215442.5725
+2025-06-05 11:13:15.675 | INFO     | utils.common:log:12 - step: 263/10000 Loss: 8.1030\8.119 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 479911.2597
+2025-06-05 11:13:16.936 | INFO     | utils.common:log:12 - step: 264/10000 Loss: 8.1314\8.120 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 453715.9661
+2025-06-05 11:13:18.196 | INFO     | utils.common:log:12 - step: 265/10000 Loss: 8.0967\8.118 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 475329.8329
+2025-06-05 11:13:19.788 | INFO     | utils.common:log:12 - step: 266/10000 Loss: 8.1158\8.118 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 180375.4052
+2025-06-05 11:13:21.051 | INFO     | utils.common:log:12 - step: 267/10000 Loss: 8.1151\8.118 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 453278.7413
+2025-06-05 11:13:22.314 | INFO     | utils.common:log:12 - step: 268/10000 Loss: 8.0936\8.115 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 474823.3747
+2025-06-05 11:13:23.576 | INFO     | utils.common:log:12 - step: 269/10000 Loss: 8.1243\8.116 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 465667.3982
+2025-06-05 11:13:25.122 | INFO     | utils.common:log:12 - step: 270/10000 Loss: 8.0570\8.110 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 203949.9463
+2025-06-05 11:13:25.122 | INFO     | utils.common:log:12 - ETA: 00:48:18 
+2025-06-05 11:13:26.383 | INFO     | utils.common:log:12 - step: 271/10000 Loss: 8.1070\8.110 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 452299.6513
+2025-06-05 11:13:27.642 | INFO     | utils.common:log:12 - step: 272/10000 Loss: 8.0830\8.107 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 473549.7761
+2025-06-05 11:13:28.904 | INFO     | utils.common:log:12 - step: 273/10000 Loss: 8.1023\8.107 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 451693.6383
+2025-06-05 11:13:30.387 | INFO     | utils.common:log:12 - step: 274/10000 Loss: 8.0783\8.104 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 224194.1902
+2025-06-05 11:13:31.651 | INFO     | utils.common:log:12 - step: 275/10000 Loss: 8.0989\8.103 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 477523.1489
+2025-06-05 11:13:32.911 | INFO     | utils.common:log:12 - step: 276/10000 Loss: 8.1062\8.104 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 469670.7717
+2025-06-05 11:13:34.172 | INFO     | utils.common:log:12 - step: 277/10000 Loss: 8.0816\8.101 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 458773.1327
+2025-06-05 11:13:35.640 | INFO     | utils.common:log:12 - step: 278/10000 Loss: 8.0892\8.100 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 236045.8242
+2025-06-05 11:13:36.900 | INFO     | utils.common:log:12 - step: 279/10000 Loss: 8.0785\8.098 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 440423.2561
+2025-06-05 11:13:38.162 | INFO     | utils.common:log:12 - step: 280/10000 Loss: 8.1167\8.100 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468404.0135
+2025-06-05 11:13:38.162 | INFO     | utils.common:log:12 - ETA: 00:44:14 
+2025-06-05 11:13:39.425 | INFO     | utils.common:log:12 - step: 281/10000 Loss: 8.0589\8.096 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 469626.6835
+2025-06-05 11:13:40.901 | INFO     | utils.common:log:12 - step: 282/10000 Loss: 8.1060\8.097 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 233523.2124
+2025-06-05 11:13:42.162 | INFO     | utils.common:log:12 - step: 283/10000 Loss: 8.0803\8.095 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461166.6424
+2025-06-05 11:13:43.424 | INFO     | utils.common:log:12 - step: 284/10000 Loss: 8.0705\8.093 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471653.9436
+2025-06-05 11:13:44.684 | INFO     | utils.common:log:12 - step: 285/10000 Loss: 8.0941\8.093 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 443333.3170
+2025-06-05 11:13:46.379 | INFO     | utils.common:log:12 - step: 286/10000 Loss: 8.0738\8.091 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 152840.2133
+2025-06-05 11:13:47.641 | INFO     | utils.common:log:12 - step: 287/10000 Loss: 8.0268\8.085 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 475043.5780
+2025-06-05 11:13:48.901 | INFO     | utils.common:log:12 - step: 288/10000 Loss: 8.0833\8.084 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456668.6655
+2025-06-05 11:13:50.162 | INFO     | utils.common:log:12 - step: 289/10000 Loss: 8.0833\8.084 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 460796.7485
+2025-06-05 11:13:51.699 | INFO     | utils.common:log:12 - step: 290/10000 Loss: 8.0838\8.084 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 201641.5518
+2025-06-05 11:13:51.699 | INFO     | utils.common:log:12 - ETA: 00:48:43 
+2025-06-05 11:13:52.960 | INFO     | utils.common:log:12 - step: 291/10000 Loss: 8.0696\8.083 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 444599.8822
+2025-06-05 11:13:54.220 | INFO     | utils.common:log:12 - step: 292/10000 Loss: 8.0616\8.081 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 470859.8385
+2025-06-05 11:13:55.707 | INFO     | utils.common:log:12 - step: 293/10000 Loss: 8.0577\8.078 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 222872.7927
+2025-06-05 11:13:56.970 | INFO     | utils.common:log:12 - step: 294/10000 Loss: 8.0286\8.073 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 467681.7213
+2025-06-05 11:13:58.231 | INFO     | utils.common:log:12 - step: 295/10000 Loss: 8.0946\8.076 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 448440.5439
+2025-06-05 11:13:59.496 | INFO     | utils.common:log:12 - step: 296/10000 Loss: 8.0618\8.074 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461009.5505
+2025-06-05 11:14:01.020 | INFO     | utils.common:log:12 - step: 297/10000 Loss: 8.0588\8.073 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 206880.2142
+2025-06-05 11:14:02.282 | INFO     | utils.common:log:12 - step: 298/10000 Loss: 8.0483\8.070 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 455158.8778
+2025-06-05 11:14:03.545 | INFO     | utils.common:log:12 - step: 299/10000 Loss: 8.0572\8.069 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 477772.5754
+2025-06-05 11:14:04.806 | INFO     | utils.common:log:12 - step: 300/10000 Loss: 8.0208\8.064 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461138.8428
+2025-06-05 11:14:04.806 | INFO     | utils.common:log:12 - ETA: 00:44:31 
+2025-06-05 11:14:06.441 | INFO     | utils.common:log:12 - step: 301/10000 Loss: 8.0359\8.061 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 174125.0384
+2025-06-05 11:14:07.701 | INFO     | utils.common:log:12 - step: 302/10000 Loss: 8.0794\8.063 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 457375.6344
+2025-06-05 11:14:08.961 | INFO     | utils.common:log:12 - step: 303/10000 Loss: 8.0698\8.064 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 466468.2903
+2025-06-05 11:14:10.223 | INFO     | utils.common:log:12 - step: 304/10000 Loss: 8.0638\8.064 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 447526.4268
+2025-06-05 11:14:11.721 | INFO     | utils.common:log:12 - step: 305/10000 Loss: 8.0439\8.062 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 216690.7773
+2025-06-05 11:14:12.984 | INFO     | utils.common:log:12 - step: 306/10000 Loss: 8.0306\8.059 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 457899.3181
+2025-06-05 11:14:14.244 | INFO     | utils.common:log:12 - step: 307/10000 Loss: 8.0782\8.061 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 458412.5560
+2025-06-05 11:14:15.508 | INFO     | utils.common:log:12 - step: 308/10000 Loss: 8.0763\8.062 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 479473.7092
+2025-06-05 11:14:16.992 | INFO     | utils.common:log:12 - step: 309/10000 Loss: 8.0160\8.058 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 220655.2984
+2025-06-05 11:14:18.251 | INFO     | utils.common:log:12 - step: 310/10000 Loss: 8.0337\8.055 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 458897.7197
+2025-06-05 11:14:18.252 | INFO     | utils.common:log:12 - ETA: 00:46:04 
+2025-06-05 11:14:19.510 | INFO     | utils.common:log:12 - step: 311/10000 Loss: 8.0572\8.055 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 440412.1738
+2025-06-05 11:14:20.772 | INFO     | utils.common:log:12 - step: 312/10000 Loss: 8.0580\8.056 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 459661.1831
+2025-06-05 11:14:22.247 | INFO     | utils.common:log:12 - step: 313/10000 Loss: 8.0544\8.056 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 232226.0200
+2025-06-05 11:14:23.509 | INFO     | utils.common:log:12 - step: 314/10000 Loss: 8.0320\8.053 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 470307.4480
+2025-06-05 11:14:24.770 | INFO     | utils.common:log:12 - step: 315/10000 Loss: 8.0567\8.054 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464953.5357
+2025-06-05 11:14:26.034 | INFO     | utils.common:log:12 - step: 316/10000 Loss: 8.0195\8.050 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 462246.8613
+2025-06-05 11:14:27.559 | INFO     | utils.common:log:12 - step: 317/10000 Loss: 8.0680\8.052 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 213069.1628
+2025-06-05 11:14:28.821 | INFO     | utils.common:log:12 - step: 318/10000 Loss: 8.0369\8.050 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471865.3411
+2025-06-05 11:14:30.081 | INFO     | utils.common:log:12 - step: 319/10000 Loss: 8.0135\8.047 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 470667.5968
+2025-06-05 11:14:31.342 | INFO     | utils.common:log:12 - step: 320/10000 Loss: 8.0278\8.045 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461719.7321
+2025-06-05 11:14:31.343 | INFO     | utils.common:log:12 - ETA: 00:43:27 
+2025-06-05 11:14:32.973 | INFO     | utils.common:log:12 - step: 321/10000 Loss: 8.0648\8.047 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 166968.3044
+2025-06-05 11:14:34.232 | INFO     | utils.common:log:12 - step: 322/10000 Loss: 8.0156\8.044 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456621.0009
+2025-06-05 11:14:35.491 | INFO     | utils.common:log:12 - step: 323/10000 Loss: 8.0523\8.045 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 446777.3793
+2025-06-05 11:14:36.752 | INFO     | utils.common:log:12 - step: 324/10000 Loss: 8.0179\8.042 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 470389.5801
+2025-06-05 11:14:38.221 | INFO     | utils.common:log:12 - step: 325/10000 Loss: 8.0113\8.039 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 239081.7552
+2025-06-05 11:14:39.481 | INFO     | utils.common:log:12 - step: 326/10000 Loss: 8.0280\8.038 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 460914.0598
+2025-06-05 11:14:40.738 | INFO     | utils.common:log:12 - step: 327/10000 Loss: 8.0655\8.041 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 451863.2454
+2025-06-05 11:14:41.999 | INFO     | utils.common:log:12 - step: 328/10000 Loss: 8.0646\8.043 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 473839.1113
+2025-06-05 11:14:43.467 | INFO     | utils.common:log:12 - step: 329/10000 Loss: 8.0053\8.039 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 235813.9061
+2025-06-05 11:14:44.728 | INFO     | utils.common:log:12 - step: 330/10000 Loss: 8.0104\8.036 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 455978.3311
+2025-06-05 11:14:44.728 | INFO     | utils.common:log:12 - ETA: 00:45:03 
+2025-06-05 11:14:45.986 | INFO     | utils.common:log:12 - step: 331/10000 Loss: 8.0084\8.034 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 452747.6262
+2025-06-05 11:14:47.246 | INFO     | utils.common:log:12 - step: 332/10000 Loss: 8.0121\8.031 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 453031.9349
+2025-06-05 11:14:48.739 | INFO     | utils.common:log:12 - step: 333/10000 Loss: 8.0159\8.030 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 222842.7868
+2025-06-05 11:14:49.999 | INFO     | utils.common:log:12 - step: 334/10000 Loss: 8.0487\8.032 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 481345.7579
+2025-06-05 11:14:51.260 | INFO     | utils.common:log:12 - step: 335/10000 Loss: 8.0064\8.029 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 488411.4115
+2025-06-05 11:14:52.853 | INFO     | utils.common:log:12 - step: 336/10000 Loss: 7.9966\8.026 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 180778.6254
+2025-06-05 11:14:54.115 | INFO     | utils.common:log:12 - step: 337/10000 Loss: 8.0382\8.027 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468962.6476
+2025-06-05 11:14:55.375 | INFO     | utils.common:log:12 - step: 338/10000 Loss: 8.0067\8.025 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 479653.0523
+2025-06-05 11:14:56.636 | INFO     | utils.common:log:12 - step: 339/10000 Loss: 8.0067\8.023 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 470026.3587
+2025-06-05 11:14:58.159 | INFO     | utils.common:log:12 - step: 340/10000 Loss: 8.0003\8.021 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 202009.1217
+2025-06-05 11:14:58.159 | INFO     | utils.common:log:12 - ETA: 00:47:49 
+2025-06-05 11:14:59.421 | INFO     | utils.common:log:12 - step: 341/10000 Loss: 7.9851\8.017 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471766.0461
+2025-06-05 11:15:00.680 | INFO     | utils.common:log:12 - step: 342/10000 Loss: 8.0195\8.018 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 444501.8218
+2025-06-05 11:15:01.940 | INFO     | utils.common:log:12 - step: 343/10000 Loss: 8.0187\8.018 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 474066.5146
+2025-06-05 11:15:03.409 | INFO     | utils.common:log:12 - step: 344/10000 Loss: 8.0589\8.022 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 229710.6983
+2025-06-05 11:15:04.668 | INFO     | utils.common:log:12 - step: 345/10000 Loss: 8.0275\8.022 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464550.2485
+2025-06-05 11:15:05.928 | INFO     | utils.common:log:12 - step: 346/10000 Loss: 8.0510\8.025 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 460282.7176
+2025-06-05 11:15:07.187 | INFO     | utils.common:log:12 - step: 347/10000 Loss: 7.9945\8.022 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 466490.8784
+2025-06-05 11:15:08.888 | INFO     | utils.common:log:12 - step: 348/10000 Loss: 7.9873\8.019 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 146382.4089
+2025-06-05 11:15:10.148 | INFO     | utils.common:log:12 - step: 349/10000 Loss: 7.9853\8.015 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 469015.3647
+2025-06-05 11:15:11.407 | INFO     | utils.common:log:12 - step: 350/10000 Loss: 7.9821\8.012 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 445973.4723
+2025-06-05 11:15:11.407 | INFO     | utils.common:log:12 - ETA: 00:46:45 
+2025-06-05 11:15:12.668 | INFO     | utils.common:log:12 - step: 351/10000 Loss: 8.0117\8.012 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 460026.7196
+2025-06-05 11:15:14.158 | INFO     | utils.common:log:12 - step: 352/10000 Loss: 7.9559\8.006 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 219154.3258
+2025-06-05 11:15:15.418 | INFO     | utils.common:log:12 - step: 353/10000 Loss: 8.0100\8.007 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464082.1040
+2025-06-05 11:15:16.675 | INFO     | utils.common:log:12 - step: 354/10000 Loss: 8.0143\8.007 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 470996.0767
+2025-06-05 11:15:17.934 | INFO     | utils.common:log:12 - step: 355/10000 Loss: 7.9528\8.002 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464182.1824
+2025-06-05 11:15:19.570 | INFO     | utils.common:log:12 - step: 356/10000 Loss: 8.0261\8.004 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 174832.1909
+2025-06-05 11:15:20.830 | INFO     | utils.common:log:12 - step: 357/10000 Loss: 7.9980\8.004 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 473828.4248
+2025-06-05 11:15:22.090 | INFO     | utils.common:log:12 - step: 358/10000 Loss: 8.0042\8.004 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 473778.4836
+2025-06-05 11:15:23.351 | INFO     | utils.common:log:12 - step: 359/10000 Loss: 7.9690\8.000 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 459467.0605
+2025-06-05 11:15:24.842 | INFO     | utils.common:log:12 - step: 360/10000 Loss: 7.9851\7.999 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 216676.0762
+2025-06-05 11:15:24.842 | INFO     | utils.common:log:12 - ETA: 00:48:06 
+2025-06-05 11:15:26.101 | INFO     | utils.common:log:12 - step: 361/10000 Loss: 8.0234\8.001 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468658.5885
+2025-06-05 11:15:27.361 | INFO     | utils.common:log:12 - step: 362/10000 Loss: 8.0085\8.002 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 470191.3293
+2025-06-05 11:15:28.622 | INFO     | utils.common:log:12 - step: 363/10000 Loss: 7.9977\8.002 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 463494.6164
+2025-06-05 11:15:30.146 | INFO     | utils.common:log:12 - step: 364/10000 Loss: 7.9735\7.999 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 214911.9336
+2025-06-05 11:15:31.405 | INFO     | utils.common:log:12 - step: 365/10000 Loss: 8.0080\8.000 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 463094.2044
+2025-06-05 11:15:32.666 | INFO     | utils.common:log:12 - step: 366/10000 Loss: 7.9606\7.996 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 484390.4137
+2025-06-05 11:15:33.927 | INFO     | utils.common:log:12 - step: 367/10000 Loss: 7.9947\7.996 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 465503.7735
+2025-06-05 11:15:35.403 | INFO     | utils.common:log:12 - step: 368/10000 Loss: 7.9873\7.995 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 229395.7324
+2025-06-05 11:15:36.660 | INFO     | utils.common:log:12 - step: 369/10000 Loss: 7.9743\7.993 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 466689.6310
+2025-06-05 11:15:37.921 | INFO     | utils.common:log:12 - step: 370/10000 Loss: 7.9962\7.993 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468897.3463
+2025-06-05 11:15:37.921 | INFO     | utils.common:log:12 - ETA: 00:44:17 
+2025-06-05 11:15:39.181 | INFO     | utils.common:log:12 - step: 371/10000 Loss: 7.9868\7.992 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 470949.4653
+2025-06-05 11:15:40.845 | INFO     | utils.common:log:12 - step: 372/10000 Loss: 7.9468\7.988 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 168525.5799
+2025-06-05 11:15:42.104 | INFO     | utils.common:log:12 - step: 373/10000 Loss: 7.9908\7.988 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 482152.1504
+2025-06-05 11:15:43.362 | INFO     | utils.common:log:12 - step: 374/10000 Loss: 7.9857\7.988 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 451225.8664
+2025-06-05 11:15:44.621 | INFO     | utils.common:log:12 - step: 375/10000 Loss: 7.9537\7.985 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 457885.4209
+2025-06-05 11:15:46.112 | INFO     | utils.common:log:12 - step: 376/10000 Loss: 7.9859\7.985 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 218194.0428
+2025-06-05 11:15:47.371 | INFO     | utils.common:log:12 - step: 377/10000 Loss: 7.9553\7.982 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 484895.3650
+2025-06-05 11:15:48.631 | INFO     | utils.common:log:12 - step: 378/10000 Loss: 7.9837\7.982 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 463204.3156
+2025-06-05 11:15:50.130 | INFO     | utils.common:log:12 - step: 379/10000 Loss: 7.9724\7.981 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 208756.4117
+2025-06-05 11:15:51.390 | INFO     | utils.common:log:12 - step: 380/10000 Loss: 7.9447\7.977 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461978.1351
+2025-06-05 11:15:51.390 | INFO     | utils.common:log:12 - ETA: 00:46:34 
+2025-06-05 11:15:52.650 | INFO     | utils.common:log:12 - step: 381/10000 Loss: 7.9949\7.979 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 451716.1752
+2025-06-05 11:15:53.912 | INFO     | utils.common:log:12 - step: 382/10000 Loss: 7.9421\7.975 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464204.1305
+2025-06-05 11:15:55.418 | INFO     | utils.common:log:12 - step: 383/10000 Loss: 7.9531\7.973 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 211373.5422
+2025-06-05 11:15:56.678 | INFO     | utils.common:log:12 - step: 384/10000 Loss: 7.9995\7.976 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456994.5005
+2025-06-05 11:15:57.937 | INFO     | utils.common:log:12 - step: 385/10000 Loss: 7.9620\7.974 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 463929.8720
+2025-06-05 11:15:59.197 | INFO     | utils.common:log:12 - step: 386/10000 Loss: 7.9366\7.971 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 466895.1812
+2025-06-05 11:16:00.692 | INFO     | utils.common:log:12 - step: 387/10000 Loss: 7.9859\7.972 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 232850.9200
+2025-06-05 11:16:01.950 | INFO     | utils.common:log:12 - step: 388/10000 Loss: 7.9831\7.973 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 459783.2288
+2025-06-05 11:16:03.207 | INFO     | utils.common:log:12 - step: 389/10000 Loss: 7.9932\7.975 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 450881.4457
+2025-06-05 11:16:04.466 | INFO     | utils.common:log:12 - step: 390/10000 Loss: 7.9890\7.977 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 459803.3423
+2025-06-05 11:16:04.467 | INFO     | utils.common:log:12 - ETA: 00:43:16 
+2025-06-05 11:16:06.076 | INFO     | utils.common:log:12 - step: 391/10000 Loss: 7.9723\7.976 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 183332.0698
+2025-06-05 11:16:07.331 | INFO     | utils.common:log:12 - step: 392/10000 Loss: 7.9574\7.974 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 447908.9961
+2025-06-05 11:16:08.589 | INFO     | utils.common:log:12 - step: 393/10000 Loss: 7.9617\7.973 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 482437.9175
+2025-06-05 11:16:09.849 | INFO     | utils.common:log:12 - step: 394/10000 Loss: 7.9704\7.973 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 472374.5139
+2025-06-05 11:16:11.339 | INFO     | utils.common:log:12 - step: 395/10000 Loss: 7.9219\7.968 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 226745.6408
+2025-06-05 11:16:12.596 | INFO     | utils.common:log:12 - step: 396/10000 Loss: 7.9436\7.965 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 453862.6429
+2025-06-05 11:16:13.853 | INFO     | utils.common:log:12 - step: 397/10000 Loss: 7.9286\7.962 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 463744.8977
+2025-06-05 11:16:15.110 | INFO     | utils.common:log:12 - step: 398/10000 Loss: 7.9602\7.961 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 442576.2551
+2025-06-05 11:16:16.589 | INFO     | utils.common:log:12 - step: 399/10000 Loss: 7.9759\7.963 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 228222.6632
+2025-06-05 11:16:17.846 | INFO     | utils.common:log:12 - step: 400/10000 Loss: 7.9920\7.966 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 456497.4223
+2025-06-05 11:16:17.846 | INFO     | utils.common:log:12 - ETA: 00:45:00 
+2025-06-05 11:16:19.104 | INFO     | utils.common:log:12 - step: 401/10000 Loss: 7.9675\7.966 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 461734.2034
+2025-06-05 11:16:20.362 | INFO     | utils.common:log:12 - step: 402/10000 Loss: 7.9859\7.968 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 442969.3104
+2025-06-05 11:16:21.855 | INFO     | utils.common:log:12 - step: 403/10000 Loss: 7.9447\7.966 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 227217.9549
+2025-06-05 11:16:23.109 | INFO     | utils.common:log:12 - step: 404/10000 Loss: 7.9733\7.966 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 449628.9112
+2025-06-05 11:16:24.365 | INFO     | utils.common:log:12 - step: 405/10000 Loss: 7.9702\7.967 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 454174.6490
+2025-06-05 11:16:25.620 | INFO     | utils.common:log:12 - step: 406/10000 Loss: 7.9715\7.967 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 446014.0169
+2025-06-05 11:16:27.251 | INFO     | utils.common:log:12 - step: 407/10000 Loss: 7.9467\7.965 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 176910.0061
+2025-06-05 11:16:28.510 | INFO     | utils.common:log:12 - step: 408/10000 Loss: 7.9676\7.965 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 482038.7515
+2025-06-05 11:16:29.764 | INFO     | utils.common:log:12 - step: 409/10000 Loss: 7.9518\7.964 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 449182.1421
+2025-06-05 11:16:31.023 | INFO     | utils.common:log:12 - step: 410/10000 Loss: 7.9392\7.962 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 459759.1051
+2025-06-05 11:16:31.024 | INFO     | utils.common:log:12 - ETA: 00:44:09 
+2025-06-05 11:16:32.535 | INFO     | utils.common:log:12 - step: 411/10000 Loss: 7.9477\7.960 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 208874.0294
+2025-06-05 11:16:33.790 | INFO     | utils.common:log:12 - step: 412/10000 Loss: 7.9429\7.958 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464977.2165
+2025-06-05 11:16:35.048 | INFO     | utils.common:log:12 - step: 413/10000 Loss: 7.9427\7.957 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 474054.8924
+2025-06-05 11:16:36.306 | INFO     | utils.common:log:12 - step: 414/10000 Loss: 7.9284\7.954 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471798.2121
+2025-06-05 11:16:37.803 | INFO     | utils.common:log:12 - step: 415/10000 Loss: 7.9467\7.953 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 230406.1638
+2025-06-05 11:16:39.059 | INFO     | utils.common:log:12 - step: 416/10000 Loss: 7.9328\7.951 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 467045.7101
+2025-06-05 11:16:40.316 | INFO     | utils.common:log:12 - step: 417/10000 Loss: 7.9608\7.952 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 452865.2840
+2025-06-05 11:16:41.799 | INFO     | utils.common:log:12 - step: 418/10000 Loss: 7.9261\7.950 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 223870.9658
+2025-06-05 11:16:43.056 | INFO     | utils.common:log:12 - step: 419/10000 Loss: 7.9466\7.949 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 463567.8484
+2025-06-05 11:16:44.315 | INFO     | utils.common:log:12 - step: 420/10000 Loss: 7.9288\7.947 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 471751.6124
+2025-06-05 11:16:44.316 | INFO     | utils.common:log:12 - ETA: 00:44:26 
+2025-06-05 11:16:45.574 | INFO     | utils.common:log:12 - step: 421/10000 Loss: 7.9501\7.948 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 459296.0534
+2025-06-05 11:16:47.065 | INFO     | utils.common:log:12 - step: 422/10000 Loss: 7.9340\7.946 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 225506.1418
+2025-06-05 11:16:48.322 | INFO     | utils.common:log:12 - step: 423/10000 Loss: 7.9492\7.946 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 481080.7951
+2025-06-05 11:16:49.579 | INFO     | utils.common:log:12 - step: 424/10000 Loss: 7.9645\7.948 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464911.0750
+2025-06-05 11:16:50.836 | INFO     | utils.common:log:12 - step: 425/10000 Loss: 7.9376\7.947 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 459534.4559
+2025-06-05 11:16:52.460 | INFO     | utils.common:log:12 - step: 426/10000 Loss: 7.9746\7.950 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 175732.4695
+2025-06-05 11:16:53.718 | INFO     | utils.common:log:12 - step: 427/10000 Loss: 7.9397\7.949 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 466184.9382
+2025-06-05 11:16:54.976 | INFO     | utils.common:log:12 - step: 428/10000 Loss: 7.9125\7.945 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 469110.9749
+2025-06-05 11:16:56.234 | INFO     | utils.common:log:12 - step: 429/10000 Loss: 7.9748\7.948 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 473751.0990
+2025-06-05 11:16:57.708 | INFO     | utils.common:log:12 - step: 430/10000 Loss: 7.9046\7.944 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 226984.2113
+2025-06-05 11:16:57.708 | INFO     | utils.common:log:12 - ETA: 00:46:41 
+2025-06-05 11:16:58.964 | INFO     | utils.common:log:12 - step: 431/10000 Loss: 7.9079\7.940 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 466151.3797
+2025-06-05 11:17:00.220 | INFO     | utils.common:log:12 - step: 432/10000 Loss: 7.9522\7.941 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 468268.9679
+2025-06-05 11:17:01.478 | INFO     | utils.common:log:12 - step: 433/10000 Loss: 7.9447\7.942 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 452919.4001
+2025-06-05 11:17:02.993 | INFO     | utils.common:log:12 - step: 434/10000 Loss: 7.9290\7.941 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 220958.0518
+2025-06-05 11:17:04.252 | INFO     | utils.common:log:12 - step: 435/10000 Loss: 7.9453\7.941 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 479574.3442
+2025-06-05 11:17:05.508 | INFO     | utils.common:log:12 - step: 436/10000 Loss: 7.9431\7.941 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 453224.7778
+2025-06-05 11:17:06.767 | INFO     | utils.common:log:12 - step: 437/10000 Loss: 7.9357\7.941 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 459134.2031
+2025-06-05 11:17:08.256 | INFO     | utils.common:log:12 - step: 438/10000 Loss: 7.9662\7.943 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 235210.8628
+2025-06-05 11:17:09.514 | INFO     | utils.common:log:12 - step: 439/10000 Loss: 7.9319\7.942 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 478795.2288
+2025-06-05 11:17:10.774 | INFO     | utils.common:log:12 - step: 440/10000 Loss: 7.9479\7.943 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 466106.2817
+2025-06-05 11:17:10.774 | INFO     | utils.common:log:12 - ETA: 00:43:39 
+2025-06-05 11:17:12.031 | INFO     | utils.common:log:12 - step: 441/10000 Loss: 7.9171\7.940 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 464327.8470
+2025-06-05 11:17:13.671 | INFO     | utils.common:log:12 - step: 442/10000 Loss: 7.9691\7.943 Lr: 10.000e-3 Mem: 47.036 GB Throughput_tokens: 174555.7212

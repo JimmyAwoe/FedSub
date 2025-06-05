@@ -24,8 +24,6 @@ def parse_args(args, remaining_args):
     parser = argparse.ArgumentParser()
     
     parser.add_argument("--epoch", default=2, type=int)
-    parser.add_argument("--use_tqdm", action="store_true")
-    parser.add_argument("--use_log", action="store_true")
     parser.add_argument("--eval_freq", default=1000, type=int)
 
     new_args, _ = parser.parse_known_args(remaining_args)
@@ -171,9 +169,10 @@ def main(args):
                                     dampening=args.dampening,
                                     foreach=False)
         # schedule
-        schedule = get_cosine_schedule_with_warmup(optimizer,
-                                                num_warmup_steps=args.warmup,
-                                                num_training_steps=args.num_training_steps + 1)
+        if not args.constant_lr:
+            schedule = get_cosine_schedule_with_warmup(optimizer,
+                                                    num_warmup_steps=args.warmup,
+                                                    num_training_steps=args.num_training_steps + 1)
     elif args.optimizer == 'subscafsgd':
         if args.per_layer_weight_update:
             optimizer_dict = get_subscaf_optimizer(args, param_groups, regular_params, subscaf_params, lbd, model)
@@ -186,7 +185,7 @@ def main(args):
     log(f"Total params: {param_before_comp:.2f}M")
     if 'subscaf' in args.optimizer.lower():
         # XXX need to consider model.x
-        all_param_after_replace = sum(p.numel() for p in model.parameters())
+        all_param_after_replace = sum(p.numel() for p in model.parameters()) 
         log(f"Trainable params before compression: {trainable_param_before_comp:.2f}M")
         log(f"Trainable params after compression: {sum(p.numel() for p in model.parameters()) / 1_000_000:.2f}M")
         log(f"Trainable params with Subspace Scaffold Linear Layer: {num_subscaf_params / 1_000_000:.2f}M")
@@ -224,10 +223,12 @@ def main(args):
 
         if rank == 0 and args.use_tqdm:
             pbar = tqdm(train_dataloader, desc=f"Epoch {epoch}", ncols=100)
-        training_length = len(train_dataloader)
+        training_length = len(train_dataloader) + (len(train_dataloader) // args.eval_freq + 1) * len(eval_dataloader)
     
         update_step = 0
         local_step = 0
+        eval_step = 0
+        ewm_loss = 0
         for batch in train_dataloader:
             local_step += 1
             batch = {k:v.to(device) for k, v in batch.items()}
@@ -244,14 +245,16 @@ def main(args):
             if 'subscaf' not in args.optimizer.lower(): 
                 for params in model.parameters():
                     dist.all_reduce(params.grad, op=dist.ReduceOp.AVG)
-                schedule.step()
+                if not args.constant_lr:
+                    schedule.step()
                 optimizer.step()
                 optimizer.zero_grad()
             elif not args.per_layer_weight_update and 'subscaf' in args.optimizer.lower():
                 # because warmup will make the first step with lr 0, and it will cause lbd
                 # to be nan. So we choose to update lr before step. And for consistency, sgd
                 # also follow this setup
-                schedule.step()
+                if not args.constant_lr:
+                    schedule.step()
                 optimizer.step()
                 optimizer.zero_grad()
 
@@ -278,7 +281,8 @@ def main(args):
             
             if rank == 0:
                 remain_total_seconds = time_per_iter * (training_length - update_step)
-                #pbar.update(grad_accumulation)
+                if args.use_tqdm:
+                    pbar.update(grad_accumulation)
 
             if rank == 0 and args.use_wandb:
                 torch.cuda.empty_cache()
@@ -301,8 +305,12 @@ def main(args):
 
             if rank == 0 and args.use_log:
                 #torch.cuda.empty_cache()
+                if ewm_loss == 0:
+                    ewm_loss = loss.item()
+                else:
+                    ewm_loss = 0.9 * ewm_loss + 0.1 * loss.item()
                 cuda_mem_usage = f"{torch.cuda.max_memory_allocated() / (1024 ** 3):.3} GB"
-                log(f"step: {update_step}/{training_length} Loss: {loss:.8f} Lr: {lr * 10000:.5f}e-4 Mem: {cuda_mem_usage}")
+                log(f"step: ({update_step} + {eval_step})/{training_length} Loss: {loss.item():.4f}\{ewm_loss:.3f} Lr: {lr * 10000:.3f}e-4 Mem: {cuda_mem_usage}")
                 if update_step % 10 == 0:
                     hours = int(remain_total_seconds // 3600)
                     minutes = int((remain_total_seconds % 3600) // 60)
@@ -311,6 +319,7 @@ def main(args):
             
             if update_step % args.eval_freq == 0:
                 _ = evaluate(model, eval_dataloader, epoch, device, rank, args)
+                eval_step += len(eval_dataloader)
                 model.train()
             update_time = time.time()
             
@@ -318,7 +327,6 @@ def main(args):
     # Final evaluation
     _ = evaluate(model, eval_dataloader, epoch, device, rank, args)
 
-    dist.destroy_process_group()
     if args.use_tqdm and rank == 0:
         pbar.close()
 
@@ -329,9 +337,10 @@ if __name__ == "__main__":
     args, unknown_args = main_parse_args(None)
     args = parse_args(args, unknown_args)
     main(args)
-    if args.use_log and dist.get_rank() == 0:
+    if args.use_log:
         total_time = time.time() - s_time
         hours = int(total_time // 3600)
         minutes = int((total_time % 3600) // 60)
         seconds = int(total_time % 60)
         log(f"Total Time: {hours:02d}:{minutes:02d}:{seconds:02d}")
+    dist.destroy_process_group()

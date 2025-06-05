@@ -11,7 +11,7 @@ def main_parse_args(args):
     parser.add_argument("--num_training_steps", type=int, default=10000)
     parser.add_argument("--grad_clip", type=float, default=0.0)
     parser.add_argument("--warmup", type=int, default=1000)
-    parser.add_argument("--use_wandb", action="store_true")
+    parser.add_argument("--constant_lr", action="store_true")
     parser.add_argument("--seed", default=42, type=int)
     parser.add_argument("--mixed_precision", default=None, type=str, choices=['bf16', 'fp16'])
 
@@ -36,8 +36,11 @@ def main_parse_args(args):
     parser.add_argument("--nesterov", action="store_true")
     parser.add_argument("--per_layer_weight_update", action="store_true")
 
-    # wandb
+    # log
+    parser.add_argument("--use_wandb", action="store_true")
     parser.add_argument("--wandb_run_name", default='subscaf_sgd')
+    parser.add_argument("--use_tqdm", action="store_true")
+    parser.add_argument("--use_log", action="store_true")
 
     # memory monitor
     parser.add_argument("--mem_monitor", action="store_true")

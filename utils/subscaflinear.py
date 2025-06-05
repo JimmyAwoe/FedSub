@@ -28,7 +28,7 @@ class SubScafLinear(nn.Linear):
 
     def forward(self, input):
         #return F.linear(input, self.b @ self.comp_mat + self.x, self.bias)
-        return self.layer(input, self.comp_mat, self.b, self.x)
+        return self.layer(input, self.comp_mat, self.b, self.x.to(self.b.device))
     
     def update(self, comp_mat=None, x=None, b=False):
         """

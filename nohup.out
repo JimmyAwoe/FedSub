@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/xuyuqi/.local/bin/torchrun", line 5, in <module>
+    from torch.distributed.run import main
+ModuleNotFoundError: No module named 'torch'
