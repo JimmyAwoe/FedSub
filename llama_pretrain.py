@@ -21,13 +21,13 @@ import torch.nn as nn
 from utils import (
     SubScafSGD, 
     SubScafLinear, 
-    gene_random_matrix, 
     log, 
     init_process_group, 
     main_parse_args, 
     get_subscaf_optimizer,
     outer_update,
     replace_with_subscaf_linear,
+    apply_activation_checkpointing,
 )
 from pickle import dump
 from torch.amp import GradScaler
@@ -37,6 +37,7 @@ from torch.amp import GradScaler
 
 def parse_args(args, remaining_args):
     parser = argparse.ArgumentParser()
+    parser.add_argument("--flash_attn", action="store_true")
     new_args, _ = parser.parse_known_args(remaining_args)
     args = argparse.Namespace(**vars(args), **vars(new_args))
     return args
@@ -53,7 +54,6 @@ def main(args):
     rank = int(os.environ.get("RANK", 0))
     local_rank = int(os.environ.get("LOCAL_RANK", 0))
     world_size = int(os.environ.get("WORLD_SIZE", 1))
-    #set_seed(args.seed)
     if rank == 0 and args.mem_monitor:
         torch.cuda.memory._record_memory_history(enabled='all')
     log("Process group initialize")
@@ -89,9 +89,32 @@ def main(args):
 
     # model
     model_config = AutoConfig.from_pretrained(args.model_config)
-    model = LlamaForCausalLM(model_config).to(device)
+    if args.flash_attn:
+       model_config._attn_implementation = "flash_attention_2"
+    else:
+        # we use eager attention for easy checkpoint implementation
+        model_config._attn_implementation = "eager" 
+    model = LlamaForCausalLM(config=model_config).to(device)
+    if args.flash_attn:
+        # flash-attn only support fp16 or bf16 precision
+        model = model.to(torch.float16)
+    model = apply_activation_checkpointing(model)
     for param in model.parameters():
         dist.broadcast(param, src=0)
+
+    # mixed precision scaler
+    if args.mixed_precision:
+        if not (args.per_layer_weight_update and "subscaf" in args.optimizer):
+            scaler = GradScaler()
+        else:
+            scaler_dict = {}
+            for p in model.parameters():
+                scaler_dict[p] = GradScaler()
+        precision_map_dict = {'fp16': torch.float16, 'bf16': torch.bfloat16}
+        precision = precision_map_dict[args.mixed_precision]
+    else:
+        scaler = None
+        scaler_dict = None
 
     # optimizer
     trainable_param = [p for p in model.parameters() if p.requires_grad == True]
@@ -125,7 +148,7 @@ def main(args):
 
     if args.optimizer == 'subscafsgd':
         if args.per_layer_weight_update:
-            optimizer_dict = get_subscaf_optimizer(args, param_groups, regular_params, subscaf_params, lbd, model)
+            optimizer_dict = get_subscaf_optimizer(args, param_groups, regular_params, subscaf_params, lbd, model, scaler_dict)
         else:
             optimizer, schedule = get_subscaf_optimizer(args, param_groups, regular_params, subscaf_params, lbd, model)
     #elif args.optimizer == 'subscafadam':
@@ -165,7 +188,7 @@ def main(args):
                                                                     #num_warmup_steps=args.warmup,
                                                                     #num_training_steps=args.num_training_steps + 1)
                     #p.register_post_accumulate_grad_hook(optimizer_hook)
-    elif args.optimizer == 'sgd':
+    elif 'sgd' in args.optimizer:
         optimizer = torch.optim.SGD(trainable_param, 
                                     lr=args.lr, 
                                     momentum=args.momentum,
@@ -212,10 +235,6 @@ def main(args):
     ewm_loss = 0
     pad_idx = tokenizer.pad_token_id
     update_time = time.time()
-    if args.mixed_precision:
-        scaler = GradScaler()
-        precision_map_dict = {'fp16': torch.float16, 'bf16': torch.bfloat16}
-        precision = precision_map_dict[args.mixed_precision]
 
     for _, batch in enumerate(dataloader):
         local_step += 1
@@ -253,13 +272,28 @@ def main(args):
         if rank == 0 and args.use_tqdm:
             pbar.update(1)
         
-        if 'subscaf' not in args.optimizer.lower(): 
+        if args.optimizer.lower() == 'sgd': 
             for params in model.parameters():
-                dist.all_reduce(params.grad, op=dist.ReduceOp.AVG)
+                if params.grad is not None:
+                    dist.all_reduce(params.grad, op=dist.ReduceOp.AVG)
             
             if not args.constant_lr:
                 schedule.step()
-            optimizer.step()
+            if args.mixed_precision:
+                scaler.step(optimizer)
+                scaler.update()
+            else:
+                optimizer.step()
+            optimizer.zero_grad()
+
+        if 'fedavg' in args.optimizer.lower():
+            if not args.constant_lr:
+                schedule.step()
+            if args.mixed_precision:
+                scaler.step(optimizer)
+                scaler.update()
+            else:
+                optimizer.step()
             optimizer.zero_grad()
 
         # because warmup will make the first step with lr 0, and it will cause lbd
@@ -268,31 +302,32 @@ def main(args):
         if not args.per_layer_weight_update and 'subscaf' in args.optimizer.lower():
             if not args.constant_lr:
                 schedule.step()
-            optimizer.step()
+            if args.mixed_precision:
+                scaler.step(optimizer)
+                scaler.update()
+            else:
+                optimizer.step()
             optimizer.zero_grad()
-
 
         update_step += 1
         update_time = time.time() - update_time
 
-        if "subscaf" in args.optimizer.lower() and (local_step // grad_accumulation) % args.tau == 0:
-            if (local_step // grad_accumulation) % args.update_cp_freq != 0:
+        if "fedavg" in args.optimizer.lower() and update_step % args.tau == 0:
+            with torch.no_grad():
+                for p in model.parameters():
+                    dist.all_reduce(p, op=dist.ReduceOp.AVG)
+
+        if "subscaf" in args.optimizer.lower() and update_step % args.tau == 0:
+            if update_step % args.update_cp_freq != 0:
                 gene_new_cp = False 
             else:
                 gene_new_cp = True
-            #if args.per_layer_weight_update:
-                #outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer_dict, 
-                             #jump_modules_list, gene_new_cp)
-            #else:
-                #outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
-                             #jump_modules_list, gene_new_cp)
             if args.per_layer_weight_update:
                 outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer_dict, 
                                 subscaf_params, args, device, jump_modules_list, gene_new_cp)
             else:
                 outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
                                 subscaf_params, args, device, jump_modules_list, gene_new_cp)
-
 
         if rank == 0 and args.use_log:
             if update_step == 1:
@@ -304,7 +339,7 @@ def main(args):
         token_in_update = token_seen - token_seen_before
         token_seen_before = token_seen
         batch_in_update = grad_accumulation * world_size
-        throughput_tokens = token_in_update / update_time
+        throughput_examples = args.total_batch_size * world_size / update_time
 
         if rank == 0 and args.use_wandb:
             torch.cuda.empty_cache()
@@ -338,7 +373,9 @@ def main(args):
 
             #cuda_mem_usage = f"{torch.cuda.max_memory_allocated() / (1024 ** 3):.3f} GB"
             cuda_mem_usage = f"{torch.cuda.max_memory_allocated() / (1024 ** 3):.3f} GB"
-            log(f"step: {update_step}/{args.num_training_steps} Loss: {loss.item():.4f}\{ewm_loss:.3f} Lr: {lr * 1000:.3f}e-3 Mem: {cuda_mem_usage} Throughput_tokens: {throughput_tokens:.4f}")
+            torch.cuda.reset_peak_memory_stats()
+            log(f"step: {update_step}/{args.num_training_steps} Loss: {loss.item():.4f}\{ewm_loss:.3f} Lr: {lr * 1000:.3f}e-3 Mem: {cuda_mem_usage} Throughput_tokens: {throughput_examples:.4f}")
+            #log(f"time:{update_time}, step: {update_step}, examples: {args.total_batch_size * world_size}")
             if update_step % 10 == 0:
                 hours = int(remain_total_seconds // 3600)
                 minutes = int((remain_total_seconds % 3600) // 60)

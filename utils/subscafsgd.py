@@ -7,7 +7,7 @@ from typing import Iterable, Callable, Optional, List
 import torch
 from torch.optim import SGD
 
-def get_subscaf_optimizer(args, param_groups=None, regular_params=None, subscaf_params=None, lbd=None, model=None):
+def get_subscaf_optimizer(args, param_groups=None, regular_params=None, subscaf_params=None, lbd=None, model=None, scaler_dict=None):
     if not args.per_layer_weight_update:
         assert param_groups is not None, "Must input param_groups"
         optimizer = SubScafSGD(param_groups, 
@@ -60,7 +60,11 @@ def get_subscaf_optimizer(args, param_groups=None, regular_params=None, subscaf_
                 return
             if not args.constant_lr:
                 schedule_dict[p].step()
-            optimizer_dict[p].step()
+            if args.mixed_precision:
+                scaler_dict[p].step(optimizer_dict[p])
+                scaler_dict[p].update()
+            else:
+                optimizer_dict[p].step()
             optimizer_dict[p].zero_grad()
 
         schedule_dict = {}

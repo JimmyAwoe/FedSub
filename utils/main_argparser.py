@@ -28,13 +28,13 @@ def main_parse_args(args):
     parser.add_argument("--model_config", type=str, default="configs/llama_60m.json")
 
     # optimizer
-    parser.add_argument("--optimizer", choices=['subscafsgd', 'subscafadam', 'scaf', 'sgd', 'adam'], default='subscafsgd',
+    parser.add_argument("--optimizer", choices=['subscafsgd', 'fedavgsgd', 'sgd'], default='subscafsgd',
                         type=str, help="assign the optimization algorithm")
     parser.add_argument("--momentum", default=0, type=float)
     parser.add_argument("--dampening", default=0, type=float)
     parser.add_argument("--weight_decay", default=0, type=float)
     parser.add_argument("--nesterov", action="store_true")
-    parser.add_argument("--per_layer_weight_update", action="store_true")
+    parser.add_argument("--per_layer_weight_update", action="store_true", help="this method is conflicted with mixed precision")
 
     # log
     parser.add_argument("--use_wandb", action="store_true")

@@ -21,6 +21,7 @@ def replace_with_subscaf_linear(model, target_modules_list, device, args, jump_m
                 if (args.comp_dim, module.in_features) not in comp_mat_rec.keys():
                     #comp_mat = gene_random_matrix(module.out_features, args.comp_dim, args.gene_method).to(device)
                     comp_mat = gene_random_matrix(args.comp_dim, module.in_features, args.gene_method).to(device)
+                    comp_mat = comp_mat.to(module.weight.dtype)
                     dist.broadcast(comp_mat, src=0)
                     comp_mat_rec[(args.comp_dim, module.in_features)] = comp_mat
                 else:
@@ -39,7 +40,7 @@ def replace_with_subscaf_linear(model, target_modules_list, device, args, jump_m
 
                 # initialize lambda
                 #lbd.append(torch.zeros((args.comp_dim, module.in_features), device=device, requires_grad=False))
-                layer_lbd = torch.zeros((module.out_features, args.comp_dim), device=device, requires_grad=False)
+                layer_lbd = torch.zeros((module.out_features, args.comp_dim), device=device, requires_grad=False, dtype=module.weight.dtype)
                 # in_features is needed for optimizer later
                 layer_lbd.in_features = module.in_features
                 lbd.append(layer_lbd)
@@ -78,6 +79,7 @@ def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, subscaf_par
                 if (args.comp_dim, module.in_features) not in new_comp_mat_rec.keys():
                     #new_comp_mat = gene_random_matrix(module.out_features, args.comp_dim, args.gene_method).to(device)
                     new_comp_mat = gene_random_matrix(args.comp_dim, module.in_features, args.gene_method).to(device)
+                    new_comp_mat = new_comp_mat.to(module.b.dtype)
                     dist.broadcast(new_comp_mat, src=0)
                     new_comp_mat_rec[(args.comp_dim, module.in_features)] = new_comp_mat
                 else:

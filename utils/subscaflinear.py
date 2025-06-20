@@ -28,7 +28,7 @@ class SubScafLinear(nn.Linear):
 
     def forward(self, input):
         #return F.linear(input, self.b @ self.comp_mat + self.x, self.bias)
-        return self.layer(input, self.comp_mat, self.b, self.x.to(self.b.device))
+        return self.layer(input, self.comp_mat, self.b, self.x)
     
     def update(self, comp_mat=None, x=None, b=False):
         """
@@ -51,15 +51,15 @@ class SubScafLinear(nn.Linear):
 class _subscaflinear(torch.autograd.Function):
     @staticmethod
     def forward(ctx, input, comp_mat, b, x):
-        ctx.save_for_backward(input @ comp_mat.T, b @ comp_mat + x)
+        ctx.save_for_backward((input @ comp_mat.T), (b @ comp_mat + x))
         return F.linear(input, b @ comp_mat + x)
 
     @staticmethod
     def backward(ctx, grad_output):
         act_for_b, act_for_input = ctx.saved_tensors
         grad_comp_mat = grad_x = None
-        grad_input = grad_output @ act_for_input
-        grad_b = grad_output.transpose(1, 2) @ act_for_b
+        grad_input = grad_output @ act_for_input.to(grad_output.dtype)
+        grad_b = grad_output.transpose(1, 2) @ act_for_b.to(grad_output.dtype)
         return grad_input, grad_comp_mat, grad_b, grad_x
 
 

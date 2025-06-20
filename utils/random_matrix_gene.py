@@ -1,13 +1,15 @@
 import torch
 import math
 
-def gene_random_matrix(comp_dim, dim, method='cd'):
+def gene_random_matrix(comp_dim, dim, method='cd', gradient=None):
     if method.lower() == 'rd':
         return Random_Normal_genep(comp_dim, dim)
     elif method.lower() == 'cd':
         return Coordinate_descend_genep(comp_dim, dim)
     elif method.lower() == 'ss':
         return Spherical_smoothing_genep(comp_dim, dim)
+    elif method.lower() == 'svd':
+        return SVD_gene(comp_dim, dim, gradient)
     else:
         assert False, "haven't define chosen compression matrix generation method"
 
@@ -33,3 +35,9 @@ def Spherical_smoothing_genep(comp_dim, dim):
     assert torch.allclose(torch.matmul(Q, R), z, atol=1e-5), "the QR decomposion is not accuracy"
     P = torch.sqrt(torch.tensor(dim / comp_dim)) * Q[:comp_dim, :]
     return P
+
+def SVD_gene(comp_dim, dim, gradient):
+    _, S, _ = torch.linalg.svd(gradient, full_matrices=False)
+    S_k = S[:comp_dim, :]
+    return S_k
+    
