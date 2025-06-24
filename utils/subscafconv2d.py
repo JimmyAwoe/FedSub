@@ -1,7 +1,10 @@
 from torch.nn.common_types import  _size_2_t
 from typing import Optional, Union
 from torch import Tensor
-from torch.nn import functional as F, init
+from torch.nn import functional as F
+import torch.nn as nn
+import torch
+from torch.nn.modules.conv import _ConvNd
 
 def _pair(x):
     """
@@ -16,40 +19,62 @@ def _pair(x):
         return x
     return (x, x)
 
-class SubScafConv2d():
+class SubScafConv2d(_ConvNd):
     def __init__(
         self,
-        in_channels: int,
-        out_channels: int,
-        kernel_size: _size_2_t,
-        stride: _size_2_t = 1,
-        padding: Union[str, _size_2_t] = 0,
-        dilation: _size_2_t = 1,
-        groups: int = 1,
-        bias: bool = True,
-        padding_mode: str = "zeros",  # TODO: refine this type
-        device=None,
-        dtype=None,
+        comp_dim,
+        comp_mat,
+        wraped_model,
     ) -> None:
-        factory_kwargs = {"device": device, "dtype": dtype}
-        kernel_size_ = _pair(kernel_size)
-        stride_ = _pair(stride)
-        padding_ = padding if isinstance(padding, str) else _pair(padding)
-        dilation_ = _pair(dilation)
+        factory_kwargs = {"device": wraped_model.device, "dtype": wraped_model.dtype}
+        kernel_size_ = _pair(wraped_model.kernel_size)
+        stride_ = _pair(wraped_model.stride)
+        padding_ = wraped_model.padding if isinstance(wraped_model.padding, str) else _pair(wraped_model.padding)
+        dilation_ = _pair(wraped_model.dilation)
         super().__init__(
-            in_channels,
-            out_channels,
+            wraped_model.in_channels,
+            wraped_model.out_channels,
             kernel_size_,
             stride_,
             padding_,
             dilation_,
             False,
             _pair(0),
-            groups,
-            bias,
-            padding_mode,
+            wraped_model.groups,
+            wraped_model.bias,
+            wraped_model.padding_mode,
             **factory_kwargs,
         )
+        # replace weight 
+        del self.weight
+        self.comp_dim = comp_dim
+        self.comp_mat = comp_mat
+        self.x = wraped_model.weight.detach().clone()
+        self.b = nn.Parameter(torch.zeros((self.in_channels, self.out_channels // self.groups, kernel_size_[0], comp_dim), **factory_kwargs))
+        del wraped_model
+    
+    @property
+    def weight(self):
+        return self.x + self.b @ self.comp_mat
+    
+    
+    def update(self, comp_mat=None, x=None, b=False):
+        """
+        Update compression matrix, x or b
+        
+        Be careful when update compressino before update x because that need the
+        compressino matrix.
+        """
+        with torch.no_grad():
+            if x is not None:
+                self.x = x
+            if comp_mat is not None:
+                self.comp_mat = comp_mat
+            if b:
+                self.b.data = torch.zeros_like(self.b.data)
+    
+    def extra_repr(self):
+        return f"comp_dim={self.comp_dim}, kernel_size={self.kernel_size[0]}"
 
     def _conv_forward(self, input: Tensor, weight: Tensor, bias: Optional[Tensor]):
         if self.padding_mode != "zeros":

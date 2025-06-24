@@ -37,7 +37,7 @@ def Spherical_smoothing_genep(comp_dim, dim):
     return P
 
 def SVD_gene(comp_dim, dim, gradient):
-    _, S, _ = torch.linalg.svd(gradient, full_matrices=False)
-    S_k = S[:comp_dim, :]
-    return S_k
+    _, _, V = torch.linalg.svd(gradient, full_matrices=True)
+    V_k = V[:comp_dim, :].contiguous()
+    return V_k
     

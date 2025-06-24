@@ -26,7 +26,7 @@ from utils import (
     main_parse_args, 
     get_subscaf_optimizer,
     outer_update,
-    replace_with_subscaf_linear,
+    replace_with_subscaf_layer,
     apply_activation_checkpointing,
 )
 from pickle import dump
@@ -37,7 +37,9 @@ from torch.amp import GradScaler
 
 def parse_args(args, remaining_args):
     parser = argparse.ArgumentParser()
-    parser.add_argument("--flash_attn", action="store_true")
+    parser.add_argument("--flash_attn", action="store_true", help="flash_attn is conflicted with mixed precision")
+    parser.add_argument("--ckpt", action="store_true", help="checkpoint is conflicted with flash_attention")
+    parser.add_argument("--change_cd", default=4000, type=int)
     new_args, _ = parser.parse_known_args(remaining_args)
     args = argparse.Namespace(**vars(args), **vars(new_args))
     return args
@@ -90,20 +92,25 @@ def main(args):
     # model
     model_config = AutoConfig.from_pretrained(args.model_config)
     if args.flash_attn:
+       assert not args.ckpt, "flash-attention is conflicted with checkpoint"
+       assert not args.mixed_precision, "flash-attention is conflicted with mixed precision"
        model_config._attn_implementation = "flash_attention_2"
-    else:
+    elif args.ckpt:
+        assert not args.flash_attn, "flash-attention is conflicted with checkpoint"
         # we use eager attention for easy checkpoint implementation
         model_config._attn_implementation = "eager" 
     model = LlamaForCausalLM(config=model_config).to(device)
     if args.flash_attn:
         # flash-attn only support fp16 or bf16 precision
         model = model.to(torch.float16)
-    model = apply_activation_checkpointing(model)
+    if args.ckpt:
+        model = apply_activation_checkpointing(model)
     for param in model.parameters():
         dist.broadcast(param, src=0)
 
     # mixed precision scaler
     if args.mixed_precision:
+        assert not args.per_layer_weight_update, "mixed precision is conflicted with per layer weight update"
         if not (args.per_layer_weight_update and "subscaf" in args.optimizer):
             scaler = GradScaler()
         else:
@@ -124,7 +131,7 @@ def main(args):
         target_modules_list = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
         jump_modules_list = ['5', '6', '7']
         # define nonlocal variables for replace module
-        num_subscaf_params, subscaf_params, lbd, comp_mat_rec = replace_with_subscaf_linear(model, 
+        num_subscaf_params, subscaf_params, lbd, comp_mat_rec = replace_with_subscaf_layer(model, 
                                                                                             target_modules_list, 
                                                                                             device, 
                                                                                             args, 
@@ -233,6 +240,7 @@ def main(args):
     token_seen = 0
     token_seen_before = 0
     ewm_loss = 0
+    grad_dict = {}
     pad_idx = tokenizer.pad_token_id
     update_time = time.time()
 
@@ -307,10 +315,19 @@ def main(args):
                 scaler.update()
             else:
                 optimizer.step()
+            if args.gene_method == 'svd' and (update_step + 1) % args.update_cp_freq == 0:
+                for p in model.parameters():
+                    grad_dict[p] = p.grad
+                    p.grad = None
             optimizer.zero_grad()
 
         update_step += 1
         update_time = time.time() - update_time
+
+        if args.gene_method == 'svd' and args.change_cd <= update_step:
+            args.gene_method = 'cd'
+            # clear grad_dict
+            grad_dict = {}
 
         if "fedavg" in args.optimizer.lower() and update_step % args.tau == 0:
             with torch.no_grad():
@@ -327,7 +344,7 @@ def main(args):
                                 subscaf_params, args, device, jump_modules_list, gene_new_cp)
             else:
                 outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
-                                subscaf_params, args, device, jump_modules_list, gene_new_cp)
+                                subscaf_params, args, device, jump_modules_list, gene_new_cp, grad_dict)
 
         if rank == 0 and args.use_log:
             if update_step == 1:

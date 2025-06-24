@@ -3,15 +3,16 @@ import torch
 from .common import log
 from .random_matrix_gene import gene_random_matrix
 from .subscaflinear import SubScafLinear
+from .subscafconv2d import SubScafConv2d
 import torch.distributed as dist
 
-def replace_with_subscaf_linear(model, target_modules_list, device, args, jump_modules_list=[]):
+def replace_with_subscaf_layer(model, target_modules_list, device, args, jump_modules_list=[], layer='linear'):
     def replace_module(model, target_modules_list, jump_modules_list=None):
-        """replace Linear module in model into SubScafLinear module"""
+        """replace Conv2d/Linear modules in model into SubScafConv2d/SubScafLinear module"""
         nonlocal num_subscaf_params, subscaf_params, lbd, comp_mat_rec
         for name, module in model.named_children():
             # only revise module with param_name has "mlp" or "attn"
-            if isinstance(module, nn.Linear) and any(target_key in name for target_key in target_modules_list):
+            if isinstance(module, replace_class) and any(target_key in name for target_key in target_modules_list):
                 log(f"enable Subspace Scaffold for weights in module: {name}")
                 if args.adaptive_cp_rate != 0:
                     record_cp_dim = args.comp_dim
@@ -27,8 +28,8 @@ def replace_with_subscaf_linear(model, target_modules_list, device, args, jump_m
                 else:
                     comp_mat = comp_mat_rec[(args.comp_dim, module.in_features)]
 
-                # substitue all Linear module into SubScafLinear module
-                new_layer = SubScafLinear(args.comp_dim, comp_mat, module)
+                # substitue all Conv2d/Linear module into SubScafConv2d/SubScafLinear module
+                new_layer = subscaf_class(args.comp_dim, comp_mat, module)
 
                 setattr(model, name, new_layer)
 
@@ -54,20 +55,39 @@ def replace_with_subscaf_linear(model, target_modules_list, device, args, jump_m
                 replace_module(module, target_modules_list, jump_modules_list)
 
     # set some variable for replace_module
+    if args.gene_method == 'svd':
+        # use cd at first
+        use_svd = True
+        args.gene_method = 'cd'
+    else:
+        use_svd = False
+    # choose aim layer
+    if layer.lower() == 'linear':
+        replace_class = nn.Linear
+        subscaf_class = SubScafLinear
+    elif layer.lower() == 'conv2d':
+        replace_class = nn.Conv2d
+        subscaf_class = SubScafConv2d
+    else:
+        assert True, 'Only Support Conv2d and Linear'
     num_subscaf_params = 0
     subscaf_params = []
     lbd = []
     comp_mat_rec = {} 
     replace_module(model, target_modules_list, jump_modules_list)
+    if use_svd:
+        # recover svd gene method
+        args.gene_method = 'svd'
     return num_subscaf_params, subscaf_params, lbd, comp_mat_rec
-        
+
+
 @torch.no_grad()
-def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, subscaf_params, args, device, jump_modules_list=None, gene_new_cp=True):
-    def subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list, jump_modules_list):
+def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, subscaf_params, args, device, jump_modules_list=None, gene_new_cp=True, grad_dict={}, layer='linear'):
+    def subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list, jump_modules_list, grad_dict):
         """carry out one outer update for subspace scaffold algorithm"""
         nonlocal idx, new_comp_mat_rec
         for name, module in model.named_children():
-            if isinstance(module, nn.Linear) and any(target_key in name for target_key in target_modules_list):
+            if isinstance(module, replace_class) and any(target_key in name for target_key in target_modules_list):
                 # all_reduce b
                 avg_b = module.b.detach().clone()
                 dist.all_reduce(avg_b, op=dist.ReduceOp.AVG)
@@ -78,7 +98,15 @@ def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, subscaf_par
                 # generate new compression matrix
                 if (args.comp_dim, module.in_features) not in new_comp_mat_rec.keys():
                     #new_comp_mat = gene_random_matrix(module.out_features, args.comp_dim, args.gene_method).to(device)
-                    new_comp_mat = gene_random_matrix(args.comp_dim, module.in_features, args.gene_method).to(device)
+                    if args.gene_method == "svd":
+                        new_comp_mat = gene_random_matrix(
+                                                args.comp_dim, 
+                                                module.in_features, 
+                                                args.gene_method, 
+                                                grad_dict[module.b] @ comp_mat_rec[(args.comp_dim, module.in_features)],
+                                            ).to(device)
+                    else:
+                        new_comp_mat = gene_random_matrix(args.comp_dim, module.in_features, args.gene_method).to(device)
                     new_comp_mat = new_comp_mat.to(module.b.dtype)
                     dist.broadcast(new_comp_mat, src=0)
                     new_comp_mat_rec[(args.comp_dim, module.in_features)] = new_comp_mat
@@ -125,14 +153,23 @@ def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, subscaf_par
             else:
                 if args.jump_certain_modules and name in jump_modules_list:
                     continue
-                subscaf_outer_update(module, lbd, comp_mat_rec, target_modules_list, jump_modules_list)
+                subscaf_outer_update(module, lbd, comp_mat_rec, target_modules_list, jump_modules_list, grad_dict)
     idx = 0
     if gene_new_cp == False:
         # not update compression matrix
         new_comp_mat_rec = comp_mat_rec
     else:
         new_comp_mat_rec = {}
-    subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list, jump_modules_list)
+
+    # choose aim layer
+    if layer.lower() == 'linear':
+        replace_class = nn.Linear
+    elif layer.lower() == 'conv2d':
+        replace_class = nn.Conv2d
+    else:
+        assert True, 'Only Support Conv2d and Linear'
+
+    subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list, jump_modules_list, grad_dict)
     comp_mat_rec = new_comp_mat_rec
 
     # update lbd

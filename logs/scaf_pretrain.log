@@ -1,0 +1,230 @@
+nohup: ignoring input
+W0624 10:16:46.933000 1683818 site-packages/torch/distributed/run.py:766] 
+W0624 10:16:46.933000 1683818 site-packages/torch/distributed/run.py:766] *****************************************
+W0624 10:16:46.933000 1683818 site-packages/torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0624 10:16:46.933000 1683818 site-packages/torch/distributed/run.py:766] *****************************************
+2025-06-24 10:16:51.412 | INFO     | utils.common:log:12 - Process group initialize
+2025-06-24 10:16:51.412 | INFO     | utils.common:log:12 - ****************************************
+2025-06-24 10:16:51.412 | INFO     | utils.common:log:12 - Start training with arguments
+2025-06-24 10:16:51.412 | INFO     | utils.common:log:12 - lr                             0.001
+2025-06-24 10:16:51.412 | INFO     | utils.common:log:12 - batch_size                     64
+2025-06-24 10:16:51.412 | INFO     | utils.common:log:12 - total_batch_size               64
+2025-06-24 10:16:51.412 | INFO     | utils.common:log:12 - max_length                     1024
+2025-06-24 10:16:51.412 | INFO     | utils.common:log:12 - num_training_steps             10000
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - grad_clip                      0.0
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - warmup                         1000
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - constant_lr                    True
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - seed                           42
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - mixed_precision                bf16
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - comp_dim                       64
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - tau                            10
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - gene_method                    cd
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - jump_certain_modules           False
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - update_cp_freq                 50
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - adaptive_cp_rate               1.0
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - model_config                   configs/llama_60m.json
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - optimizer                      subscafsgd
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - momentum                       0.0
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - dampening                      0
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - weight_decay                   0
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - nesterov                       False
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - per_layer_weight_update        False
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - use_wandb                      False
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - wandb_run_name                 real_lazy_update
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - use_tqdm                       False
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - use_log                        True
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - mem_monitor                    False
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - flash_attn                     False
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - ckpt                           True
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - change_cd                      4000
+2025-06-24 10:16:51.413 | INFO     | utils.common:log:12 - ****************************************
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:606: UserWarning: `pad_token_id` should be positive but got -1. This will cause errors when batch generating, if there is padding. Please set `pad_token_id` explicitly as `model.generation_config.pad_token_id=PAD_TOKEN_ID` to avoid errors in generation
+  warnings.warn(
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:606: UserWarning: `pad_token_id` should be positive but got -1. This will cause errors when batch generating, if there is padding. Please set `pad_token_id` explicitly as `model.generation_config.pad_token_id=PAD_TOKEN_ID` to avoid errors in generation
+  warnings.warn(
+2025-06-24 10:16:55.212 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-24 10:16:55.229 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-24 10:16:55.230 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-24 10:16:55.231 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-24 10:16:55.231 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-24 10:16:55.232 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-24 10:16:55.232 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-24 10:16:55.247 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-24 10:16:55.248 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-24 10:16:55.249 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-24 10:16:55.249 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-24 10:16:55.250 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-24 10:16:55.250 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-24 10:16:55.251 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-24 10:16:55.251 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-24 10:16:55.252 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-24 10:16:55.252 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-24 10:16:55.253 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-24 10:16:55.253 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-24 10:16:55.254 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-24 10:16:55.254 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-24 10:16:55.254 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-24 10:16:55.255 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-24 10:16:55.255 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-24 10:16:55.256 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-24 10:16:55.256 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-24 10:16:55.257 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-24 10:16:55.257 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-24 10:16:55.258 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-24 10:16:55.258 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-24 10:16:55.259 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-24 10:16:55.259 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-24 10:16:55.260 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-24 10:16:55.260 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-24 10:16:55.260 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-24 10:16:55.261 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-24 10:16:55.261 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-24 10:16:55.262 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-24 10:16:55.262 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-24 10:16:55.263 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-24 10:16:55.263 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-24 10:16:55.263 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-24 10:16:55.264 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-24 10:16:55.264 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-24 10:16:55.264 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-24 10:16:55.265 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-24 10:16:55.265 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-24 10:16:55.266 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-24 10:16:55.266 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-24 10:16:55.266 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-24 10:16:55.267 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-24 10:16:55.267 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-24 10:16:55.268 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-24 10:16:55.268 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-24 10:16:55.268 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-24 10:16:55.269 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-24 10:16:55.270 | INFO     | utils.common:log:12 - 
+LlamaForCausalLM(
+  (model): LlamaModel(
+    (embed_tokens): Embedding(32000, 512, padding_idx=31999)
+    (layers): ModuleList(
+      (0-7): 8 x LlamaDecoderLayer(
+        (self_attn): LlamaAttention(
+          (q_proj): SubScafLinear(in_feartures=512, out_features=512)
+          (k_proj): SubScafLinear(in_feartures=512, out_features=512)
+          (v_proj): SubScafLinear(in_feartures=512, out_features=512)
+          (o_proj): SubScafLinear(in_feartures=512, out_features=512)
+        )
+        (mlp): LlamaMLP(
+          (gate_proj): SubScafLinear(in_feartures=512, out_features=1376)
+          (up_proj): SubScafLinear(in_feartures=512, out_features=1376)
+          (down_proj): SubScafLinear(in_feartures=1376, out_features=512)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): LlamaRMSNorm((512,), eps=1e-06)
+        (post_attention_layernorm): LlamaRMSNorm((512,), eps=1e-06)
+      )
+    )
+    (norm): LlamaRMSNorm((512,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=512, out_features=32000, bias=False)
+)
+
+2025-06-24 10:16:55.270 | INFO     | utils.common:log:12 - Total params: 58.07M
+2025-06-24 10:16:55.270 | INFO     | utils.common:log:12 - Trainable params before compression: 58.07M
+2025-06-24 10:16:55.270 | INFO     | utils.common:log:12 - Trainable params after compression: 58.07M
+2025-06-24 10:16:55.270 | INFO     | utils.common:log:12 - Total params with Subspace Scaffold enabled: 25.30M
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py:838: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py:838: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: c10d::broadcast_: an autograd kernel was not registered to the Autograd key(s) but we are trying to backprop through it. This may lead to silently incorrect behavior. This behavior is deprecated and will be removed in a future version of PyTorch. If your operator is differentiable, please ensure you have registered an autograd kernel to the correct Autograd key (e.g. DispatchKey::Autograd, DispatchKey::CompositeImplicitAutograd). If your operator is not differentiable, or to squash this warning and use the previous behavior, please register torch::CppFunction::makeFallthrough() to DispatchKey::Autograd. (Triggered internally at /pytorch/torch/csrc/autograd/autograd_not_implemented_fallback.cpp:62.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: c10d::broadcast_: an autograd kernel was not registered to the Autograd key(s) but we are trying to backprop through it. This may lead to silently incorrect behavior. This behavior is deprecated and will be removed in a future version of PyTorch. If your operator is differentiable, please ensure you have registered an autograd kernel to the correct Autograd key (e.g. DispatchKey::Autograd, DispatchKey::CompositeImplicitAutograd). If your operator is not differentiable, or to squash this warning and use the previous behavior, please register torch::CppFunction::makeFallthrough() to DispatchKey::Autograd. (Triggered internally at /pytorch/torch/csrc/autograd/autograd_not_implemented_fallback.cpp:62.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2025-06-24 10:16:57.038 | INFO     | utils.common:log:12 - step: 1/10000 Loss: 10.4852\10.485 Lr: 1.000e-3 Mem: 43.594 GB Throughput_tokens: 72.4655
+2025-06-24 10:16:57.803 | INFO     | utils.common:log:12 - step: 2/10000 Loss: 10.4704\10.484 Lr: 1.000e-3 Mem: 43.601 GB Throughput_tokens: 167.3248
+2025-06-24 10:16:58.569 | INFO     | utils.common:log:12 - step: 3/10000 Loss: 10.4806\10.483 Lr: 1.000e-3 Mem: 43.601 GB Throughput_tokens: 167.2260
+2025-06-24 10:16:59.335 | INFO     | utils.common:log:12 - step: 4/10000 Loss: 10.4808\10.483 Lr: 1.000e-3 Mem: 43.601 GB Throughput_tokens: 167.2266
+2025-06-24 10:17:00.101 | INFO     | utils.common:log:12 - step: 5/10000 Loss: 10.4667\10.481 Lr: 1.000e-3 Mem: 43.601 GB Throughput_tokens: 167.2916
+2025-06-24 10:17:00.866 | INFO     | utils.common:log:12 - step: 6/10000 Loss: 10.4581\10.479 Lr: 1.000e-3 Mem: 43.601 GB Throughput_tokens: 167.4405
+2025-06-24 10:17:01.631 | INFO     | utils.common:log:12 - step: 7/10000 Loss: 10.4542\10.477 Lr: 1.000e-3 Mem: 43.601 GB Throughput_tokens: 167.3358
+2025-06-24 10:17:02.397 | INFO     | utils.common:log:12 - step: 8/10000 Loss: 10.4426\10.473 Lr: 1.000e-3 Mem: 43.601 GB Throughput_tokens: 167.2635
+2025-06-24 10:17:03.165 | INFO     | utils.common:log:12 - step: 9/10000 Loss: 10.4497\10.471 Lr: 1.000e-3 Mem: 43.601 GB Throughput_tokens: 166.9358
+2025-06-24 10:17:03.955 | INFO     | utils.common:log:12 - step: 10/10000 Loss: 10.4543\10.469 Lr: 1.000e-3 Mem: 43.601 GB Throughput_tokens: 167.1638
+2025-06-24 10:17:03.955 | INFO     | utils.common:log:12 - ETA: 03:12:00 
+2025-06-24 10:17:04.722 | INFO     | utils.common:log:12 - step: 11/10000 Loss: 10.4348\10.466 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 167.0777
+2025-06-24 10:17:05.488 | INFO     | utils.common:log:12 - step: 12/10000 Loss: 10.4440\10.464 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 167.1095
+2025-06-24 10:17:06.255 | INFO     | utils.common:log:12 - step: 13/10000 Loss: 10.4228\10.460 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 167.0894
+2025-06-24 10:17:07.022 | INFO     | utils.common:log:12 - step: 14/10000 Loss: 10.4221\10.456 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 167.1004
+2025-06-24 10:17:07.788 | INFO     | utils.common:log:12 - step: 15/10000 Loss: 10.4224\10.452 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 167.2147
+2025-06-24 10:17:09.149 | INFO     | utils.common:log:12 - step: 16/10000 Loss: 10.3970\10.447 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 94.0430
+2025-06-24 10:17:09.915 | INFO     | utils.common:log:12 - step: 17/10000 Loss: 10.3816\10.440 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 167.2013
+2025-06-24 10:17:10.681 | INFO     | utils.common:log:12 - step: 18/10000 Loss: 10.3843\10.435 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 167.3170
+2025-06-24 10:17:11.447 | INFO     | utils.common:log:12 - step: 19/10000 Loss: 10.3851\10.430 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 167.0734
+2025-06-24 10:17:12.235 | INFO     | utils.common:log:12 - step: 20/10000 Loss: 10.3782\10.425 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 167.1024
+2025-06-24 10:17:12.235 | INFO     | utils.common:log:12 - ETA: 02:36:20 
+2025-06-24 10:17:13.002 | INFO     | utils.common:log:12 - step: 21/10000 Loss: 10.4007\10.422 Lr: 1.000e-3 Mem: 43.602 GB Throughput_tokens: 166.9918
+2025-06-24 10:17:13.769 | INFO     | utils.common:log:12 - step: 22/10000 Loss: 10.3661\10.417 Lr: 1.000e-3 Mem: 43.602 GB Throughput_tokens: 166.9850
+2025-06-24 10:17:14.537 | INFO     | utils.common:log:12 - step: 23/10000 Loss: 10.3451\10.409 Lr: 1.000e-3 Mem: 43.602 GB Throughput_tokens: 166.6990
+2025-06-24 10:17:15.304 | INFO     | utils.common:log:12 - step: 24/10000 Loss: 10.3461\10.403 Lr: 1.000e-3 Mem: 43.602 GB Throughput_tokens: 167.0577
+2025-06-24 10:17:16.071 | INFO     | utils.common:log:12 - step: 25/10000 Loss: 10.3407\10.397 Lr: 1.000e-3 Mem: 43.602 GB Throughput_tokens: 166.9380
+2025-06-24 10:17:16.839 | INFO     | utils.common:log:12 - step: 26/10000 Loss: 10.3455\10.392 Lr: 1.000e-3 Mem: 43.602 GB Throughput_tokens: 166.9514
+2025-06-24 10:17:17.606 | INFO     | utils.common:log:12 - step: 27/10000 Loss: 10.3499\10.388 Lr: 1.000e-3 Mem: 43.602 GB Throughput_tokens: 166.9968
+2025-06-24 10:17:18.372 | INFO     | utils.common:log:12 - step: 28/10000 Loss: 10.3136\10.380 Lr: 1.000e-3 Mem: 43.602 GB Throughput_tokens: 167.1379
+2025-06-24 10:17:19.139 | INFO     | utils.common:log:12 - step: 29/10000 Loss: 10.3232\10.374 Lr: 1.000e-3 Mem: 43.602 GB Throughput_tokens: 167.0593
+2025-06-24 10:17:19.962 | INFO     | utils.common:log:12 - step: 30/10000 Loss: 10.3161\10.369 Lr: 1.000e-3 Mem: 43.602 GB Throughput_tokens: 166.9723
+2025-06-24 10:17:19.963 | INFO     | utils.common:log:12 - ETA: 02:17:24 
+2025-06-24 10:17:20.730 | INFO     | utils.common:log:12 - step: 31/10000 Loss: 10.2940\10.361 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 166.8687
+2025-06-24 10:17:21.870 | INFO     | utils.common:log:12 - step: 32/10000 Loss: 10.3080\10.356 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 112.3257
+2025-06-24 10:17:22.636 | INFO     | utils.common:log:12 - step: 33/10000 Loss: 10.2831\10.349 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 167.2937
+2025-06-24 10:17:23.401 | INFO     | utils.common:log:12 - step: 34/10000 Loss: 10.2948\10.343 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 167.2527
+2025-06-24 10:17:24.168 | INFO     | utils.common:log:12 - step: 35/10000 Loss: 10.2707\10.336 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 166.9918
+2025-06-24 10:17:24.936 | INFO     | utils.common:log:12 - step: 36/10000 Loss: 10.2912\10.331 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 166.7533
+2025-06-24 10:17:25.704 | INFO     | utils.common:log:12 - step: 37/10000 Loss: 10.2487\10.323 Lr: 1.000e-3 Mem: 43.600 GB Throughput_tokens: 166.9029
+W0624 10:17:25.825000 1683818 site-packages/torch/distributed/elastic/agent/server/api.py:719] Received Signals.SIGINT death signal, shutting down workers
+W0624 10:17:25.825000 1683818 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1683965 closing signal SIGINT
+W0624 10:17:25.826000 1683818 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1683966 closing signal SIGINT
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/home/xuyuqi/SubScaf/llama_pretrain.py", line 425, in <module>
+[rank1]:     main(args)
+[rank1]:   File "/home/xuyuqi/SubScaf/llama_pretrain.py", line 261, in main
+[rank1]:     scaler.scale(loss / grad_accumulation).backward()
+[rank1]:   File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/_tensor.py", line 648, in backward
+[rank1]:     torch.autograd.backward(
+[rank1]:   File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/__init__.py", line 353, in backward
+[rank1]:     _engine_run_backward(
+[rank1]:   File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
+[rank1]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank1]: KeyboardInterrupt
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/xuyuqi/SubScaf/llama_pretrain.py", line 425, in <module>
+[rank0]:     main(args)
+[rank0]:   File "/home/xuyuqi/SubScaf/llama_pretrain.py", line 261, in main
+[rank0]:     scaler.scale(loss / grad_accumulation).backward()
+[rank0]:   File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/_tensor.py", line 648, in backward
+[rank0]:     torch.autograd.backward(
+[rank0]:   File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/__init__.py", line 353, in backward
+[rank0]:     _engine_run_backward(
+[rank0]:   File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
+[rank0]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank0]: KeyboardInterrupt
+[rank0]:[W624 10:17:26.756245569 ProcessGroupNCCL.cpp:1476] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+Traceback (most recent call last):
+  File "/home/xuyuqi/.conda/envs/minimind/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in main
+    run(args)
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 261, in launch_agent
+    result = agent.run()
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 138, in wrapper
+    result = f(*args, **kwargs)
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 711, in run
+    result = self._invoke_run(role)
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 870, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 1683818 got signal: 2

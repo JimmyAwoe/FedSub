@@ -1,35 +1,26 @@
 import argparse
 import os
-import shutil
 import time
 
 import torch
 import torch.nn as nn
-import torch.nn.parallel
 import torch.backends.cudnn as cudnn
 import torch.optim
 import torch.utils.data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
-from utils import SubScafSGD, log, init_process_group, resnet
+from utils import SubScafSGD, log, init_process_group, main_parse_args, resnet_module
 
-#model_names = sorted(name for name in resnet.__dict__
-    #if name.islower() and not name.startswith("__")
-                     #and name.startswith("resnet")
-                     #and callable(resnet.__dict__[name]))
 
-#log(model_names)
-
-def parse_args(args):
-    parser = argparse.ArgumentParser(description='Subspace Scaffold Algorithms for CIFAR100 tasks using resnet')
+def parse_args(args, remaining_args):
+    parser = argparse.ArgumentParser()
     # model
-    parser.add_argument('--arch', default='resnet1202', choices=model_names)
+    parser.add_argument('--arch', default='resnet1202', choices=['resnet20', 'resnet32', 'resnet44', 
+                                                                 'resnet56', 'resnet110', 'resnet1202'])
 
     # training
     parser.add_argument('--epochs', default=200, type=int, metavar='N',
                         help='number of total epochs to run')
-    parser.add_argument('-b', '--batch-size', default=128, type=int,
-                        metavar='N', help='mini-batch size (default: 128)')
     parser.add_argument('--resume', default='', type=str, metavar='PATH',
                         help='path to latest checkpoint (default: none)')
     parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
@@ -39,15 +30,6 @@ def parse_args(args):
     parser.add_argument('--half', dest='half', action='store_true',
                         help='use half-precision(16-bit) ')
     
-    # optimizer
-    parser.add_argument('--lr', '--learning-rate', default=0.1, type=float,
-                        metavar='LR', help='initial learning rate')
-    parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
-                        help='momentum')
-    parser.add_argument('--weight-decay', '--wd', default=1e-4, type=float,
-                        metavar='W', help='weight decay (default: 1e-4)')
-    parser.add_argument('--nesterov', action="store_true")
-
     # log
     parser.add_argument('--print-freq', '-p', default=50, type=int,
                         metavar='N', help='print frequency (default: 50)')
@@ -58,19 +40,18 @@ def parse_args(args):
                         help='Saves checkpoints at every specified number of epochs',
                         type=int, default=10)
     args = parser.parse_args(args)
+    new_args, _ = parser.parse_known_args(remaining_args)
+    args = argparse.Namespace(**vars(args), **vars(new_args))
     return args
 
-
-def main():
-    init_process_group()
+def main(args):
     best_prec1 = 0
-    args = parse_args(None)
     rank = int(os.environ.get("RANK"))
     world_size = int(os.environ.get("WORLD_SIZE"))
     device = f"cuda:{rank}"
 
     # model
-    model = resnet.__dict__[args.arch]()
+    model = resnet_module.__dict__[args.arch]()
     model.to(device)
 
     # optionally resume from a checkpoint
@@ -128,14 +109,15 @@ def main():
         optimizer = SubScafSGD(model.parameters(), 
                                args.lr,
                                momentum=args.momentum,
-                               nesterov=args.nesterov)
+                               nesterov=args.nesterov,
+                               weight_decay=args.weight_decay)
 
     lr_scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer,
                                                         milestones=[100, 150], last_epoch=args.start_epoch - 1)
     total_param_num = sum(p.numel for p in model.parameters() if p.requires_grad)
 
     # subscaf layer replace
-    #if "subscaf" in args.optimmizer:
+    #if "subscaf" in args.optimizer:
 
     if args.evaluate:
         validate(val_loader, model, criterion, args)
@@ -313,4 +295,7 @@ def accuracy(output, target, topk=(1,)):
 
 
 if __name__ == '__main__':
-    main()
+    init_process_group()
+    args, unknown = main_parse_args(None)
+    args = parse_args(args, unknown)
+    main(args)
