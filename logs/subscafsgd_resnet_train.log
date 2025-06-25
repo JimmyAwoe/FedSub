@@ -1,0 +1,1398 @@
+W0625 12:39:13.461000 3306969 site-packages/torch/distributed/run.py:766] 
+W0625 12:39:13.461000 3306969 site-packages/torch/distributed/run.py:766] *****************************************
+W0625 12:39:13.461000 3306969 site-packages/torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0625 12:39:13.461000 3306969 site-packages/torch/distributed/run.py:766] *****************************************
+2025-06-25 12:39:19.051 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.362 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.364 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.365 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.366 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.367 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.368 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.368 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.369 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.370 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.371 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.371 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.372 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.373 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.373 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.374 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.375 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.375 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.376 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.376 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.377 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.378 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.378 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.379 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.380 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.380 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.381 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.381 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.382 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.382 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.383 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.384 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.385 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.385 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.386 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.387 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.387 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.388 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.388 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.389 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.389 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.390 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.390 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.391 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.391 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.391 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.392 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.392 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.393 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.393 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.394 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.394 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.395 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.395 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.395 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.396 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.396 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.397 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.397 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.398 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.398 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.398 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.399 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.399 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.400 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.400 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.401 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.401 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.402 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.402 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.402 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.403 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.403 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.404 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.404 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.405 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.405 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.406 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.406 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.406 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.407 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.407 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.408 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.408 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.409 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.409 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.410 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.410 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.410 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.411 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.411 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.412 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.412 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.413 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.413 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.413 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.414 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.414 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.415 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.415 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.416 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.416 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.416 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.417 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.417 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.418 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.418 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.418 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv1
+2025-06-25 12:39:19.419 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: conv2
+2025-06-25 12:39:19.421 | INFO     | utils.common:log:12 - 
+ResNet(
+  (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+  (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (1): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (2): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (3): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (4): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (5): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (6): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (7): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (8): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (9): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (10): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (11): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (12): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (13): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (14): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (15): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (16): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (17): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): LambdaLayer()
+    )
+    (1): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (2): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (3): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (4): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (5): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (6): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (7): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (8): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (9): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (10): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (11): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (12): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (13): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (14): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (15): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (16): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (17): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): LambdaLayer()
+    )
+    (1): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (2): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (3): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (4): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (5): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (6): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (7): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (8): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (9): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (10): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (11): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (12): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (13): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (14): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (15): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (16): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+    (17): BasicBlock(
+      (conv1): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): SubScafConv2d(comp_dim=3, kernel_size=7)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (shortcut): Sequential()
+    )
+  )
+  (linear): Linear(in_features=64, out_features=100, bias=True)
+)
+
+2025-06-25 12:39:19.422 | INFO     | utils.common:log:12 - Total params: 9.37M
+2025-06-25 12:39:19.422 | INFO     | utils.common:log:12 - Trainable params before compression: 9.37M
+2025-06-25 12:39:19.423 | INFO     | utils.common:log:12 - Trainable params after compression: 4.03M
+2025-06-25 12:39:19.423 | INFO     | utils.common:log:12 - Total params with Subspace Scaffold enabled: 4.01M
+2025-06-25 12:39:19.423 | INFO     | utils.common:log:12 - current lr 0.00000e+00
+2025-06-25 12:39:20.247 | INFO     | utils.common:log:12 - Epoch: [0][0/782]	Loss 12.6782 (12.6782)	Prec@5 1.562 (1.562)	lr 0.0010
+2025-06-25 12:39:20.810 | INFO     | utils.common:log:12 - Epoch: [0][10/782]	Loss 8.0157 (9.9064)	Prec@5 3.125 (4.688)	lr 0.0110
+2025-06-25 12:39:21.378 | INFO     | utils.common:log:12 - Epoch: [0][20/782]	Loss 6.9044 (8.4649)	Prec@5 3.125 (6.027)	lr 0.0210
+2025-06-25 12:39:21.933 | INFO     | utils.common:log:12 - Epoch: [0][30/782]	Loss 5.4230 (7.6860)	Prec@5 7.812 (5.746)	lr 0.0310
+2025-06-25 12:39:22.502 | INFO     | utils.common:log:12 - Epoch: [0][40/782]	Loss 6.0822 (7.2778)	Prec@5 4.688 (5.793)	lr 0.0410
+2025-06-25 12:39:23.081 | INFO     | utils.common:log:12 - Epoch: [0][50/782]	Loss 5.4890 (6.9661)	Prec@5 7.812 (6.158)	lr 0.0510
+2025-06-25 12:39:23.657 | INFO     | utils.common:log:12 - Epoch: [0][60/782]	Loss 5.4456 (6.7105)	Prec@5 9.375 (6.455)	lr 0.0610
+2025-06-25 12:39:24.234 | INFO     | utils.common:log:12 - Epoch: [0][70/782]	Loss 5.3736 (6.5425)	Prec@5 1.562 (6.382)	lr 0.0710
+2025-06-25 12:39:24.810 | INFO     | utils.common:log:12 - Epoch: [0][80/782]	Loss 5.3661 (6.3807)	Prec@5 4.688 (6.192)	lr 0.0810
+2025-06-25 12:39:25.389 | INFO     | utils.common:log:12 - Epoch: [0][90/782]	Loss 5.0643 (6.2469)	Prec@5 6.250 (6.336)	lr 0.0910
+2025-06-25 12:39:25.952 | INFO     | utils.common:log:12 - Epoch: [0][100/782]	Loss 5.2202 (6.1370)	Prec@5 7.812 (6.467)	lr 0.1000
+2025-06-25 12:39:26.528 | INFO     | utils.common:log:12 - Epoch: [0][110/782]	Loss 5.0050 (6.0552)	Prec@5 3.125 (6.433)	lr 0.1000
+2025-06-25 12:39:27.102 | INFO     | utils.common:log:12 - Epoch: [0][120/782]	Loss 5.0331 (5.9681)	Prec@5 4.688 (6.405)	lr 0.1000
+2025-06-25 12:39:27.686 | INFO     | utils.common:log:12 - Epoch: [0][130/782]	Loss 4.6902 (5.8834)	Prec@5 10.938 (6.465)	lr 0.1000
+2025-06-25 12:39:28.288 | INFO     | utils.common:log:12 - Epoch: [0][140/782]	Loss 4.9240 (5.8066)	Prec@5 9.375 (6.582)	lr 0.1000
+2025-06-25 12:39:28.853 | INFO     | utils.common:log:12 - Epoch: [0][150/782]	Loss 4.8150 (5.7372)	Prec@5 9.375 (6.705)	lr 0.1000
+2025-06-25 12:39:29.428 | INFO     | utils.common:log:12 - Epoch: [0][160/782]	Loss 4.6971 (5.6735)	Prec@5 10.938 (6.803)	lr 0.1000
+2025-06-25 12:39:30.003 | INFO     | utils.common:log:12 - Epoch: [0][170/782]	Loss 4.8403 (5.6150)	Prec@5 7.812 (6.908)	lr 0.1000
+2025-06-25 12:39:30.581 | INFO     | utils.common:log:12 - Epoch: [0][180/782]	Loss 4.6591 (5.5578)	Prec@5 10.938 (7.156)	lr 0.1000
+2025-06-25 12:39:31.150 | INFO     | utils.common:log:12 - Epoch: [0][190/782]	Loss 4.5388 (5.5020)	Prec@5 10.938 (7.453)	lr 0.1000
+2025-06-25 12:39:31.724 | INFO     | utils.common:log:12 - Epoch: [0][200/782]	Loss 4.3875 (5.4525)	Prec@5 17.188 (7.696)	lr 0.1000
+2025-06-25 12:39:32.304 | INFO     | utils.common:log:12 - Epoch: [0][210/782]	Loss 4.4853 (5.4080)	Prec@5 12.500 (7.946)	lr 0.1000
+2025-06-25 12:39:32.876 | INFO     | utils.common:log:12 - Epoch: [0][220/782]	Loss 4.3888 (5.3665)	Prec@5 9.375 (8.194)	lr 0.1000
+2025-06-25 12:39:33.448 | INFO     | utils.common:log:12 - Epoch: [0][230/782]	Loss 4.4100 (5.3288)	Prec@5 12.500 (8.367)	lr 0.1000
+2025-06-25 12:39:34.017 | INFO     | utils.common:log:12 - Epoch: [0][240/782]	Loss 4.4399 (5.2930)	Prec@5 17.188 (8.532)	lr 0.0999
+2025-06-25 12:39:34.582 | INFO     | utils.common:log:12 - Epoch: [0][250/782]	Loss 4.3526 (5.2577)	Prec@5 15.625 (8.827)	lr 0.0999
+2025-06-25 12:39:35.157 | INFO     | utils.common:log:12 - Epoch: [0][260/782]	Loss 4.4396 (5.2231)	Prec@5 10.938 (9.088)	lr 0.0999
+2025-06-25 12:39:35.727 | INFO     | utils.common:log:12 - Epoch: [0][270/782]	Loss 4.5658 (5.1915)	Prec@5 10.938 (9.329)	lr 0.0999
+2025-06-25 12:39:36.300 | INFO     | utils.common:log:12 - Epoch: [0][280/782]	Loss 4.2752 (5.1602)	Prec@5 20.312 (9.614)	lr 0.0999
+2025-06-25 12:39:36.866 | INFO     | utils.common:log:12 - Epoch: [0][290/782]	Loss 4.2074 (5.1305)	Prec@5 20.312 (9.837)	lr 0.0999
+2025-06-25 12:39:37.441 | INFO     | utils.common:log:12 - Epoch: [0][300/782]	Loss 4.3815 (5.1035)	Prec@5 20.312 (10.091)	lr 0.0999
+2025-06-25 12:39:38.014 | INFO     | utils.common:log:12 - Epoch: [0][310/782]	Loss 4.4273 (5.0778)	Prec@5 18.750 (10.385)	lr 0.0999
+2025-06-25 12:39:38.589 | INFO     | utils.common:log:12 - Epoch: [0][320/782]	Loss 4.2502 (5.0523)	Prec@5 17.188 (10.694)	lr 0.0999
+2025-06-25 12:39:39.149 | INFO     | utils.common:log:12 - Epoch: [0][330/782]	Loss 4.4264 (5.0284)	Prec@5 18.750 (10.956)	lr 0.0999
+2025-06-25 12:39:39.721 | INFO     | utils.common:log:12 - Epoch: [0][340/782]	Loss 4.3465 (5.0057)	Prec@5 17.188 (11.240)	lr 0.0999
+2025-06-25 12:39:40.286 | INFO     | utils.common:log:12 - Epoch: [0][350/782]	Loss 4.0875 (4.9838)	Prec@5 25.000 (11.534)	lr 0.0998
+2025-06-25 12:39:40.853 | INFO     | utils.common:log:12 - Epoch: [0][360/782]	Loss 4.2632 (4.9631)	Prec@5 15.625 (11.773)	lr 0.0998
+2025-06-25 12:39:41.424 | INFO     | utils.common:log:12 - Epoch: [0][370/782]	Loss 3.9750 (4.9417)	Prec@5 25.000 (11.999)	lr 0.0998
+2025-06-25 12:39:42.003 | INFO     | utils.common:log:12 - Epoch: [0][380/782]	Loss 4.0016 (4.9220)	Prec@5 25.000 (12.242)	lr 0.0998
+2025-06-25 12:39:42.567 | INFO     | utils.common:log:12 - Epoch: [0][390/782]	Loss 4.0767 (4.9026)	Prec@5 21.875 (12.488)	lr 0.0998
+2025-06-25 12:39:43.141 | INFO     | utils.common:log:12 - Epoch: [0][400/782]	Loss 4.0844 (4.8853)	Prec@5 21.875 (12.738)	lr 0.0998
+2025-06-25 12:39:43.710 | INFO     | utils.common:log:12 - Epoch: [0][410/782]	Loss 4.2155 (4.8681)	Prec@5 21.875 (12.975)	lr 0.0998
+2025-06-25 12:39:44.280 | INFO     | utils.common:log:12 - Epoch: [0][420/782]	Loss 4.1553 (4.8513)	Prec@5 28.125 (13.201)	lr 0.0997
+2025-06-25 12:39:44.847 | INFO     | utils.common:log:12 - Epoch: [0][430/782]	Loss 3.9361 (4.8351)	Prec@5 31.250 (13.392)	lr 0.0997
+2025-06-25 12:39:45.416 | INFO     | utils.common:log:12 - Epoch: [0][440/782]	Loss 4.0805 (4.8206)	Prec@5 25.000 (13.634)	lr 0.0997
+2025-06-25 12:39:45.991 | INFO     | utils.common:log:12 - Epoch: [0][450/782]	Loss 4.2964 (4.8058)	Prec@5 18.750 (13.848)	lr 0.0997
+2025-06-25 12:39:46.568 | INFO     | utils.common:log:12 - Epoch: [0][460/782]	Loss 4.2366 (4.7916)	Prec@5 15.625 (13.991)	lr 0.0997
+2025-06-25 12:39:47.137 | INFO     | utils.common:log:12 - Epoch: [0][470/782]	Loss 4.2885 (4.7770)	Prec@5 18.750 (14.208)	lr 0.0997
+2025-06-25 12:39:47.709 | INFO     | utils.common:log:12 - Epoch: [0][480/782]	Loss 3.8676 (4.7626)	Prec@5 21.875 (14.339)	lr 0.0996
+2025-06-25 12:39:48.283 | INFO     | utils.common:log:12 - Epoch: [0][490/782]	Loss 3.9372 (4.7494)	Prec@5 25.000 (14.518)	lr 0.0996
+2025-06-25 12:39:48.859 | INFO     | utils.common:log:12 - Epoch: [0][500/782]	Loss 4.2814 (4.7354)	Prec@5 20.312 (14.736)	lr 0.0996
+2025-06-25 12:39:49.430 | INFO     | utils.common:log:12 - Epoch: [0][510/782]	Loss 3.9960 (4.7231)	Prec@5 25.000 (14.903)	lr 0.0996
+2025-06-25 12:39:49.996 | INFO     | utils.common:log:12 - Epoch: [0][520/782]	Loss 4.2036 (4.7100)	Prec@5 25.000 (15.139)	lr 0.0996
+2025-06-25 12:39:50.569 | INFO     | utils.common:log:12 - Epoch: [0][530/782]	Loss 3.9171 (4.6962)	Prec@5 32.812 (15.416)	lr 0.0995
+2025-06-25 12:39:51.140 | INFO     | utils.common:log:12 - Epoch: [0][540/782]	Loss 4.0319 (4.6837)	Prec@5 26.562 (15.611)	lr 0.0995
+2025-06-25 12:39:51.709 | INFO     | utils.common:log:12 - Epoch: [0][550/782]	Loss 3.8848 (4.6711)	Prec@5 28.125 (15.801)	lr 0.0995
+2025-06-25 12:39:52.285 | INFO     | utils.common:log:12 - Epoch: [0][560/782]	Loss 4.1188 (4.6602)	Prec@5 23.438 (15.982)	lr 0.0995
+2025-06-25 12:39:52.854 | INFO     | utils.common:log:12 - Epoch: [0][570/782]	Loss 3.8200 (4.6489)	Prec@5 32.812 (16.194)	lr 0.0994
+2025-06-25 12:39:53.414 | INFO     | utils.common:log:12 - Epoch: [0][580/782]	Loss 4.0032 (4.6389)	Prec@5 25.000 (16.370)	lr 0.0994
+2025-06-25 12:39:53.982 | INFO     | utils.common:log:12 - Epoch: [0][590/782]	Loss 3.8412 (4.6284)	Prec@5 34.375 (16.537)	lr 0.0994
+2025-06-25 12:39:54.554 | INFO     | utils.common:log:12 - Epoch: [0][600/782]	Loss 4.0766 (4.6177)	Prec@5 23.438 (16.707)	lr 0.0994
+2025-06-25 12:39:55.126 | INFO     | utils.common:log:12 - Epoch: [0][610/782]	Loss 4.0415 (4.6067)	Prec@5 21.875 (16.916)	lr 0.0993
+2025-06-25 12:39:55.702 | INFO     | utils.common:log:12 - Epoch: [0][620/782]	Loss 4.0605 (4.5966)	Prec@5 20.312 (17.112)	lr 0.0993
+2025-06-25 12:39:56.268 | INFO     | utils.common:log:12 - Epoch: [0][630/782]	Loss 3.8654 (4.5864)	Prec@5 29.688 (17.287)	lr 0.0993
+2025-06-25 12:39:56.847 | INFO     | utils.common:log:12 - Epoch: [0][640/782]	Loss 3.8695 (4.5750)	Prec@5 31.250 (17.543)	lr 0.0993
+2025-06-25 12:39:57.416 | INFO     | utils.common:log:12 - Epoch: [0][650/782]	Loss 4.0418 (4.5657)	Prec@5 26.562 (17.696)	lr 0.0992
+2025-06-25 12:39:57.984 | INFO     | utils.common:log:12 - Epoch: [0][660/782]	Loss 3.9390 (4.5565)	Prec@5 26.562 (17.830)	lr 0.0992
+2025-06-25 12:39:58.559 | INFO     | utils.common:log:12 - Epoch: [0][670/782]	Loss 4.0532 (4.5473)	Prec@5 28.125 (18.019)	lr 0.0992
+2025-06-25 12:39:59.125 | INFO     | utils.common:log:12 - Epoch: [0][680/782]	Loss 3.9031 (4.5385)	Prec@5 20.312 (18.181)	lr 0.0992
+2025-06-25 12:39:59.696 | INFO     | utils.common:log:12 - Epoch: [0][690/782]	Loss 4.0486 (4.5301)	Prec@5 28.125 (18.334)	lr 0.0991
+2025-06-25 12:40:00.263 | INFO     | utils.common:log:12 - Epoch: [0][700/782]	Loss 3.8901 (4.5227)	Prec@5 26.562 (18.471)	lr 0.0991
+2025-06-25 12:40:00.835 | INFO     | utils.common:log:12 - Epoch: [0][710/782]	Loss 3.9210 (4.5142)	Prec@5 28.125 (18.623)	lr 0.0991
+2025-06-25 12:40:01.408 | INFO     | utils.common:log:12 - Epoch: [0][720/782]	Loss 3.6921 (4.5059)	Prec@5 37.500 (18.776)	lr 0.0990
+2025-06-25 12:40:01.983 | INFO     | utils.common:log:12 - Epoch: [0][730/782]	Loss 3.4580 (4.4969)	Prec@5 42.188 (18.974)	lr 0.0990
+2025-06-25 12:40:02.569 | INFO     | utils.common:log:12 - Epoch: [0][740/782]	Loss 3.8434 (4.4889)	Prec@5 29.688 (19.119)	lr 0.0990
+2025-06-25 12:40:03.148 | INFO     | utils.common:log:12 - Epoch: [0][750/782]	Loss 3.9082 (4.4815)	Prec@5 26.562 (19.245)	lr 0.0989
+2025-06-25 12:40:03.715 | INFO     | utils.common:log:12 - Epoch: [0][760/782]	Loss 3.6275 (4.4727)	Prec@5 37.500 (19.428)	lr 0.0989
+2025-06-25 12:40:04.282 | INFO     | utils.common:log:12 - Epoch: [0][770/782]	Loss 4.2172 (4.4652)	Prec@5 21.875 (19.573)	lr 0.0989
+2025-06-25 12:40:04.844 | INFO     | utils.common:log:12 - Epoch: [0][780/782]	Loss 4.0995 (4.4578)	Prec@5 23.438 (19.714)	lr 0.0988
+2025-06-25 12:40:05.265 | INFO     | utils.common:log:12 - Test: [0/79]	Time 0.239 (0.239)	Loss 3.9579 (3.9579)	Prec@1 28.906 (28.906)
+2025-06-25 12:40:05.467 | INFO     | utils.common:log:12 - Test: [10/79]	Time 0.017 (0.040)	Loss 4.2239 (4.1857)	Prec@1 22.656 (27.202)
+2025-06-25 12:40:05.689 | INFO     | utils.common:log:12 - Test: [20/79]	Time 0.021 (0.032)	Loss 4.0324 (4.1897)	Prec@1 25.781 (26.711)
+2025-06-25 12:40:05.893 | INFO     | utils.common:log:12 - Test: [30/79]	Time 0.017 (0.028)	Loss 4.2098 (4.1726)	Prec@1 20.312 (26.714)
+2025-06-25 12:40:06.112 | INFO     | utils.common:log:12 - Test: [40/79]	Time 0.021 (0.026)	Loss 4.1185 (4.1688)	Prec@1 22.656 (26.524)
+2025-06-25 12:40:06.316 | INFO     | utils.common:log:12 - Test: [50/79]	Time 0.017 (0.025)	Loss 4.4900 (4.1732)	Prec@1 21.875 (26.348)
+2025-06-25 12:40:06.539 | INFO     | utils.common:log:12 - Test: [60/79]	Time 0.022 (0.025)	Loss 4.3075 (4.1746)	Prec@1 27.344 (26.562)
+2025-06-25 12:40:06.742 | INFO     | utils.common:log:12 - Test: [70/79]	Time 0.018 (0.024)	Loss 4.2915 (4.1720)	Prec@1 25.000 (26.474)
+2025-06-25 12:40:06.934 | INFO     | utils.common:log:12 -  * Prec@1 26.480
+2025-06-25 12:40:06.934 | INFO     | utils.common:log:12 - current lr 9.88338e-02
+2025-06-25 12:40:07.172 | INFO     | utils.common:log:12 - Epoch: [1][0/782]	Loss 3.9682 (3.9682)	Prec@5 26.562 (26.562)	lr 0.0988
+2025-06-25 12:40:07.721 | INFO     | utils.common:log:12 - Epoch: [1][10/782]	Loss 3.6140 (3.8860)	Prec@5 35.938 (28.977)	lr 0.0988
+2025-06-25 12:40:08.291 | INFO     | utils.common:log:12 - Epoch: [1][20/782]	Loss 3.6071 (3.8721)	Prec@5 35.938 (29.688)	lr 0.0988
+2025-06-25 12:40:08.862 | INFO     | utils.common:log:12 - Epoch: [1][30/782]	Loss 3.6983 (3.8436)	Prec@5 35.938 (31.099)	lr 0.0987
+2025-06-25 12:40:09.432 | INFO     | utils.common:log:12 - Epoch: [1][40/782]	Loss 4.0071 (3.8548)	Prec@5 28.125 (31.059)	lr 0.0987
+2025-06-25 12:40:09.995 | INFO     | utils.common:log:12 - Epoch: [1][50/782]	Loss 4.0078 (3.8519)	Prec@5 31.250 (31.311)	lr 0.0987
+2025-06-25 12:40:10.569 | INFO     | utils.common:log:12 - Epoch: [1][60/782]	Loss 3.6990 (3.8369)	Prec@5 37.500 (31.865)	lr 0.0986
+2025-06-25 12:40:11.136 | INFO     | utils.common:log:12 - Epoch: [1][70/782]	Loss 3.8523 (3.8288)	Prec@5 32.812 (32.328)	lr 0.0986
+2025-06-25 12:40:11.698 | INFO     | utils.common:log:12 - Epoch: [1][80/782]	Loss 3.5292 (3.8253)	Prec@5 43.750 (32.523)	lr 0.0985
+2025-06-25 12:40:12.253 | INFO     | utils.common:log:12 - Epoch: [1][90/782]	Loss 3.9018 (3.8202)	Prec@5 34.375 (32.521)	lr 0.0985
+2025-06-25 12:40:12.810 | INFO     | utils.common:log:12 - Epoch: [1][100/782]	Loss 3.8241 (3.8206)	Prec@5 31.250 (32.472)	lr 0.0985
+2025-06-25 12:40:13.368 | INFO     | utils.common:log:12 - Epoch: [1][110/782]	Loss 3.5599 (3.8104)	Prec@5 34.375 (32.644)	lr 0.0984
+2025-06-25 12:40:13.928 | INFO     | utils.common:log:12 - Epoch: [1][120/782]	Loss 3.9733 (3.8145)	Prec@5 32.812 (32.528)	lr 0.0984
+2025-06-25 12:40:14.480 | INFO     | utils.common:log:12 - Epoch: [1][130/782]	Loss 4.0015 (3.8147)	Prec@5 29.688 (32.681)	lr 0.0983
+2025-06-25 12:40:15.043 | INFO     | utils.common:log:12 - Epoch: [1][140/782]	Loss 3.8715 (3.8092)	Prec@5 29.688 (32.890)	lr 0.0983
+2025-06-25 12:40:15.594 | INFO     | utils.common:log:12 - Epoch: [1][150/782]	Loss 3.6994 (3.8110)	Prec@5 34.375 (32.854)	lr 0.0983
+2025-06-25 12:40:16.162 | INFO     | utils.common:log:12 - Epoch: [1][160/782]	Loss 4.0938 (3.8088)	Prec@5 20.312 (32.822)	lr 0.0982
+2025-06-25 12:40:16.725 | INFO     | utils.common:log:12 - Epoch: [1][170/782]	Loss 3.7132 (3.8040)	Prec@5 39.062 (33.096)	lr 0.0982
+2025-06-25 12:40:17.272 | INFO     | utils.common:log:12 - Epoch: [1][180/782]	Loss 4.0550 (3.8023)	Prec@5 26.562 (33.115)	lr 0.0981
+2025-06-25 12:40:17.836 | INFO     | utils.common:log:12 - Epoch: [1][190/782]	Loss 3.6519 (3.7950)	Prec@5 39.062 (33.262)	lr 0.0981
+2025-06-25 12:40:18.414 | INFO     | utils.common:log:12 - Epoch: [1][200/782]	Loss 3.9110 (3.7917)	Prec@5 28.125 (33.287)	lr 0.0981
+2025-06-25 12:40:18.982 | INFO     | utils.common:log:12 - Epoch: [1][210/782]	Loss 3.7542 (3.7894)	Prec@5 35.938 (33.383)	lr 0.0980
+2025-06-25 12:40:19.557 | INFO     | utils.common:log:12 - Epoch: [1][220/782]	Loss 3.7229 (3.7877)	Prec@5 34.375 (33.477)	lr 0.0980
+2025-06-25 12:40:20.117 | INFO     | utils.common:log:12 - Epoch: [1][230/782]	Loss 3.8520 (3.7831)	Prec@5 31.250 (33.529)	lr 0.0979
+2025-06-25 12:40:20.672 | INFO     | utils.common:log:12 - Epoch: [1][240/782]	Loss 3.6411 (3.7816)	Prec@5 40.625 (33.642)	lr 0.0979
+2025-06-25 12:40:21.204 | INFO     | utils.common:log:12 - Epoch: [1][250/782]	Loss 3.7669 (3.7782)	Prec@5 34.375 (33.759)	lr 0.0978
+2025-06-25 12:40:21.749 | INFO     | utils.common:log:12 - Epoch: [1][260/782]	Loss 3.8755 (3.7773)	Prec@5 26.562 (33.788)	lr 0.0978
+2025-06-25 12:40:22.306 | INFO     | utils.common:log:12 - Epoch: [1][270/782]	Loss 3.9193 (3.7767)	Prec@5 34.375 (33.971)	lr 0.0977
+2025-06-25 12:40:22.868 | INFO     | utils.common:log:12 - Epoch: [1][280/782]	Loss 3.8736 (3.7758)	Prec@5 35.938 (33.958)	lr 0.0977
+2025-06-25 12:40:23.422 | INFO     | utils.common:log:12 - Epoch: [1][290/782]	Loss 3.8613 (3.7712)	Prec@5 32.812 (34.037)	lr 0.0976
+2025-06-25 12:40:23.971 | INFO     | utils.common:log:12 - Epoch: [1][300/782]	Loss 3.7946 (3.7683)	Prec@5 35.938 (34.157)	lr 0.0976
+2025-06-25 12:40:24.531 | INFO     | utils.common:log:12 - Epoch: [1][310/782]	Loss 3.6483 (3.7645)	Prec@5 35.938 (34.174)	lr 0.0975
+2025-06-25 12:40:25.091 | INFO     | utils.common:log:12 - Epoch: [1][320/782]	Loss 3.6250 (3.7624)	Prec@5 43.750 (34.200)	lr 0.0975
+2025-06-25 12:40:25.651 | INFO     | utils.common:log:12 - Epoch: [1][330/782]	Loss 3.7727 (3.7610)	Prec@5 32.812 (34.219)	lr 0.0974
+2025-06-25 12:40:26.213 | INFO     | utils.common:log:12 - Epoch: [1][340/782]	Loss 3.5158 (3.7588)	Prec@5 37.500 (34.283)	lr 0.0974
+2025-06-25 12:40:26.776 | INFO     | utils.common:log:12 - Epoch: [1][350/782]	Loss 3.8041 (3.7573)	Prec@5 31.250 (34.339)	lr 0.0973
+2025-06-25 12:40:27.342 | INFO     | utils.common:log:12 - Epoch: [1][360/782]	Loss 3.6310 (3.7548)	Prec@5 35.938 (34.353)	lr 0.0973
+2025-06-25 12:40:27.913 | INFO     | utils.common:log:12 - Epoch: [1][370/782]	Loss 3.7006 (3.7523)	Prec@5 34.375 (34.404)	lr 0.0972
+2025-06-25 12:40:28.484 | INFO     | utils.common:log:12 - Epoch: [1][380/782]	Loss 3.4378 (3.7510)	Prec@5 45.312 (34.498)	lr 0.0972
+2025-06-25 12:40:29.043 | INFO     | utils.common:log:12 - Epoch: [1][390/782]	Loss 3.4705 (3.7493)	Prec@5 40.625 (34.563)	lr 0.0971
+2025-06-25 12:40:29.601 | INFO     | utils.common:log:12 - Epoch: [1][400/782]	Loss 3.5364 (3.7472)	Prec@5 42.188 (34.648)	lr 0.0971
+2025-06-25 12:40:30.166 | INFO     | utils.common:log:12 - Epoch: [1][410/782]	Loss 3.5950 (3.7463)	Prec@5 40.625 (34.668)	lr 0.0970
+2025-06-25 12:40:30.730 | INFO     | utils.common:log:12 - Epoch: [1][420/782]	Loss 3.9932 (3.7459)	Prec@5 29.688 (34.765)	lr 0.0970
+2025-06-25 12:40:31.301 | INFO     | utils.common:log:12 - Epoch: [1][430/782]	Loss 3.6806 (3.7431)	Prec@5 31.250 (34.843)	lr 0.0969
+2025-06-25 12:40:31.858 | INFO     | utils.common:log:12 - Epoch: [1][440/782]	Loss 3.5437 (3.7411)	Prec@5 42.188 (34.928)	lr 0.0969
+2025-06-25 12:40:32.427 | INFO     | utils.common:log:12 - Epoch: [1][450/782]	Loss 3.5450 (3.7397)	Prec@5 31.250 (34.909)	lr 0.0968
+2025-06-25 12:40:32.988 | INFO     | utils.common:log:12 - Epoch: [1][460/782]	Loss 3.6394 (3.7362)	Prec@5 39.062 (35.043)	lr 0.0967
+2025-06-25 12:40:33.553 | INFO     | utils.common:log:12 - Epoch: [1][470/782]	Loss 3.4546 (3.7333)	Prec@5 43.750 (35.148)	lr 0.0967
+2025-06-25 12:40:34.125 | INFO     | utils.common:log:12 - Epoch: [1][480/782]	Loss 4.1686 (3.7308)	Prec@5 32.812 (35.272)	lr 0.0966
+2025-06-25 12:40:34.691 | INFO     | utils.common:log:12 - Epoch: [1][490/782]	Loss 3.7039 (3.7289)	Prec@5 32.812 (35.342)	lr 0.0966
+2025-06-25 12:40:35.251 | INFO     | utils.common:log:12 - Epoch: [1][500/782]	Loss 4.1122 (3.7282)	Prec@5 25.000 (35.373)	lr 0.0965
+2025-06-25 12:40:35.815 | INFO     | utils.common:log:12 - Epoch: [1][510/782]	Loss 3.8105 (3.7256)	Prec@5 37.500 (35.436)	lr 0.0965
+2025-06-25 12:40:36.373 | INFO     | utils.common:log:12 - Epoch: [1][520/782]	Loss 3.3915 (3.7223)	Prec@5 43.750 (35.545)	lr 0.0964
+2025-06-25 12:40:36.937 | INFO     | utils.common:log:12 - Epoch: [1][530/782]	Loss 3.3807 (3.7203)	Prec@5 45.312 (35.602)	lr 0.0963
+2025-06-25 12:40:37.507 | INFO     | utils.common:log:12 - Epoch: [1][540/782]	Loss 3.3653 (3.7170)	Prec@5 48.438 (35.680)	lr 0.0963
+2025-06-25 12:40:38.070 | INFO     | utils.common:log:12 - Epoch: [1][550/782]	Loss 3.8757 (3.7146)	Prec@5 32.812 (35.716)	lr 0.0962
+2025-06-25 12:40:38.629 | INFO     | utils.common:log:12 - Epoch: [1][560/782]	Loss 3.3486 (3.7131)	Prec@5 39.062 (35.715)	lr 0.0962
+2025-06-25 12:40:39.242 | INFO     | utils.common:log:12 - Epoch: [1][570/782]	Loss 3.9070 (3.7114)	Prec@5 32.812 (35.771)	lr 0.0961
+2025-06-25 12:40:39.825 | INFO     | utils.common:log:12 - Epoch: [1][580/782]	Loss 3.2573 (3.7098)	Prec@5 48.438 (35.833)	lr 0.0960
+2025-06-25 12:40:40.388 | INFO     | utils.common:log:12 - Epoch: [1][590/782]	Loss 3.9095 (3.7092)	Prec@5 35.938 (35.848)	lr 0.0960
+2025-06-25 12:40:40.952 | INFO     | utils.common:log:12 - Epoch: [1][600/782]	Loss 3.3053 (3.7052)	Prec@5 50.000 (35.945)	lr 0.0959
+2025-06-25 12:40:41.516 | INFO     | utils.common:log:12 - Epoch: [1][610/782]	Loss 3.5760 (3.7047)	Prec@5 42.188 (35.994)	lr 0.0959
+2025-06-25 12:40:42.086 | INFO     | utils.common:log:12 - Epoch: [1][620/782]	Loss 3.5265 (3.7030)	Prec@5 46.875 (36.096)	lr 0.0958
+2025-06-25 12:40:42.657 | INFO     | utils.common:log:12 - Epoch: [1][630/782]	Loss 3.2746 (3.7002)	Prec@5 43.750 (36.175)	lr 0.0957
+2025-06-25 12:40:43.220 | INFO     | utils.common:log:12 - Epoch: [1][640/782]	Loss 3.3849 (3.6973)	Prec@5 45.312 (36.267)	lr 0.0957
+2025-06-25 12:40:43.799 | INFO     | utils.common:log:12 - Epoch: [1][650/782]	Loss 3.8554 (3.6956)	Prec@5 31.250 (36.307)	lr 0.0956
+2025-06-25 12:40:44.358 | INFO     | utils.common:log:12 - Epoch: [1][660/782]	Loss 3.6153 (3.6935)	Prec@5 42.188 (36.391)	lr 0.0955
+2025-06-25 12:40:44.926 | INFO     | utils.common:log:12 - Epoch: [1][670/782]	Loss 3.4640 (3.6907)	Prec@5 48.438 (36.473)	lr 0.0955
+2025-06-25 12:40:45.492 | INFO     | utils.common:log:12 - Epoch: [1][680/782]	Loss 3.6367 (3.6881)	Prec@5 39.062 (36.548)	lr 0.0954
+2025-06-25 12:40:46.054 | INFO     | utils.common:log:12 - Epoch: [1][690/782]	Loss 3.6021 (3.6869)	Prec@5 42.188 (36.575)	lr 0.0953
+2025-06-25 12:40:46.619 | INFO     | utils.common:log:12 - Epoch: [1][700/782]	Loss 3.7186 (3.6858)	Prec@5 28.125 (36.617)	lr 0.0953
+2025-06-25 12:40:47.181 | INFO     | utils.common:log:12 - Epoch: [1][710/782]	Loss 3.2335 (3.6844)	Prec@5 48.438 (36.623)	lr 0.0952
+2025-06-25 12:40:47.746 | INFO     | utils.common:log:12 - Epoch: [1][720/782]	Loss 3.5565 (3.6834)	Prec@5 43.750 (36.657)	lr 0.0951
+2025-06-25 12:40:48.310 | INFO     | utils.common:log:12 - Epoch: [1][730/782]	Loss 3.4535 (3.6818)	Prec@5 32.812 (36.681)	lr 0.0951
+2025-06-25 12:40:48.875 | INFO     | utils.common:log:12 - Epoch: [1][740/782]	Loss 3.6174 (3.6820)	Prec@5 37.500 (36.699)	lr 0.0950
+2025-06-25 12:40:49.697 | INFO     | utils.common:log:12 - Epoch: [1][750/782]	Loss 4.0310 (3.6832)	Prec@5 31.250 (36.689)	lr 0.0949
+2025-06-25 12:40:50.262 | INFO     | utils.common:log:12 - Epoch: [1][760/782]	Loss 3.9012 (3.6818)	Prec@5 23.438 (36.716)	lr 0.0948
+2025-06-25 12:40:50.833 | INFO     | utils.common:log:12 - Epoch: [1][770/782]	Loss 3.2428 (3.6810)	Prec@5 48.438 (36.764)	lr 0.0948
+2025-06-25 12:40:51.399 | INFO     | utils.common:log:12 - Epoch: [1][780/782]	Loss 3.7239 (3.6796)	Prec@5 35.938 (36.798)	lr 0.0947
+2025-06-25 12:40:51.711 | INFO     | utils.common:log:12 - Test: [0/79]	Time 0.189 (0.189)	Loss 3.5345 (3.5345)	Prec@1 44.531 (44.531)
+2025-06-25 12:40:51.883 | INFO     | utils.common:log:12 - Test: [10/79]	Time 0.017 (0.033)	Loss 3.7631 (3.7682)	Prec@1 39.844 (36.790)
+2025-06-25 12:40:52.051 | INFO     | utils.common:log:12 - Test: [20/79]	Time 0.016 (0.025)	Loss 3.6455 (3.7498)	Prec@1 37.500 (37.388)
+2025-06-25 12:40:52.221 | INFO     | utils.common:log:12 - Test: [30/79]	Time 0.017 (0.023)	Loss 3.6523 (3.7443)	Prec@1 37.500 (37.424)
+2025-06-25 12:40:52.386 | INFO     | utils.common:log:12 - Test: [40/79]	Time 0.016 (0.021)	Loss 3.5921 (3.7404)	Prec@1 35.156 (37.710)
+2025-06-25 12:40:52.558 | INFO     | utils.common:log:12 - Test: [50/79]	Time 0.017 (0.020)	Loss 3.9426 (3.7484)	Prec@1 35.156 (37.546)
+2025-06-25 12:40:52.728 | INFO     | utils.common:log:12 - Test: [60/79]	Time 0.017 (0.020)	Loss 4.2110 (3.7676)	Prec@1 28.906 (37.308)
+2025-06-25 12:40:52.897 | INFO     | utils.common:log:12 - Test: [70/79]	Time 0.018 (0.019)	Loss 3.7344 (3.7691)	Prec@1 37.500 (37.434)
+2025-06-25 12:40:53.078 | INFO     | utils.common:log:12 -  * Prec@1 37.570
+2025-06-25 12:40:53.079 | INFO     | utils.common:log:12 - current lr 9.47017e-02
+2025-06-25 12:40:53.305 | INFO     | utils.common:log:12 - Epoch: [2][0/782]	Loss 3.6704 (3.6704)	Prec@5 34.375 (34.375)	lr 0.0947
+2025-06-25 12:40:53.873 | INFO     | utils.common:log:12 - Epoch: [2][10/782]	Loss 3.3841 (3.5273)	Prec@5 54.688 (41.761)	lr 0.0946
+2025-06-25 12:40:54.456 | INFO     | utils.common:log:12 - Epoch: [2][20/782]	Loss 3.7745 (3.5616)	Prec@5 32.812 (40.848)	lr 0.0946
+2025-06-25 12:40:55.037 | INFO     | utils.common:log:12 - Epoch: [2][30/782]	Loss 3.6681 (3.5341)	Prec@5 40.625 (41.583)	lr 0.0945
+2025-06-25 12:40:55.604 | INFO     | utils.common:log:12 - Epoch: [2][40/782]	Loss 3.4737 (3.5255)	Prec@5 37.500 (41.387)	lr 0.0944
+2025-06-25 12:40:56.176 | INFO     | utils.common:log:12 - Epoch: [2][50/782]	Loss 3.4689 (3.5255)	Prec@5 46.875 (41.146)	lr 0.0943
+2025-06-25 12:40:56.748 | INFO     | utils.common:log:12 - Epoch: [2][60/782]	Loss 3.2995 (3.5251)	Prec@5 50.000 (40.984)	lr 0.0943
+2025-06-25 12:40:57.333 | INFO     | utils.common:log:12 - Epoch: [2][70/782]	Loss 3.3074 (3.5110)	Prec@5 39.062 (41.417)	lr 0.0942
+2025-06-25 12:40:57.922 | INFO     | utils.common:log:12 - Epoch: [2][80/782]	Loss 3.5773 (3.5020)	Prec@5 35.938 (41.667)	lr 0.0941
+2025-06-25 12:40:58.494 | INFO     | utils.common:log:12 - Epoch: [2][90/782]	Loss 3.1593 (3.5020)	Prec@5 53.125 (41.758)	lr 0.0940
+2025-06-25 12:40:59.064 | INFO     | utils.common:log:12 - Epoch: [2][100/782]	Loss 3.4216 (3.5077)	Prec@5 42.188 (41.538)	lr 0.0940
+2025-06-25 12:40:59.631 | INFO     | utils.common:log:12 - Epoch: [2][110/782]	Loss 3.5031 (3.5102)	Prec@5 37.500 (41.258)	lr 0.0939
+2025-06-25 12:41:00.203 | INFO     | utils.common:log:12 - Epoch: [2][120/782]	Loss 3.3439 (3.5025)	Prec@5 43.750 (41.555)	lr 0.0938
+2025-06-25 12:41:00.780 | INFO     | utils.common:log:12 - Epoch: [2][130/782]	Loss 3.4515 (3.4987)	Prec@5 45.312 (41.663)	lr 0.0937
+2025-06-25 12:41:01.351 | INFO     | utils.common:log:12 - Epoch: [2][140/782]	Loss 3.1888 (3.4959)	Prec@5 53.125 (41.744)	lr 0.0937
+2025-06-25 12:41:01.931 | INFO     | utils.common:log:12 - Epoch: [2][150/782]	Loss 3.4766 (3.4989)	Prec@5 39.062 (41.722)	lr 0.0936
+2025-06-25 12:41:02.509 | INFO     | utils.common:log:12 - Epoch: [2][160/782]	Loss 3.5494 (3.5020)	Prec@5 37.500 (41.625)	lr 0.0935
+2025-06-25 12:41:03.072 | INFO     | utils.common:log:12 - Epoch: [2][170/782]	Loss 3.6601 (3.5011)	Prec@5 35.938 (41.612)	lr 0.0934
+2025-06-25 12:41:03.645 | INFO     | utils.common:log:12 - Epoch: [2][180/782]	Loss 3.4286 (3.5024)	Prec@5 40.625 (41.506)	lr 0.0933
+2025-06-25 12:41:04.209 | INFO     | utils.common:log:12 - Epoch: [2][190/782]	Loss 3.2539 (3.5010)	Prec@5 48.438 (41.582)	lr 0.0933
+2025-06-25 12:41:04.763 | INFO     | utils.common:log:12 - Epoch: [2][200/782]	Loss 3.4170 (3.5000)	Prec@5 46.875 (41.542)	lr 0.0932
+2025-06-25 12:41:05.325 | INFO     | utils.common:log:12 - Epoch: [2][210/782]	Loss 3.3487 (3.4968)	Prec@5 51.562 (41.640)	lr 0.0931
+2025-06-25 12:41:05.899 | INFO     | utils.common:log:12 - Epoch: [2][220/782]	Loss 3.7949 (3.4948)	Prec@5 31.250 (41.622)	lr 0.0930
+2025-06-25 12:41:06.479 | INFO     | utils.common:log:12 - Epoch: [2][230/782]	Loss 3.1414 (3.4896)	Prec@5 53.125 (41.761)	lr 0.0929
+2025-06-25 12:41:07.054 | INFO     | utils.common:log:12 - Epoch: [2][240/782]	Loss 3.4455 (3.4858)	Prec@5 42.188 (41.863)	lr 0.0929
+2025-06-25 12:41:07.615 | INFO     | utils.common:log:12 - Epoch: [2][250/782]	Loss 3.4829 (3.4867)	Prec@5 39.062 (41.764)	lr 0.0928
+2025-06-25 12:41:08.189 | INFO     | utils.common:log:12 - Epoch: [2][260/782]	Loss 3.1791 (3.4833)	Prec@5 46.875 (41.858)	lr 0.0927
+2025-06-25 12:41:08.760 | INFO     | utils.common:log:12 - Epoch: [2][270/782]	Loss 3.5637 (3.4797)	Prec@5 48.438 (42.061)	lr 0.0926
+2025-06-25 12:41:09.337 | INFO     | utils.common:log:12 - Epoch: [2][280/782]	Loss 3.3947 (3.4779)	Prec@5 45.312 (42.149)	lr 0.0925
+2025-06-25 12:41:09.921 | INFO     | utils.common:log:12 - Epoch: [2][290/782]	Loss 3.5363 (3.4769)	Prec@5 45.312 (42.252)	lr 0.0924
+2025-06-25 12:41:10.492 | INFO     | utils.common:log:12 - Epoch: [2][300/782]	Loss 3.3529 (3.4748)	Prec@5 48.438 (42.291)	lr 0.0924
+2025-06-25 12:41:11.051 | INFO     | utils.common:log:12 - Epoch: [2][310/782]	Loss 3.5864 (3.4731)	Prec@5 40.625 (42.399)	lr 0.0923
+2025-06-25 12:41:11.619 | INFO     | utils.common:log:12 - Epoch: [2][320/782]	Loss 3.2645 (3.4683)	Prec@5 46.875 (42.523)	lr 0.0922
+2025-06-25 12:41:12.177 | INFO     | utils.common:log:12 - Epoch: [2][330/782]	Loss 3.1904 (3.4642)	Prec@5 50.000 (42.627)	lr 0.0921
+2025-06-25 12:41:12.741 | INFO     | utils.common:log:12 - Epoch: [2][340/782]	Loss 3.3672 (3.4641)	Prec@5 50.000 (42.664)	lr 0.0920
+2025-06-25 12:41:13.303 | INFO     | utils.common:log:12 - Epoch: [2][350/782]	Loss 3.3879 (3.4623)	Prec@5 48.438 (42.731)	lr 0.0919
+2025-06-25 12:41:13.870 | INFO     | utils.common:log:12 - Epoch: [2][360/782]	Loss 3.4537 (3.4623)	Prec@5 45.312 (42.724)	lr 0.0918
+2025-06-25 12:41:14.441 | INFO     | utils.common:log:12 - Epoch: [2][370/782]	Loss 2.8215 (3.4615)	Prec@5 57.812 (42.706)	lr 0.0918
+2025-06-25 12:41:15.018 | INFO     | utils.common:log:12 - Epoch: [2][380/782]	Loss 3.3279 (3.4599)	Prec@5 53.125 (42.811)	lr 0.0917
+2025-06-25 12:41:15.583 | INFO     | utils.common:log:12 - Epoch: [2][390/782]	Loss 3.3114 (3.4591)	Prec@5 50.000 (42.843)	lr 0.0916
+2025-06-25 12:41:16.153 | INFO     | utils.common:log:12 - Epoch: [2][400/782]	Loss 3.4237 (3.4564)	Prec@5 43.750 (42.959)	lr 0.0915
+2025-06-25 12:41:16.716 | INFO     | utils.common:log:12 - Epoch: [2][410/782]	Loss 3.2479 (3.4538)	Prec@5 46.875 (43.020)	lr 0.0914
+2025-06-25 12:41:17.275 | INFO     | utils.common:log:12 - Epoch: [2][420/782]	Loss 3.2447 (3.4482)	Prec@5 50.000 (43.204)	lr 0.0913
+2025-06-25 12:41:17.846 | INFO     | utils.common:log:12 - Epoch: [2][430/782]	Loss 3.2434 (3.4494)	Prec@5 46.875 (43.148)	lr 0.0912
+2025-06-25 12:41:18.401 | INFO     | utils.common:log:12 - Epoch: [2][440/782]	Loss 3.3850 (3.4483)	Prec@5 50.000 (43.226)	lr 0.0911
+2025-06-25 12:41:18.961 | INFO     | utils.common:log:12 - Epoch: [2][450/782]	Loss 3.6298 (3.4474)	Prec@5 40.625 (43.220)	lr 0.0911
+2025-06-25 12:41:19.528 | INFO     | utils.common:log:12 - Epoch: [2][460/782]	Loss 3.2749 (3.4455)	Prec@5 50.000 (43.245)	lr 0.0910
+2025-06-25 12:41:20.093 | INFO     | utils.common:log:12 - Epoch: [2][470/782]	Loss 3.2851 (3.4427)	Prec@5 42.188 (43.282)	lr 0.0909
+2025-06-25 12:41:20.657 | INFO     | utils.common:log:12 - Epoch: [2][480/782]	Loss 3.2760 (3.4405)	Prec@5 46.875 (43.373)	lr 0.0908
+2025-06-25 12:41:21.229 | INFO     | utils.common:log:12 - Epoch: [2][490/782]	Loss 3.2568 (3.4402)	Prec@5 48.438 (43.374)	lr 0.0907
+2025-06-25 12:41:21.796 | INFO     | utils.common:log:12 - Epoch: [2][500/782]	Loss 3.1384 (3.4356)	Prec@5 54.688 (43.476)	lr 0.0906
+2025-06-25 12:41:22.361 | INFO     | utils.common:log:12 - Epoch: [2][510/782]	Loss 3.3816 (3.4369)	Prec@5 43.750 (43.463)	lr 0.0905
+2025-06-25 12:41:22.928 | INFO     | utils.common:log:12 - Epoch: [2][520/782]	Loss 3.4951 (3.4355)	Prec@5 39.062 (43.534)	lr 0.0904
+2025-06-25 12:41:23.490 | INFO     | utils.common:log:12 - Epoch: [2][530/782]	Loss 3.0933 (3.4323)	Prec@5 50.000 (43.632)	lr 0.0903
+2025-06-25 12:41:24.047 | INFO     | utils.common:log:12 - Epoch: [2][540/782]	Loss 3.4760 (3.4331)	Prec@5 42.188 (43.617)	lr 0.0902
+2025-06-25 12:41:24.623 | INFO     | utils.common:log:12 - Epoch: [2][550/782]	Loss 3.3690 (3.4323)	Prec@5 54.688 (43.622)	lr 0.0901
+2025-06-25 12:41:25.189 | INFO     | utils.common:log:12 - Epoch: [2][560/782]	Loss 3.5475 (3.4308)	Prec@5 42.188 (43.666)	lr 0.0900
+2025-06-25 12:41:25.751 | INFO     | utils.common:log:12 - Epoch: [2][570/782]	Loss 3.5996 (3.4296)	Prec@5 37.500 (43.693)	lr 0.0899
+2025-06-25 12:41:26.318 | INFO     | utils.common:log:12 - Epoch: [2][580/782]	Loss 3.4292 (3.4265)	Prec@5 46.875 (43.796)	lr 0.0898
+2025-06-25 12:41:26.889 | INFO     | utils.common:log:12 - Epoch: [2][590/782]	Loss 3.0507 (3.4242)	Prec@5 50.000 (43.835)	lr 0.0897
+2025-06-25 12:41:27.454 | INFO     | utils.common:log:12 - Epoch: [2][600/782]	Loss 3.1654 (3.4227)	Prec@5 46.875 (43.909)	lr 0.0896
+2025-06-25 12:41:28.015 | INFO     | utils.common:log:12 - Epoch: [2][610/782]	Loss 3.3859 (3.4189)	Prec@5 45.312 (44.008)	lr 0.0895
+2025-06-25 12:41:28.577 | INFO     | utils.common:log:12 - Epoch: [2][620/782]	Loss 3.7625 (3.4163)	Prec@5 39.062 (44.097)	lr 0.0895
+2025-06-25 12:41:29.140 | INFO     | utils.common:log:12 - Epoch: [2][630/782]	Loss 3.4589 (3.4142)	Prec@5 48.438 (44.168)	lr 0.0894
+2025-06-25 12:41:29.702 | INFO     | utils.common:log:12 - Epoch: [2][640/782]	Loss 3.2783 (3.4139)	Prec@5 50.000 (44.181)	lr 0.0893
+2025-06-25 12:41:30.265 | INFO     | utils.common:log:12 - Epoch: [2][650/782]	Loss 3.5123 (3.4136)	Prec@5 42.188 (44.206)	lr 0.0892
+2025-06-25 12:41:30.837 | INFO     | utils.common:log:12 - Epoch: [2][660/782]	Loss 3.2298 (3.4139)	Prec@5 48.438 (44.232)	lr 0.0891
+2025-06-25 12:41:31.395 | INFO     | utils.common:log:12 - Epoch: [2][670/782]	Loss 3.4453 (3.4141)	Prec@5 43.750 (44.232)	lr 0.0890
+2025-06-25 12:41:31.958 | INFO     | utils.common:log:12 - Epoch: [2][680/782]	Loss 3.4891 (3.4134)	Prec@5 43.750 (44.273)	lr 0.0889
+2025-06-25 12:41:32.534 | INFO     | utils.common:log:12 - Epoch: [2][690/782]	Loss 3.3259 (3.4118)	Prec@5 50.000 (44.329)	lr 0.0888
+2025-06-25 12:41:33.093 | INFO     | utils.common:log:12 - Epoch: [2][700/782]	Loss 3.4055 (3.4097)	Prec@5 43.750 (44.374)	lr 0.0887
+2025-06-25 12:41:33.664 | INFO     | utils.common:log:12 - Epoch: [2][710/782]	Loss 2.9904 (3.4075)	Prec@5 50.000 (44.405)	lr 0.0886
+2025-06-25 12:41:34.226 | INFO     | utils.common:log:12 - Epoch: [2][720/782]	Loss 3.4565 (3.4062)	Prec@5 43.750 (44.411)	lr 0.0885
+2025-06-25 12:41:34.799 | INFO     | utils.common:log:12 - Epoch: [2][730/782]	Loss 3.2826 (3.4058)	Prec@5 45.312 (44.430)	lr 0.0884
+2025-06-25 12:41:35.337 | INFO     | utils.common:log:12 - Epoch: [2][740/782]	Loss 3.2831 (3.4045)	Prec@5 50.000 (44.490)	lr 0.0883
+2025-06-25 12:41:35.893 | INFO     | utils.common:log:12 - Epoch: [2][750/782]	Loss 3.2291 (3.4030)	Prec@5 48.438 (44.520)	lr 0.0882
+2025-06-25 12:41:36.461 | INFO     | utils.common:log:12 - Epoch: [2][760/782]	Loss 3.2896 (3.4007)	Prec@5 50.000 (44.577)	lr 0.0880
+2025-06-25 12:41:37.032 | INFO     | utils.common:log:12 - Epoch: [2][770/782]	Loss 3.2829 (3.3993)	Prec@5 48.438 (44.642)	lr 0.0879
+2025-06-25 12:41:37.594 | INFO     | utils.common:log:12 - Epoch: [2][780/782]	Loss 3.4318 (3.3976)	Prec@5 39.062 (44.680)	lr 0.0878
+2025-06-25 12:41:37.882 | INFO     | utils.common:log:12 - Test: [0/79]	Time 0.184 (0.184)	Loss 3.3386 (3.3386)	Prec@1 49.219 (49.219)
+2025-06-25 12:41:38.051 | INFO     | utils.common:log:12 - Test: [10/79]	Time 0.017 (0.032)	Loss 3.5072 (3.3881)	Prec@1 45.312 (45.597)
+2025-06-25 12:41:38.220 | INFO     | utils.common:log:12 - Test: [20/79]	Time 0.017 (0.025)	Loss 3.3691 (3.3656)	Prec@1 50.781 (46.615)
+2025-06-25 12:41:38.390 | INFO     | utils.common:log:12 - Test: [30/79]	Time 0.017 (0.022)	Loss 3.3258 (3.3654)	Prec@1 46.094 (46.799)
+2025-06-25 12:41:38.561 | INFO     | utils.common:log:12 - Test: [40/79]	Time 0.017 (0.021)	Loss 3.1992 (3.3521)	Prec@1 48.438 (47.389)
+2025-06-25 12:41:38.735 | INFO     | utils.common:log:12 - Test: [50/79]	Time 0.017 (0.020)	Loss 3.4790 (3.3596)	Prec@1 42.188 (47.258)
+2025-06-25 12:41:38.904 | INFO     | utils.common:log:12 - Test: [60/79]	Time 0.017 (0.020)	Loss 3.6774 (3.3627)	Prec@1 39.844 (47.195)
+2025-06-25 12:41:39.074 | INFO     | utils.common:log:12 - Test: [70/79]	Time 0.018 (0.019)	Loss 3.4426 (3.3659)	Prec@1 46.875 (47.293)
+2025-06-25 12:41:39.269 | INFO     | utils.common:log:12 -  * Prec@1 47.100
+2025-06-25 12:41:39.269 | INFO     | utils.common:log:12 - current lr 8.78314e-02
+2025-06-25 12:41:39.495 | INFO     | utils.common:log:12 - Epoch: [3][0/782]	Loss 3.2735 (3.2735)	Prec@5 51.562 (51.562)	lr 0.0878
+2025-06-25 12:41:40.061 | INFO     | utils.common:log:12 - Epoch: [3][10/782]	Loss 3.3028 (3.2684)	Prec@5 50.000 (48.438)	lr 0.0877
+2025-06-25 12:41:40.641 | INFO     | utils.common:log:12 - Epoch: [3][20/782]	Loss 3.1134 (3.2699)	Prec@5 48.438 (49.405)	lr 0.0876
+2025-06-25 12:41:41.204 | INFO     | utils.common:log:12 - Epoch: [3][30/782]	Loss 3.1739 (3.2635)	Prec@5 50.000 (49.294)	lr 0.0875
+2025-06-25 12:41:41.773 | INFO     | utils.common:log:12 - Epoch: [3][40/782]	Loss 3.5237 (3.2652)	Prec@5 42.188 (48.933)	lr 0.0874
+2025-06-25 12:41:42.342 | INFO     | utils.common:log:12 - Epoch: [3][50/782]	Loss 3.3157 (3.2498)	Prec@5 43.750 (48.928)	lr 0.0873
+2025-06-25 12:41:42.929 | INFO     | utils.common:log:12 - Epoch: [3][60/782]	Loss 3.0571 (3.2429)	Prec@5 54.688 (48.899)	lr 0.0872
+2025-06-25 12:41:43.512 | INFO     | utils.common:log:12 - Epoch: [3][70/782]	Loss 3.2509 (3.2671)	Prec@5 48.438 (48.305)	lr 0.0871
+2025-06-25 12:41:44.114 | INFO     | utils.common:log:12 - Epoch: [3][80/782]	Loss 3.4210 (3.2550)	Prec@5 48.438 (48.418)	lr 0.0870
+2025-06-25 12:41:44.700 | INFO     | utils.common:log:12 - Epoch: [3][90/782]	Loss 2.9050 (3.2561)	Prec@5 54.688 (48.386)	lr 0.0869
+2025-06-25 12:41:45.298 | INFO     | utils.common:log:12 - Epoch: [3][100/782]	Loss 3.2829 (3.2540)	Prec@5 54.688 (48.267)	lr 0.0868
+2025-06-25 12:41:45.891 | INFO     | utils.common:log:12 - Epoch: [3][110/782]	Loss 3.0336 (3.2389)	Prec@5 48.438 (48.522)	lr 0.0867
+2025-06-25 12:41:46.493 | INFO     | utils.common:log:12 - Epoch: [3][120/782]	Loss 3.0496 (3.2382)	Prec@5 53.125 (48.709)	lr 0.0865
+2025-06-25 12:41:47.095 | INFO     | utils.common:log:12 - Epoch: [3][130/782]	Loss 3.5226 (3.2379)	Prec@5 42.188 (48.724)	lr 0.0864
+2025-06-25 12:41:47.666 | INFO     | utils.common:log:12 - Epoch: [3][140/782]	Loss 3.6159 (3.2385)	Prec@5 39.062 (48.692)	lr 0.0863
+2025-06-25 12:41:48.266 | INFO     | utils.common:log:12 - Epoch: [3][150/782]	Loss 3.2684 (3.2347)	Prec@5 56.250 (48.934)	lr 0.0862
+2025-06-25 12:41:48.850 | INFO     | utils.common:log:12 - Epoch: [3][160/782]	Loss 2.7137 (3.2303)	Prec@5 64.062 (49.165)	lr 0.0861
+2025-06-25 12:41:49.449 | INFO     | utils.common:log:12 - Epoch: [3][170/782]	Loss 3.4573 (3.2313)	Prec@5 48.438 (49.178)	lr 0.0860
+2025-06-25 12:41:50.043 | INFO     | utils.common:log:12 - Epoch: [3][180/782]	Loss 3.3828 (3.2326)	Prec@5 43.750 (49.197)	lr 0.0859
+2025-06-25 12:41:50.649 | INFO     | utils.common:log:12 - Epoch: [3][190/782]	Loss 3.2354 (3.2358)	Prec@5 53.125 (49.174)	lr 0.0858
+2025-06-25 12:41:51.228 | INFO     | utils.common:log:12 - Epoch: [3][200/782]	Loss 2.9883 (3.2315)	Prec@5 46.875 (49.223)	lr 0.0857
+2025-06-25 12:41:51.826 | INFO     | utils.common:log:12 - Epoch: [3][210/782]	Loss 3.2676 (3.2360)	Prec@5 50.000 (49.200)	lr 0.0856
+2025-06-25 12:41:52.416 | INFO     | utils.common:log:12 - Epoch: [3][220/782]	Loss 3.2472 (3.2376)	Prec@5 48.438 (49.159)	lr 0.0854
+2025-06-25 12:41:52.998 | INFO     | utils.common:log:12 - Epoch: [3][230/782]	Loss 3.2972 (3.2432)	Prec@5 53.125 (49.053)	lr 0.0853
+2025-06-25 12:41:53.574 | INFO     | utils.common:log:12 - Epoch: [3][240/782]	Loss 3.3744 (3.2422)	Prec@5 42.188 (49.040)	lr 0.0852
+2025-06-25 12:41:54.172 | INFO     | utils.common:log:12 - Epoch: [3][250/782]	Loss 3.1343 (3.2455)	Prec@5 51.562 (48.911)	lr 0.0851
+2025-06-25 12:41:54.743 | INFO     | utils.common:log:12 - Epoch: [3][260/782]	Loss 2.9070 (3.2477)	Prec@5 59.375 (48.851)	lr 0.0850
+2025-06-25 12:41:55.315 | INFO     | utils.common:log:12 - Epoch: [3][270/782]	Loss 3.2463 (3.2451)	Prec@5 43.750 (48.893)	lr 0.0849
+2025-06-25 12:41:55.887 | INFO     | utils.common:log:12 - Epoch: [3][280/782]	Loss 2.8624 (3.2441)	Prec@5 57.812 (48.893)	lr 0.0848
+2025-06-25 12:41:56.456 | INFO     | utils.common:log:12 - Epoch: [3][290/782]	Loss 2.7684 (3.2382)	Prec@5 62.500 (49.066)	lr 0.0847
+2025-06-25 12:41:57.028 | INFO     | utils.common:log:12 - Epoch: [3][300/782]	Loss 3.1537 (3.2355)	Prec@5 53.125 (49.133)	lr 0.0845
+2025-06-25 12:41:57.595 | INFO     | utils.common:log:12 - Epoch: [3][310/782]	Loss 3.0365 (3.2367)	Prec@5 56.250 (49.111)	lr 0.0844
+2025-06-25 12:41:58.160 | INFO     | utils.common:log:12 - Epoch: [3][320/782]	Loss 3.0930 (3.2327)	Prec@5 53.125 (49.129)	lr 0.0843
+2025-06-25 12:41:58.730 | INFO     | utils.common:log:12 - Epoch: [3][330/782]	Loss 3.5604 (3.2317)	Prec@5 35.938 (49.108)	lr 0.0842
+2025-06-25 12:41:59.294 | INFO     | utils.common:log:12 - Epoch: [3][340/782]	Loss 2.9794 (3.2285)	Prec@5 57.812 (49.157)	lr 0.0841
+2025-06-25 12:41:59.864 | INFO     | utils.common:log:12 - Epoch: [3][350/782]	Loss 3.2880 (3.2298)	Prec@5 43.750 (49.096)	lr 0.0840
+2025-06-25 12:42:00.438 | INFO     | utils.common:log:12 - Epoch: [3][360/782]	Loss 3.1985 (3.2282)	Prec@5 51.562 (49.074)	lr 0.0838
+2025-06-25 12:42:01.006 | INFO     | utils.common:log:12 - Epoch: [3][370/782]	Loss 3.0464 (3.2256)	Prec@5 48.438 (49.065)	lr 0.0837
+2025-06-25 12:42:01.574 | INFO     | utils.common:log:12 - Epoch: [3][380/782]	Loss 3.0839 (3.2237)	Prec@5 57.812 (49.126)	lr 0.0836
+2025-06-25 12:42:02.136 | INFO     | utils.common:log:12 - Epoch: [3][390/782]	Loss 3.0803 (3.2222)	Prec@5 53.125 (49.205)	lr 0.0835
+2025-06-25 12:42:02.707 | INFO     | utils.common:log:12 - Epoch: [3][400/782]	Loss 3.1490 (3.2183)	Prec@5 53.125 (49.310)	lr 0.0834
+2025-06-25 12:42:03.277 | INFO     | utils.common:log:12 - Epoch: [3][410/782]	Loss 3.1198 (3.2169)	Prec@5 54.688 (49.365)	lr 0.0833
+2025-06-25 12:42:03.847 | INFO     | utils.common:log:12 - Epoch: [3][420/782]	Loss 3.3827 (3.2148)	Prec@5 48.438 (49.380)	lr 0.0831
+2025-06-25 12:42:04.420 | INFO     | utils.common:log:12 - Epoch: [3][430/782]	Loss 3.4632 (3.2128)	Prec@5 46.875 (49.449)	lr 0.0830
+2025-06-25 12:42:04.986 | INFO     | utils.common:log:12 - Epoch: [3][440/782]	Loss 3.4420 (3.2096)	Prec@5 46.875 (49.554)	lr 0.0829
+2025-06-25 12:42:05.559 | INFO     | utils.common:log:12 - Epoch: [3][450/782]	Loss 3.6299 (3.2095)	Prec@5 42.188 (49.553)	lr 0.0828
+2025-06-25 12:42:06.122 | INFO     | utils.common:log:12 - Epoch: [3][460/782]	Loss 2.9833 (3.2090)	Prec@5 56.250 (49.556)	lr 0.0827
+2025-06-25 12:42:06.687 | INFO     | utils.common:log:12 - Epoch: [3][470/782]	Loss 3.1719 (3.2091)	Prec@5 45.312 (49.555)	lr 0.0825
+2025-06-25 12:42:07.248 | INFO     | utils.common:log:12 - Epoch: [3][480/782]	Loss 3.3811 (3.2093)	Prec@5 46.875 (49.591)	lr 0.0824
+2025-06-25 12:42:07.821 | INFO     | utils.common:log:12 - Epoch: [3][490/782]	Loss 3.5278 (3.2104)	Prec@5 45.312 (49.532)	lr 0.0823
+2025-06-25 12:42:08.396 | INFO     | utils.common:log:12 - Epoch: [3][500/782]	Loss 3.0564 (3.2091)	Prec@5 60.938 (49.573)	lr 0.0822
+2025-06-25 12:42:08.964 | INFO     | utils.common:log:12 - Epoch: [3][510/782]	Loss 3.1893 (3.2100)	Prec@5 56.250 (49.566)	lr 0.0821
+2025-06-25 12:42:09.533 | INFO     | utils.common:log:12 - Epoch: [3][520/782]	Loss 3.5966 (3.2091)	Prec@5 43.750 (49.598)	lr 0.0819
+2025-06-25 12:42:10.097 | INFO     | utils.common:log:12 - Epoch: [3][530/782]	Loss 2.8743 (3.2083)	Prec@5 59.375 (49.609)	lr 0.0818
+2025-06-25 12:42:10.652 | INFO     | utils.common:log:12 - Epoch: [3][540/782]	Loss 3.3086 (3.2065)	Prec@5 43.750 (49.674)	lr 0.0817
+2025-06-25 12:42:11.234 | INFO     | utils.common:log:12 - Epoch: [3][550/782]	Loss 3.3490 (3.2071)	Prec@5 45.312 (49.646)	lr 0.0816
+2025-06-25 12:42:11.800 | INFO     | utils.common:log:12 - Epoch: [3][560/782]	Loss 2.8609 (3.2058)	Prec@5 56.250 (49.663)	lr 0.0814
+2025-06-25 12:42:12.368 | INFO     | utils.common:log:12 - Epoch: [3][570/782]	Loss 3.0571 (3.2033)	Prec@5 59.375 (49.737)	lr 0.0813
+2025-06-25 12:42:12.953 | INFO     | utils.common:log:12 - Epoch: [3][580/782]	Loss 3.2435 (3.2024)	Prec@5 48.438 (49.734)	lr 0.0812
+2025-06-25 12:42:13.529 | INFO     | utils.common:log:12 - Epoch: [3][590/782]	Loss 2.8325 (3.2013)	Prec@5 57.812 (49.744)	lr 0.0811
+2025-06-25 12:42:14.112 | INFO     | utils.common:log:12 - Epoch: [3][600/782]	Loss 3.3868 (3.2002)	Prec@5 43.750 (49.779)	lr 0.0809
+2025-06-25 12:42:14.697 | INFO     | utils.common:log:12 - Epoch: [3][610/782]	Loss 2.7973 (3.1981)	Prec@5 60.938 (49.824)	lr 0.0808
+2025-06-25 12:42:15.276 | INFO     | utils.common:log:12 - Epoch: [3][620/782]	Loss 2.8744 (3.1956)	Prec@5 56.250 (49.862)	lr 0.0807
+2025-06-25 12:42:15.849 | INFO     | utils.common:log:12 - Epoch: [3][630/782]	Loss 2.8475 (3.1946)	Prec@5 54.688 (49.898)	lr 0.0806
+2025-06-25 12:42:16.424 | INFO     | utils.common:log:12 - Epoch: [3][640/782]	Loss 3.1156 (3.1935)	Prec@5 57.812 (49.937)	lr 0.0804
+2025-06-25 12:42:16.995 | INFO     | utils.common:log:12 - Epoch: [3][650/782]	Loss 3.0748 (3.1927)	Prec@5 54.688 (49.986)	lr 0.0803
+2025-06-25 12:42:17.570 | INFO     | utils.common:log:12 - Epoch: [3][660/782]	Loss 2.9594 (3.1933)	Prec@5 57.812 (49.960)	lr 0.0802
+2025-06-25 12:42:18.143 | INFO     | utils.common:log:12 - Epoch: [3][670/782]	Loss 3.1476 (3.1920)	Prec@5 51.562 (50.002)	lr 0.0801
+2025-06-25 12:42:18.710 | INFO     | utils.common:log:12 - Epoch: [3][680/782]	Loss 2.7884 (3.1913)	Prec@5 59.375 (50.037)	lr 0.0799
+2025-06-25 12:42:19.276 | INFO     | utils.common:log:12 - Epoch: [3][690/782]	Loss 3.2400 (3.1887)	Prec@5 48.438 (50.084)	lr 0.0798
+2025-06-25 12:42:19.853 | INFO     | utils.common:log:12 - Epoch: [3][700/782]	Loss 3.1824 (3.1871)	Prec@5 53.125 (50.120)	lr 0.0797
+2025-06-25 12:42:20.427 | INFO     | utils.common:log:12 - Epoch: [3][710/782]	Loss 2.9639 (3.1873)	Prec@5 60.938 (50.121)	lr 0.0796
+2025-06-25 12:42:21.007 | INFO     | utils.common:log:12 - Epoch: [3][720/782]	Loss 3.0092 (3.1867)	Prec@5 50.000 (50.108)	lr 0.0794
+2025-06-25 12:42:21.593 | INFO     | utils.common:log:12 - Epoch: [3][730/782]	Loss 3.1523 (3.1858)	Prec@5 53.125 (50.145)	lr 0.0793
+2025-06-25 12:42:22.174 | INFO     | utils.common:log:12 - Epoch: [3][740/782]	Loss 3.2694 (3.1844)	Prec@5 46.875 (50.209)	lr 0.0792
+2025-06-25 12:42:22.757 | INFO     | utils.common:log:12 - Epoch: [3][750/782]	Loss 3.1723 (3.1832)	Prec@5 51.562 (50.231)	lr 0.0790
+2025-06-25 12:42:23.340 | INFO     | utils.common:log:12 - Epoch: [3][760/782]	Loss 3.2595 (3.1823)	Prec@5 50.000 (50.294)	lr 0.0789
+2025-06-25 12:42:23.936 | INFO     | utils.common:log:12 - Epoch: [3][770/782]	Loss 3.0060 (3.1816)	Prec@5 48.438 (50.290)	lr 0.0788
+2025-06-25 12:42:24.487 | INFO     | utils.common:log:12 - Epoch: [3][780/782]	Loss 3.0989 (3.1803)	Prec@5 57.812 (50.354)	lr 0.0787
+2025-06-25 12:42:24.795 | INFO     | utils.common:log:12 - Test: [0/79]	Time 0.193 (0.193)	Loss 3.1162 (3.1162)	Prec@1 53.906 (53.906)
+2025-06-25 12:42:24.969 | INFO     | utils.common:log:12 - Test: [10/79]	Time 0.017 (0.033)	Loss 3.3087 (3.3100)	Prec@1 53.125 (48.722)
+2025-06-25 12:42:25.143 | INFO     | utils.common:log:12 - Test: [20/79]	Time 0.018 (0.026)	Loss 3.1884 (3.2721)	Prec@1 51.562 (49.256)
+2025-06-25 12:42:25.314 | INFO     | utils.common:log:12 - Test: [30/79]	Time 0.017 (0.023)	Loss 3.1788 (3.2672)	Prec@1 46.875 (49.294)
+2025-06-25 12:42:25.486 | INFO     | utils.common:log:12 - Test: [40/79]	Time 0.017 (0.022)	Loss 3.0536 (3.2703)	Prec@1 54.688 (49.181)
+2025-06-25 12:42:25.658 | INFO     | utils.common:log:12 - Test: [50/79]	Time 0.017 (0.021)	Loss 3.4612 (3.2801)	Prec@1 41.406 (48.820)
+2025-06-25 12:42:25.829 | INFO     | utils.common:log:12 - Test: [60/79]	Time 0.017 (0.020)	Loss 3.4933 (3.2818)	Prec@1 49.219 (48.924)
+2025-06-25 12:42:25.995 | INFO     | utils.common:log:12 - Test: [70/79]	Time 0.017 (0.020)	Loss 3.1273 (3.2777)	Prec@1 53.125 (49.054)
+2025-06-25 12:42:26.163 | INFO     | utils.common:log:12 -  * Prec@1 48.850
+2025-06-25 12:42:26.163 | INFO     | utils.common:log:12 - current lr 7.86438e-02
+2025-06-25 12:42:26.393 | INFO     | utils.common:log:12 - Epoch: [4][0/782]	Loss 3.0569 (3.0569)	Prec@5 51.562 (51.562)	lr 0.0786
+2025-06-25 12:42:26.973 | INFO     | utils.common:log:12 - Epoch: [4][10/782]	Loss 3.1223 (3.0446)	Prec@5 51.562 (52.983)	lr 0.0785
+2025-06-25 12:42:27.542 | INFO     | utils.common:log:12 - Epoch: [4][20/782]	Loss 2.7495 (2.9747)	Prec@5 57.812 (55.060)	lr 0.0784
+2025-06-25 12:42:28.113 | INFO     | utils.common:log:12 - Epoch: [4][30/782]	Loss 3.0483 (3.0357)	Prec@5 54.688 (53.780)	lr 0.0782
+2025-06-25 12:42:28.673 | INFO     | utils.common:log:12 - Epoch: [4][40/782]	Loss 3.1309 (3.0334)	Prec@5 50.000 (53.925)	lr 0.0781
+2025-06-25 12:42:29.228 | INFO     | utils.common:log:12 - Epoch: [4][50/782]	Loss 3.1128 (3.0409)	Prec@5 51.562 (53.676)	lr 0.0780
+2025-06-25 12:42:29.798 | INFO     | utils.common:log:12 - Epoch: [4][60/782]	Loss 3.2066 (3.0610)	Prec@5 53.125 (53.074)	lr 0.0778
+2025-06-25 12:42:30.368 | INFO     | utils.common:log:12 - Epoch: [4][70/782]	Loss 3.3367 (3.0519)	Prec@5 43.750 (53.653)	lr 0.0777
+2025-06-25 12:42:30.941 | INFO     | utils.common:log:12 - Epoch: [4][80/782]	Loss 2.7751 (3.0411)	Prec@5 54.688 (54.012)	lr 0.0776
+2025-06-25 12:42:31.498 | INFO     | utils.common:log:12 - Epoch: [4][90/782]	Loss 2.9361 (3.0528)	Prec@5 53.125 (53.674)	lr 0.0774
+2025-06-25 12:42:32.070 | INFO     | utils.common:log:12 - Epoch: [4][100/782]	Loss 3.3825 (3.0610)	Prec@5 43.750 (53.202)	lr 0.0773
+2025-06-25 12:42:32.638 | INFO     | utils.common:log:12 - Epoch: [4][110/782]	Loss 3.1797 (3.0625)	Prec@5 50.000 (52.914)	lr 0.0772
+2025-06-25 12:42:33.206 | INFO     | utils.common:log:12 - Epoch: [4][120/782]	Loss 2.7297 (3.0539)	Prec@5 68.750 (53.190)	lr 0.0770
+2025-06-25 12:42:33.769 | INFO     | utils.common:log:12 - Epoch: [4][130/782]	Loss 3.2450 (3.0426)	Prec@5 46.875 (53.423)	lr 0.0769
+2025-06-25 12:42:34.335 | INFO     | utils.common:log:12 - Epoch: [4][140/782]	Loss 3.1065 (3.0454)	Prec@5 56.250 (53.324)	lr 0.0768
+2025-06-25 12:42:34.907 | INFO     | utils.common:log:12 - Epoch: [4][150/782]	Loss 2.8435 (3.0464)	Prec@5 56.250 (53.249)	lr 0.0766
+2025-06-25 12:42:35.470 | INFO     | utils.common:log:12 - Epoch: [4][160/782]	Loss 3.0261 (3.0467)	Prec@5 48.438 (53.358)	lr 0.0765
+2025-06-25 12:42:36.040 | INFO     | utils.common:log:12 - Epoch: [4][170/782]	Loss 3.1290 (3.0482)	Prec@5 48.438 (53.335)	lr 0.0764
+2025-06-25 12:42:36.633 | INFO     | utils.common:log:12 - Epoch: [4][180/782]	Loss 2.9469 (3.0476)	Prec@5 59.375 (53.375)	lr 0.0762
+2025-06-25 12:42:37.232 | INFO     | utils.common:log:12 - Epoch: [4][190/782]	Loss 2.9036 (3.0469)	Prec@5 59.375 (53.428)	lr 0.0761
+2025-06-25 12:42:37.831 | INFO     | utils.common:log:12 - Epoch: [4][200/782]	Loss 2.9441 (3.0457)	Prec@5 54.688 (53.444)	lr 0.0760
+2025-06-25 12:42:38.434 | INFO     | utils.common:log:12 - Epoch: [4][210/782]	Loss 2.6825 (3.0463)	Prec@5 62.500 (53.392)	lr 0.0758
+2025-06-25 12:42:39.027 | INFO     | utils.common:log:12 - Epoch: [4][220/782]	Loss 3.1763 (3.0460)	Prec@5 48.438 (53.507)	lr 0.0757
+2025-06-25 12:42:39.628 | INFO     | utils.common:log:12 - Epoch: [4][230/782]	Loss 3.1579 (3.0432)	Prec@5 56.250 (53.639)	lr 0.0756
+2025-06-25 12:42:40.219 | INFO     | utils.common:log:12 - Epoch: [4][240/782]	Loss 2.8894 (3.0403)	Prec@5 56.250 (53.676)	lr 0.0754
+2025-06-25 12:42:40.812 | INFO     | utils.common:log:12 - Epoch: [4][250/782]	Loss 2.9847 (3.0389)	Prec@5 54.688 (53.679)	lr 0.0753
+2025-06-25 12:42:41.378 | INFO     | utils.common:log:12 - Epoch: [4][260/782]	Loss 2.8694 (3.0367)	Prec@5 60.938 (53.795)	lr 0.0752
+2025-06-25 12:42:41.936 | INFO     | utils.common:log:12 - Epoch: [4][270/782]	Loss 3.2659 (3.0320)	Prec@5 48.438 (53.955)	lr 0.0750
+2025-06-25 12:42:42.499 | INFO     | utils.common:log:12 - Epoch: [4][280/782]	Loss 2.9080 (3.0298)	Prec@5 64.062 (54.059)	lr 0.0749
+2025-06-25 12:42:43.078 | INFO     | utils.common:log:12 - Epoch: [4][290/782]	Loss 3.0125 (3.0311)	Prec@5 57.812 (54.086)	lr 0.0747
+2025-06-25 12:42:43.657 | INFO     | utils.common:log:12 - Epoch: [4][300/782]	Loss 2.9785 (3.0288)	Prec@5 56.250 (54.137)	lr 0.0746
+2025-06-25 12:42:44.233 | INFO     | utils.common:log:12 - Epoch: [4][310/782]	Loss 3.2860 (3.0299)	Prec@5 51.562 (54.185)	lr 0.0745
+2025-06-25 12:42:44.810 | INFO     | utils.common:log:12 - Epoch: [4][320/782]	Loss 2.8796 (3.0285)	Prec@5 54.688 (54.181)	lr 0.0743
+2025-06-25 12:42:45.385 | INFO     | utils.common:log:12 - Epoch: [4][330/782]	Loss 2.7495 (3.0273)	Prec@5 62.500 (54.239)	lr 0.0742
+2025-06-25 12:42:45.968 | INFO     | utils.common:log:12 - Epoch: [4][340/782]	Loss 2.9866 (3.0255)	Prec@5 48.438 (54.289)	lr 0.0741
+2025-06-25 12:42:46.546 | INFO     | utils.common:log:12 - Epoch: [4][350/782]	Loss 2.9547 (3.0280)	Prec@5 53.125 (54.238)	lr 0.0739
+2025-06-25 12:42:47.132 | INFO     | utils.common:log:12 - Epoch: [4][360/782]	Loss 2.8747 (3.0251)	Prec@5 54.688 (54.372)	lr 0.0738
+2025-06-25 12:42:47.704 | INFO     | utils.common:log:12 - Epoch: [4][370/782]	Loss 2.9229 (3.0268)	Prec@5 50.000 (54.321)	lr 0.0736
+2025-06-25 12:42:48.277 | INFO     | utils.common:log:12 - Epoch: [4][380/782]	Loss 3.2582 (3.0286)	Prec@5 35.938 (54.269)	lr 0.0735
+2025-06-25 12:42:48.849 | INFO     | utils.common:log:12 - Epoch: [4][390/782]	Loss 2.8096 (3.0269)	Prec@5 54.688 (54.244)	lr 0.0734
+2025-06-25 12:42:49.429 | INFO     | utils.common:log:12 - Epoch: [4][400/782]	Loss 3.1622 (3.0270)	Prec@5 48.438 (54.259)	lr 0.0732
+2025-06-25 12:42:50.009 | INFO     | utils.common:log:12 - Epoch: [4][410/782]	Loss 3.0954 (3.0264)	Prec@5 57.812 (54.288)	lr 0.0731
+2025-06-25 12:42:50.584 | INFO     | utils.common:log:12 - Epoch: [4][420/782]	Loss 2.9476 (3.0228)	Prec@5 54.688 (54.324)	lr 0.0729
+2025-06-25 12:42:51.190 | INFO     | utils.common:log:12 - Epoch: [4][430/782]	Loss 2.7142 (3.0229)	Prec@5 56.250 (54.318)	lr 0.0728
+2025-06-25 12:42:51.779 | INFO     | utils.common:log:12 - Epoch: [4][440/782]	Loss 3.2835 (3.0235)	Prec@5 46.875 (54.280)	lr 0.0726
+2025-06-25 12:42:52.341 | INFO     | utils.common:log:12 - Epoch: [4][450/782]	Loss 3.0494 (3.0255)	Prec@5 50.000 (54.237)	lr 0.0725
+2025-06-25 12:42:52.898 | INFO     | utils.common:log:12 - Epoch: [4][460/782]	Loss 2.9562 (3.0255)	Prec@5 56.250 (54.240)	lr 0.0724
+2025-06-25 12:42:53.466 | INFO     | utils.common:log:12 - Epoch: [4][470/782]	Loss 3.1148 (3.0259)	Prec@5 48.438 (54.253)	lr 0.0722
+2025-06-25 12:42:54.046 | INFO     | utils.common:log:12 - Epoch: [4][480/782]	Loss 2.7400 (3.0267)	Prec@5 62.500 (54.207)	lr 0.0721
+2025-06-25 12:42:54.617 | INFO     | utils.common:log:12 - Epoch: [4][490/782]	Loss 2.9629 (3.0269)	Prec@5 45.312 (54.153)	lr 0.0719
+2025-06-25 12:42:55.195 | INFO     | utils.common:log:12 - Epoch: [4][500/782]	Loss 3.0425 (3.0256)	Prec@5 57.812 (54.220)	lr 0.0718
+2025-06-25 12:42:55.773 | INFO     | utils.common:log:12 - Epoch: [4][510/782]	Loss 3.0675 (3.0246)	Prec@5 50.000 (54.241)	lr 0.0717
+2025-06-25 12:42:56.334 | INFO     | utils.common:log:12 - Epoch: [4][520/782]	Loss 3.4140 (3.0258)	Prec@5 46.875 (54.238)	lr 0.0715
+2025-06-25 12:42:56.902 | INFO     | utils.common:log:12 - Epoch: [4][530/782]	Loss 3.2891 (3.0263)	Prec@5 50.000 (54.237)	lr 0.0714
+2025-06-25 12:42:57.472 | INFO     | utils.common:log:12 - Epoch: [4][540/782]	Loss 2.8143 (3.0246)	Prec@5 62.500 (54.295)	lr 0.0712
+2025-06-25 12:42:58.043 | INFO     | utils.common:log:12 - Epoch: [4][550/782]	Loss 3.1065 (3.0235)	Prec@5 56.250 (54.327)	lr 0.0711
+2025-06-25 12:42:58.609 | INFO     | utils.common:log:12 - Epoch: [4][560/782]	Loss 3.2495 (3.0233)	Prec@5 50.000 (54.328)	lr 0.0709
+2025-06-25 12:42:59.190 | INFO     | utils.common:log:12 - Epoch: [4][570/782]	Loss 3.4067 (3.0224)	Prec@5 40.625 (54.376)	lr 0.0708
+2025-06-25 12:42:59.757 | INFO     | utils.common:log:12 - Epoch: [4][580/782]	Loss 3.1432 (3.0222)	Prec@5 53.125 (54.413)	lr 0.0706
+2025-06-25 12:43:00.325 | INFO     | utils.common:log:12 - Epoch: [4][590/782]	Loss 3.3151 (3.0206)	Prec@5 48.438 (54.436)	lr 0.0705
+2025-06-25 12:43:00.894 | INFO     | utils.common:log:12 - Epoch: [4][600/782]	Loss 3.3761 (3.0189)	Prec@5 50.000 (54.477)	lr 0.0704
+2025-06-25 12:43:01.459 | INFO     | utils.common:log:12 - Epoch: [4][610/782]	Loss 3.0080 (3.0192)	Prec@5 56.250 (54.447)	lr 0.0702
+2025-06-25 12:43:02.017 | INFO     | utils.common:log:12 - Epoch: [4][620/782]	Loss 2.4953 (3.0179)	Prec@5 67.188 (54.494)	lr 0.0701
+2025-06-25 12:43:02.585 | INFO     | utils.common:log:12 - Epoch: [4][630/782]	Loss 2.7978 (3.0164)	Prec@5 62.500 (54.531)	lr 0.0699
+2025-06-25 12:43:03.165 | INFO     | utils.common:log:12 - Epoch: [4][640/782]	Loss 3.1957 (3.0160)	Prec@5 51.562 (54.563)	lr 0.0698
+2025-06-25 12:43:03.747 | INFO     | utils.common:log:12 - Epoch: [4][650/782]	Loss 2.7855 (3.0153)	Prec@5 62.500 (54.539)	lr 0.0696
+2025-06-25 12:43:04.321 | INFO     | utils.common:log:12 - Epoch: [4][660/782]	Loss 3.0100 (3.0142)	Prec@5 51.562 (54.567)	lr 0.0695
+2025-06-25 12:43:04.891 | INFO     | utils.common:log:12 - Epoch: [4][670/782]	Loss 3.0143 (3.0119)	Prec@5 50.000 (54.599)	lr 0.0693
+2025-06-25 12:43:05.468 | INFO     | utils.common:log:12 - Epoch: [4][680/782]	Loss 3.1022 (3.0117)	Prec@5 48.438 (54.630)	lr 0.0692
+2025-06-25 12:43:06.036 | INFO     | utils.common:log:12 - Epoch: [4][690/782]	Loss 2.7644 (3.0105)	Prec@5 60.938 (54.685)	lr 0.0690
+2025-06-25 12:43:06.599 | INFO     | utils.common:log:12 - Epoch: [4][700/782]	Loss 3.1180 (3.0098)	Prec@5 45.312 (54.692)	lr 0.0689
+2025-06-25 12:43:07.162 | INFO     | utils.common:log:12 - Epoch: [4][710/782]	Loss 2.9185 (3.0084)	Prec@5 60.938 (54.698)	lr 0.0688
+2025-06-25 12:43:07.729 | INFO     | utils.common:log:12 - Epoch: [4][720/782]	Loss 2.8688 (3.0068)	Prec@5 53.125 (54.731)	lr 0.0686
+2025-06-25 12:43:08.305 | INFO     | utils.common:log:12 - Epoch: [4][730/782]	Loss 3.2191 (3.0073)	Prec@5 51.562 (54.720)	lr 0.0685
+2025-06-25 12:43:08.888 | INFO     | utils.common:log:12 - Epoch: [4][740/782]	Loss 2.7908 (3.0060)	Prec@5 60.938 (54.761)	lr 0.0683
+2025-06-25 12:43:09.458 | INFO     | utils.common:log:12 - Epoch: [4][750/782]	Loss 2.7273 (3.0062)	Prec@5 60.938 (54.748)	lr 0.0682
+2025-06-25 12:43:10.020 | INFO     | utils.common:log:12 - Epoch: [4][760/782]	Loss 2.7989 (3.0042)	Prec@5 57.812 (54.784)	lr 0.0680
+2025-06-25 12:43:10.582 | INFO     | utils.common:log:12 - Epoch: [4][770/782]	Loss 3.4054 (3.0042)	Prec@5 45.312 (54.797)	lr 0.0679
+2025-06-25 12:43:11.145 | INFO     | utils.common:log:12 - Epoch: [4][780/782]	Loss 2.8019 (3.0035)	Prec@5 60.938 (54.822)	lr 0.0677
+2025-06-25 12:43:11.480 | INFO     | utils.common:log:12 - Test: [0/79]	Time 0.192 (0.192)	Loss 3.2342 (3.2342)	Prec@1 50.781 (50.781)
+2025-06-25 12:43:11.652 | INFO     | utils.common:log:12 - Test: [10/79]	Time 0.017 (0.033)	Loss 3.4006 (3.3676)	Prec@1 52.344 (49.219)
+2025-06-25 12:43:11.822 | INFO     | utils.common:log:12 - Test: [20/79]	Time 0.017 (0.025)	Loss 3.0813 (3.3383)	Prec@1 56.250 (49.442)
+2025-06-25 12:43:11.990 | INFO     | utils.common:log:12 - Test: [30/79]	Time 0.017 (0.023)	Loss 3.1493 (3.3482)	Prec@1 46.875 (48.816)
+2025-06-25 12:43:12.159 | INFO     | utils.common:log:12 - Test: [40/79]	Time 0.017 (0.021)	Loss 3.0979 (3.3510)	Prec@1 56.250 (48.838)
+2025-06-25 12:43:12.328 | INFO     | utils.common:log:12 - Test: [50/79]	Time 0.017 (0.020)	Loss 3.3411 (3.3592)	Prec@1 48.438 (48.805)
+2025-06-25 12:43:12.497 | INFO     | utils.common:log:12 - Test: [60/79]	Time 0.017 (0.020)	Loss 3.7253 (3.3568)	Prec@1 47.656 (48.809)
+2025-06-25 12:43:12.666 | INFO     | utils.common:log:12 - Test: [70/79]	Time 0.017 (0.019)	Loss 3.3086 (3.3590)	Prec@1 50.000 (49.076)
+2025-06-25 12:43:12.842 | INFO     | utils.common:log:12 -  * Prec@1 49.120
+2025-06-25 12:43:12.843 | INFO     | utils.common:log:12 - current lr 6.77017e-02
+2025-06-25 12:43:13.074 | INFO     | utils.common:log:12 - Epoch: [5][0/782]	Loss 3.0654 (3.0654)	Prec@5 54.688 (54.688)	lr 0.0677
+2025-06-25 12:43:13.644 | INFO     | utils.common:log:12 - Epoch: [5][10/782]	Loss 3.1797 (2.9756)	Prec@5 46.875 (54.403)	lr 0.0675
+2025-06-25 12:43:14.216 | INFO     | utils.common:log:12 - Epoch: [5][20/782]	Loss 3.2579 (2.9418)	Prec@5 51.562 (55.283)	lr 0.0674
+2025-06-25 12:43:14.780 | INFO     | utils.common:log:12 - Epoch: [5][30/782]	Loss 2.9146 (2.9068)	Prec@5 56.250 (56.099)	lr 0.0672
+2025-06-25 12:43:15.372 | INFO     | utils.common:log:12 - Epoch: [5][40/782]	Loss 3.1143 (2.8939)	Prec@5 50.000 (56.898)	lr 0.0671
+2025-06-25 12:43:15.939 | INFO     | utils.common:log:12 - Epoch: [5][50/782]	Loss 2.8425 (2.8803)	Prec@5 56.250 (57.690)	lr 0.0669
+2025-06-25 12:43:16.497 | INFO     | utils.common:log:12 - Epoch: [5][60/782]	Loss 2.8000 (2.8916)	Prec@5 60.938 (57.326)	lr 0.0668
+2025-06-25 12:43:17.060 | INFO     | utils.common:log:12 - Epoch: [5][70/782]	Loss 3.0653 (2.8939)	Prec@5 46.875 (57.174)	lr 0.0666
+2025-06-25 12:43:17.616 | INFO     | utils.common:log:12 - Epoch: [5][80/782]	Loss 3.3484 (2.8919)	Prec@5 48.438 (57.234)	lr 0.0665
+2025-06-25 12:43:18.180 | INFO     | utils.common:log:12 - Epoch: [5][90/782]	Loss 2.8737 (2.8980)	Prec@5 57.812 (57.212)	lr 0.0663
+2025-06-25 12:43:18.745 | INFO     | utils.common:log:12 - Epoch: [5][100/782]	Loss 2.8569 (2.8850)	Prec@5 59.375 (57.596)	lr 0.0662
+2025-06-25 12:43:19.315 | INFO     | utils.common:log:12 - Epoch: [5][110/782]	Loss 3.0409 (2.8859)	Prec@5 51.562 (57.686)	lr 0.0660
+2025-06-25 12:43:19.888 | INFO     | utils.common:log:12 - Epoch: [5][120/782]	Loss 2.9146 (2.8820)	Prec@5 51.562 (57.619)	lr 0.0659
+2025-06-25 12:43:20.452 | INFO     | utils.common:log:12 - Epoch: [5][130/782]	Loss 2.8643 (2.8792)	Prec@5 57.812 (57.753)	lr 0.0657
+2025-06-25 12:43:21.018 | INFO     | utils.common:log:12 - Epoch: [5][140/782]	Loss 3.0921 (2.8840)	Prec@5 54.688 (57.668)	lr 0.0656
+2025-06-25 12:43:21.565 | INFO     | utils.common:log:12 - Epoch: [5][150/782]	Loss 3.0273 (2.8843)	Prec@5 56.250 (57.730)	lr 0.0654
+2025-06-25 12:43:22.122 | INFO     | utils.common:log:12 - Epoch: [5][160/782]	Loss 3.0653 (2.8849)	Prec@5 50.000 (57.745)	lr 0.0653
+2025-06-25 12:43:22.694 | INFO     | utils.common:log:12 - Epoch: [5][170/782]	Loss 2.9306 (2.8927)	Prec@5 50.000 (57.520)	lr 0.0651
+2025-06-25 12:43:23.259 | INFO     | utils.common:log:12 - Epoch: [5][180/782]	Loss 3.0310 (2.8961)	Prec@5 53.125 (57.407)	lr 0.0650
+2025-06-25 12:43:23.825 | INFO     | utils.common:log:12 - Epoch: [5][190/782]	Loss 2.7634 (2.8946)	Prec@5 64.062 (57.543)	lr 0.0648
+2025-06-25 12:43:24.377 | INFO     | utils.common:log:12 - Epoch: [5][200/782]	Loss 2.7827 (2.8945)	Prec@5 59.375 (57.525)	lr 0.0647
+2025-06-25 12:43:24.946 | INFO     | utils.common:log:12 - Epoch: [5][210/782]	Loss 2.7603 (2.8929)	Prec@5 64.062 (57.627)	lr 0.0645
+2025-06-25 12:43:25.507 | INFO     | utils.common:log:12 - Epoch: [5][220/782]	Loss 2.8615 (2.8923)	Prec@5 59.375 (57.678)	lr 0.0644
+2025-06-25 12:43:26.076 | INFO     | utils.common:log:12 - Epoch: [5][230/782]	Loss 2.8108 (2.8938)	Prec@5 57.812 (57.596)	lr 0.0642
+2025-06-25 12:43:26.641 | INFO     | utils.common:log:12 - Epoch: [5][240/782]	Loss 2.9733 (2.8989)	Prec@5 54.688 (57.462)	lr 0.0641
+2025-06-25 12:43:27.207 | INFO     | utils.common:log:12 - Epoch: [5][250/782]	Loss 2.7718 (2.8957)	Prec@5 60.938 (57.526)	lr 0.0639
+2025-06-25 12:43:27.773 | INFO     | utils.common:log:12 - Epoch: [5][260/782]	Loss 2.8508 (2.8936)	Prec@5 57.812 (57.555)	lr 0.0638
+2025-06-25 12:43:28.339 | INFO     | utils.common:log:12 - Epoch: [5][270/782]	Loss 3.3754 (2.8937)	Prec@5 45.312 (57.507)	lr 0.0636
+2025-06-25 12:43:28.907 | INFO     | utils.common:log:12 - Epoch: [5][280/782]	Loss 2.6965 (2.8879)	Prec@5 67.188 (57.685)	lr 0.0635
+2025-06-25 12:43:29.468 | INFO     | utils.common:log:12 - Epoch: [5][290/782]	Loss 2.4662 (2.8821)	Prec@5 64.062 (57.807)	lr 0.0633
+2025-06-25 12:43:30.035 | INFO     | utils.common:log:12 - Epoch: [5][300/782]	Loss 2.9690 (2.8867)	Prec@5 56.250 (57.662)	lr 0.0632
+2025-06-25 12:43:30.602 | INFO     | utils.common:log:12 - Epoch: [5][310/782]	Loss 2.8479 (2.8881)	Prec@5 62.500 (57.622)	lr 0.0630
+2025-06-25 12:43:31.173 | INFO     | utils.common:log:12 - Epoch: [5][320/782]	Loss 2.6032 (2.8852)	Prec@5 64.062 (57.705)	lr 0.0629
+2025-06-25 12:43:31.739 | INFO     | utils.common:log:12 - Epoch: [5][330/782]	Loss 2.5331 (2.8809)	Prec@5 67.188 (57.841)	lr 0.0627
+2025-06-25 12:43:32.321 | INFO     | utils.common:log:12 - Epoch: [5][340/782]	Loss 2.6926 (2.8806)	Prec@5 68.750 (57.941)	lr 0.0625
+2025-06-25 12:43:32.891 | INFO     | utils.common:log:12 - Epoch: [5][350/782]	Loss 2.4282 (2.8777)	Prec@5 65.625 (58.017)	lr 0.0624
+2025-06-25 12:43:33.456 | INFO     | utils.common:log:12 - Epoch: [5][360/782]	Loss 2.4588 (2.8723)	Prec@5 68.750 (58.163)	lr 0.0622
+2025-06-25 12:43:34.027 | INFO     | utils.common:log:12 - Epoch: [5][370/782]	Loss 2.8108 (2.8723)	Prec@5 64.062 (58.179)	lr 0.0621
+2025-06-25 12:43:34.597 | INFO     | utils.common:log:12 - Epoch: [5][380/782]	Loss 2.9178 (2.8731)	Prec@5 50.000 (58.145)	lr 0.0619
+2025-06-25 12:43:35.177 | INFO     | utils.common:log:12 - Epoch: [5][390/782]	Loss 2.9148 (2.8739)	Prec@5 60.938 (58.152)	lr 0.0618
+2025-06-25 12:43:35.752 | INFO     | utils.common:log:12 - Epoch: [5][400/782]	Loss 2.7102 (2.8723)	Prec@5 60.938 (58.163)	lr 0.0616
+2025-06-25 12:43:36.330 | INFO     | utils.common:log:12 - Epoch: [5][410/782]	Loss 2.6495 (2.8715)	Prec@5 68.750 (58.170)	lr 0.0615
+2025-06-25 12:43:36.898 | INFO     | utils.common:log:12 - Epoch: [5][420/782]	Loss 3.0016 (2.8697)	Prec@5 56.250 (58.250)	lr 0.0613
+2025-06-25 12:43:37.466 | INFO     | utils.common:log:12 - Epoch: [5][430/782]	Loss 2.9863 (2.8708)	Prec@5 51.562 (58.233)	lr 0.0612
+2025-06-25 12:43:38.037 | INFO     | utils.common:log:12 - Epoch: [5][440/782]	Loss 2.7909 (2.8748)	Prec@5 60.938 (58.153)	lr 0.0610
+2025-06-25 12:43:38.604 | INFO     | utils.common:log:12 - Epoch: [5][450/782]	Loss 3.0642 (2.8757)	Prec@5 54.688 (58.124)	lr 0.0609
+2025-06-25 12:43:39.193 | INFO     | utils.common:log:12 - Epoch: [5][460/782]	Loss 2.9154 (2.8742)	Prec@5 54.688 (58.216)	lr 0.0607
+2025-06-25 12:43:39.755 | INFO     | utils.common:log:12 - Epoch: [5][470/782]	Loss 3.0026 (2.8743)	Prec@5 54.688 (58.184)	lr 0.0605
+2025-06-25 12:43:40.317 | INFO     | utils.common:log:12 - Epoch: [5][480/782]	Loss 2.9506 (2.8746)	Prec@5 60.938 (58.176)	lr 0.0604
+2025-06-25 12:43:40.878 | INFO     | utils.common:log:12 - Epoch: [5][490/782]	Loss 2.8871 (2.8736)	Prec@5 64.062 (58.207)	lr 0.0602
+2025-06-25 12:43:41.450 | INFO     | utils.common:log:12 - Epoch: [5][500/782]	Loss 3.2696 (2.8745)	Prec@5 51.562 (58.196)	lr 0.0601
+2025-06-25 12:43:42.016 | INFO     | utils.common:log:12 - Epoch: [5][510/782]	Loss 2.4849 (2.8743)	Prec@5 67.188 (58.204)	lr 0.0599
+2025-06-25 12:43:42.589 | INFO     | utils.common:log:12 - Epoch: [5][520/782]	Loss 2.6767 (2.8730)	Prec@5 62.500 (58.193)	lr 0.0598
+2025-06-25 12:43:43.165 | INFO     | utils.common:log:12 - Epoch: [5][530/782]	Loss 2.7978 (2.8729)	Prec@5 59.375 (58.204)	lr 0.0596
+2025-06-25 12:43:43.736 | INFO     | utils.common:log:12 - Epoch: [5][540/782]	Loss 3.0075 (2.8737)	Prec@5 59.375 (58.202)	lr 0.0595
+2025-06-25 12:43:44.304 | INFO     | utils.common:log:12 - Epoch: [5][550/782]	Loss 3.0470 (2.8746)	Prec@5 53.125 (58.164)	lr 0.0593
+2025-06-25 12:43:44.883 | INFO     | utils.common:log:12 - Epoch: [5][560/782]	Loss 2.9267 (2.8733)	Prec@5 60.938 (58.180)	lr 0.0591
+2025-06-25 12:43:45.452 | INFO     | utils.common:log:12 - Epoch: [5][570/782]	Loss 2.8011 (2.8728)	Prec@5 64.062 (58.185)	lr 0.0590
+2025-06-25 12:43:46.023 | INFO     | utils.common:log:12 - Epoch: [5][580/782]	Loss 3.0213 (2.8733)	Prec@5 50.000 (58.176)	lr 0.0588
+2025-06-25 12:43:46.578 | INFO     | utils.common:log:12 - Epoch: [5][590/782]	Loss 3.0179 (2.8723)	Prec@5 48.438 (58.159)	lr 0.0587
+2025-06-25 12:43:47.140 | INFO     | utils.common:log:12 - Epoch: [5][600/782]	Loss 2.7062 (2.8714)	Prec@5 60.938 (58.182)	lr 0.0585
+2025-06-25 12:43:47.706 | INFO     | utils.common:log:12 - Epoch: [5][610/782]	Loss 2.6420 (2.8714)	Prec@5 68.750 (58.199)	lr 0.0584
+2025-06-25 12:43:48.272 | INFO     | utils.common:log:12 - Epoch: [5][620/782]	Loss 2.8518 (2.8698)	Prec@5 62.500 (58.255)	lr 0.0582
+2025-06-25 12:43:48.833 | INFO     | utils.common:log:12 - Epoch: [5][630/782]	Loss 3.2219 (2.8708)	Prec@5 50.000 (58.224)	lr 0.0580
+2025-06-25 12:43:49.394 | INFO     | utils.common:log:12 - Epoch: [5][640/782]	Loss 3.0853 (2.8700)	Prec@5 51.562 (58.232)	lr 0.0579
+2025-06-25 12:43:49.952 | INFO     | utils.common:log:12 - Epoch: [5][650/782]	Loss 2.6041 (2.8706)	Prec@5 67.188 (58.221)	lr 0.0577
+2025-06-25 12:43:50.502 | INFO     | utils.common:log:12 - Epoch: [5][660/782]	Loss 2.9979 (2.8709)	Prec@5 54.688 (58.200)	lr 0.0576
+2025-06-25 12:43:51.064 | INFO     | utils.common:log:12 - Epoch: [5][670/782]	Loss 2.8255 (2.8688)	Prec@5 56.250 (58.260)	lr 0.0574
+2025-06-25 12:43:51.625 | INFO     | utils.common:log:12 - Epoch: [5][680/782]	Loss 2.7401 (2.8693)	Prec@5 60.938 (58.244)	lr 0.0573
+2025-06-25 12:43:52.182 | INFO     | utils.common:log:12 - Epoch: [5][690/782]	Loss 2.6897 (2.8695)	Prec@5 60.938 (58.238)	lr 0.0571
+2025-06-25 12:43:52.752 | INFO     | utils.common:log:12 - Epoch: [5][700/782]	Loss 2.8015 (2.8681)	Prec@5 56.250 (58.263)	lr 0.0570
+2025-06-25 12:43:53.328 | INFO     | utils.common:log:12 - Epoch: [5][710/782]	Loss 2.7620 (2.8659)	Prec@5 64.062 (58.329)	lr 0.0568
+2025-06-25 12:43:53.906 | INFO     | utils.common:log:12 - Epoch: [5][720/782]	Loss 2.4940 (2.8654)	Prec@5 65.625 (58.330)	lr 0.0566
+2025-06-25 12:43:54.477 | INFO     | utils.common:log:12 - Epoch: [5][730/782]	Loss 2.7409 (2.8651)	Prec@5 60.938 (58.340)	lr 0.0565
+2025-06-25 12:43:55.056 | INFO     | utils.common:log:12 - Epoch: [5][740/782]	Loss 2.7694 (2.8655)	Prec@5 57.812 (58.331)	lr 0.0563
+2025-06-25 12:43:55.631 | INFO     | utils.common:log:12 - Epoch: [5][750/782]	Loss 2.7450 (2.8642)	Prec@5 65.625 (58.349)	lr 0.0562
+2025-06-25 12:43:56.206 | INFO     | utils.common:log:12 - Epoch: [5][760/782]	Loss 2.4533 (2.8640)	Prec@5 68.750 (58.348)	lr 0.0560
+2025-06-25 12:43:56.778 | INFO     | utils.common:log:12 - Epoch: [5][770/782]	Loss 2.5789 (2.8626)	Prec@5 65.625 (58.378)	lr 0.0558
+2025-06-25 12:43:57.338 | INFO     | utils.common:log:12 - Epoch: [5][780/782]	Loss 2.6915 (2.8616)	Prec@5 65.625 (58.417)	lr 0.0557
+2025-06-25 12:43:57.659 | INFO     | utils.common:log:12 - Test: [0/79]	Time 0.203 (0.203)	Loss 2.9590 (2.9590)	Prec@1 59.375 (59.375)
+2025-06-25 12:43:57.832 | INFO     | utils.common:log:12 - Test: [10/79]	Time 0.017 (0.034)	Loss 3.1459 (3.1476)	Prec@1 56.250 (53.480)
+2025-06-25 12:43:58.002 | INFO     | utils.common:log:12 - Test: [20/79]	Time 0.018 (0.026)	Loss 3.0212 (3.1510)	Prec@1 57.031 (52.604)
+2025-06-25 12:43:58.175 | INFO     | utils.common:log:12 - Test: [30/79]	Time 0.017 (0.023)	Loss 2.9805 (3.1329)	Prec@1 58.594 (53.276)
+2025-06-25 12:43:58.346 | INFO     | utils.common:log:12 - Test: [40/79]	Time 0.017 (0.022)	Loss 2.8144 (3.1288)	Prec@1 61.719 (53.659)
+2025-06-25 12:43:58.516 | INFO     | utils.common:log:12 - Test: [50/79]	Time 0.017 (0.021)	Loss 3.1766 (3.1303)	Prec@1 53.125 (53.539)
+2025-06-25 12:43:58.688 | INFO     | utils.common:log:12 - Test: [60/79]	Time 0.016 (0.020)	Loss 3.4671 (3.1351)	Prec@1 52.344 (53.599)
+2025-06-25 12:43:58.862 | INFO     | utils.common:log:12 - Test: [70/79]	Time 0.018 (0.020)	Loss 3.0212 (3.1340)	Prec@1 53.125 (53.521)
+2025-06-25 12:43:59.042 | INFO     | utils.common:log:12 -  * Prec@1 53.420
+2025-06-25 12:43:59.042 | INFO     | utils.common:log:12 - current lr 5.56754e-02
+2025-06-25 12:43:59.272 | INFO     | utils.common:log:12 - Epoch: [6][0/782]	Loss 2.7860 (2.7860)	Prec@5 60.938 (60.938)	lr 0.0557
+2025-06-25 12:43:59.865 | INFO     | utils.common:log:12 - Epoch: [6][10/782]	Loss 2.6193 (2.7611)	Prec@5 59.375 (59.233)	lr 0.0555
+2025-06-25 12:44:00.452 | INFO     | utils.common:log:12 - Epoch: [6][20/782]	Loss 2.7954 (2.8050)	Prec@5 54.688 (59.301)	lr 0.0553
+2025-06-25 12:44:01.050 | INFO     | utils.common:log:12 - Epoch: [6][30/782]	Loss 2.7839 (2.7900)	Prec@5 57.812 (59.375)	lr 0.0552
+2025-06-25 12:44:01.626 | INFO     | utils.common:log:12 - Epoch: [6][40/782]	Loss 2.9155 (2.7941)	Prec@5 54.688 (59.642)	lr 0.0550
+2025-06-25 12:44:02.196 | INFO     | utils.common:log:12 - Epoch: [6][50/782]	Loss 2.9624 (2.8048)	Prec@5 56.250 (58.946)	lr 0.0549
+2025-06-25 12:44:02.758 | INFO     | utils.common:log:12 - Epoch: [6][60/782]	Loss 3.0440 (2.8034)	Prec@5 59.375 (59.273)	lr 0.0547
+2025-06-25 12:44:03.332 | INFO     | utils.common:log:12 - Epoch: [6][70/782]	Loss 2.7174 (2.7931)	Prec@5 60.938 (59.881)	lr 0.0546
+2025-06-25 12:44:03.904 | INFO     | utils.common:log:12 - Epoch: [6][80/782]	Loss 2.5918 (2.7816)	Prec@5 62.500 (60.127)	lr 0.0544
+2025-06-25 12:44:04.470 | INFO     | utils.common:log:12 - Epoch: [6][90/782]	Loss 2.6521 (2.7707)	Prec@5 62.500 (60.474)	lr 0.0542
+2025-06-25 12:44:05.031 | INFO     | utils.common:log:12 - Epoch: [6][100/782]	Loss 2.5290 (2.7645)	Prec@5 64.062 (60.582)	lr 0.0541
+2025-06-25 12:44:05.594 | INFO     | utils.common:log:12 - Epoch: [6][110/782]	Loss 2.8767 (2.7680)	Prec@5 57.812 (60.417)	lr 0.0539
+2025-06-25 12:44:06.156 | INFO     | utils.common:log:12 - Epoch: [6][120/782]	Loss 2.3995 (2.7699)	Prec@5 68.750 (60.369)	lr 0.0538
+2025-06-25 12:44:06.716 | INFO     | utils.common:log:12 - Epoch: [6][130/782]	Loss 2.7098 (2.7671)	Prec@5 59.375 (60.496)	lr 0.0536
+2025-06-25 12:44:07.283 | INFO     | utils.common:log:12 - Epoch: [6][140/782]	Loss 2.7173 (2.7680)	Prec@5 54.688 (60.383)	lr 0.0534
+2025-06-25 12:44:07.852 | INFO     | utils.common:log:12 - Epoch: [6][150/782]	Loss 2.3023 (2.7603)	Prec@5 73.438 (60.534)	lr 0.0533
+2025-06-25 12:44:08.407 | INFO     | utils.common:log:12 - Epoch: [6][160/782]	Loss 2.7585 (2.7641)	Prec@5 68.750 (60.559)	lr 0.0531
+2025-06-25 12:44:08.969 | INFO     | utils.common:log:12 - Epoch: [6][170/782]	Loss 2.6466 (2.7606)	Prec@5 62.500 (60.736)	lr 0.0530
+2025-06-25 12:44:09.535 | INFO     | utils.common:log:12 - Epoch: [6][180/782]	Loss 2.8410 (2.7646)	Prec@5 60.938 (60.661)	lr 0.0528
+2025-06-25 12:44:10.100 | INFO     | utils.common:log:12 - Epoch: [6][190/782]	Loss 2.7100 (2.7638)	Prec@5 62.500 (60.782)	lr 0.0527
+2025-06-25 12:44:10.665 | INFO     | utils.common:log:12 - Epoch: [6][200/782]	Loss 2.6963 (2.7609)	Prec@5 57.812 (60.813)	lr 0.0525
+2025-06-25 12:44:11.230 | INFO     | utils.common:log:12 - Epoch: [6][210/782]	Loss 2.7677 (2.7652)	Prec@5 62.500 (60.678)	lr 0.0523
+2025-06-25 12:44:11.801 | INFO     | utils.common:log:12 - Epoch: [6][220/782]	Loss 2.3134 (2.7654)	Prec@5 75.000 (60.591)	lr 0.0522
+2025-06-25 12:44:12.364 | INFO     | utils.common:log:12 - Epoch: [6][230/782]	Loss 2.9780 (2.7650)	Prec@5 56.250 (60.552)	lr 0.0520
+2025-06-25 12:44:12.930 | INFO     | utils.common:log:12 - Epoch: [6][240/782]	Loss 2.4048 (2.7623)	Prec@5 65.625 (60.639)	lr 0.0519
+2025-06-25 12:44:13.496 | INFO     | utils.common:log:12 - Epoch: [6][250/782]	Loss 2.7635 (2.7627)	Prec@5 67.188 (60.688)	lr 0.0517
+2025-06-25 12:44:14.063 | INFO     | utils.common:log:12 - Epoch: [6][260/782]	Loss 2.9626 (2.7615)	Prec@5 60.938 (60.740)	lr 0.0515
+2025-06-25 12:44:14.630 | INFO     | utils.common:log:12 - Epoch: [6][270/782]	Loss 2.8775 (2.7622)	Prec@5 54.688 (60.753)	lr 0.0514
+2025-06-25 12:44:15.196 | INFO     | utils.common:log:12 - Epoch: [6][280/782]	Loss 2.8600 (2.7636)	Prec@5 56.250 (60.737)	lr 0.0512
+2025-06-25 12:44:15.765 | INFO     | utils.common:log:12 - Epoch: [6][290/782]	Loss 2.7542 (2.7640)	Prec@5 65.625 (60.723)	lr 0.0511
+2025-06-25 12:44:16.325 | INFO     | utils.common:log:12 - Epoch: [6][300/782]	Loss 2.9211 (2.7635)	Prec@5 60.938 (60.678)	lr 0.0509
+2025-06-25 12:44:16.892 | INFO     | utils.common:log:12 - Epoch: [6][310/782]	Loss 2.9971 (2.7614)	Prec@5 53.125 (60.681)	lr 0.0508
+2025-06-25 12:44:17.468 | INFO     | utils.common:log:12 - Epoch: [6][320/782]	Loss 3.0263 (2.7593)	Prec@5 53.125 (60.757)	lr 0.0506
+2025-06-25 12:44:18.035 | INFO     | utils.common:log:12 - Epoch: [6][330/782]	Loss 2.9723 (2.7618)	Prec@5 54.688 (60.730)	lr 0.0504
+2025-06-25 12:44:18.599 | INFO     | utils.common:log:12 - Epoch: [6][340/782]	Loss 2.7015 (2.7608)	Prec@5 64.062 (60.773)	lr 0.0503
+2025-06-25 12:44:19.167 | INFO     | utils.common:log:12 - Epoch: [6][350/782]	Loss 2.9877 (2.7629)	Prec@5 51.562 (60.684)	lr 0.0501
+2025-06-25 12:44:19.732 | INFO     | utils.common:log:12 - Epoch: [6][360/782]	Loss 2.7642 (2.7644)	Prec@5 65.625 (60.660)	lr 0.0500
+2025-06-25 12:44:20.294 | INFO     | utils.common:log:12 - Epoch: [6][370/782]	Loss 2.9492 (2.7663)	Prec@5 59.375 (60.638)	lr 0.0498
+2025-06-25 12:44:20.852 | INFO     | utils.common:log:12 - Epoch: [6][380/782]	Loss 2.8852 (2.7685)	Prec@5 64.062 (60.601)	lr 0.0496
+2025-06-25 12:44:21.410 | INFO     | utils.common:log:12 - Epoch: [6][390/782]	Loss 2.6249 (2.7678)	Prec@5 64.062 (60.662)	lr 0.0495
+2025-06-25 12:44:21.977 | INFO     | utils.common:log:12 - Epoch: [6][400/782]	Loss 2.7064 (2.7670)	Prec@5 70.312 (60.657)	lr 0.0493
+2025-06-25 12:44:22.543 | INFO     | utils.common:log:12 - Epoch: [6][410/782]	Loss 2.6566 (2.7675)	Prec@5 62.500 (60.622)	lr 0.0492
+2025-06-25 12:44:23.108 | INFO     | utils.common:log:12 - Epoch: [6][420/782]	Loss 2.6308 (2.7663)	Prec@5 62.500 (60.611)	lr 0.0490
+2025-06-25 12:44:23.678 | INFO     | utils.common:log:12 - Epoch: [6][430/782]	Loss 2.8961 (2.7665)	Prec@5 60.938 (60.640)	lr 0.0488
+2025-06-25 12:44:24.246 | INFO     | utils.common:log:12 - Epoch: [6][440/782]	Loss 2.7501 (2.7654)	Prec@5 57.812 (60.661)	lr 0.0487
+2025-06-25 12:44:24.811 | INFO     | utils.common:log:12 - Epoch: [6][450/782]	Loss 2.7791 (2.7638)	Prec@5 54.688 (60.705)	lr 0.0485
+2025-06-25 12:44:25.378 | INFO     | utils.common:log:12 - Epoch: [6][460/782]	Loss 2.6370 (2.7651)	Prec@5 62.500 (60.677)	lr 0.0484
+2025-06-25 12:44:25.936 | INFO     | utils.common:log:12 - Epoch: [6][470/782]	Loss 2.4738 (2.7652)	Prec@5 73.438 (60.722)	lr 0.0482
+2025-06-25 12:44:26.496 | INFO     | utils.common:log:12 - Epoch: [6][480/782]	Loss 2.7484 (2.7621)	Prec@5 62.500 (60.775)	lr 0.0481
+2025-06-25 12:44:27.056 | INFO     | utils.common:log:12 - Epoch: [6][490/782]	Loss 2.7987 (2.7630)	Prec@5 57.812 (60.762)	lr 0.0479
+2025-06-25 12:44:27.617 | INFO     | utils.common:log:12 - Epoch: [6][500/782]	Loss 2.4129 (2.7624)	Prec@5 67.188 (60.782)	lr 0.0477
+2025-06-25 12:44:28.177 | INFO     | utils.common:log:12 - Epoch: [6][510/782]	Loss 2.7338 (2.7626)	Prec@5 65.625 (60.763)	lr 0.0476
+2025-06-25 12:44:28.744 | INFO     | utils.common:log:12 - Epoch: [6][520/782]	Loss 2.6041 (2.7637)	Prec@5 60.938 (60.734)	lr 0.0474
+2025-06-25 12:44:29.309 | INFO     | utils.common:log:12 - Epoch: [6][530/782]	Loss 2.8368 (2.7628)	Prec@5 60.938 (60.758)	lr 0.0473
+2025-06-25 12:44:29.875 | INFO     | utils.common:log:12 - Epoch: [6][540/782]	Loss 2.7953 (2.7612)	Prec@5 53.125 (60.784)	lr 0.0471
+2025-06-25 12:44:30.435 | INFO     | utils.common:log:12 - Epoch: [6][550/782]	Loss 2.7957 (2.7595)	Prec@5 62.500 (60.810)	lr 0.0469
+2025-06-25 12:44:30.999 | INFO     | utils.common:log:12 - Epoch: [6][560/782]	Loss 2.6825 (2.7579)	Prec@5 62.500 (60.857)	lr 0.0468
+2025-06-25 12:44:31.568 | INFO     | utils.common:log:12 - Epoch: [6][570/782]	Loss 2.7696 (2.7597)	Prec@5 67.188 (60.812)	lr 0.0466
+2025-06-25 12:44:32.141 | INFO     | utils.common:log:12 - Epoch: [6][580/782]	Loss 2.3057 (2.7584)	Prec@5 70.312 (60.814)	lr 0.0465
+2025-06-25 12:44:32.712 | INFO     | utils.common:log:12 - Epoch: [6][590/782]	Loss 2.7464 (2.7581)	Prec@5 54.688 (60.808)	lr 0.0463
+2025-06-25 12:44:33.279 | INFO     | utils.common:log:12 - Epoch: [6][600/782]	Loss 2.5884 (2.7564)	Prec@5 67.188 (60.847)	lr 0.0462
+2025-06-25 12:44:33.848 | INFO     | utils.common:log:12 - Epoch: [6][610/782]	Loss 3.0541 (2.7557)	Prec@5 56.250 (60.861)	lr 0.0460
+2025-06-25 12:44:34.423 | INFO     | utils.common:log:12 - Epoch: [6][620/782]	Loss 2.5962 (2.7550)	Prec@5 65.625 (60.877)	lr 0.0458
+2025-06-25 12:44:34.986 | INFO     | utils.common:log:12 - Epoch: [6][630/782]	Loss 2.7104 (2.7534)	Prec@5 57.812 (60.883)	lr 0.0457
+2025-06-25 12:44:35.555 | INFO     | utils.common:log:12 - Epoch: [6][640/782]	Loss 3.0459 (2.7533)	Prec@5 48.438 (60.877)	lr 0.0455
+2025-06-25 12:44:36.119 | INFO     | utils.common:log:12 - Epoch: [6][650/782]	Loss 2.3265 (2.7520)	Prec@5 78.125 (60.894)	lr 0.0454
+2025-06-25 12:44:36.683 | INFO     | utils.common:log:12 - Epoch: [6][660/782]	Loss 2.7952 (2.7518)	Prec@5 56.250 (60.897)	lr 0.0452
+2025-06-25 12:44:37.245 | INFO     | utils.common:log:12 - Epoch: [6][670/782]	Loss 2.7259 (2.7496)	Prec@5 67.188 (60.954)	lr 0.0451
+2025-06-25 12:44:37.809 | INFO     | utils.common:log:12 - Epoch: [6][680/782]	Loss 2.7624 (2.7475)	Prec@5 57.812 (61.004)	lr 0.0449
+2025-06-25 12:44:38.374 | INFO     | utils.common:log:12 - Epoch: [6][690/782]	Loss 2.5884 (2.7471)	Prec@5 67.188 (60.980)	lr 0.0447
+2025-06-25 12:44:38.949 | INFO     | utils.common:log:12 - Epoch: [6][700/782]	Loss 2.4830 (2.7461)	Prec@5 67.188 (61.002)	lr 0.0446
+2025-06-25 12:44:39.514 | INFO     | utils.common:log:12 - Epoch: [6][710/782]	Loss 2.3419 (2.7438)	Prec@5 76.562 (61.063)	lr 0.0444
+2025-06-25 12:44:40.086 | INFO     | utils.common:log:12 - Epoch: [6][720/782]	Loss 2.7244 (2.7446)	Prec@5 67.188 (61.033)	lr 0.0443
+2025-06-25 12:44:40.660 | INFO     | utils.common:log:12 - Epoch: [6][730/782]	Loss 2.8196 (2.7454)	Prec@5 60.938 (61.027)	lr 0.0441
+2025-06-25 12:44:41.232 | INFO     | utils.common:log:12 - Epoch: [6][740/782]	Loss 2.5494 (2.7458)	Prec@5 68.750 (61.005)	lr 0.0439
+2025-06-25 12:44:41.795 | INFO     | utils.common:log:12 - Epoch: [6][750/782]	Loss 2.5639 (2.7443)	Prec@5 65.625 (61.050)	lr 0.0438
+2025-06-25 12:44:42.358 | INFO     | utils.common:log:12 - Epoch: [6][760/782]	Loss 2.7063 (2.7440)	Prec@5 65.625 (61.081)	lr 0.0436
+2025-06-25 12:44:42.921 | INFO     | utils.common:log:12 - Epoch: [6][770/782]	Loss 2.7281 (2.7433)	Prec@5 60.938 (61.112)	lr 0.0435
+2025-06-25 12:44:43.473 | INFO     | utils.common:log:12 - Epoch: [6][780/782]	Loss 2.7856 (2.7443)	Prec@5 62.500 (61.072)	lr 0.0433
+2025-06-25 12:44:43.776 | INFO     | utils.common:log:12 - Test: [0/79]	Time 0.192 (0.192)	Loss 2.6599 (2.6599)	Prec@1 64.844 (64.844)
+2025-06-25 12:44:43.946 | INFO     | utils.common:log:12 - Test: [10/79]	Time 0.017 (0.033)	Loss 2.9392 (2.9344)	Prec@1 59.375 (57.457)
+2025-06-25 12:44:44.115 | INFO     | utils.common:log:12 - Test: [20/79]	Time 0.017 (0.025)	Loss 2.9527 (2.9057)	Prec@1 62.500 (57.924)
+2025-06-25 12:44:44.285 | INFO     | utils.common:log:12 - Test: [30/79]	Time 0.017 (0.023)	Loss 2.8404 (2.8980)	Prec@1 60.156 (58.191)
+2025-06-25 12:44:44.453 | INFO     | utils.common:log:12 - Test: [40/79]	Time 0.017 (0.021)	Loss 2.6974 (2.8988)	Prec@1 57.031 (58.098)
+2025-06-25 12:44:44.623 | INFO     | utils.common:log:12 - Test: [50/79]	Time 0.017 (0.020)	Loss 2.9117 (2.8926)	Prec@1 53.125 (58.287)
+2025-06-25 12:44:44.793 | INFO     | utils.common:log:12 - Test: [60/79]	Time 0.017 (0.020)	Loss 3.0660 (2.8959)	Prec@1 54.688 (58.235)
+2025-06-25 12:44:44.964 | INFO     | utils.common:log:12 - Test: [70/79]	Time 0.018 (0.019)	Loss 2.9667 (2.8964)	Prec@1 56.250 (58.330)
+2025-06-25 12:44:45.138 | INFO     | utils.common:log:12 -  * Prec@1 58.190
+2025-06-25 12:44:45.139 | INFO     | utils.common:log:12 - current lr 4.33014e-02
+2025-06-25 12:44:45.359 | INFO     | utils.common:log:12 - Epoch: [7][0/782]	Loss 2.6389 (2.6389)	Prec@5 62.500 (62.500)	lr 0.0433
+2025-06-25 12:44:45.904 | INFO     | utils.common:log:12 - Epoch: [7][10/782]	Loss 2.5394 (2.5642)	Prec@5 68.750 (65.057)	lr 0.0431
+2025-06-25 12:44:46.440 | INFO     | utils.common:log:12 - Epoch: [7][20/782]	Loss 3.0907 (2.6723)	Prec@5 51.562 (62.872)	lr 0.0430
+2025-06-25 12:44:46.976 | INFO     | utils.common:log:12 - Epoch: [7][30/782]	Loss 2.7826 (2.6697)	Prec@5 64.062 (63.458)	lr 0.0428
+2025-06-25 12:44:47.540 | INFO     | utils.common:log:12 - Epoch: [7][40/782]	Loss 1.9183 (2.6517)	Prec@5 78.125 (63.948)	lr 0.0427
+2025-06-25 12:44:48.104 | INFO     | utils.common:log:12 - Epoch: [7][50/782]	Loss 2.5477 (2.6507)	Prec@5 73.438 (64.522)	lr 0.0425
+2025-06-25 12:44:48.677 | INFO     | utils.common:log:12 - Epoch: [7][60/782]	Loss 2.8129 (2.6492)	Prec@5 57.812 (64.447)	lr 0.0423
+2025-06-25 12:44:49.247 | INFO     | utils.common:log:12 - Epoch: [7][70/782]	Loss 2.4130 (2.6450)	Prec@5 76.562 (64.349)	lr 0.0422
+2025-06-25 12:44:49.812 | INFO     | utils.common:log:12 - Epoch: [7][80/782]	Loss 2.5047 (2.6382)	Prec@5 67.188 (64.468)	lr 0.0420
+2025-06-25 12:44:50.386 | INFO     | utils.common:log:12 - Epoch: [7][90/782]	Loss 2.9188 (2.6533)	Prec@5 51.562 (63.977)	lr 0.0419
+2025-06-25 12:44:50.957 | INFO     | utils.common:log:12 - Epoch: [7][100/782]	Loss 2.6020 (2.6613)	Prec@5 64.062 (63.521)	lr 0.0417
+2025-06-25 12:44:51.529 | INFO     | utils.common:log:12 - Epoch: [7][110/782]	Loss 2.9072 (2.6639)	Prec@5 53.125 (63.429)	lr 0.0416
+2025-06-25 12:44:52.096 | INFO     | utils.common:log:12 - Epoch: [7][120/782]	Loss 2.7380 (2.6589)	Prec@5 60.938 (63.585)	lr 0.0414
+2025-06-25 12:44:52.675 | INFO     | utils.common:log:12 - Epoch: [7][130/782]	Loss 2.4801 (2.6545)	Prec@5 62.500 (63.597)	lr 0.0412
+2025-06-25 12:44:53.253 | INFO     | utils.common:log:12 - Epoch: [7][140/782]	Loss 2.5196 (2.6451)	Prec@5 64.062 (63.863)	lr 0.0411
+2025-06-25 12:44:53.828 | INFO     | utils.common:log:12 - Epoch: [7][150/782]	Loss 2.4922 (2.6472)	Prec@5 70.312 (63.783)	lr 0.0409
+2025-06-25 12:44:54.402 | INFO     | utils.common:log:12 - Epoch: [7][160/782]	Loss 2.7144 (2.6494)	Prec@5 68.750 (63.800)	lr 0.0408
+2025-06-25 12:44:54.970 | INFO     | utils.common:log:12 - Epoch: [7][170/782]	Loss 2.8036 (2.6504)	Prec@5 54.688 (63.724)	lr 0.0406
+2025-06-25 12:44:55.539 | INFO     | utils.common:log:12 - Epoch: [7][180/782]	Loss 2.7793 (2.6550)	Prec@5 50.000 (63.562)	lr 0.0405
+2025-06-25 12:44:56.113 | INFO     | utils.common:log:12 - Epoch: [7][190/782]	Loss 2.7286 (2.6519)	Prec@5 62.500 (63.613)	lr 0.0403
+2025-06-25 12:44:56.685 | INFO     | utils.common:log:12 - Epoch: [7][200/782]	Loss 2.6038 (2.6497)	Prec@5 59.375 (63.697)	lr 0.0402
+2025-06-25 12:44:57.239 | INFO     | utils.common:log:12 - Epoch: [7][210/782]	Loss 2.5337 (2.6471)	Prec@5 65.625 (63.751)	lr 0.0400
+2025-06-25 12:44:57.800 | INFO     | utils.common:log:12 - Epoch: [7][220/782]	Loss 2.5115 (2.6475)	Prec@5 65.625 (63.773)	lr 0.0398
+2025-06-25 12:44:58.352 | INFO     | utils.common:log:12 - Epoch: [7][230/782]	Loss 2.8066 (2.6470)	Prec@5 65.625 (63.765)	lr 0.0397
+2025-06-25 12:44:58.921 | INFO     | utils.common:log:12 - Epoch: [7][240/782]	Loss 2.7324 (2.6479)	Prec@5 60.938 (63.699)	lr 0.0395
+2025-06-25 12:44:59.488 | INFO     | utils.common:log:12 - Epoch: [7][250/782]	Loss 2.8161 (2.6470)	Prec@5 62.500 (63.739)	lr 0.0394
+2025-06-25 12:45:00.063 | INFO     | utils.common:log:12 - Epoch: [7][260/782]	Loss 2.2332 (2.6422)	Prec@5 71.875 (63.853)	lr 0.0392
+2025-06-25 12:45:00.631 | INFO     | utils.common:log:12 - Epoch: [7][270/782]	Loss 2.4916 (2.6376)	Prec@5 68.750 (64.005)	lr 0.0391
+2025-06-25 12:45:01.198 | INFO     | utils.common:log:12 - Epoch: [7][280/782]	Loss 2.5344 (2.6363)	Prec@5 68.750 (64.062)	lr 0.0389
+2025-06-25 12:45:01.764 | INFO     | utils.common:log:12 - Epoch: [7][290/782]	Loss 3.1245 (2.6345)	Prec@5 56.250 (64.148)	lr 0.0388
+2025-06-25 12:45:02.330 | INFO     | utils.common:log:12 - Epoch: [7][300/782]	Loss 2.8213 (2.6326)	Prec@5 56.250 (64.114)	lr 0.0386
+2025-06-25 12:45:03.056 | INFO     | utils.common:log:12 - Epoch: [7][310/782]	Loss 2.7249 (2.6378)	Prec@5 64.062 (63.962)	lr 0.0385
+2025-06-25 12:45:03.608 | INFO     | utils.common:log:12 - Epoch: [7][320/782]	Loss 2.2835 (2.6407)	Prec@5 71.875 (63.848)	lr 0.0383
+2025-06-25 12:45:04.175 | INFO     | utils.common:log:12 - Epoch: [7][330/782]	Loss 2.6301 (2.6433)	Prec@5 62.500 (63.779)	lr 0.0381
+2025-06-25 12:45:04.744 | INFO     | utils.common:log:12 - Epoch: [7][340/782]	Loss 2.5555 (2.6404)	Prec@5 64.062 (63.833)	lr 0.0380
+2025-06-25 12:45:05.307 | INFO     | utils.common:log:12 - Epoch: [7][350/782]	Loss 2.7721 (2.6406)	Prec@5 60.938 (63.804)	lr 0.0378
+2025-06-25 12:45:05.858 | INFO     | utils.common:log:12 - Epoch: [7][360/782]	Loss 2.5720 (2.6384)	Prec@5 65.625 (63.846)	lr 0.0377
+2025-06-25 12:45:06.422 | INFO     | utils.common:log:12 - Epoch: [7][370/782]	Loss 2.7106 (2.6397)	Prec@5 59.375 (63.793)	lr 0.0375
+2025-06-25 12:45:06.983 | INFO     | utils.common:log:12 - Epoch: [7][380/782]	Loss 2.9158 (2.6411)	Prec@5 50.000 (63.739)	lr 0.0374
+2025-06-25 12:45:07.558 | INFO     | utils.common:log:12 - Epoch: [7][390/782]	Loss 3.1020 (2.6416)	Prec@5 54.688 (63.731)	lr 0.0372
+2025-06-25 12:45:08.126 | INFO     | utils.common:log:12 - Epoch: [7][400/782]	Loss 2.5766 (2.6421)	Prec@5 68.750 (63.782)	lr 0.0371
+2025-06-25 12:45:08.695 | INFO     | utils.common:log:12 - Epoch: [7][410/782]	Loss 2.9661 (2.6408)	Prec@5 53.125 (63.758)	lr 0.0369
+2025-06-25 12:45:09.258 | INFO     | utils.common:log:12 - Epoch: [7][420/782]	Loss 2.0499 (2.6403)	Prec@5 78.125 (63.736)	lr 0.0368
+2025-06-25 12:45:09.829 | INFO     | utils.common:log:12 - Epoch: [7][430/782]	Loss 2.6104 (2.6416)	Prec@5 59.375 (63.685)	lr 0.0366
+2025-06-25 12:45:10.395 | INFO     | utils.common:log:12 - Epoch: [7][440/782]	Loss 2.3629 (2.6408)	Prec@5 60.938 (63.662)	lr 0.0365
+2025-06-25 12:45:10.964 | INFO     | utils.common:log:12 - Epoch: [7][450/782]	Loss 2.7602 (2.6420)	Prec@5 62.500 (63.654)	lr 0.0363
+2025-06-25 12:45:11.532 | INFO     | utils.common:log:12 - Epoch: [7][460/782]	Loss 2.8835 (2.6448)	Prec@5 53.125 (63.574)	lr 0.0362
+2025-06-25 12:45:12.101 | INFO     | utils.common:log:12 - Epoch: [7][470/782]	Loss 2.9600 (2.6467)	Prec@5 51.562 (63.538)	lr 0.0360
+2025-06-25 12:45:12.658 | INFO     | utils.common:log:12 - Epoch: [7][480/782]	Loss 2.1411 (2.6451)	Prec@5 73.438 (63.565)	lr 0.0358
+2025-06-25 12:45:13.229 | INFO     | utils.common:log:12 - Epoch: [7][490/782]	Loss 2.9107 (2.6438)	Prec@5 59.375 (63.582)	lr 0.0357
+2025-06-25 12:45:13.801 | INFO     | utils.common:log:12 - Epoch: [7][500/782]	Loss 2.7052 (2.6448)	Prec@5 59.375 (63.551)	lr 0.0355
+2025-06-25 12:45:14.385 | INFO     | utils.common:log:12 - Epoch: [7][510/782]	Loss 2.4611 (2.6424)	Prec@5 65.625 (63.604)	lr 0.0354
+2025-06-25 12:45:14.958 | INFO     | utils.common:log:12 - Epoch: [7][520/782]	Loss 2.5968 (2.6406)	Prec@5 64.062 (63.616)	lr 0.0352
+2025-06-25 12:45:15.535 | INFO     | utils.common:log:12 - Epoch: [7][530/782]	Loss 2.8837 (2.6372)	Prec@5 54.688 (63.686)	lr 0.0351
+2025-06-25 12:45:16.096 | INFO     | utils.common:log:12 - Epoch: [7][540/782]	Loss 2.6023 (2.6371)	Prec@5 65.625 (63.667)	lr 0.0349
+2025-06-25 12:45:16.660 | INFO     | utils.common:log:12 - Epoch: [7][550/782]	Loss 2.2945 (2.6365)	Prec@5 73.438 (63.700)	lr 0.0348
+2025-06-25 12:45:17.229 | INFO     | utils.common:log:12 - Epoch: [7][560/782]	Loss 3.0339 (2.6364)	Prec@5 51.562 (63.725)	lr 0.0346
+2025-06-25 12:45:17.794 | INFO     | utils.common:log:12 - Epoch: [7][570/782]	Loss 2.8186 (2.6377)	Prec@5 59.375 (63.701)	lr 0.0345
+2025-06-25 12:45:18.361 | INFO     | utils.common:log:12 - Epoch: [7][580/782]	Loss 2.7813 (2.6381)	Prec@5 60.938 (63.732)	lr 0.0343
+2025-06-25 12:45:18.923 | INFO     | utils.common:log:12 - Epoch: [7][590/782]	Loss 2.5428 (2.6382)	Prec@5 60.938 (63.719)	lr 0.0342
+2025-06-25 12:45:19.489 | INFO     | utils.common:log:12 - Epoch: [7][600/782]	Loss 2.4620 (2.6382)	Prec@5 75.000 (63.722)	lr 0.0340
+2025-06-25 12:45:20.045 | INFO     | utils.common:log:12 - Epoch: [7][610/782]	Loss 2.2881 (2.6381)	Prec@5 75.000 (63.735)	lr 0.0339
+2025-06-25 12:45:20.607 | INFO     | utils.common:log:12 - Epoch: [7][620/782]	Loss 2.5631 (2.6372)	Prec@5 70.312 (63.771)	lr 0.0337
+2025-06-25 12:45:21.178 | INFO     | utils.common:log:12 - Epoch: [7][630/782]	Loss 2.3343 (2.6378)	Prec@5 70.312 (63.733)	lr 0.0336
+2025-06-25 12:45:21.744 | INFO     | utils.common:log:12 - Epoch: [7][640/782]	Loss 2.7644 (2.6382)	Prec@5 67.188 (63.746)	lr 0.0334
+2025-06-25 12:45:22.319 | INFO     | utils.common:log:12 - Epoch: [7][650/782]	Loss 2.4873 (2.6386)	Prec@5 67.188 (63.717)	lr 0.0333
+2025-06-25 12:45:22.885 | INFO     | utils.common:log:12 - Epoch: [7][660/782]	Loss 2.5524 (2.6392)	Prec@5 68.750 (63.724)	lr 0.0331
+2025-06-25 12:45:23.468 | INFO     | utils.common:log:12 - Epoch: [7][670/782]	Loss 2.5211 (2.6401)	Prec@5 65.625 (63.713)	lr 0.0330
+2025-06-25 12:45:24.038 | INFO     | utils.common:log:12 - Epoch: [7][680/782]	Loss 2.5652 (2.6392)	Prec@5 62.500 (63.723)	lr 0.0328
+2025-06-25 12:45:24.633 | INFO     | utils.common:log:12 - Epoch: [7][690/782]	Loss 2.7917 (2.6398)	Prec@5 62.500 (63.723)	lr 0.0327
+2025-06-25 12:45:25.217 | INFO     | utils.common:log:12 - Epoch: [7][700/782]	Loss 2.3411 (2.6388)	Prec@5 73.438 (63.748)	lr 0.0325
+2025-06-25 12:45:25.799 | INFO     | utils.common:log:12 - Epoch: [7][710/782]	Loss 2.3078 (2.6378)	Prec@5 78.125 (63.777)	lr 0.0324
+2025-06-25 12:45:26.394 | INFO     | utils.common:log:12 - Epoch: [7][720/782]	Loss 2.6184 (2.6379)	Prec@5 54.688 (63.763)	lr 0.0322
+2025-06-25 12:45:26.983 | INFO     | utils.common:log:12 - Epoch: [7][730/782]	Loss 2.4569 (2.6369)	Prec@5 67.188 (63.772)	lr 0.0321
+2025-06-25 12:45:27.578 | INFO     | utils.common:log:12 - Epoch: [7][740/782]	Loss 2.7940 (2.6356)	Prec@5 57.812 (63.809)	lr 0.0319
+2025-06-25 12:45:28.171 | INFO     | utils.common:log:12 - Epoch: [7][750/782]	Loss 2.5213 (2.6357)	Prec@5 59.375 (63.780)	lr 0.0318
+2025-06-25 12:45:28.770 | INFO     | utils.common:log:12 - Epoch: [7][760/782]	Loss 2.3742 (2.6356)	Prec@5 71.875 (63.775)	lr 0.0316
+2025-06-25 12:45:29.359 | INFO     | utils.common:log:12 - Epoch: [7][770/782]	Loss 2.7774 (2.6352)	Prec@5 62.500 (63.787)	lr 0.0315
+2025-06-25 12:45:29.932 | INFO     | utils.common:log:12 - Epoch: [7][780/782]	Loss 2.6474 (2.6361)	Prec@5 68.750 (63.772)	lr 0.0314
+2025-06-25 12:45:30.268 | INFO     | utils.common:log:12 - Test: [0/79]	Time 0.210 (0.210)	Loss 2.5298 (2.5298)	Prec@1 65.625 (65.625)
+2025-06-25 12:45:30.476 | INFO     | utils.common:log:12 - Test: [10/79]	Time 0.018 (0.038)	Loss 2.7655 (2.7908)	Prec@1 63.281 (61.009)
+2025-06-25 12:45:30.645 | INFO     | utils.common:log:12 - Test: [20/79]	Time 0.017 (0.028)	Loss 2.6815 (2.7787)	Prec@1 62.500 (60.305)
+2025-06-25 12:45:30.813 | INFO     | utils.common:log:12 - Test: [30/79]	Time 0.017 (0.024)	Loss 2.7854 (2.7839)	Prec@1 56.250 (60.257)
+2025-06-25 12:45:30.982 | INFO     | utils.common:log:12 - Test: [40/79]	Time 0.016 (0.023)	Loss 2.5965 (2.7859)	Prec@1 64.844 (60.194)
+2025-06-25 12:45:31.152 | INFO     | utils.common:log:12 - Test: [50/79]	Time 0.017 (0.021)	Loss 2.7900 (2.7860)	Prec@1 57.031 (60.126)
+2025-06-25 12:45:31.318 | INFO     | utils.common:log:12 - Test: [60/79]	Time 0.017 (0.021)	Loss 3.2167 (2.7939)	Prec@1 56.250 (59.939)
+2025-06-25 12:45:31.491 | INFO     | utils.common:log:12 - Test: [70/79]	Time 0.018 (0.020)	Loss 2.8238 (2.7951)	Prec@1 57.031 (60.079)
+2025-06-25 12:45:31.688 | INFO     | utils.common:log:12 -  * Prec@1 59.960
+2025-06-25 12:45:31.688 | INFO     | utils.common:log:12 - current lr 3.13377e-02
+2025-06-25 12:45:31.917 | INFO     | utils.common:log:12 - Epoch: [8][0/782]	Loss 2.6372 (2.6372)	Prec@5 60.938 (60.938)	lr 0.0313
+2025-06-25 12:45:32.491 | INFO     | utils.common:log:12 - Epoch: [8][10/782]	Loss 2.6250 (2.5850)	Prec@5 59.375 (63.636)	lr 0.0312
+2025-06-25 12:45:33.064 | INFO     | utils.common:log:12 - Epoch: [8][20/782]	Loss 2.2098 (2.5756)	Prec@5 75.000 (64.955)	lr 0.0310
+2025-06-25 12:45:33.652 | INFO     | utils.common:log:12 - Epoch: [8][30/782]	Loss 2.4497 (2.5518)	Prec@5 68.750 (65.272)	lr 0.0309
+2025-06-25 12:45:34.220 | INFO     | utils.common:log:12 - Epoch: [8][40/782]	Loss 2.6400 (2.5631)	Prec@5 65.625 (65.168)	lr 0.0307
+2025-06-25 12:45:34.788 | INFO     | utils.common:log:12 - Epoch: [8][50/782]	Loss 2.4828 (2.5324)	Prec@5 76.562 (66.085)	lr 0.0306
+2025-06-25 12:45:35.364 | INFO     | utils.common:log:12 - Epoch: [8][60/782]	Loss 2.1086 (2.5366)	Prec@5 70.312 (65.702)	lr 0.0304
+2025-06-25 12:45:35.941 | INFO     | utils.common:log:12 - Epoch: [8][70/782]	Loss 2.0553 (2.5352)	Prec@5 76.562 (65.823)	lr 0.0303
+2025-06-25 12:45:36.518 | INFO     | utils.common:log:12 - Epoch: [8][80/782]	Loss 2.6461 (2.5344)	Prec@5 64.062 (65.760)	lr 0.0302
+2025-06-25 12:45:37.086 | INFO     | utils.common:log:12 - Epoch: [8][90/782]	Loss 2.5545 (2.5341)	Prec@5 64.062 (65.865)	lr 0.0300
+2025-06-25 12:45:37.657 | INFO     | utils.common:log:12 - Epoch: [8][100/782]	Loss 2.4450 (2.5225)	Prec@5 64.062 (65.965)	lr 0.0299
+2025-06-25 12:45:38.236 | INFO     | utils.common:log:12 - Epoch: [8][110/782]	Loss 2.7632 (2.5237)	Prec@5 62.500 (65.766)	lr 0.0297
+2025-06-25 12:45:38.813 | INFO     | utils.common:log:12 - Epoch: [8][120/782]	Loss 2.5071 (2.5223)	Prec@5 67.188 (65.845)	lr 0.0296
+2025-06-25 12:45:39.392 | INFO     | utils.common:log:12 - Epoch: [8][130/782]	Loss 2.8891 (2.5199)	Prec@5 65.625 (66.019)	lr 0.0294
+2025-06-25 12:45:39.965 | INFO     | utils.common:log:12 - Epoch: [8][140/782]	Loss 2.8328 (2.5243)	Prec@5 57.812 (65.946)	lr 0.0293
+2025-06-25 12:45:40.544 | INFO     | utils.common:log:12 - Epoch: [8][150/782]	Loss 2.5264 (2.5260)	Prec@5 64.062 (65.946)	lr 0.0291
+2025-06-25 12:45:41.116 | INFO     | utils.common:log:12 - Epoch: [8][160/782]	Loss 2.7347 (2.5289)	Prec@5 60.938 (65.877)	lr 0.0290
+2025-06-25 12:45:41.689 | INFO     | utils.common:log:12 - Epoch: [8][170/782]	Loss 2.6185 (2.5323)	Prec@5 64.062 (65.899)	lr 0.0288
+2025-06-25 12:45:42.262 | INFO     | utils.common:log:12 - Epoch: [8][180/782]	Loss 2.2965 (2.5311)	Prec@5 75.000 (65.970)	lr 0.0287
+2025-06-25 12:45:42.836 | INFO     | utils.common:log:12 - Epoch: [8][190/782]	Loss 2.8646 (2.5377)	Prec@5 60.938 (65.870)	lr 0.0286
+2025-06-25 12:45:43.414 | INFO     | utils.common:log:12 - Epoch: [8][200/782]	Loss 2.5548 (2.5314)	Prec@5 67.188 (65.975)	lr 0.0284
+2025-06-25 12:45:43.991 | INFO     | utils.common:log:12 - Epoch: [8][210/782]	Loss 2.5281 (2.5312)	Prec@5 65.625 (65.958)	lr 0.0283
+2025-06-25 12:45:44.569 | INFO     | utils.common:log:12 - Epoch: [8][220/782]	Loss 2.8948 (2.5389)	Prec@5 59.375 (65.837)	lr 0.0281
+2025-06-25 12:45:45.135 | INFO     | utils.common:log:12 - Epoch: [8][230/782]	Loss 2.4432 (2.5325)	Prec@5 67.188 (65.963)	lr 0.0280
+2025-06-25 12:45:45.702 | INFO     | utils.common:log:12 - Epoch: [8][240/782]	Loss 2.3899 (2.5328)	Prec@5 65.625 (65.923)	lr 0.0278
+2025-06-25 12:45:46.273 | INFO     | utils.common:log:12 - Epoch: [8][250/782]	Loss 2.4730 (2.5316)	Prec@5 68.750 (65.974)	lr 0.0277
+2025-06-25 12:45:46.840 | INFO     | utils.common:log:12 - Epoch: [8][260/782]	Loss 2.4805 (2.5366)	Prec@5 64.062 (65.805)	lr 0.0276
+2025-06-25 12:45:47.407 | INFO     | utils.common:log:12 - Epoch: [8][270/782]	Loss 2.8868 (2.5414)	Prec@5 62.500 (65.810)	lr 0.0274
+2025-06-25 12:45:47.975 | INFO     | utils.common:log:12 - Epoch: [8][280/782]	Loss 3.1028 (2.5446)	Prec@5 56.250 (65.742)	lr 0.0273
+2025-06-25 12:45:48.546 | INFO     | utils.common:log:12 - Epoch: [8][290/782]	Loss 2.7146 (2.5446)	Prec@5 62.500 (65.743)	lr 0.0271
+2025-06-25 12:45:49.111 | INFO     | utils.common:log:12 - Epoch: [8][300/782]	Loss 2.3523 (2.5445)	Prec@5 70.312 (65.692)	lr 0.0270
+2025-06-25 12:45:49.674 | INFO     | utils.common:log:12 - Epoch: [8][310/782]	Loss 2.4313 (2.5441)	Prec@5 67.188 (65.751)	lr 0.0269
+2025-06-25 12:45:50.240 | INFO     | utils.common:log:12 - Epoch: [8][320/782]	Loss 2.8246 (2.5456)	Prec@5 59.375 (65.669)	lr 0.0267
+2025-06-25 12:45:50.810 | INFO     | utils.common:log:12 - Epoch: [8][330/782]	Loss 2.3839 (2.5446)	Prec@5 68.750 (65.686)	lr 0.0266
+2025-06-25 12:45:51.374 | INFO     | utils.common:log:12 - Epoch: [8][340/782]	Loss 2.9080 (2.5417)	Prec@5 64.062 (65.740)	lr 0.0264
+2025-06-25 12:45:51.943 | INFO     | utils.common:log:12 - Epoch: [8][350/782]	Loss 2.6436 (2.5415)	Prec@5 65.625 (65.772)	lr 0.0263
+2025-06-25 12:45:52.512 | INFO     | utils.common:log:12 - Epoch: [8][360/782]	Loss 2.3465 (2.5402)	Prec@5 68.750 (65.798)	lr 0.0262
+2025-06-25 12:45:53.082 | INFO     | utils.common:log:12 - Epoch: [8][370/782]	Loss 2.6034 (2.5410)	Prec@5 60.938 (65.802)	lr 0.0260
+2025-06-25 12:45:53.653 | INFO     | utils.common:log:12 - Epoch: [8][380/782]	Loss 2.8975 (2.5432)	Prec@5 65.625 (65.744)	lr 0.0259
+2025-06-25 12:45:54.226 | INFO     | utils.common:log:12 - Epoch: [8][390/782]	Loss 2.6158 (2.5402)	Prec@5 62.500 (65.817)	lr 0.0257
+2025-06-25 12:45:54.797 | INFO     | utils.common:log:12 - Epoch: [8][400/782]	Loss 2.5612 (2.5422)	Prec@5 67.188 (65.761)	lr 0.0256
+2025-06-25 12:45:55.364 | INFO     | utils.common:log:12 - Epoch: [8][410/782]	Loss 2.5623 (2.5418)	Prec@5 59.375 (65.712)	lr 0.0255
+2025-06-25 12:45:55.932 | INFO     | utils.common:log:12 - Epoch: [8][420/782]	Loss 2.3615 (2.5413)	Prec@5 67.188 (65.710)	lr 0.0253
+2025-06-25 12:45:56.497 | INFO     | utils.common:log:12 - Epoch: [8][430/782]	Loss 2.2712 (2.5428)	Prec@5 67.188 (65.676)	lr 0.0252
+2025-06-25 12:45:57.057 | INFO     | utils.common:log:12 - Epoch: [8][440/782]	Loss 2.8440 (2.5443)	Prec@5 56.250 (65.678)	lr 0.0251
+2025-06-25 12:45:57.629 | INFO     | utils.common:log:12 - Epoch: [8][450/782]	Loss 2.4979 (2.5415)	Prec@5 65.625 (65.764)	lr 0.0249
+2025-06-25 12:45:58.198 | INFO     | utils.common:log:12 - Epoch: [8][460/782]	Loss 2.5852 (2.5404)	Prec@5 60.938 (65.794)	lr 0.0248
+2025-06-25 12:45:58.772 | INFO     | utils.common:log:12 - Epoch: [8][470/782]	Loss 2.7032 (2.5407)	Prec@5 56.250 (65.751)	lr 0.0246
+2025-06-25 12:45:59.338 | INFO     | utils.common:log:12 - Epoch: [8][480/782]	Loss 2.3918 (2.5414)	Prec@5 62.500 (65.748)	lr 0.0245
+2025-06-25 12:45:59.916 | INFO     | utils.common:log:12 - Epoch: [8][490/782]	Loss 2.5824 (2.5444)	Prec@5 60.938 (65.670)	lr 0.0244
+2025-06-25 12:46:00.493 | INFO     | utils.common:log:12 - Epoch: [8][500/782]	Loss 2.5760 (2.5452)	Prec@5 62.500 (65.634)	lr 0.0242
+2025-06-25 12:46:01.059 | INFO     | utils.common:log:12 - Epoch: [8][510/782]	Loss 2.7297 (2.5445)	Prec@5 62.500 (65.649)	lr 0.0241
+2025-06-25 12:46:01.627 | INFO     | utils.common:log:12 - Epoch: [8][520/782]	Loss 2.8275 (2.5441)	Prec@5 65.625 (65.658)	lr 0.0240
+2025-06-25 12:46:02.200 | INFO     | utils.common:log:12 - Epoch: [8][530/782]	Loss 2.5269 (2.5450)	Prec@5 71.875 (65.654)	lr 0.0238
+2025-06-25 12:46:02.776 | INFO     | utils.common:log:12 - Epoch: [8][540/782]	Loss 2.6939 (2.5450)	Prec@5 62.500 (65.674)	lr 0.0237
+2025-06-25 12:46:03.344 | INFO     | utils.common:log:12 - Epoch: [8][550/782]	Loss 2.3264 (2.5440)	Prec@5 73.438 (65.707)	lr 0.0236
+2025-06-25 12:46:03.908 | INFO     | utils.common:log:12 - Epoch: [8][560/782]	Loss 2.4567 (2.5418)	Prec@5 64.062 (65.761)	lr 0.0234
+2025-06-25 12:46:04.484 | INFO     | utils.common:log:12 - Epoch: [8][570/782]	Loss 2.7256 (2.5419)	Prec@5 56.250 (65.751)	lr 0.0233
+2025-06-25 12:46:05.063 | INFO     | utils.common:log:12 - Epoch: [8][580/782]	Loss 2.3566 (2.5414)	Prec@5 73.438 (65.765)	lr 0.0232
+2025-06-25 12:46:05.630 | INFO     | utils.common:log:12 - Epoch: [8][590/782]	Loss 2.9207 (2.5419)	Prec@5 56.250 (65.728)	lr 0.0230
+2025-06-25 12:46:06.206 | INFO     | utils.common:log:12 - Epoch: [8][600/782]	Loss 2.5299 (2.5440)	Prec@5 59.375 (65.667)	lr 0.0229
+2025-06-25 12:46:06.781 | INFO     | utils.common:log:12 - Epoch: [8][610/782]	Loss 2.8583 (2.5441)	Prec@5 57.812 (65.704)	lr 0.0228
+2025-06-25 12:46:07.346 | INFO     | utils.common:log:12 - Epoch: [8][620/782]	Loss 2.8243 (2.5454)	Prec@5 53.125 (65.643)	lr 0.0226
+2025-06-25 12:46:07.911 | INFO     | utils.common:log:12 - Epoch: [8][630/782]	Loss 2.0916 (2.5451)	Prec@5 73.438 (65.665)	lr 0.0225
+2025-06-25 12:46:08.481 | INFO     | utils.common:log:12 - Epoch: [8][640/782]	Loss 2.2782 (2.5444)	Prec@5 65.625 (65.681)	lr 0.0224
+2025-06-25 12:46:09.042 | INFO     | utils.common:log:12 - Epoch: [8][650/782]	Loss 2.5516 (2.5441)	Prec@5 62.500 (65.642)	lr 0.0222
+2025-06-25 12:46:09.603 | INFO     | utils.common:log:12 - Epoch: [8][660/782]	Loss 2.4245 (2.5427)	Prec@5 71.875 (65.694)	lr 0.0221
+2025-06-25 12:46:10.168 | INFO     | utils.common:log:12 - Epoch: [8][670/782]	Loss 2.1629 (2.5426)	Prec@5 70.312 (65.716)	lr 0.0220
+2025-06-25 12:46:10.739 | INFO     | utils.common:log:12 - Epoch: [8][680/782]	Loss 2.4071 (2.5433)	Prec@5 62.500 (65.680)	lr 0.0218
+2025-06-25 12:46:11.311 | INFO     | utils.common:log:12 - Epoch: [8][690/782]	Loss 2.2787 (2.5433)	Prec@5 70.312 (65.645)	lr 0.0217
+2025-06-25 12:46:11.881 | INFO     | utils.common:log:12 - Epoch: [8][700/782]	Loss 2.1070 (2.5425)	Prec@5 76.562 (65.661)	lr 0.0216
+2025-06-25 12:46:12.456 | INFO     | utils.common:log:12 - Epoch: [8][710/782]	Loss 2.3294 (2.5425)	Prec@5 65.625 (65.669)	lr 0.0214
+2025-06-25 12:46:13.024 | INFO     | utils.common:log:12 - Epoch: [8][720/782]	Loss 2.4643 (2.5418)	Prec@5 68.750 (65.723)	lr 0.0213
+2025-06-25 12:46:13.591 | INFO     | utils.common:log:12 - Epoch: [8][730/782]	Loss 2.7903 (2.5418)	Prec@5 64.062 (65.779)	lr 0.0212
+2025-06-25 12:46:14.166 | INFO     | utils.common:log:12 - Epoch: [8][740/782]	Loss 2.7054 (2.5418)	Prec@5 64.062 (65.785)	lr 0.0210
+2025-06-25 12:46:14.748 | INFO     | utils.common:log:12 - Epoch: [8][750/782]	Loss 2.6333 (2.5411)	Prec@5 68.750 (65.843)	lr 0.0209
+2025-06-25 12:46:15.318 | INFO     | utils.common:log:12 - Epoch: [8][760/782]	Loss 2.6970 (2.5412)	Prec@5 59.375 (65.861)	lr 0.0208
+2025-06-25 12:46:15.895 | INFO     | utils.common:log:12 - Epoch: [8][770/782]	Loss 2.2790 (2.5402)	Prec@5 70.312 (65.882)	lr 0.0207
+2025-06-25 12:46:16.460 | INFO     | utils.common:log:12 - Epoch: [8][780/782]	Loss 2.6610 (2.5409)	Prec@5 60.938 (65.869)	lr 0.0205
+2025-06-25 12:46:16.757 | INFO     | utils.common:log:12 - Test: [0/79]	Time 0.187 (0.187)	Loss 2.6396 (2.6396)	Prec@1 64.062 (64.062)
+2025-06-25 12:46:16.928 | INFO     | utils.common:log:12 - Test: [10/79]	Time 0.017 (0.033)	Loss 2.7791 (2.8108)	Prec@1 65.625 (59.872)
+2025-06-25 12:46:17.097 | INFO     | utils.common:log:12 - Test: [20/79]	Time 0.017 (0.025)	Loss 2.8004 (2.7715)	Prec@1 60.938 (60.156)
+2025-06-25 12:46:17.268 | INFO     | utils.common:log:12 - Test: [30/79]	Time 0.017 (0.023)	Loss 2.7116 (2.7652)	Prec@1 58.594 (60.081)
+2025-06-25 12:46:17.439 | INFO     | utils.common:log:12 - Test: [40/79]	Time 0.017 (0.021)	Loss 2.6221 (2.7594)	Prec@1 66.406 (60.575)
+2025-06-25 12:46:17.611 | INFO     | utils.common:log:12 - Test: [50/79]	Time 0.017 (0.020)	Loss 2.7905 (2.7623)	Prec@1 57.812 (60.570)
+2025-06-25 12:46:17.782 | INFO     | utils.common:log:12 - Test: [60/79]	Time 0.017 (0.020)	Loss 3.1020 (2.7634)	Prec@1 56.250 (60.617)
+2025-06-25 12:46:17.957 | INFO     | utils.common:log:12 - Test: [70/79]	Time 0.019 (0.020)	Loss 2.8725 (2.7606)	Prec@1 53.906 (60.783)
+2025-06-25 12:46:18.142 | INFO     | utils.common:log:12 -  * Prec@1 60.720
+2025-06-25 12:46:18.142 | INFO     | utils.common:log:12 - current lr 2.05171e-02
+2025-06-25 12:46:18.381 | INFO     | utils.common:log:12 - Epoch: [9][0/782]	Loss 2.4344 (2.4344)	Prec@5 71.875 (71.875)	lr 0.0205
+2025-06-25 12:46:18.978 | INFO     | utils.common:log:12 - Epoch: [9][10/782]	Loss 2.5734 (2.4306)	Prec@5 64.062 (68.324)	lr 0.0204
+2025-06-25 12:46:19.580 | INFO     | utils.common:log:12 - Epoch: [9][20/782]	Loss 2.6527 (2.4745)	Prec@5 60.938 (67.262)	lr 0.0202
+2025-06-25 12:46:20.180 | INFO     | utils.common:log:12 - Epoch: [9][30/782]	Loss 2.1809 (2.4625)	Prec@5 76.562 (67.944)	lr 0.0201
+2025-06-25 12:46:20.776 | INFO     | utils.common:log:12 - Epoch: [9][40/782]	Loss 2.5949 (2.4784)	Prec@5 62.500 (67.111)	lr 0.0200
+2025-06-25 12:46:21.371 | INFO     | utils.common:log:12 - Epoch: [9][50/782]	Loss 2.4843 (2.4739)	Prec@5 68.750 (67.341)	lr 0.0199
+2025-06-25 12:46:21.969 | INFO     | utils.common:log:12 - Epoch: [9][60/782]	Loss 2.4254 (2.4604)	Prec@5 70.312 (67.700)	lr 0.0197
+2025-06-25 12:46:22.559 | INFO     | utils.common:log:12 - Epoch: [9][70/782]	Loss 2.3412 (2.4665)	Prec@5 70.312 (67.540)	lr 0.0196
+2025-06-25 12:46:23.160 | INFO     | utils.common:log:12 - Epoch: [9][80/782]	Loss 2.8205 (2.4745)	Prec@5 64.062 (67.380)	lr 0.0195
+2025-06-25 12:46:23.745 | INFO     | utils.common:log:12 - Epoch: [9][90/782]	Loss 2.3016 (2.4747)	Prec@5 60.938 (67.291)	lr 0.0194
+2025-06-25 12:46:24.327 | INFO     | utils.common:log:12 - Epoch: [9][100/782]	Loss 2.7517 (2.4752)	Prec@5 62.500 (67.172)	lr 0.0192
+2025-06-25 12:46:24.899 | INFO     | utils.common:log:12 - Epoch: [9][110/782]	Loss 2.4797 (2.4848)	Prec@5 60.938 (66.948)	lr 0.0191
+2025-06-25 12:46:25.480 | INFO     | utils.common:log:12 - Epoch: [9][120/782]	Loss 2.1865 (2.4821)	Prec@5 75.000 (67.097)	lr 0.0190
+2025-06-25 12:46:26.073 | INFO     | utils.common:log:12 - Epoch: [9][130/782]	Loss 2.2911 (2.4797)	Prec@5 73.438 (67.104)	lr 0.0189
+2025-06-25 12:46:26.680 | INFO     | utils.common:log:12 - Epoch: [9][140/782]	Loss 2.4292 (2.4758)	Prec@5 70.312 (67.254)	lr 0.0187
+2025-06-25 12:46:27.269 | INFO     | utils.common:log:12 - Epoch: [9][150/782]	Loss 2.3890 (2.4650)	Prec@5 64.062 (67.539)	lr 0.0186
+2025-06-25 12:46:27.860 | INFO     | utils.common:log:12 - Epoch: [9][160/782]	Loss 2.3899 (2.4637)	Prec@5 62.500 (67.566)	lr 0.0185
+2025-06-25 12:46:28.445 | INFO     | utils.common:log:12 - Epoch: [9][170/782]	Loss 2.4384 (2.4649)	Prec@5 67.188 (67.480)	lr 0.0184
+2025-06-25 12:46:29.043 | INFO     | utils.common:log:12 - Epoch: [9][180/782]	Loss 2.1882 (2.4657)	Prec@5 71.875 (67.438)	lr 0.0182
+2025-06-25 12:46:29.635 | INFO     | utils.common:log:12 - Epoch: [9][190/782]	Loss 2.2552 (2.4606)	Prec@5 73.438 (67.572)	lr 0.0181
+2025-06-25 12:46:30.208 | INFO     | utils.common:log:12 - Epoch: [9][200/782]	Loss 2.1997 (2.4614)	Prec@5 71.875 (67.561)	lr 0.0180
+2025-06-25 12:46:30.774 | INFO     | utils.common:log:12 - Epoch: [9][210/782]	Loss 2.8502 (2.4640)	Prec@5 59.375 (67.424)	lr 0.0179
+2025-06-25 12:46:31.343 | INFO     | utils.common:log:12 - Epoch: [9][220/782]	Loss 2.5262 (2.4660)	Prec@5 68.750 (67.286)	lr 0.0178
+2025-06-25 12:46:31.911 | INFO     | utils.common:log:12 - Epoch: [9][230/782]	Loss 2.6115 (2.4646)	Prec@5 71.875 (67.363)	lr 0.0176
+2025-06-25 12:46:32.483 | INFO     | utils.common:log:12 - Epoch: [9][240/782]	Loss 2.4898 (2.4681)	Prec@5 65.625 (67.304)	lr 0.0175
+2025-06-25 12:46:33.053 | INFO     | utils.common:log:12 - Epoch: [9][250/782]	Loss 2.6420 (2.4684)	Prec@5 60.938 (67.281)	lr 0.0174
+2025-06-25 12:46:33.616 | INFO     | utils.common:log:12 - Epoch: [9][260/782]	Loss 2.4232 (2.4684)	Prec@5 68.750 (67.271)	lr 0.0173
+2025-06-25 12:46:34.178 | INFO     | utils.common:log:12 - Epoch: [9][270/782]	Loss 2.2842 (2.4681)	Prec@5 70.312 (67.268)	lr 0.0172
+2025-06-25 12:46:34.739 | INFO     | utils.common:log:12 - Epoch: [9][280/782]	Loss 2.6027 (2.4671)	Prec@5 60.938 (67.254)	lr 0.0170
+2025-06-25 12:46:35.302 | INFO     | utils.common:log:12 - Epoch: [9][290/782]	Loss 2.2073 (2.4709)	Prec@5 67.188 (67.214)	lr 0.0169
+2025-06-25 12:46:35.863 | INFO     | utils.common:log:12 - Epoch: [9][300/782]	Loss 2.5915 (2.4723)	Prec@5 65.625 (67.213)	lr 0.0168
+2025-06-25 12:46:36.430 | INFO     | utils.common:log:12 - Epoch: [9][310/782]	Loss 2.3166 (2.4720)	Prec@5 73.438 (67.213)	lr 0.0167
+2025-06-25 12:46:36.990 | INFO     | utils.common:log:12 - Epoch: [9][320/782]	Loss 2.6437 (2.4704)	Prec@5 59.375 (67.231)	lr 0.0166
+2025-06-25 12:46:37.564 | INFO     | utils.common:log:12 - Epoch: [9][330/782]	Loss 2.4190 (2.4703)	Prec@5 76.562 (67.239)	lr 0.0164
+2025-06-25 12:46:38.128 | INFO     | utils.common:log:12 - Epoch: [9][340/782]	Loss 2.2011 (2.4694)	Prec@5 75.000 (67.197)	lr 0.0163
+2025-06-25 12:46:38.698 | INFO     | utils.common:log:12 - Epoch: [9][350/782]	Loss 2.5075 (2.4699)	Prec@5 68.750 (67.201)	lr 0.0162
+2025-06-25 12:46:39.275 | INFO     | utils.common:log:12 - Epoch: [9][360/782]	Loss 2.6597 (2.4685)	Prec@5 59.375 (67.226)	lr 0.0161
+2025-06-25 12:46:39.845 | INFO     | utils.common:log:12 - Epoch: [9][370/782]	Loss 2.5346 (2.4690)	Prec@5 60.938 (67.255)	lr 0.0160
+2025-06-25 12:46:40.414 | INFO     | utils.common:log:12 - Epoch: [9][380/782]	Loss 2.5617 (2.4685)	Prec@5 70.312 (67.249)	lr 0.0159
+2025-06-25 12:46:40.988 | INFO     | utils.common:log:12 - Epoch: [9][390/782]	Loss 2.5415 (2.4690)	Prec@5 64.062 (67.219)	lr 0.0157
+2025-06-25 12:46:41.554 | INFO     | utils.common:log:12 - Epoch: [9][400/782]	Loss 2.6480 (2.4679)	Prec@5 59.375 (67.277)	lr 0.0156
+2025-06-25 12:46:42.115 | INFO     | utils.common:log:12 - Epoch: [9][410/782]	Loss 2.7213 (2.4713)	Prec@5 56.250 (67.184)	lr 0.0155
+2025-06-25 12:46:42.679 | INFO     | utils.common:log:12 - Epoch: [9][420/782]	Loss 3.0728 (2.4723)	Prec@5 50.000 (67.191)	lr 0.0154
+2025-06-25 12:46:43.244 | INFO     | utils.common:log:12 - Epoch: [9][430/782]	Loss 2.2408 (2.4724)	Prec@5 70.312 (67.198)	lr 0.0153
+2025-06-25 12:46:43.807 | INFO     | utils.common:log:12 - Epoch: [9][440/782]	Loss 2.4036 (2.4720)	Prec@5 71.875 (67.230)	lr 0.0152
+2025-06-25 12:46:44.372 | INFO     | utils.common:log:12 - Epoch: [9][450/782]	Loss 2.6141 (2.4703)	Prec@5 65.625 (67.271)	lr 0.0151
+2025-06-25 12:46:44.946 | INFO     | utils.common:log:12 - Epoch: [9][460/782]	Loss 2.1721 (2.4694)	Prec@5 75.000 (67.293)	lr 0.0149
+2025-06-25 12:46:45.509 | INFO     | utils.common:log:12 - Epoch: [9][470/782]	Loss 2.7409 (2.4694)	Prec@5 62.500 (67.284)	lr 0.0148
+2025-06-25 12:46:46.071 | INFO     | utils.common:log:12 - Epoch: [9][480/782]	Loss 2.6764 (2.4694)	Prec@5 64.062 (67.301)	lr 0.0147
+2025-06-25 12:46:46.634 | INFO     | utils.common:log:12 - Epoch: [9][490/782]	Loss 2.2497 (2.4678)	Prec@5 75.000 (67.289)	lr 0.0146
+2025-06-25 12:46:47.196 | INFO     | utils.common:log:12 - Epoch: [9][500/782]	Loss 2.2081 (2.4680)	Prec@5 70.312 (67.315)	lr 0.0145
+2025-06-25 12:46:47.760 | INFO     | utils.common:log:12 - Epoch: [9][510/782]	Loss 2.6752 (2.4675)	Prec@5 65.625 (67.365)	lr 0.0144
+2025-06-25 12:46:48.327 | INFO     | utils.common:log:12 - Epoch: [9][520/782]	Loss 2.6093 (2.4685)	Prec@5 62.500 (67.334)	lr 0.0143
+2025-06-25 12:46:48.895 | INFO     | utils.common:log:12 - Epoch: [9][530/782]	Loss 2.3131 (2.4673)	Prec@5 75.000 (67.370)	lr 0.0142
+2025-06-25 12:46:49.462 | INFO     | utils.common:log:12 - Epoch: [9][540/782]	Loss 2.1241 (2.4679)	Prec@5 85.938 (67.404)	lr 0.0141
+2025-06-25 12:46:50.041 | INFO     | utils.common:log:12 - Epoch: [9][550/782]	Loss 2.7854 (2.4694)	Prec@5 62.500 (67.358)	lr 0.0139
+2025-06-25 12:46:50.624 | INFO     | utils.common:log:12 - Epoch: [9][560/782]	Loss 2.3531 (2.4673)	Prec@5 71.875 (67.419)	lr 0.0138
+2025-06-25 12:46:51.189 | INFO     | utils.common:log:12 - Epoch: [9][570/782]	Loss 2.6148 (2.4685)	Prec@5 67.188 (67.406)	lr 0.0137
+2025-06-25 12:46:51.767 | INFO     | utils.common:log:12 - Epoch: [9][580/782]	Loss 2.6626 (2.4686)	Prec@5 57.812 (67.373)	lr 0.0136
+2025-06-25 12:46:52.346 | INFO     | utils.common:log:12 - Epoch: [9][590/782]	Loss 2.6462 (2.4696)	Prec@5 64.062 (67.362)	lr 0.0135
+2025-06-25 12:46:52.921 | INFO     | utils.common:log:12 - Epoch: [9][600/782]	Loss 2.5008 (2.4697)	Prec@5 68.750 (67.343)	lr 0.0134
+2025-06-25 12:46:53.492 | INFO     | utils.common:log:12 - Epoch: [9][610/782]	Loss 2.4765 (2.4702)	Prec@5 57.812 (67.320)	lr 0.0133
+2025-06-25 12:46:54.062 | INFO     | utils.common:log:12 - Epoch: [9][620/782]	Loss 2.3982 (2.4691)	Prec@5 68.750 (67.361)	lr 0.0132
+2025-06-25 12:46:54.637 | INFO     | utils.common:log:12 - Epoch: [9][630/782]	Loss 2.5751 (2.4683)	Prec@5 60.938 (67.383)	lr 0.0131
+2025-06-25 12:46:55.213 | INFO     | utils.common:log:12 - Epoch: [9][640/782]	Loss 2.5444 (2.4688)	Prec@5 73.438 (67.395)	lr 0.0130
+2025-06-25 12:46:55.787 | INFO     | utils.common:log:12 - Epoch: [9][650/782]	Loss 2.5106 (2.4681)	Prec@5 57.812 (67.401)	lr 0.0129
+2025-06-25 12:46:56.381 | INFO     | utils.common:log:12 - Epoch: [9][660/782]	Loss 2.3031 (2.4680)	Prec@5 71.875 (67.398)	lr 0.0128
+2025-06-25 12:46:56.992 | INFO     | utils.common:log:12 - Epoch: [9][670/782]	Loss 2.4690 (2.4671)	Prec@5 64.062 (67.416)	lr 0.0126
+2025-06-25 12:46:57.592 | INFO     | utils.common:log:12 - Epoch: [9][680/782]	Loss 2.6152 (2.4658)	Prec@5 65.625 (67.410)	lr 0.0125
+2025-06-25 12:46:58.201 | INFO     | utils.common:log:12 - Epoch: [9][690/782]	Loss 2.9282 (2.4665)	Prec@5 54.688 (67.402)	lr 0.0124
+2025-06-25 12:46:58.795 | INFO     | utils.common:log:12 - Epoch: [9][700/782]	Loss 2.5168 (2.4667)	Prec@5 67.188 (67.379)	lr 0.0123
+2025-06-25 12:46:59.409 | INFO     | utils.common:log:12 - Epoch: [9][710/782]	Loss 2.6859 (2.4671)	Prec@5 65.625 (67.379)	lr 0.0122
+2025-06-25 12:47:00.011 | INFO     | utils.common:log:12 - Epoch: [9][720/782]	Loss 2.6453 (2.4668)	Prec@5 62.500 (67.385)	lr 0.0121
+2025-06-25 12:47:00.625 | INFO     | utils.common:log:12 - Epoch: [9][730/782]	Loss 2.2252 (2.4665)	Prec@5 70.312 (67.406)	lr 0.0120
+2025-06-25 12:47:01.235 | INFO     | utils.common:log:12 - Epoch: [9][740/782]	Loss 2.2711 (2.4655)	Prec@5 68.750 (67.405)	lr 0.0119
+2025-06-25 12:47:01.850 | INFO     | utils.common:log:12 - Epoch: [9][750/782]	Loss 2.4438 (2.4651)	Prec@5 73.438 (67.398)	lr 0.0118
+2025-06-25 12:47:02.453 | INFO     | utils.common:log:12 - Epoch: [9][760/782]	Loss 2.3122 (2.4633)	Prec@5 75.000 (67.420)	lr 0.0117
+2025-06-25 12:47:03.057 | INFO     | utils.common:log:12 - Epoch: [9][770/782]	Loss 2.2756 (2.4611)	Prec@5 75.000 (67.479)	lr 0.0116
+2025-06-25 12:47:03.626 | INFO     | utils.common:log:12 - Epoch: [9][780/782]	Loss 2.3664 (2.4602)	Prec@5 71.875 (67.520)	lr 0.0115
+2025-06-25 12:47:03.921 | INFO     | utils.common:log:12 - Test: [0/79]	Time 0.196 (0.196)	Loss 2.4696 (2.4696)	Prec@1 67.969 (67.969)
+2025-06-25 12:47:04.093 | INFO     | utils.common:log:12 - Test: [10/79]	Time 0.017 (0.033)	Loss 2.6653 (2.6998)	Prec@1 65.625 (62.855)
+2025-06-25 12:47:04.262 | INFO     | utils.common:log:12 - Test: [20/79]	Time 0.017 (0.026)	Loss 2.6885 (2.6729)	Prec@1 60.156 (62.277)
+2025-06-25 12:47:04.433 | INFO     | utils.common:log:12 - Test: [30/79]	Time 0.017 (0.023)	Loss 2.6547 (2.6715)	Prec@1 58.594 (62.727)
+2025-06-25 12:47:04.603 | INFO     | utils.common:log:12 - Test: [40/79]	Time 0.017 (0.021)	Loss 2.5067 (2.6694)	Prec@1 65.625 (62.805)
+2025-06-25 12:47:04.774 | INFO     | utils.common:log:12 - Test: [50/79]	Time 0.017 (0.021)	Loss 2.6648 (2.6690)	Prec@1 55.469 (62.791)
+2025-06-25 12:47:04.944 | INFO     | utils.common:log:12 - Test: [60/79]	Time 0.017 (0.020)	Loss 3.1102 (2.6749)	Prec@1 53.906 (62.602)
+2025-06-25 12:47:05.114 | INFO     | utils.common:log:12 - Test: [70/79]	Time 0.018 (0.020)	Loss 2.7131 (2.6742)	Prec@1 60.938 (62.786)
+2025-06-25 12:47:05.294 | INFO     | utils.common:log:12 -  * Prec@1 62.650

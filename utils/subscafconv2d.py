@@ -26,7 +26,7 @@ class SubScafConv2d(_ConvNd):
         comp_mat,
         wraped_model,
     ) -> None:
-        factory_kwargs = {"device": wraped_model.device, "dtype": wraped_model.dtype}
+        factory_kwargs = {"device": wraped_model.weight.device, "dtype": wraped_model.weight.dtype}
         kernel_size_ = _pair(wraped_model.kernel_size)
         stride_ = _pair(wraped_model.stride)
         padding_ = wraped_model.padding if isinstance(wraped_model.padding, str) else _pair(wraped_model.padding)
@@ -50,7 +50,7 @@ class SubScafConv2d(_ConvNd):
         self.comp_dim = comp_dim
         self.comp_mat = comp_mat
         self.x = wraped_model.weight.detach().clone()
-        self.b = nn.Parameter(torch.zeros((self.in_channels, self.out_channels // self.groups, kernel_size_[0], comp_dim), **factory_kwargs))
+        self.b = nn.Parameter(torch.zeros((self.out_channels, self.in_channels // self.groups, kernel_size_[0], comp_dim), **factory_kwargs))
         del wraped_model
     
     @property
@@ -74,7 +74,8 @@ class SubScafConv2d(_ConvNd):
                 self.b.data = torch.zeros_like(self.b.data)
     
     def extra_repr(self):
-        return f"comp_dim={self.comp_dim}, kernel_size={self.kernel_size[0]}"
+        return f"{self.out_channels}, {self.in_channels}, kernel_size=(7, {self.comp_dim}), stride={self.stride}, padding={self.padding}, bias={self.bias}"
+        
 
     def _conv_forward(self, input: Tensor, weight: Tensor, bias: Optional[Tensor]):
         if self.padding_mode != "zeros":

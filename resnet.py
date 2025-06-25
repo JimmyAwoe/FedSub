@@ -1,7 +1,7 @@
 import argparse
 import os
 import time
-
+import torch.distributed as dist
 import torch
 import torch.nn as nn
 import torch.backends.cudnn as cudnn
@@ -9,7 +9,17 @@ import torch.optim
 import torch.utils.data
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
-from utils import SubScafSGD, log, init_process_group, main_parse_args, resnet_module
+from transformers import get_cosine_schedule_with_warmup
+from utils import (
+    SubScafSGD, 
+    log, 
+    init_process_group, 
+    main_parse_args, 
+    replace_with_subscaf_layer,
+    get_subscaf_optimizer,
+    resnet_module,
+    outer_update,
+)
 
 
 def parse_args(args, remaining_args):
@@ -21,25 +31,15 @@ def parse_args(args, remaining_args):
     # training
     parser.add_argument('--epochs', default=200, type=int, metavar='N',
                         help='number of total epochs to run')
-    parser.add_argument('--resume', default='', type=str, metavar='PATH',
-                        help='path to latest checkpoint (default: none)')
     parser.add_argument('-e', '--evaluate', dest='evaluate', action='store_true',
                         help='evaluate model on validation set')
     parser.add_argument('--pretrained', dest='pretrained', action='store_true',
                         help='use pre-trained model')
-    parser.add_argument('--half', dest='half', action='store_true',
-                        help='use half-precision(16-bit) ')
     
     # log
     parser.add_argument('--print-freq', '-p', default=50, type=int,
                         metavar='N', help='print frequency (default: 50)')
-    parser.add_argument('--save-dir', dest='save_dir',
-                        help='The directory used to save the trained models',
-                        default='save_temp', type=str)
-    parser.add_argument('--save-every', dest='save_every',
-                        help='Saves checkpoints at every specified number of epochs',
-                        type=int, default=10)
-    args = parser.parse_args(args)
+
     new_args, _ = parser.parse_known_args(remaining_args)
     args = argparse.Namespace(**vars(args), **vars(new_args))
     return args
@@ -54,29 +54,15 @@ def main(args):
     model = resnet_module.__dict__[args.arch]()
     model.to(device)
 
-    # optionally resume from a checkpoint
-    if args.resume:
-        if os.path.isfile(args.resume):
-            log("=> loading checkpoint '{}'".format(args.resume))
-            checkpoint = torch.load(args.resume)
-            args.start_epoch = checkpoint['epoch']
-            best_prec1 = checkpoint['best_prec1']
-            model.load_state_dict(checkpoint['state_dict'])
-            log("=> loaded checkpoint '{}' (epoch {})"
-                  .format(args.evaluate, checkpoint['epoch']))
-        else:
-            log("=> no checkpoint found at '{}'".format(args.resume))
-
     cudnn.benchmark = True
 
 
     # load data 
-    normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                     std=[0.229, 0.224, 0.225])
+    normalize = transforms.Normalize(mean=[0.507, 0.487, 0.441],
+                                     std=[0.267, 0.256, 0.276])
     train_loader = torch.utils.data.DataLoader(
         datasets.CIFAR100(root='./data', train=True, transform=transforms.Compose([
             transforms.RandomHorizontalFlip(),
-            transforms.RandomCrop(32, 4),
             transforms.ToTensor(),
             normalize,
         ]), download=True),
@@ -92,68 +78,86 @@ def main(args):
         num_workers=4, pin_memory=True)
 
     # define loss function (criterion) and optimizer
-    criterion = nn.CrossEntropyLoss().cuda()
+    criterion = nn.CrossEntropyLoss().to(device)
 
-    if args.half:
-        model.half()
-        criterion.half()
-    
     # optimizer
-    if args.optimizer == 'sgd':
+    trainable_param = [p for p in model.parameters() if p.requires_grad == True]
+    param_before_comp = sum(p.numel() for p in model.parameters()) / 1_000_000
+    trainable_param_before_comp = sum(p.numel() for p in model.parameters() if p.requires_grad == True) / 1_000_000
+    if args.optimizer == 'subscafsgd':
+        target_modules_list = ["conv1", "conv2"]
+        jump_modules_list = []
+        # define nonlocal variables for replace module
+        num_subscaf_params, subscaf_params, lbd, comp_mat_rec = replace_with_subscaf_layer(model, 
+                                                                                            target_modules_list, 
+                                                                                            device, 
+                                                                                            args, 
+                                                                                            jump_modules_list,
+                                                                                            'conv2d')
+        id_subscaf_params = [id(p) for p in subscaf_params]
+        # make parameters without "is_comp" to another group
+        regular_params = [p for p in model.parameters() if id(p) not in id_subscaf_params]
+        # make parameters with "is_comp" to a single group
+        param_groups = [{'params': regular_params, 'is_comp': False}, 
+                        {'params': subscaf_params, 'is_comp': True, 'lbd': lbd, 'tau': args.tau, 
+                         'compression_dim': args.comp_dim}]
+
+    log(f"\n{model}\n")
+    log(f"Total params: {param_before_comp:.2f}M")
+    if 'subscaf' in args.optimizer.lower():
+        log(f"Trainable params before compression: {trainable_param_before_comp:.2f}M")
+        log(f"Trainable params after compression: {sum(p.numel() for p in model.parameters()) / 1_000_000:.2f}M")
+        log(f"Total params with Subspace Scaffold enabled: {num_subscaf_params / 1_000_000:.2f}M")
+    else: 
+        log(f"Trainable params: {sum(p.numel() for p in model.parameters() if p.requires_grad) / 1_000_000:.2f}M")
+
+    if args.optimizer == 'subscafsgd':
+        args.per_layer_weight_update = False
+        optimizer, schedule = get_subscaf_optimizer(args, param_groups, regular_params, subscaf_params, lbd, model)
+    elif args.optimizer == 'sgd' or args.optimizer == 'fedavgsgd':
         optimizer = torch.optim.SGD(model.parameters(), 
                                     args.lr,
                                     momentum=args.momentum,
                                     weight_decay=args.weight_decay,
                                     nesterov=args.nesterov)
-    elif args.optimizer == 'subscafsgd':
-        optimizer = SubScafSGD(model.parameters(), 
-                               args.lr,
-                               momentum=args.momentum,
-                               nesterov=args.nesterov,
-                               weight_decay=args.weight_decay)
+        # schedule
+        if not args.constant_lr:
+            schedule = get_cosine_schedule_with_warmup(optimizer,
+                                                    num_warmup_steps=args.warmup,
+                                                    num_training_steps=len(train_loader) * args.epochs)
+        else:
+            schedule = None
 
-    lr_scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer,
-                                                        milestones=[100, 150], last_epoch=args.start_epoch - 1)
-    total_param_num = sum(p.numel for p in model.parameters() if p.requires_grad)
-
-    # subscaf layer replace
-    #if "subscaf" in args.optimizer:
 
     if args.evaluate:
-        validate(val_loader, model, criterion, args)
+        validate(val_loader, model, criterion, args, device)
         return
 
-    for epoch in range(args.start_epoch, args.epochs):
+    for epoch in range(args.epochs):
 
         # train for one epoch
         log('current lr {:.5e}'.format(optimizer.param_groups[0]['lr']))
-        train(train_loader, model, criterion, optimizer, epoch, args)
-        lr_scheduler.step()
+        if args.optimizer == 'subscafsgd':
+            train(train_loader, model, criterion, optimizer, epoch, schedule, args, device,
+                lbd, comp_mat_rec, target_modules_list, subscaf_params, jump_modules_list)
+        else:
+            train(train_loader, model, criterion, optimizer, epoch, schedule, args, device)
+
 
         # evaluate on validation set
-        prec1 = validate(val_loader, model, criterion)
+        prec1 = validate(val_loader, model, criterion, args, device)
 
         # remember best prec@1 and save checkpoint
-        is_best = prec1 > best_prec1
         best_prec1 = max(prec1, best_prec1)
 
-        if epoch > 0 and epoch % args.save_every == 0:
-            save_checkpoint({
-                'epoch': epoch + 1,
-                'state_dict': model.state_dict(),
-                'best_prec1': best_prec1,
-            }, is_best, filename=os.path.join(args.save_dir, 'checkpoint.th'))
-
-        save_checkpoint({
-            'state_dict': model.state_dict(),
-            'best_prec1': best_prec1,
-        }, is_best, filename=os.path.join(args.save_dir, 'model.th'))
 
 
-def train(train_loader, model, criterion, optimizer, epoch, args):
+def train(train_loader, model, criterion, optimizer, epoch, schedule, args, device, *arg):
     """
         Run one train epoch
     """
+    if args.optimizer == 'subscafsgd':
+        lbd, comp_mat_rec, target_modules_list, subscaf_params, jump_modules_list = arg
     batch_time = AverageMeter()
     data_time = AverageMeter()
     losses = AverageMeter()
@@ -161,6 +165,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
 
     # switch to train mode
     model.train()
+    update_step = 0
 
     end = time.time()
     for i, (input, target) in enumerate(train_loader):
@@ -168,20 +173,50 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         # measure data loading time
         data_time.update(time.time() - end)
 
-        target = target.cuda()
-        input_var = input.cuda()
+        target = target.to(device)
+        input_var = input.to(device)
         target_var = target
-        if args.half:
-            input_var = input_var.half()
 
         # compute output
         output = model(input_var)
         loss = criterion(output, target_var)
 
-        # compute gradient and do SGD step
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+        update_step += 1
+
+        # compute gradient and update 
+        if args.optimizer == 'sgd':
+            optimizer.zero_grad()
+            if not args.constant_lr:
+                schedule.step()
+            loss.backward()
+            with torch.no_grad():
+                for p in model.parameters():
+                    dist.all_reduce(p.grad, op=dist.ReduceOp.AVG)
+            optimizer.step()
+        elif 'subscaf' in args.optimizer.lower():
+            optimizer.zero_grad()
+            if not args.constant_lr:
+                schedule.step()
+            loss.backward()
+            optimizer.step()
+        elif 'fedavg' in args.optimizer.lower():
+            optimizer.zero_grad()
+            if not args.constant_lr:
+                schedule.step()
+            loss.backward()
+            optimizer.step()
+            
+        if "subscaf" in args.optimizer.lower() and update_step % args.tau == 0:
+            if update_step % args.update_cp_freq != 0:
+                gene_new_cp = False 
+            else:
+                gene_new_cp = True
+            outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
+                            subscaf_params, args, device, jump_modules_list, gene_new_cp)
+        
+        if 'fedavg' in args.optimizer.lower() and update_step % args.tau == 0:
+            for p in model.parameters():
+                dist.all_reduce(p, op=dist.ReduceOp.AVG)
 
         output = output.float()
         loss = loss.float()
@@ -194,17 +229,24 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         batch_time.update(time.time() - end)
         end = time.time()
 
-        if i % args.print_freq == 0:
+        if args.use_log and i % args.print_freq == 0:
+            #log('Epoch: [{0}][{1}/{2}]\t'
+                  #'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
+                  #'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
+                  #'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                  #'Prec@1 {top1.val:.3f} ({top1.avg:.3f})'.format(
+                      #epoch, i, len(train_loader), batch_time=batch_time,
+                      #data_time=data_time, loss=losses, top1=top1))
+
             log('Epoch: [{0}][{1}/{2}]\t'
-                  'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                  'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
-                  'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-                  'Prec@1 {top1.val:.3f} ({top1.avg:.3f})'.format(
-                      epoch, i, len(train_loader), batch_time=batch_time,
-                      data_time=data_time, loss=losses, top1=top1))
+                  'Loss: {loss.avg:.4f}\t'
+                  'Prec@5: {top1.avg:.3f}\t'
+                  'lr: {lr:.4f}'.format(
+                      epoch, i, len(train_loader), 
+                      loss=losses, top1=top1, lr=optimizer.param_groups[0]["lr"]))
 
 
-def validate(val_loader, model, criterion, args):
+def validate(val_loader, model, criterion, args, device):
     """
     Run evaluation
     """
@@ -218,12 +260,10 @@ def validate(val_loader, model, criterion, args):
     end = time.time()
     with torch.no_grad():
         for i, (input, target) in enumerate(val_loader):
-            target = target.cuda()
-            input_var = input.cuda()
-            target_var = target.cuda()
+            target = target.to(device)
+            input_var = input.to(device)
+            target_var = target.to(device)
 
-            if args.half:
-                input_var = input_var.half()
 
             # compute output
             output = model(input_var)
@@ -241,24 +281,17 @@ def validate(val_loader, model, criterion, args):
             batch_time.update(time.time() - end)
             end = time.time()
 
-            if i % args.print_freq == 0:
+            if args.use_log and i % args.print_freq == 0:
                 log('Test: [{0}/{1}]\t'
-                      'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-                      'Prec@1 {top1.val:.3f} ({top1.avg:.3f})'.format(
+                      'Time: {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
+                      'Loss: {loss.avg:.4f}\t'
+                      'Prec@5: {top1.avg:.3f}'.format(
                           i, len(val_loader), batch_time=batch_time, loss=losses,
                           top1=top1))
 
-    log(' * Prec@1 {top1.avg:.3f}'
-          .format(top1=top1))
+    log(' * Prec@5 {top1.avg:.3f}'.format(top1=top1))
 
     return top1.avg
-
-def save_checkpoint(state, is_best, filename='checkpoint.pth.tar'):
-    """
-    Save the training model
-    """
-    torch.save(state, filename)
 
 class AverageMeter(object):
     """Computes and stores the average and current value"""
@@ -278,7 +311,7 @@ class AverageMeter(object):
         self.avg = self.sum / self.count
 
 
-def accuracy(output, target, topk=(1,)):
+def accuracy(output, target, topk=(5,)):
     """Computes the precision@k for the specified values of k"""
     maxk = max(topk)
     batch_size = target.size(0)
@@ -289,7 +322,8 @@ def accuracy(output, target, topk=(1,)):
 
     res = []
     for k in topk:
-        correct_k = correct[:k].view(-1).float().sum(0)
+        #correct_k = correct[:k].view(-1).float().sum(0)
+        correct_k = correct[:k].flatten().float().sum(0)
         res.append(correct_k.mul_(100.0 / batch_size))
     return res
 
@@ -299,3 +333,4 @@ if __name__ == '__main__':
     args, unknown = main_parse_args(None)
     args = parse_args(args, unknown)
     main(args)
+    dist.destroy_process_group()

@@ -3,7 +3,7 @@ opt=("subscafsgd")
 for opt in "${opt[@]}"
 do
 nohup torchrun --nproc-per-node 2 --master-port 25900 llama_pretrain.py \
-    --adaptive_cp_rate 1 \
+    --comp_dim 128 \
     --model_config configs/llama_60m.json \
     --optimizer "${opt}" \
     --max_length 1024 \
@@ -20,9 +20,11 @@ nohup torchrun --nproc-per-node 2 --master-port 25900 llama_pretrain.py \
     --mixed_precision bf16 \
     --use_log \
     --ckpt \
-    --change_cd 4000 \
+    --change_cd 3000 \
     --wandb_run_name "real_lazy_update" \
-    --gene_method cd \
-    > "./logs/scaf_pretrain.log" 2>&1
+    --gene_method svd \
+    > "./logs/${opt}_pretrain.log" 2>&1
 done
 
+
+    #--adaptive_cp_rate 1 \

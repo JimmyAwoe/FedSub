@@ -1,4 +1,74 @@
+W0624 17:43:32.355000 3320161 site-packages/torch/distributed/run.py:766] 
+W0624 17:43:32.355000 3320161 site-packages/torch/distributed/run.py:766] *****************************************
+W0624 17:43:32.355000 3320161 site-packages/torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0624 17:43:32.355000 3320161 site-packages/torch/distributed/run.py:766] *****************************************
+usage: llama_pretrain.py [-h] [--lr LR] [--batch_size BATCH_SIZE]
+                         [--total_batch_size TOTAL_BATCH_SIZE]
+                         [--max_length MAX_LENGTH]
+                         [--num_training_steps NUM_TRAINING_STEPS]
+                         [--grad_clip GRAD_CLIP] [--warmup WARMUP]
+                         [--constant_lr] [--seed SEED]
+                         [--mixed_precision {bf16,fp16}] [--comp_dim COMP_DIM]
+                         [--tau TAU] [--gene_method GENE_METHOD]
+                         [--jump_certain_modules]
+                         [--update_cp_freq UPDATE_CP_FREQ]
+                         [--adaptive_cp_rate ADAPTIVE_CP_RATE]
+                         [--model_config MODEL_CONFIG]
+                         [--optimizer {subscafsgd,fedavgsgd,sgd}]
+                         [--momentum MOMENTUM] [--dampening DAMPENING]
+                         [--weight_decay WEIGHT_DECAY] [--nesterov]
+                         [--per_layer_weight_update] [--use_wandb]
+                         [--wandb_run_name WANDB_RUN_NAME] [--use_tqdm]
+                         [--use_log] [--mem_monitor]
+llama_pretrain.py: error: argument --optimizer: invalid choice: 'subscaf' (choose from 'subscafsgd', 'fedavgsgd', 'sgd')
+usage: llama_pretrain.py [-h] [--lr LR] [--batch_size BATCH_SIZE]
+                         [--total_batch_size TOTAL_BATCH_SIZE]
+                         [--max_length MAX_LENGTH]
+                         [--num_training_steps NUM_TRAINING_STEPS]
+                         [--grad_clip GRAD_CLIP] [--warmup WARMUP]
+                         [--constant_lr] [--seed SEED]
+                         [--mixed_precision {bf16,fp16}] [--comp_dim COMP_DIM]
+                         [--tau TAU] [--gene_method GENE_METHOD]
+                         [--jump_certain_modules]
+                         [--update_cp_freq UPDATE_CP_FREQ]
+                         [--adaptive_cp_rate ADAPTIVE_CP_RATE]
+                         [--model_config MODEL_CONFIG]
+                         [--optimizer {subscafsgd,fedavgsgd,sgd}]
+                         [--momentum MOMENTUM] [--dampening DAMPENING]
+                         [--weight_decay WEIGHT_DECAY] [--nesterov]
+                         [--per_layer_weight_update] [--use_wandb]
+                         [--wandb_run_name WANDB_RUN_NAME] [--use_tqdm]
+                         [--use_log] [--mem_monitor]
+llama_pretrain.py: error: argument --optimizer: invalid choice: 'subscaf' (choose from 'subscafsgd', 'fedavgsgd', 'sgd')
+[rank0]:[W624 17:43:37.731626396 ProcessGroupNCCL.cpp:1476] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W0624 17:43:38.279000 3320161 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 3320307 closing signal SIGTERM
+E0624 17:43:38.343000 3320161 site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 2) local_rank: 0 (pid: 3320306) of binary: /home/xuyuqi/.conda/envs/minimind/bin/python
 Traceback (most recent call last):
-  File "/home/xuyuqi/.local/bin/torchrun", line 5, in <module>
-    from torch.distributed.run import main
-ModuleNotFoundError: No module named 'torch'
+  File "/home/xuyuqi/.conda/envs/minimind/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in main
+    run(args)
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+llama_pretrain.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-06-24_17:43:38
+  host      : user-NULL
+  rank      : 0 (local_rank: 0)
+  exitcode  : 2 (pid: 3320306)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

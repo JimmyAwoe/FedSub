@@ -10,8 +10,14 @@ def gene_random_matrix(comp_dim, dim, method='cd', gradient=None):
         return Spherical_smoothing_genep(comp_dim, dim)
     elif method.lower() == 'svd':
         return SVD_gene(comp_dim, dim, gradient)
+    elif method.lower() == 'idx':
+        return IDX_gene(comp_dim, dim)
     else:
         assert False, "haven't define chosen compression matrix generation method"
+
+def IDX_gene(comp_dim, dim):
+    assert comp_dim == dim, "The compression dimension must fit dimension"
+    return torch.eye(dim)
 
 def Random_Normal_genep(comp_dim, dim):
     return torch.randn(comp_dim, dim) / math.sqrt(dim)
@@ -19,11 +25,11 @@ def Random_Normal_genep(comp_dim, dim):
 def Coordinate_descend_genep(comp_dim, dim):
     assert dim >= comp_dim, "compression dimension must be smaller than dimension"
     ide = torch.eye(dim)
-    select_row = torch.randperm(dim)[:comp_dim].sort().values
-    #sign = torch.randint(0, 2, (comp_dim, ))
+    select_row = torch.randperm(dim)[:comp_dim]#sort().values
+    sign = torch.randint(0, 2, (comp_dim, ))
     #sign = sign * 2 - 1
     #P = torch.sqrt(torch.tensor(dim / comp_dim)) * ide[select_row, :] * sign.unsqueeze(1)
-    P = ide[select_row, :] #* sign.unsqueeze(1)
+    P = ide[select_row, :] * sign.unsqueeze(1)
     return P
 
 def Spherical_smoothing_genep(comp_dim, dim):

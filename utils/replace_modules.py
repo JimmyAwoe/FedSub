@@ -14,6 +14,9 @@ def replace_with_subscaf_layer(model, target_modules_list, device, args, jump_mo
             # only revise module with param_name has "mlp" or "attn"
             if isinstance(module, replace_class) and any(target_key in name for target_key in target_modules_list):
                 log(f"enable Subspace Scaffold for weights in module: {name}")
+                if layer == 'conv2d':
+                    module.in_features = module.kernel_size[0]
+                    module.out_features = module.kernel_size[1]
                 if args.adaptive_cp_rate != 0:
                     record_cp_dim = args.comp_dim
                     args.comp_dim = min(max(int(module.in_features * args.adaptive_cp_rate), args.comp_dim), module.in_features)

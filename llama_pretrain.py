@@ -123,13 +123,13 @@ def main(args):
         scaler = None
         scaler_dict = None
 
-    # optimizer
+    # replace module
     trainable_param = [p for p in model.parameters() if p.requires_grad == True]
     param_before_comp = sum(p.numel() for p in model.parameters()) / 1_000_000
     trainable_param_before_comp = sum(p.numel() for p in model.parameters() if p.requires_grad == True) / 1_000_000
     if 'subscaf' in args.optimizer.lower():
         target_modules_list = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
-        jump_modules_list = ['5', '6', '7']
+        jump_modules_list = []
         # define nonlocal variables for replace module
         num_subscaf_params, subscaf_params, lbd, comp_mat_rec = replace_with_subscaf_layer(model, 
                                                                                             target_modules_list, 
@@ -153,48 +153,12 @@ def main(args):
     else: 
         log(f"Trainable params: {sum(p.numel() for p in model.parameters() if p.requires_grad) / 1_000_000:.2f}M")
 
+    # optimizer
     if args.optimizer == 'subscafsgd':
         if args.per_layer_weight_update:
             optimizer_dict = get_subscaf_optimizer(args, param_groups, regular_params, subscaf_params, lbd, model, scaler_dict)
         else:
             optimizer, schedule = get_subscaf_optimizer(args, param_groups, regular_params, subscaf_params, lbd, model)
-    #elif args.optimizer == 'subscafadam':
-        #if not args.per_layer_weight_update:
-            #optimizer = SubScafAdam(param_groups, 
-                                #lr=args.lr, 
-                                #foreach=False,
-                                #fused=True,
-                                #)
-            ## we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
-            ## lbd to be nan
-            #schedule = get_cosine_schedule_with_warmup(optimizer,
-                                                    #num_warmup_steps=args.warmup,
-                                                    #num_training_steps=args.num_training_steps + 1)
-        #else:
-            #optimizer_dict = {p: SubScafAdam([{'params': p, 'is_comp': False}], 
-                                            #lr=args.lr, 
-                                            #foreach=False,
-                                            #fused=True) for p in regular_params}
-            #for (p, l) in zip(subscaf_params, lbd):
-                #optimizer_dict.update({p: SubScafAdam([{'params':p, 'is_comp': True, 'lbd': [l]}],
-                                                    #lr=args.lr,
-                                                    #foreach=False,
-                                                    #fused=True)})
-            #def optimizer_hook(p):
-                #if p.grad is None:
-                    #return
-                #schedule_dict[p].step()
-                #optimizer_dict[p].step()
-                #optimizer_dict[p].zero_grad()
-            #schedule_dict = {}
-            #for p in model.parameters():
-                #if p.requires_grad:
-                    ## we add 1 to num_training_steps for avoiding lr become zero when training, which would cause
-                    ## lbd to be nan
-                    #schedule_dict[p] = get_cosine_schedule_with_warmup(optimizer_dict[p],
-                                                                    #num_warmup_steps=args.warmup,
-                                                                    #num_training_steps=args.num_training_steps + 1)
-                    #p.register_post_accumulate_grad_hook(optimizer_hook)
     elif 'sgd' in args.optimizer:
         optimizer = torch.optim.SGD(trainable_param, 
                                     lr=args.lr, 
