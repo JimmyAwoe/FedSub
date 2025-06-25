@@ -27,7 +27,7 @@ def Coordinate_descend_genep(comp_dim, dim):
     ide = torch.eye(dim)
     select_row = torch.randperm(dim)[:comp_dim]#sort().values
     sign = torch.randint(0, 2, (comp_dim, ))
-    #sign = sign * 2 - 1
+    sign = sign * 2 - 1
     #P = torch.sqrt(torch.tensor(dim / comp_dim)) * ide[select_row, :] * sign.unsqueeze(1)
     P = ide[select_row, :] * sign.unsqueeze(1)
     return P

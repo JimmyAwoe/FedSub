@@ -11,7 +11,7 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from transformers import get_cosine_schedule_with_warmup
 from utils import (
-    SubScafSGD, 
+    split_dataset_by_class,
     log, 
     init_process_group, 
     main_parse_args, 
@@ -27,6 +27,9 @@ def parse_args(args, remaining_args):
     # model
     parser.add_argument('--arch', default='resnet1202', choices=['resnet20', 'resnet32', 'resnet44', 
                                                                  'resnet56', 'resnet110', 'resnet1202'])
+
+    # data
+    parser.add_argument('--data_hete', action="store_true")
 
     # training
     parser.add_argument('--epochs', default=200, type=int, metavar='N',
@@ -59,23 +62,30 @@ def main(args):
 
     # load data 
     normalize = transforms.Normalize(mean=[0.507, 0.487, 0.441],
-                                     std=[0.267, 0.256, 0.276])
-    train_loader = torch.utils.data.DataLoader(
-        datasets.CIFAR100(root='./data', train=True, transform=transforms.Compose([
-            transforms.RandomHorizontalFlip(),
-            transforms.ToTensor(),
-            normalize,
-        ]), download=True),
-        batch_size=args.batch_size, shuffle=True,
-        num_workers=4, pin_memory=True)
+                                    std=[0.267, 0.256, 0.276])
+    train_dataset = datasets.CIFAR100(root='./data', train=True, transform=transforms.Compose([
+                transforms.RandomHorizontalFlip(),
+                transforms.ToTensor(),
+                normalize,
+            ]), download=True),
+    val_dataset = datasets.CIFAR100(root='./data', train=False, transform=transforms.Compose([
+                transforms.ToTensor(),
+                normalize,
+            ])),
+    if args.data_hete:
+        # set data heterogenity
+        train_loader = split_dataset_by_class(train_dataset[0], rank, world_size, args.batch_size)
+        val_loader = split_dataset_by_class(val_dataset[0], rank, world_size, 128)
+    else:
+        train_loader = torch.utils.data.DataLoader(
+            train_dataset,
+            batch_size=args.batch_size, shuffle=True,
+            num_workers=4, pin_memory=True)
 
-    val_loader = torch.utils.data.DataLoader(
-        datasets.CIFAR100(root='./data', train=False, transform=transforms.Compose([
-            transforms.ToTensor(),
-            normalize,
-        ])),
-        batch_size=128, shuffle=False,
-        num_workers=4, pin_memory=True)
+        val_loader = torch.utils.data.DataLoader(
+            val_dataset,
+            batch_size=128, shuffle=False,
+            num_workers=4, pin_memory=True)
 
     # define loss function (criterion) and optimizer
     criterion = nn.CrossEntropyLoss().to(device)
@@ -149,8 +159,6 @@ def main(args):
 
         # remember best prec@1 and save checkpoint
         best_prec1 = max(prec1, best_prec1)
-
-
 
 def train(train_loader, model, criterion, optimizer, epoch, schedule, args, device, *arg):
     """
