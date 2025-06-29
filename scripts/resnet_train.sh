@@ -1,5 +1,5 @@
 export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-opt=("subscafsgd" "fedavgsgd")
+opt=("subscafsgd")
 for opt in "${opt[@]}"
 do
 torchrun --nproc-per-node 2 --master-port 25900 resnet.py \
@@ -18,4 +18,6 @@ torchrun --nproc-per-node 2 --master-port 25900 resnet.py \
     --gene_method cd \
     > "./logs/${opt}_resnet_train.log" 2>&1
 done
+
+    #--adaptive_cp_rate 1 \
 

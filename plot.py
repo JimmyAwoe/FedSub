@@ -4,26 +4,41 @@ import matplotlib.font_manager as fm
 import numpy as np
 
 
-sgd_finetune = pd.read_csv("logs/sgd_finetune.csv")
-subscaf_finetune = pd.read_csv("logs/subscaf_finetune.csv")
-sgd_pretrain = pd.read_csv("logs/sgd_pretrain.csv")
-subscaf_pretrain = pd.read_csv("logs/subscafsgd_pretrain.csv")
-eval_loss = pd.read_csv("logs/eval_loss.csv")
+fedavgsgd_finetune = pd.read_csv("logs/csv/fedavgsgd_finetune.csv")
+subscafsgd_finetune = pd.read_csv("logs/csv/subscafsgd_finetune.csv")
+subscafsgd_full_finetune = pd.read_csv("logs/csv/subscafsgd_full_finetune.csv")
+fedavgsgd_pretrain = pd.read_csv("logs/csv/fedavgsgd_pretrain.csv")
+subscafsgd_pretrain = pd.read_csv("logs/csv/subscafsgd_pretrain.csv")
+subscafsgd_full_pretrain = pd.read_csv("logs/csv/subscafsgd_full_pretrain.csv")
+finetune_eval_loss = pd.read_csv("logs/csv/finetune_eval_loss.csv")
+subscafsgd_resnet = pd.read_csv("logs/csv/subscafsgd_resnet_train.csv")
+subscafsgd_full_resnet = pd.read_csv("logs/csv/subscafsgd_full_resnet_train.csv")
+fedavgsgd_resnet = pd.read_csv("logs/csv/fedavgsgd_resnet_train.csv")
+resnet_eval_acc = pd.read_csv("logs/csv/resnet_eval_acc.csv")
 
 
 # pretrain_loss 
-pretrain_loss = pd.concat([subscaf_pretrain['Loss'], sgd_pretrain['Loss']], axis=1)
-pretrain_columns = ["Our-CD", "SGD", ]
+pretrain_loss = pd.concat([subscafsgd_pretrain['Loss'], subscafsgd_full_pretrain['Loss'], fedavgsgd_pretrain['Loss']], axis=1)
+pretrain_columns = ["Our-CD", r"Our-P^k=I", "FedAvg" ]
 pretrain_loss.columns = pretrain_columns            
 
 # finetune loss 
-finetune_loss = pd.concat([subscaf_finetune['Loss'], sgd_finetune['Loss']], axis=1)
-finetune_columns = ["Our-CD", "SGD", ]
+finetune_loss = pd.concat([subscafsgd_finetune['Loss'], subscafsgd_full_finetune["Loss"], fedavgsgd_finetune['Loss']], axis=1)
+finetune_columns = ["Our-CD", r"Our-P^k=I", "FedAvg"]
 finetune_loss.columns = finetune_columns            
 
-# eval loss
-eval_columns = ["Our-CD", "SGD"]
-eval_loss.columns = eval_columns
+# fine_tune eval loss
+eval_columns = ["Our-CD", r"Our-P^k=I", "FedAvg"]
+finetune_eval_loss.columns = eval_columns
+
+# resnet train acc
+resnet_train_loss = pd.concat([subscafsgd_resnet['train_acc'], subscafsgd_full_resnet['train_acc'], fedavgsgd_resnet['train_acc']], axis=1)
+resnet_train_columns = ["Our-CD", r"Our-P^k=I", "FedAvg" ]
+resnet_train_loss.columns = resnet_train_columns            
+
+# resnet eval acc
+resnet_eval_columns = ["Our-CD", r"Our-P^k=I", "FedAvg" ]
+resnet_eval_acc.columns = resnet_eval_columns   
 
 font_path = '/usr/local/share/fonts/WindowsFonts/simhei.ttf'
 font_prop = fm.FontProperties(fname=font_path)
@@ -47,11 +62,14 @@ def intersect(df, col1, col2, start_point=0, end_point=None):
     sign_step = sign[sign == sign.min()].index
     return sign_step
 
-def plot_assigned_col(df, columns, output_path, title, start_point=0, end_point=None, if_ewm=True):
+def plot_assigned_col_linear(df, columns, output_path, title, start_point=0, end_point=None, if_ewm=True, assigned_x=None):
     plt.figure(figsize=(6, 4))
     #plt.title(title)
-    plt.xlabel('Communication Rounds')
-    plt.ylabel('Error')
+    #plt.xlabel('Communication Rounds')
+    #plt.ylabel('Error')
+    plt.xlabel('Loss')
+    plt.ylabel('Training Steps')
+
     #plt.yscale('log')
     plt.grid(True)
     df = df[columns].dropna(how="any")
@@ -73,7 +91,7 @@ def plot_assigned_col(df, columns, output_path, title, start_point=0, end_point=
             plt.plot(x, ewm, label=name, linewidth=2, color=color)
             plt.axhline(y=ewm.iat[-1], color=color, linestyle='--', alpha=0.4)
         else:
-            plt.plot([1000, 2000, 3000, 4000, 4590], df[name], linewidth=2, label=name)
+            plt.plot(assigned_x, df[name], linewidth=2, label=name)
             color = plt.gca().lines[-1].get_color()
             print(name, ':', df[name].iat[-1])
             plt.axhline(y=df[name].iat[-1], color=color, linestyle='--', alpha=0.4)
@@ -82,25 +100,42 @@ def plot_assigned_col(df, columns, output_path, title, start_point=0, end_point=
     plt.show()
     plt.close()
 
-plot_assigned_col(
+
+plot_assigned_col_linear(
     pretrain_loss,
     pretrain_columns,
     'figures/pretrain_loss.png',
     'Pretrain Loss'
 )
 
-
-plot_assigned_col(
+plot_assigned_col_linear(
     finetune_loss,
     finetune_columns,
     'figures/finetune_loss.png',
-    'Finetune Loss'
+    'Training Loss'
 )
 
-plot_assigned_col(
-    eval_loss,
+plot_assigned_col_linear(
+    finetune_eval_loss,
     eval_columns,
-    'figures/Eval_loss.png',
+    'figures/finetune_Eval_loss.png',
     'Eval Loss',
-    if_ewm=False
+    if_ewm=False,
+    assigned_x=[1000, 2000, 2295]
+)
+
+plot_assigned_col_linear(
+    resnet_train_loss,
+    resnet_train_columns,
+    'figures/resnet_train_acc.png',
+    'Train acc',
+)
+
+plot_assigned_col_linear(
+    resnet_eval_acc,
+    resnet_eval_columns,
+    'figures/resnet_eval_acc.png',
+    'Resnet Eval Loss',
+    if_ewm=False,
+    assigned_x=[390, 390*2, 390*3, 390*4, 390*5]
 )

@@ -3,7 +3,13 @@ import torch.distributed as dist
 from torch.utils.data import DataLoader
 import torch.nn.functional as F
 import torch.nn as nn
-from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorForLanguageModeling, get_cosine_schedule_with_warmup
+from transformers import (
+    AutoModelForCausalLM, 
+    AutoTokenizer, 
+    DataCollatorForLanguageModeling, 
+    AutoConfig,
+    get_cosine_schedule_with_warmup
+    )
 from datasets import load_dataset
 import os
 from tqdm import tqdm
@@ -11,10 +17,12 @@ import wandb
 import math
 import argparse
 import time
+from torch.amp import GradScaler
 from utils import (
     log,
     init_process_group,
-    replace_with_subscaf_linear,
+    replace_with_subscaf_layer,
+    apply_activation_checkpointing,
     outer_update,
     get_subscaf_optimizer,
     main_parse_args,
@@ -25,6 +33,8 @@ def parse_args(args, remaining_args):
     
     parser.add_argument("--epoch", default=2, type=int)
     parser.add_argument("--eval_freq", default=1000, type=int)
+    parser.add_argument("--flash_attn", action="store_true", help="flash_attn is conflicted with mixed precision")
+    parser.add_argument("--ckpt", action="store_true", help="checkpoint is conflicted with flash_attention")
 
     new_args, _ = parser.parse_known_args(remaining_args)
     args = argparse.Namespace(**vars(args), **vars(new_args))
@@ -89,7 +99,21 @@ def main(args):
     device = f"cuda:{rank}"
     
     # Load model and tokenizer
-    model = AutoModelForCausalLM.from_pretrained("/data/pretrained_models/llama-3.2-1b").to(device)
+    model_config = AutoConfig.from_pretrained("/data/pretrained_models/llama-3.2-1b")
+    if args.flash_attn:
+       assert not args.ckpt, "flash-attention is conflicted with checkpoint"
+       assert not args.mixed_precision, "flash-attention is conflicted with mixed precision"
+       model_config._attn_implementation = "flash_attention_2"
+    elif args.ckpt:
+        assert not args.flash_attn, "flash-attention is conflicted with checkpoint"
+        # we use eager attention for easy checkpoint implementation
+        model_config._attn_implementation = "eager" 
+    model = AutoModelForCausalLM.from_pretrained("/data/pretrained_models/llama-3.2-1b", config=model_config).to(device)
+    if args.flash_attn:
+        # flash-attn only support fp16 or bf16 precision
+        model = model.to(torch.float16)
+    if args.ckpt:
+        model = apply_activation_checkpointing(model)
     tokenizer = AutoTokenizer.from_pretrained("t5-base")
 
     log("*" * 40)
@@ -97,6 +121,21 @@ def main(args):
     for k, v in vars(args).items():
         log(f"{k:30} {v}")
     log("*" * 40)
+
+    # mixed precision scaler
+    if args.mixed_precision:
+        assert not args.per_layer_weight_update, "mixed precision is conflicted with per layer weight update"
+        if not (args.per_layer_weight_update and "subscaf" in args.optimizer):
+            scaler = GradScaler()
+        else:
+            scaler_dict = {}
+            for p in model.parameters():
+                scaler_dict[p] = GradScaler()
+        precision_map_dict = {'fp16': torch.float16, 'bf16': torch.bfloat16}
+        precision = precision_map_dict[args.mixed_precision]
+    else:
+        scaler = None
+        scaler_dict = None
     
     # Load dataset
     dataset = load_dataset("wikitext", "wikitext-2-raw-v1")
@@ -144,8 +183,8 @@ def main(args):
     trainable_param_before_comp = sum(p.numel() for p in model.parameters() if p.requires_grad == True) / 1_000_000
     if 'subscaf' in args.optimizer.lower():
         target_modules_list = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
-        jump_modules_list = ['5', '6', '7']
-        num_subscaf_params, subscaf_params, lbd, comp_mat_rec = replace_with_subscaf_linear(model, 
+        jump_modules_list = []
+        num_subscaf_params, subscaf_params, lbd, comp_mat_rec = replace_with_subscaf_layer(model, 
                                                                                             target_modules_list, 
                                                                                             device, 
                                                                                             args, 
@@ -160,7 +199,12 @@ def main(args):
     
     
     # Create optimizer
-    if args.optimizer == 'sgd':
+    if args.optimizer == 'subscafsgd':
+        if args.per_layer_weight_update:
+            optimizer_dict = get_subscaf_optimizer(args, param_groups, regular_params, subscaf_params, lbd, model, scaler_dict)
+        else:
+            optimizer, schedule = get_subscaf_optimizer(args, param_groups, regular_params, subscaf_params, lbd, model)
+    elif  'sgd' in args.optimizer:
         optimizer = torch.optim.SGD(trainable_param, 
                                     lr=args.lr, 
                                     momentum=args.momentum,
@@ -173,11 +217,6 @@ def main(args):
             schedule = get_cosine_schedule_with_warmup(optimizer,
                                                     num_warmup_steps=args.warmup,
                                                     num_training_steps=args.num_training_steps + 1)
-    elif args.optimizer == 'subscafsgd':
-        if args.per_layer_weight_update:
-            optimizer_dict = get_subscaf_optimizer(args, param_groups, regular_params, subscaf_params, lbd, model)
-        else:
-            optimizer, schedule = get_subscaf_optimizer(args, param_groups, regular_params, subscaf_params, lbd, model)
     
     n_total_param = sum(p.numel() for p in model.parameters() if p.requires_grad is True)
     grad_accumulation = args.total_batch_size // args.batch_size
@@ -232,9 +271,16 @@ def main(args):
         for batch in train_dataloader:
             local_step += 1
             batch = {k:v.to(device) for k, v in batch.items()}
-            loss = model(**batch).loss
-            scaled_loss = loss / grad_accumulation
-            scaled_loss.backward()
+
+            if args.mixed_precision:
+                with torch.amp.autocast(device_type='cuda', dtype=precision):
+                    loss = model(**batch).loss
+                scaler.scale(loss / grad_accumulation).backward()
+            else:
+                loss = model(**batch).loss
+                scaled_loss = loss / grad_accumulation
+                scaled_loss.backward()
+
             if rank == 0 and args.use_tqdm:
                 pbar.set_postfix({"loss": loss.item()})
 
@@ -242,12 +288,17 @@ def main(args):
                 continue
 
             # the below code is only executed during the update step
-            if 'subscaf' not in args.optimizer.lower(): 
+            if args.optimizer == 'sgd': 
                 for params in model.parameters():
                     dist.all_reduce(params.grad, op=dist.ReduceOp.AVG)
                 if not args.constant_lr:
                     schedule.step()
-                optimizer.step()
+
+                if args.mixed_precision:
+                    scaler.step(optimizer)
+                    scaler.update()
+                else:
+                    optimizer.step()
                 optimizer.zero_grad()
             elif not args.per_layer_weight_update and 'subscaf' in args.optimizer.lower():
                 # because warmup will make the first step with lr 0, and it will cause lbd
@@ -257,6 +308,18 @@ def main(args):
                     schedule.step()
                 optimizer.step()
                 optimizer.zero_grad()
+            elif 'fedavg' in args.optimizer.lower():
+                if not args.constant_lr:
+                    schedule.step()
+                if args.mixed_precision:
+                    scaler.step(optimizer)
+                    scaler.update()
+                else:
+                    optimizer.step()
+                optimizer.zero_grad()
+
+            update_step += 1
+            update_time = time.time() - update_time
 
             if "subscaf" in args.optimizer.lower() and (local_step // grad_accumulation) % args.tau == 0:
                 if (local_step // grad_accumulation) % args.update_cp_freq != 0:
@@ -271,8 +334,11 @@ def main(args):
                                  subscaf_params, args, device, jump_modules_list, gene_new_cp)
 
 
-            update_step += 1
-            update_time = time.time() - update_time
+            if "fedavg" in args.optimizer.lower() and update_step % args.tau == 0:
+                with torch.no_grad():
+                    for p in model.parameters():
+                        dist.all_reduce(p, op=dist.ReduceOp.AVG)
+
 
             if update_step == 1 and epoch == 0 :
                 time_per_iter = update_time

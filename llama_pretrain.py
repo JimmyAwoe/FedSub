@@ -2,7 +2,6 @@ from datasets import load_dataset
 from transformers import (
     AutoTokenizer,
     AutoConfig,
-    LlamaConfig,
     LlamaForCausalLM,
     DataCollatorForLanguageModeling,
     get_cosine_schedule_with_warmup,
@@ -11,16 +10,12 @@ from datasets.distributed import split_dataset_by_node
 import torch
 import torch.distributed as dist
 import os
-from loguru import logger
 from tqdm import tqdm
 import argparse
 from torch.utils.data import DataLoader
 import wandb
 import time
-import torch.nn as nn
 from utils import (
-    SubScafSGD, 
-    SubScafLinear, 
     log, 
     init_process_group, 
     main_parse_args, 
@@ -355,7 +350,7 @@ def main(args):
             #cuda_mem_usage = f"{torch.cuda.max_memory_allocated() / (1024 ** 3):.3f} GB"
             cuda_mem_usage = f"{torch.cuda.max_memory_allocated() / (1024 ** 3):.3f} GB"
             torch.cuda.reset_peak_memory_stats()
-            log(f"step: {update_step}/{args.num_training_steps} Loss: {loss.item():.4f}\{ewm_loss:.3f} Lr: {lr * 1000:.3f}e-3 Mem: {cuda_mem_usage} Throughput_tokens: {throughput_examples:.4f}")
+            log(f"step: {update_step}/{args.num_training_steps} Loss: {loss.item():.4f}\{ewm_loss:.3f} Lr: {lr * 1000:.3f}e-3 Mem: {cuda_mem_usage} Throughput_tokens: {token_in_update / update_time:.4f}")
             #log(f"time:{update_time}, step: {update_step}, examples: {args.total_batch_size * world_size}")
             if update_step % 10 == 0:
                 hours = int(remain_total_seconds // 3600)
