@@ -23,6 +23,7 @@ from utils import (
     outer_update,
     replace_with_subscaf_layer,
     apply_activation_checkpointing,
+    measure_all_reduce,
 )
 from pickle import dump
 from torch.amp import GradScaler
@@ -34,6 +35,7 @@ def parse_args(args, remaining_args):
     parser = argparse.ArgumentParser()
     parser.add_argument("--flash_attn", action="store_true", help="flash_attn is conflicted with mixed precision")
     parser.add_argument("--ckpt", action="store_true", help="checkpoint is conflicted with flash_attention")
+    parser.add_argument("--measure_comm", action="store_true", help="measure the time used for communication")
     parser.add_argument("--change_cd", default=4000, type=int)
     new_args, _ = parser.parse_known_args(remaining_args)
     args = argparse.Namespace(**vars(args), **vars(new_args))
@@ -70,7 +72,7 @@ def main(args):
     tokenizer = AutoTokenizer.from_pretrained("t5-base")
 
     # dataset
-    ds = load_dataset("/data/datasets/c4_en", split="train", streaming=True)
+    ds = load_dataset("/data/datasets/c4/en", split="train", streaming=True)
     
     def tokenize_fun(data):
         output = tokenizer(data["text"],
@@ -202,6 +204,11 @@ def main(args):
     grad_dict = {}
     pad_idx = tokenizer.pad_token_id
     update_time = time.time()
+    if args.measure_comm:
+        all_reduce_times = []
+        all_reduce_tensors = []
+        broadcast_times = []
+        broadcast_tensors = []
 
     for _, batch in enumerate(dataloader):
         local_step += 1
@@ -225,8 +232,6 @@ def main(args):
         if rank == 0 and args.use_tqdm:
             pbar.set_postfix({"loss": loss.item()})
 
-
-
         if local_step % grad_accumulation != 0 or local_step == 0:
             continue
 
@@ -241,8 +246,13 @@ def main(args):
         
         if args.optimizer.lower() == 'sgd': 
             for params in model.parameters():
-                if params.grad is not None:
-                    dist.all_reduce(params.grad, op=dist.ReduceOp.AVG)
+                if not args.measure_comm:
+                    if params.grad is not None:
+                        dist.all_reduce(params.grad, op=dist.ReduceOp.AVG)
+                else:
+                        times = measure_all_reduce(params.grad, dist.ReduceOp.AVG)
+                        all_reduce_times.append(times)
+                        all_reduce_tensors.append(params.grad)
             
             if not args.constant_lr:
                 schedule.step()
@@ -291,7 +301,13 @@ def main(args):
         if "fedavg" in args.optimizer.lower() and update_step % args.tau == 0:
             with torch.no_grad():
                 for p in model.parameters():
-                    dist.all_reduce(p, op=dist.ReduceOp.AVG)
+                    if not args.measure_comm:
+                        dist.all_reduce(p, op=dist.ReduceOp.AVG)
+                    else:
+                        times = measure_all_reduce(p, dist.ReduceOp.AVG)
+                        all_reduce_times.append(times)
+                        all_reduce_tensors.append(p)
+                        
 
         if "subscaf" in args.optimizer.lower() and update_step % args.tau == 0:
             if update_step % args.update_cp_freq != 0:
@@ -299,11 +315,27 @@ def main(args):
             else:
                 gene_new_cp = True
             if args.per_layer_weight_update:
-                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer_dict, 
+                if args.measure_comm:
+                    temp_all_reduce_times, temp_all_reduce_tensors, temp_broadcast_times, temp_broadcast_tensors = \
+                        outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer_dict, 
+                                    subscaf_params, args, device, jump_modules_list, gene_new_cp)
+                else:
+                    outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer_dict, 
                                 subscaf_params, args, device, jump_modules_list, gene_new_cp)
+
             else:
-                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
-                                subscaf_params, args, device, jump_modules_list, gene_new_cp, grad_dict)
+                if args.measure_comm:
+                    temp_all_reduce_times, temp_all_reduce_tensors, temp_broadcast_times, temp_broadcast_tensors = \
+                    outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
+                                    subscaf_params, args, device, jump_modules_list, gene_new_cp, grad_dict)
+                else:
+                    outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
+                                    subscaf_params, args, device, jump_modules_list, gene_new_cp, grad_dict)
+            if args.measure_comm:
+                all_reduce_times.extend(temp_all_reduce_times)
+                all_reduce_tensors.extend(temp_all_reduce_tensors)
+                broadcast_tensors.extend(temp_broadcast_tensors)
+                broadcast_times.extend(temp_broadcast_times)
 
         if rank == 0 and args.use_log:
             if update_step == 1:
@@ -372,6 +404,17 @@ def main(args):
             pbar.close()
         if args.use_wandb:
             wandb.finish()
+        if args.measure_comm:
+            all_reduce_times.extend(broadcast_times)
+            all_reduce_tensors.extend(broadcast_tensors)
+            avg_time = sum(all_reduce_times) / len(all_reduce_times)
+            min_time = min(all_reduce_times)
+            max_time = max(all_reduce_times)
+            communication_volumn = 0
+            for p in all_reduce_tensors:
+                communication_volumn += p.numel()
+            log(f"avg_comm_time: {avg_time}ms, min_comm_time: {min_time}ms, max_time: {max_time}ms, total_comm_volumn: {communication_volumn}")
+            
 
 if __name__ == "__main__":
     init_process_group()

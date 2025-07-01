@@ -1,0 +1,196 @@
+W0630 15:56:33.228000 1235813 site-packages/torch/distributed/run.py:766] 
+W0630 15:56:33.228000 1235813 site-packages/torch/distributed/run.py:766] *****************************************
+W0630 15:56:33.228000 1235813 site-packages/torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0630 15:56:33.228000 1235813 site-packages/torch/distributed/run.py:766] *****************************************
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - Process group initialize
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - ****************************************
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - Start training with arguments
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - lr                             0.001
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - batch_size                     64
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - total_batch_size               64
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - max_length                     1024
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - num_training_steps             20
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - grad_clip                      0.0
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - warmup                         1000
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - constant_lr                    True
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - seed                           42
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - mixed_precision                bf16
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - comp_dim                       256
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - tau                            10
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - gene_method                    cd
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - jump_certain_modules           False
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - update_cp_freq                 10
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - adaptive_cp_rate               0.0
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - model_config                   configs/llama_60m.json
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - optimizer                      subscafsgd
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - momentum                       0.0
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - dampening                      0
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - weight_decay                   0
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - nesterov                       False
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - per_layer_weight_update        False
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - use_wandb                      False
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - wandb_run_name                 real_lazy_update
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - use_tqdm                       False
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - use_log                        True
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - mem_monitor                    False
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - flash_attn                     False
+2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - ckpt                           True
+2025-06-30 15:56:38.838 | INFO     | utils.common:log:12 - measure_comm                   True
+2025-06-30 15:56:38.838 | INFO     | utils.common:log:12 - change_cd                      3000
+2025-06-30 15:56:38.838 | INFO     | utils.common:log:12 - ****************************************
+/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:606: UserWarning: `pad_token_id` should be positive but got -1. This will cause errors when batch generating, if there is padding. Please set `pad_token_id` explicitly as `model.generation_config.pad_token_id=PAD_TOKEN_ID` to avoid errors in generation
+  warnings.warn(
+/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:606: UserWarning: `pad_token_id` should be positive but got -1. This will cause errors when batch generating, if there is padding. Please set `pad_token_id` explicitly as `model.generation_config.pad_token_id=PAD_TOKEN_ID` to avoid errors in generation
+  warnings.warn(
+2025-06-30 15:56:43.068 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-30 15:56:43.077 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-30 15:56:43.078 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-30 15:56:43.078 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-30 15:56:43.079 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-30 15:56:43.079 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-30 15:56:43.080 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-30 15:56:43.086 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-30 15:56:43.086 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-30 15:56:43.087 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-30 15:56:43.087 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-30 15:56:43.088 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-30 15:56:43.088 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-30 15:56:43.088 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-30 15:56:43.088 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-30 15:56:43.089 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-30 15:56:43.089 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-30 15:56:43.090 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-30 15:56:43.090 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-30 15:56:43.090 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-30 15:56:43.091 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-30 15:56:43.091 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-30 15:56:43.091 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-30 15:56:43.091 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-30 15:56:43.092 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-30 15:56:43.092 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-30 15:56:43.092 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-30 15:56:43.093 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-30 15:56:43.093 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-30 15:56:43.093 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-30 15:56:43.094 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-30 15:56:43.094 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-30 15:56:43.095 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-30 15:56:43.095 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-30 15:56:43.095 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-30 15:56:43.095 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-30 15:56:43.095 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-30 15:56:43.096 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-30 15:56:43.096 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-30 15:56:43.097 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-30 15:56:43.097 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-30 15:56:43.097 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-30 15:56:43.097 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-30 15:56:43.098 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-30 15:56:43.098 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-30 15:56:43.098 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-30 15:56:43.099 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-30 15:56:43.099 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-30 15:56:43.099 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-30 15:56:43.100 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-06-30 15:56:43.100 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-06-30 15:56:43.100 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-06-30 15:56:43.100 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-06-30 15:56:43.101 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-06-30 15:56:43.101 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-06-30 15:56:43.101 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-06-30 15:56:43.102 | INFO     | utils.common:log:12 - 
+LlamaForCausalLM(
+  (model): LlamaModel(
+    (embed_tokens): Embedding(32000, 512, padding_idx=31999)
+    (layers): ModuleList(
+      (0-7): 8 x LlamaDecoderLayer(
+        (self_attn): LlamaAttention(
+          (q_proj): SubScafLinear(in_feartures=256, out_features=512)
+          (k_proj): SubScafLinear(in_feartures=256, out_features=512)
+          (v_proj): SubScafLinear(in_feartures=256, out_features=512)
+          (o_proj): SubScafLinear(in_feartures=256, out_features=512)
+        )
+        (mlp): LlamaMLP(
+          (gate_proj): SubScafLinear(in_feartures=256, out_features=1376)
+          (up_proj): SubScafLinear(in_feartures=256, out_features=1376)
+          (down_proj): SubScafLinear(in_feartures=256, out_features=512)
+          (act_fn): SiLU()
+        )
+        (input_layernorm): LlamaRMSNorm((512,), eps=1e-06)
+        (post_attention_layernorm): LlamaRMSNorm((512,), eps=1e-06)
+      )
+    )
+    (norm): LlamaRMSNorm((512,), eps=1e-06)
+    (rotary_emb): LlamaRotaryEmbedding()
+  )
+  (lm_head): Linear(in_features=512, out_features=32000, bias=False)
+)
+
+2025-06-30 15:56:43.103 | INFO     | utils.common:log:12 - Total params: 58.07M
+2025-06-30 15:56:43.103 | INFO     | utils.common:log:12 - Trainable params before compression: 58.07M
+2025-06-30 15:56:43.103 | INFO     | utils.common:log:12 - Trainable params after compression: 43.66M
+2025-06-30 15:56:43.103 | INFO     | utils.common:log:12 - Total params with Subspace Scaffold enabled: 10.88M
+/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py:838: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py:838: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+  return fn(*args, **kwargs)
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/xyq/gitee-SubScaf/llama_pretrain.py", line 427, in <module>
+[rank0]:     main(args)
+[rank0]:   File "/home/xyq/gitee-SubScaf/llama_pretrain.py", line 226, in main
+[rank0]:     loss = model(**batch).loss
+[rank0]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 851, in forward
+[rank0]:     loss = self.loss_function(logits=logits, labels=labels, vocab_size=self.config.vocab_size, **kwargs)
+[rank0]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/transformers/loss/loss_utils.py", line 36, in ForCausalLMLoss
+[rank0]:     logits = logits.float()
+[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 7.81 GiB. GPU 0 has a total capacity of 23.65 GiB of which 5.14 GiB is free. Including non-PyTorch memory, this process has 18.50 GiB memory in use. Of the allocated memory 17.43 GiB is allocated by PyTorch, and 503.44 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/home/xyq/gitee-SubScaf/llama_pretrain.py", line 427, in <module>
+[rank1]:     main(args)
+[rank1]:   File "/home/xyq/gitee-SubScaf/llama_pretrain.py", line 226, in main
+[rank1]:     loss = model(**batch).loss
+[rank1]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 851, in forward
+[rank1]:     loss = self.loss_function(logits=logits, labels=labels, vocab_size=self.config.vocab_size, **kwargs)
+[rank1]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/transformers/loss/loss_utils.py", line 36, in ForCausalLMLoss
+[rank1]:     logits = logits.float()
+[rank1]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 7.81 GiB. GPU 1 has a total capacity of 23.65 GiB of which 5.14 GiB is free. Including non-PyTorch memory, this process has 18.50 GiB memory in use. Of the allocated memory 17.43 GiB is allocated by PyTorch, and 503.44 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank0]:[W630 15:56:45.983958494 ProcessGroupNCCL.cpp:1476] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W0630 15:56:46.966000 1235813 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1235964 closing signal SIGTERM
+E0630 15:56:47.131000 1235813 site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 1235963) of binary: /home/xyq/miniconda3/envs/subscaf/bin/python3.10
+Traceback (most recent call last):
+  File "/home/xyq/miniconda3/envs/subscaf/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+  File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in main
+    run(args)
+  File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+llama_pretrain.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-06-30_15:56:46
+  host      : ubuntu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1235963)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

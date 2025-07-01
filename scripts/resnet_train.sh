@@ -1,37 +1,30 @@
-export CUDA_VISIBLE_DEVICES=0,1
-opt=("subscafsgd" "fedavgsgd")
-for opt in "${opt[@]}"
+export CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+opts=("subscafsgd" "fedavgsgd" "subscafsgd")
+comp_dims=(3 7 7)
+log_suffixes=("" "" "_full")
+gene_methods=("cd" "cd" "idx")
+for ((i=0; i<${#opts[@]}; i++))
 do
-torchrun --nproc-per-node 2 --master-port 25900 resnet.py \
-    --comp_dim 3 \
-    --arch resnet110 \
-    --optimizer "${opt}" \
-    --batch_size 64 \
-    --tau 5 \
-    --epochs 20 \
-    --lr 0.1 \
-    --warmup 100 \
-    --update_cp_freq 50 \
-    --use_log \
-    --data_hete \
-    --print-freq 1 \
-    --gene_method cd \
-    > "./logs/${opt}_resnet_train.log" 2>&1
+    opt=${opts[$i]}
+    comp_dim=${comp_dims[$i]}
+    log_suffix=${log_suffixes[$i]}
+    gene_method=${gene_methods[$i]}
+    torchrun --nproc-per-node 8 --master-port 25900 resnet.py \
+        --comp_dim ${comp_dim} \
+        --arch resnet110 \
+        --optimizer ${opt} \
+        --batch_size 32 \
+        --tau 10 \
+        --epochs 11 \
+        --evaluate \
+        --constant_lr \
+        --lr 0.1 \
+        --warmup 100 \
+        --update_cp_freq 50 \
+        --use_log \
+        --data_hete \
+        --print-freq 1 \
+        --gene_method ${gene_method} \
+        > "./logs/${opt}${log_suffix}_resnet_train.log" 2>&1
 done
-
-torchrun --nproc-per-node 2 --master-port 25900 resnet.py \
-    --comp_dim 7 \
-    --arch resnet110 \
-    --optimizer subscafsgd \
-    --batch_size 64 \
-    --tau 5 \
-    --epochs 20 \
-    --lr 0.1 \
-    --warmup 100 \
-    --update_cp_freq 50 \
-    --use_log \
-    --data_hete \
-    --print-freq 1 \
-    --gene_method cd \
-    > "./logs/subscafsgd_full_resnet_train.log" 2>&1
 

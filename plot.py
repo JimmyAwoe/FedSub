@@ -11,10 +11,10 @@ fedavgsgd_pretrain = pd.read_csv("logs/csv/fedavgsgd_pretrain.csv")
 subscafsgd_pretrain = pd.read_csv("logs/csv/subscafsgd_pretrain.csv")
 subscafsgd_full_pretrain = pd.read_csv("logs/csv/subscafsgd_full_pretrain.csv")
 finetune_eval_loss = pd.read_csv("logs/csv/finetune_eval_loss.csv")
-subscafsgd_resnet = pd.read_csv("logs/csv/subscafsgd_resnet_train.csv")
-subscafsgd_full_resnet = pd.read_csv("logs/csv/subscafsgd_full_resnet_train.csv")
-fedavgsgd_resnet = pd.read_csv("logs/csv/fedavgsgd_resnet_train.csv")
-resnet_eval_acc = pd.read_csv("logs/csv/resnet_eval_acc.csv")
+subscafsgd_resnet = pd.read_csv("logs/csv/subscafsgd_resnet_train.csv", usecols=[0,1,2])
+subscafsgd_full_resnet = pd.read_csv("logs/csv/subscafsgd_full_resnet_train.csv", usecols=[0,1,2])
+fedavgsgd_resnet = pd.read_csv("logs/csv/fedavgsgd_resnet_train.csv", usecols=[0,1,2])
+resnet_eval_acc = pd.read_csv("logs/csv/resnet_eval_acc.csv", usecols=[0,1,2])
 
 
 # pretrain_loss 
@@ -62,13 +62,15 @@ def intersect(df, col1, col2, start_point=0, end_point=None):
     sign_step = sign[sign == sign.min()].index
     return sign_step
 
-def plot_assigned_col_linear(df, columns, output_path, title, start_point=0, end_point=None, if_ewm=True, assigned_x=None):
+def plot_assigned_col_linear(df, columns, output_path, title, start_point=0, end_point=None, if_ewm=True, assigned_x=None, xl=None, yl=None):
     plt.figure(figsize=(6, 4))
     #plt.title(title)
-    #plt.xlabel('Communication Rounds')
-    #plt.ylabel('Error')
-    plt.xlabel('Loss')
-    plt.ylabel('Training Steps')
+    plt.xlabel('Communication Rounds')
+    plt.ylabel('Error')
+    if xl is not None:
+        plt.xlabel(xl)
+    if yl is not None:
+        plt.ylabel(yl)
 
     #plt.yscale('log')
     plt.grid(True)
@@ -91,6 +93,8 @@ def plot_assigned_col_linear(df, columns, output_path, title, start_point=0, end
             plt.plot(x, ewm, label=name, linewidth=2, color=color)
             plt.axhline(y=ewm.iat[-1], color=color, linestyle='--', alpha=0.4)
         else:
+            if assigned_x is None:
+                assigned_x = x
             plt.plot(assigned_x, df[name], linewidth=2, label=name)
             color = plt.gca().lines[-1].get_color()
             print(name, ':', df[name].iat[-1])
@@ -101,34 +105,37 @@ def plot_assigned_col_linear(df, columns, output_path, title, start_point=0, end
     plt.close()
 
 
-plot_assigned_col_linear(
-    pretrain_loss,
-    pretrain_columns,
-    'figures/pretrain_loss.png',
-    'Pretrain Loss'
-)
+#plot_assigned_col_linear(
+    #pretrain_loss,
+    #pretrain_columns,
+    #'figures/pretrain_loss.png',
+    #'Pretrain Loss'
+#)
 
-plot_assigned_col_linear(
-    finetune_loss,
-    finetune_columns,
-    'figures/finetune_loss.png',
-    'Training Loss'
-)
+#plot_assigned_col_linear(
+    #finetune_loss,
+    #finetune_columns,
+    #'figures/finetune_loss.png',
+    #'Training Loss'
+#)
 
-plot_assigned_col_linear(
-    finetune_eval_loss,
-    eval_columns,
-    'figures/finetune_Eval_loss.png',
-    'Eval Loss',
-    if_ewm=False,
-    assigned_x=[1000, 2000, 2295]
-)
+#plot_assigned_col_linear(
+    #finetune_eval_loss,
+    #eval_columns,
+    #'figures/finetune_Eval_loss.png',
+    #'Eval Loss',
+    #if_ewm=False,
+    #assigned_x=[1000, 2000, 2295]
+#)
 
 plot_assigned_col_linear(
     resnet_train_loss,
     resnet_train_columns,
     'figures/resnet_train_acc.png',
     'Train acc',
+    if_ewm=False,
+    xl="Steps",
+    yl='Accuracy',
 )
 
 plot_assigned_col_linear(
@@ -137,5 +144,7 @@ plot_assigned_col_linear(
     'figures/resnet_eval_acc.png',
     'Resnet Eval Loss',
     if_ewm=False,
-    assigned_x=[390, 390*2, 390*3, 390*4, 390*5]
+    assigned_x=[390 * i for i in range(12)],
+    xl="Steps",
+    yl='Accuracy',
 )

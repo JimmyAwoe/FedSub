@@ -7,3 +7,4 @@ from .replace_modules import outer_update, replace_with_subscaf_layer
 from .main_argparser import main_parse_args
 from .checkpoint import apply_activation_checkpointing
 from .split_dataset import split_dataset_by_class
+from .measure_comm import measure_all_reduce

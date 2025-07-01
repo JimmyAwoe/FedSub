@@ -75,17 +75,16 @@ def main(args):
     if args.data_hete:
         # set data heterogenity
         train_loader = split_dataset_by_class(train_dataset[0], rank, world_size, args.batch_size)
-        val_loader = split_dataset_by_class(val_dataset[0], rank, world_size, 128)
     else:
         train_loader = torch.utils.data.DataLoader(
-            train_dataset,
+            train_dataset[0],
             batch_size=args.batch_size, shuffle=True,
             num_workers=4, pin_memory=True)
 
-        val_loader = torch.utils.data.DataLoader(
-            val_dataset,
-            batch_size=128, shuffle=False,
-            num_workers=4, pin_memory=True)
+    val_loader = torch.utils.data.DataLoader(
+        val_dataset[0],
+        batch_size=128, shuffle=False,
+        num_workers=4, pin_memory=True)
 
     # define loss function (criterion) and optimizer
     criterion = nn.CrossEntropyLoss().to(device)
@@ -141,7 +140,6 @@ def main(args):
 
     if args.evaluate:
         validate(val_loader, model, criterion, args, device)
-        return
 
     for epoch in range(args.epochs):
 
@@ -229,7 +227,7 @@ def train(train_loader, model, criterion, optimizer, epoch, schedule, args, devi
         output = output.float()
         loss = loss.float()
         # measure accuracy and record loss
-        prec1 = accuracy(output.data, target)[0]
+        prec1 = accuracy(output.data, target, (1,)) [0]
         losses.update(loss.item(), input.size(0))
         top1.update(prec1.item(), input.size(0))
 
@@ -319,7 +317,7 @@ class AverageMeter(object):
         self.avg = self.sum / self.count
 
 
-def accuracy(output, target, topk=(1,)):
+def accuracy(output, target, topk=(5,)):
     """Computes the precision@k for the specified values of k"""
     maxk = max(topk)
     batch_size = target.size(0)

@@ -5,6 +5,7 @@ from .random_matrix_gene import gene_random_matrix
 from .subscaflinear import SubScafLinear
 from .subscafconv2d import SubScafConv2d
 import torch.distributed as dist
+from .measure_comm import measure_all_reduce, measure_broadcast
 
 def replace_with_subscaf_layer(model, target_modules_list, device, args, jump_modules_list=[], layer='linear'):
     def replace_module(model, target_modules_list, jump_modules_list=None):
@@ -93,7 +94,12 @@ def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, subscaf_par
             if isinstance(module, replace_class) and any(target_key in name for target_key in target_modules_list):
                 # all_reduce b
                 avg_b = module.b.detach().clone()
-                dist.all_reduce(avg_b, op=dist.ReduceOp.AVG)
+                if not args.measure_comm:
+                    dist.all_reduce(avg_b, op=dist.ReduceOp.AVG)
+                else:
+                    time_all_reduce = measure_all_reduce(avg_b, dist.ReduceOp.AVG)
+                    all_reduce_times.append(time_all_reduce)
+                    all_reduce_tensors.append(avg_b)
                 if args.adaptive_cp_rate != 0:
                     record_cp_dim = args.comp_dim
                     args.comp_dim = min(max(int(module.in_features * args.adaptive_cp_rate), args.comp_dim), module.in_features)
@@ -111,7 +117,12 @@ def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, subscaf_par
                     else:
                         new_comp_mat = gene_random_matrix(args.comp_dim, module.in_features, args.gene_method).to(device)
                     new_comp_mat = new_comp_mat.to(module.b.dtype)
-                    dist.broadcast(new_comp_mat, src=0)
+                    if not args.measure_comm:
+                        dist.broadcast(new_comp_mat, src=0)
+                    else:
+                        broadcast_time = measure_broadcast(new_comp_mat, src=0)
+                        broadcast_times.append(broadcast_time)
+                        broadcast_tensors.append(new_comp_mat)
                     new_comp_mat_rec[(args.comp_dim, module.in_features)] = new_comp_mat
                 else:
                     new_comp_mat = new_comp_mat_rec[(args.comp_dim, module.in_features)]
@@ -172,6 +183,12 @@ def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, subscaf_par
     else:
         assert True, 'Only Support Conv2d and Linear'
 
+    if args.measure_comm:
+        all_reduce_times = []
+        all_reduce_tensors = []
+        broadcast_times = []
+        broadcast_tensors = []
+
     subscaf_outer_update(model, lbd, comp_mat_rec, target_modules_list, jump_modules_list, grad_dict)
     comp_mat_rec = new_comp_mat_rec
 
@@ -182,4 +199,6 @@ def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, subscaf_par
         for (p, l) in zip(subscaf_params, lbd):
             opt[p].update_lbd(lbd=[l])
 
+    if args.measure_comm:
+        return all_reduce_times, all_reduce_tensors, broadcast_times, broadcast_tensors
 

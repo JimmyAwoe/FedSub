@@ -1,3 +1,4 @@
 wandb
 configs
 __pycache__
+data/
