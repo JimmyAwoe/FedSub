@@ -1,104 +1,105 @@
-W0630 15:56:33.228000 1235813 site-packages/torch/distributed/run.py:766] 
-W0630 15:56:33.228000 1235813 site-packages/torch/distributed/run.py:766] *****************************************
-W0630 15:56:33.228000 1235813 site-packages/torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
-W0630 15:56:33.228000 1235813 site-packages/torch/distributed/run.py:766] *****************************************
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - Process group initialize
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - ****************************************
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - Start training with arguments
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - lr                             0.001
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - batch_size                     64
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - total_batch_size               64
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - max_length                     1024
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - num_training_steps             20
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - grad_clip                      0.0
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - warmup                         1000
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - constant_lr                    True
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - seed                           42
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - mixed_precision                bf16
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - comp_dim                       256
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - tau                            10
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - gene_method                    cd
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - jump_certain_modules           False
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - update_cp_freq                 10
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - adaptive_cp_rate               0.0
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - model_config                   configs/llama_60m.json
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - optimizer                      subscafsgd
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - momentum                       0.0
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - dampening                      0
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - weight_decay                   0
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - nesterov                       False
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - per_layer_weight_update        False
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - use_wandb                      False
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - wandb_run_name                 real_lazy_update
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - use_tqdm                       False
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - use_log                        True
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - mem_monitor                    False
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - flash_attn                     False
-2025-06-30 15:56:38.837 | INFO     | utils.common:log:12 - ckpt                           True
-2025-06-30 15:56:38.838 | INFO     | utils.common:log:12 - measure_comm                   True
-2025-06-30 15:56:38.838 | INFO     | utils.common:log:12 - change_cd                      3000
-2025-06-30 15:56:38.838 | INFO     | utils.common:log:12 - ****************************************
-/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:606: UserWarning: `pad_token_id` should be positive but got -1. This will cause errors when batch generating, if there is padding. Please set `pad_token_id` explicitly as `model.generation_config.pad_token_id=PAD_TOKEN_ID` to avoid errors in generation
+W0701 10:59:25.194000 555707 site-packages/torch/distributed/run.py:766] 
+W0701 10:59:25.194000 555707 site-packages/torch/distributed/run.py:766] *****************************************
+W0701 10:59:25.194000 555707 site-packages/torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0701 10:59:25.194000 555707 site-packages/torch/distributed/run.py:766] *****************************************
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - Process group initialize
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - ****************************************
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - Start training with arguments
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - lr                             0.001
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - batch_size                     64
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - total_batch_size               64
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - max_length                     1024
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - num_training_steps             100
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - grad_clip                      0.0
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - warmup                         1000
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - constant_lr                    True
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - seed                           42
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - mixed_precision                bf16
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - comp_dim                       256
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - tau                            10
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - gene_method                    cd
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - jump_certain_modules           False
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - update_cp_freq                 50
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - adaptive_cp_rate               0.0
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - model_config                   configs/llama_60m.json
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - optimizer                      subscafsgd
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - momentum                       0.0
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - dampening                      0
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - weight_decay                   0
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - nesterov                       False
+2025-07-01 10:59:30.379 | INFO     | utils.common:log:12 - per_layer_weight_update        False
+2025-07-01 10:59:30.380 | INFO     | utils.common:log:12 - use_wandb                      False
+2025-07-01 10:59:30.380 | INFO     | utils.common:log:12 - wandb_run_name                 real_lazy_update
+2025-07-01 10:59:30.380 | INFO     | utils.common:log:12 - use_tqdm                       False
+2025-07-01 10:59:30.380 | INFO     | utils.common:log:12 - use_log                        True
+2025-07-01 10:59:30.380 | INFO     | utils.common:log:12 - mem_monitor                    False
+2025-07-01 10:59:30.380 | INFO     | utils.common:log:12 - flash_attn                     False
+2025-07-01 10:59:30.380 | INFO     | utils.common:log:12 - ckpt                           True
+2025-07-01 10:59:30.380 | INFO     | utils.common:log:12 - measure_comm                   False
+2025-07-01 10:59:30.380 | INFO     | utils.common:log:12 - measure_all                    True
+2025-07-01 10:59:30.380 | INFO     | utils.common:log:12 - change_cd                      3000
+2025-07-01 10:59:30.380 | INFO     | utils.common:log:12 - ****************************************
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:606: UserWarning: `pad_token_id` should be positive but got -1. This will cause errors when batch generating, if there is padding. Please set `pad_token_id` explicitly as `model.generation_config.pad_token_id=PAD_TOKEN_ID` to avoid errors in generation
   warnings.warn(
-/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:606: UserWarning: `pad_token_id` should be positive but got -1. This will cause errors when batch generating, if there is padding. Please set `pad_token_id` explicitly as `model.generation_config.pad_token_id=PAD_TOKEN_ID` to avoid errors in generation
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:606: UserWarning: `pad_token_id` should be positive but got -1. This will cause errors when batch generating, if there is padding. Please set `pad_token_id` explicitly as `model.generation_config.pad_token_id=PAD_TOKEN_ID` to avoid errors in generation
   warnings.warn(
-2025-06-30 15:56:43.068 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-30 15:56:43.077 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-30 15:56:43.078 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-30 15:56:43.078 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-30 15:56:43.079 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-30 15:56:43.079 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-30 15:56:43.080 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-30 15:56:43.086 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-30 15:56:43.086 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-30 15:56:43.087 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-30 15:56:43.087 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-30 15:56:43.088 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-30 15:56:43.088 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-30 15:56:43.088 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-30 15:56:43.088 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-30 15:56:43.089 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-30 15:56:43.089 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-30 15:56:43.090 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-30 15:56:43.090 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-30 15:56:43.090 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-30 15:56:43.091 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-30 15:56:43.091 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-30 15:56:43.091 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-30 15:56:43.091 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-30 15:56:43.092 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-30 15:56:43.092 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-30 15:56:43.092 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-30 15:56:43.093 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-30 15:56:43.093 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-30 15:56:43.093 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-30 15:56:43.094 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-30 15:56:43.094 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-30 15:56:43.095 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-30 15:56:43.095 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-30 15:56:43.095 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-30 15:56:43.095 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-30 15:56:43.095 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-30 15:56:43.096 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-30 15:56:43.096 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-30 15:56:43.097 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-30 15:56:43.097 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-30 15:56:43.097 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-30 15:56:43.097 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-30 15:56:43.098 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-30 15:56:43.098 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-30 15:56:43.098 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-30 15:56:43.099 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-30 15:56:43.099 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-30 15:56:43.099 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-30 15:56:43.100 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-30 15:56:43.100 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-30 15:56:43.100 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-30 15:56:43.100 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-30 15:56:43.101 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-30 15:56:43.101 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-30 15:56:43.101 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-30 15:56:43.102 | INFO     | utils.common:log:12 - 
+2025-07-01 10:59:34.536 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-07-01 10:59:34.563 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-07-01 10:59:34.564 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-07-01 10:59:34.564 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-07-01 10:59:34.565 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-07-01 10:59:34.565 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-07-01 10:59:34.566 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-07-01 10:59:34.573 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-07-01 10:59:34.573 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-07-01 10:59:34.574 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-07-01 10:59:34.574 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-07-01 10:59:34.575 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-07-01 10:59:34.575 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-07-01 10:59:34.575 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-07-01 10:59:34.575 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-07-01 10:59:34.576 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-07-01 10:59:34.576 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-07-01 10:59:34.577 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-07-01 10:59:34.577 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-07-01 10:59:34.578 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-07-01 10:59:34.578 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-07-01 10:59:34.578 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-07-01 10:59:34.578 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-07-01 10:59:34.579 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-07-01 10:59:34.579 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-07-01 10:59:34.580 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-07-01 10:59:34.580 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-07-01 10:59:34.580 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-07-01 10:59:34.581 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-07-01 10:59:34.581 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-07-01 10:59:34.581 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-07-01 10:59:34.582 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-07-01 10:59:34.582 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-07-01 10:59:34.583 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-07-01 10:59:34.583 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-07-01 10:59:34.583 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-07-01 10:59:34.583 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-07-01 10:59:34.584 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-07-01 10:59:34.584 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-07-01 10:59:34.585 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-07-01 10:59:34.585 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-07-01 10:59:34.585 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-07-01 10:59:34.586 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-07-01 10:59:34.586 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-07-01 10:59:34.586 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-07-01 10:59:34.587 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-07-01 10:59:34.587 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-07-01 10:59:34.587 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-07-01 10:59:34.588 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-07-01 10:59:34.588 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
+2025-07-01 10:59:34.588 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
+2025-07-01 10:59:34.589 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
+2025-07-01 10:59:34.589 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
+2025-07-01 10:59:34.589 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
+2025-07-01 10:59:34.590 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
+2025-07-01 10:59:34.590 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
+2025-07-01 10:59:34.591 | INFO     | utils.common:log:12 - 
 LlamaForCausalLM(
   (model): LlamaModel(
     (embed_tokens): Embedding(32000, 512, padding_idx=31999)
@@ -126,71 +127,132 @@ LlamaForCausalLM(
   (lm_head): Linear(in_features=512, out_features=32000, bias=False)
 )
 
-2025-06-30 15:56:43.103 | INFO     | utils.common:log:12 - Total params: 58.07M
-2025-06-30 15:56:43.103 | INFO     | utils.common:log:12 - Trainable params before compression: 58.07M
-2025-06-30 15:56:43.103 | INFO     | utils.common:log:12 - Trainable params after compression: 43.66M
-2025-06-30 15:56:43.103 | INFO     | utils.common:log:12 - Total params with Subspace Scaffold enabled: 10.88M
-/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py:838: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+2025-07-01 10:59:34.591 | INFO     | utils.common:log:12 - Total params: 58.07M
+2025-07-01 10:59:34.591 | INFO     | utils.common:log:12 - Trainable params before compression: 58.07M
+2025-07-01 10:59:34.592 | INFO     | utils.common:log:12 - Trainable params after compression: 43.66M
+2025-07-01 10:59:34.592 | INFO     | utils.common:log:12 - Total params with Subspace Scaffold enabled: 10.88M
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py:838: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
   return fn(*args, **kwargs)
-/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py:838: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/_dynamo/eval_frame.py:838: UserWarning: torch.utils.checkpoint: the use_reentrant parameter should be passed explicitly. In version 2.5 we will raise an exception if use_reentrant is not passed. use_reentrant=False is recommended, but if you need to preserve the current default behavior, you can pass use_reentrant=True. Refer to docs for more details on the differences between the two variants.
   return fn(*args, **kwargs)
-[rank0]: Traceback (most recent call last):
-[rank0]:   File "/home/xyq/gitee-SubScaf/llama_pretrain.py", line 427, in <module>
-[rank0]:     main(args)
-[rank0]:   File "/home/xyq/gitee-SubScaf/llama_pretrain.py", line 226, in main
-[rank0]:     loss = model(**batch).loss
-[rank0]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
-[rank0]:     return self._call_impl(*args, **kwargs)
-[rank0]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
-[rank0]:     return forward_call(*args, **kwargs)
-[rank0]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 851, in forward
-[rank0]:     loss = self.loss_function(logits=logits, labels=labels, vocab_size=self.config.vocab_size, **kwargs)
-[rank0]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/transformers/loss/loss_utils.py", line 36, in ForCausalLMLoss
-[rank0]:     logits = logits.float()
-[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 7.81 GiB. GPU 0 has a total capacity of 23.65 GiB of which 5.14 GiB is free. Including non-PyTorch memory, this process has 18.50 GiB memory in use. Of the allocated memory 17.43 GiB is allocated by PyTorch, and 503.44 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-[rank1]: Traceback (most recent call last):
-[rank1]:   File "/home/xyq/gitee-SubScaf/llama_pretrain.py", line 427, in <module>
-[rank1]:     main(args)
-[rank1]:   File "/home/xyq/gitee-SubScaf/llama_pretrain.py", line 226, in main
-[rank1]:     loss = model(**batch).loss
-[rank1]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1751, in _wrapped_call_impl
-[rank1]:     return self._call_impl(*args, **kwargs)
-[rank1]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1762, in _call_impl
-[rank1]:     return forward_call(*args, **kwargs)
-[rank1]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py", line 851, in forward
-[rank1]:     loss = self.loss_function(logits=logits, labels=labels, vocab_size=self.config.vocab_size, **kwargs)
-[rank1]:   File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/transformers/loss/loss_utils.py", line 36, in ForCausalLMLoss
-[rank1]:     logits = logits.float()
-[rank1]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 7.81 GiB. GPU 1 has a total capacity of 23.65 GiB of which 5.14 GiB is free. Including non-PyTorch memory, this process has 18.50 GiB memory in use. Of the allocated memory 17.43 GiB is allocated by PyTorch, and 503.44 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-[rank0]:[W630 15:56:45.983958494 ProcessGroupNCCL.cpp:1476] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
-W0630 15:56:46.966000 1235813 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 1235964 closing signal SIGTERM
-E0630 15:56:47.131000 1235813 site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 1235963) of binary: /home/xyq/miniconda3/envs/subscaf/bin/python3.10
-Traceback (most recent call last):
-  File "/home/xyq/miniconda3/envs/subscaf/bin/torchrun", line 8, in <module>
-    sys.exit(main())
-  File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
-    return f(*args, **kwargs)
-  File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in main
-    run(args)
-  File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/distributed/run.py", line 883, in run
-    elastic_launch(
-  File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
-    return launch_agent(self._config, self._entrypoint, list(args))
-  File "/home/xyq/miniconda3/envs/subscaf/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
-    raise ChildFailedError(
-torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
-============================================================
-llama_pretrain.py FAILED
-------------------------------------------------------------
-Failures:
-  <NO_OTHER_FAILURES>
-------------------------------------------------------------
-Root Cause (first observed failure):
-[0]:
-  time      : 2025-06-30_15:56:46
-  host      : ubuntu
-  rank      : 0 (local_rank: 0)
-  exitcode  : 1 (pid: 1235963)
-  error_file: <N/A>
-  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
-============================================================
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: c10d::broadcast_: an autograd kernel was not registered to the Autograd key(s) but we are trying to backprop through it. This may lead to silently incorrect behavior. This behavior is deprecated and will be removed in a future version of PyTorch. If your operator is differentiable, please ensure you have registered an autograd kernel to the correct Autograd key (e.g. DispatchKey::Autograd, DispatchKey::CompositeImplicitAutograd). If your operator is not differentiable, or to squash this warning and use the previous behavior, please register torch::CppFunction::makeFallthrough() to DispatchKey::Autograd. (Triggered internally at /pytorch/torch/csrc/autograd/autograd_not_implemented_fallback.cpp:62.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/graph.py:824: UserWarning: c10d::broadcast_: an autograd kernel was not registered to the Autograd key(s) but we are trying to backprop through it. This may lead to silently incorrect behavior. This behavior is deprecated and will be removed in a future version of PyTorch. If your operator is differentiable, please ensure you have registered an autograd kernel to the correct Autograd key (e.g. DispatchKey::Autograd, DispatchKey::CompositeImplicitAutograd). If your operator is not differentiable, or to squash this warning and use the previous behavior, please register torch::CppFunction::makeFallthrough() to DispatchKey::Autograd. (Triggered internally at /pytorch/torch/csrc/autograd/autograd_not_implemented_fallback.cpp:62.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+2025-07-01 10:59:36.910 | INFO     | utils.common:log:12 - step: 1/100 Loss: 10.4761\10.476 Lr: 1.000e-3 Mem: 40.851 GB Throughput_tokens: 19728.4698
+2025-07-01 10:59:37.897 | INFO     | utils.common:log:12 - step: 2/100 Loss: 10.4532\10.474 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 50925.6488
+2025-07-01 10:59:38.969 | INFO     | utils.common:log:12 - step: 3/100 Loss: 10.4732\10.474 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 50355.7178
+2025-07-01 10:59:40.061 | INFO     | utils.common:log:12 - step: 4/100 Loss: 10.4634\10.473 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 46226.2430
+2025-07-01 10:59:41.145 | INFO     | utils.common:log:12 - step: 5/100 Loss: 10.4639\10.472 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 51223.0574
+2025-07-01 10:59:42.153 | INFO     | utils.common:log:12 - step: 6/100 Loss: 10.4571\10.470 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 45113.9426
+2025-07-01 10:59:43.229 | INFO     | utils.common:log:12 - step: 7/100 Loss: 10.4563\10.469 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 48030.4777
+2025-07-01 10:59:44.306 | INFO     | utils.common:log:12 - step: 8/100 Loss: 10.4640\10.468 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 48941.4219
+2025-07-01 10:59:45.320 | INFO     | utils.common:log:12 - step: 9/100 Loss: 10.4484\10.466 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 60437.0153
+2025-07-01 10:59:46.421 | INFO     | utils.common:log:12 - step: 10/100 Loss: 10.4609\10.466 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 45725.9034
+2025-07-01 10:59:46.421 | INFO     | utils.common:log:12 - ETA: 00:02:18 
+2025-07-01 10:59:47.490 | INFO     | utils.common:log:12 - step: 11/100 Loss: 10.4515\10.464 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 53772.2279
+2025-07-01 10:59:48.571 | INFO     | utils.common:log:12 - step: 12/100 Loss: 10.4404\10.462 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 46598.4954
+2025-07-01 10:59:49.575 | INFO     | utils.common:log:12 - step: 13/100 Loss: 10.4558\10.461 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 49093.8736
+2025-07-01 10:59:50.649 | INFO     | utils.common:log:12 - step: 14/100 Loss: 10.4557\10.461 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 43058.5349
+2025-07-01 10:59:51.705 | INFO     | utils.common:log:12 - step: 15/100 Loss: 10.4389\10.459 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 40873.6540
+2025-07-01 10:59:53.137 | INFO     | utils.common:log:12 - step: 16/100 Loss: 10.4563\10.458 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 30127.0538
+2025-07-01 10:59:54.132 | INFO     | utils.common:log:12 - step: 17/100 Loss: 10.4396\10.457 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 50923.5616
+2025-07-01 10:59:55.203 | INFO     | utils.common:log:12 - step: 18/100 Loss: 10.4541\10.456 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 45373.9607
+2025-07-01 10:59:56.292 | INFO     | utils.common:log:12 - step: 19/100 Loss: 10.4295\10.454 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 48654.9985
+2025-07-01 10:59:57.382 | INFO     | utils.common:log:12 - step: 20/100 Loss: 10.4335\10.452 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 51427.6048
+2025-07-01 10:59:57.382 | INFO     | utils.common:log:12 - ETA: 00:01:40 
+2025-07-01 10:59:58.415 | INFO     | utils.common:log:12 - step: 21/100 Loss: 10.4423\10.451 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 52964.1010
+2025-07-01 10:59:59.510 | INFO     | utils.common:log:12 - step: 22/100 Loss: 10.4224\10.448 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 44845.5095
+2025-07-01 11:00:00.636 | INFO     | utils.common:log:12 - step: 23/100 Loss: 10.4321\10.446 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 44366.1390
+2025-07-01 11:00:01.623 | INFO     | utils.common:log:12 - step: 24/100 Loss: 10.4135\10.443 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 46142.5359
+2025-07-01 11:00:02.649 | INFO     | utils.common:log:12 - step: 25/100 Loss: 10.4156\10.440 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 48215.7171
+2025-07-01 11:00:03.675 | INFO     | utils.common:log:12 - step: 26/100 Loss: 10.4245\10.439 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 59367.6833
+2025-07-01 11:00:04.702 | INFO     | utils.common:log:12 - step: 27/100 Loss: 10.4338\10.438 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 51301.7215
+2025-07-01 11:00:05.730 | INFO     | utils.common:log:12 - step: 28/100 Loss: 10.4217\10.437 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 42276.6968
+2025-07-01 11:00:06.756 | INFO     | utils.common:log:12 - step: 29/100 Loss: 10.4098\10.434 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 45333.4709
+2025-07-01 11:00:07.794 | INFO     | utils.common:log:12 - step: 30/100 Loss: 10.4165\10.432 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 44625.5392
+2025-07-01 11:00:07.795 | INFO     | utils.common:log:12 - ETA: 00:01:17 
+2025-07-01 11:00:08.810 | INFO     | utils.common:log:12 - step: 31/100 Loss: 10.4128\10.430 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 47112.2904
+2025-07-01 11:00:10.189 | INFO     | utils.common:log:12 - step: 32/100 Loss: 10.4132\10.428 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 38374.2281
+2025-07-01 11:00:11.212 | INFO     | utils.common:log:12 - step: 33/100 Loss: 10.4008\10.426 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 42404.4199
+2025-07-01 11:00:12.182 | INFO     | utils.common:log:12 - step: 34/100 Loss: 10.4308\10.426 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 45855.0080
+2025-07-01 11:00:13.253 | INFO     | utils.common:log:12 - step: 35/100 Loss: 10.4039\10.424 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 51470.2378
+2025-07-01 11:00:14.331 | INFO     | utils.common:log:12 - step: 36/100 Loss: 10.3899\10.421 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 50351.7709
+2025-07-01 11:00:15.418 | INFO     | utils.common:log:12 - step: 37/100 Loss: 10.4000\10.419 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 45295.1859
+2025-07-01 11:00:16.411 | INFO     | utils.common:log:12 - step: 38/100 Loss: 10.3904\10.416 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 59161.0366
+2025-07-01 11:00:17.485 | INFO     | utils.common:log:12 - step: 39/100 Loss: 10.3919\10.413 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 42803.8103
+2025-07-01 11:00:18.584 | INFO     | utils.common:log:12 - step: 40/100 Loss: 10.3912\10.411 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 44328.3763
+2025-07-01 11:00:18.584 | INFO     | utils.common:log:12 - ETA: 00:01:05 
+2025-07-01 11:00:19.672 | INFO     | utils.common:log:12 - step: 41/100 Loss: 10.3800\10.408 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 51275.0268
+2025-07-01 11:00:20.677 | INFO     | utils.common:log:12 - step: 42/100 Loss: 10.3908\10.406 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 43594.3988
+2025-07-01 11:00:21.748 | INFO     | utils.common:log:12 - step: 43/100 Loss: 10.3827\10.404 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 45046.0303
+2025-07-01 11:00:22.823 | INFO     | utils.common:log:12 - step: 44/100 Loss: 10.3744\10.401 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 51898.9524
+2025-07-01 11:00:23.888 | INFO     | utils.common:log:12 - step: 45/100 Loss: 10.3897\10.400 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 46443.2585
+2025-07-01 11:00:24.925 | INFO     | utils.common:log:12 - step: 46/100 Loss: 10.3906\10.399 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 47110.7381
+2025-07-01 11:00:26.361 | INFO     | utils.common:log:12 - step: 47/100 Loss: 10.3845\10.397 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 35149.9143
+2025-07-01 11:00:27.428 | INFO     | utils.common:log:12 - step: 48/100 Loss: 10.3844\10.396 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 40055.6901
+2025-07-01 11:00:28.430 | INFO     | utils.common:log:12 - step: 49/100 Loss: 10.3589\10.392 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 57034.4758
+2025-07-01 11:00:29.527 | INFO     | utils.common:log:12 - step: 50/100 Loss: 10.3829\10.391 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 38697.5699
+2025-07-01 11:00:29.527 | INFO     | utils.common:log:12 - ETA: 00:00:54 
+2025-07-01 11:00:30.590 | INFO     | utils.common:log:12 - step: 51/100 Loss: 10.3621\10.389 Lr: 1.000e-3 Mem: 40.861 GB Throughput_tokens: 45338.1715
+2025-07-01 11:00:31.675 | INFO     | utils.common:log:12 - step: 52/100 Loss: 10.3674\10.386 Lr: 1.000e-3 Mem: 40.861 GB Throughput_tokens: 52223.8798
+2025-07-01 11:00:32.666 | INFO     | utils.common:log:12 - step: 53/100 Loss: 10.3517\10.383 Lr: 1.000e-3 Mem: 40.861 GB Throughput_tokens: 52549.4606
+2025-07-01 11:00:33.747 | INFO     | utils.common:log:12 - step: 54/100 Loss: 10.3714\10.382 Lr: 1.000e-3 Mem: 40.861 GB Throughput_tokens: 44066.3771
+2025-07-01 11:00:34.819 | INFO     | utils.common:log:12 - step: 55/100 Loss: 10.3619\10.380 Lr: 1.000e-3 Mem: 40.861 GB Throughput_tokens: 43813.7414
+2025-07-01 11:00:35.904 | INFO     | utils.common:log:12 - step: 56/100 Loss: 10.3614\10.378 Lr: 1.000e-3 Mem: 40.861 GB Throughput_tokens: 45225.3466
+2025-07-01 11:00:36.879 | INFO     | utils.common:log:12 - step: 57/100 Loss: 10.3540\10.376 Lr: 1.000e-3 Mem: 40.861 GB Throughput_tokens: 44026.3745
+2025-07-01 11:00:37.907 | INFO     | utils.common:log:12 - step: 58/100 Loss: 10.3576\10.374 Lr: 1.000e-3 Mem: 40.861 GB Throughput_tokens: 53726.9629
+2025-07-01 11:00:38.932 | INFO     | utils.common:log:12 - step: 59/100 Loss: 10.3624\10.373 Lr: 1.000e-3 Mem: 40.861 GB Throughput_tokens: 46971.1696
+2025-07-01 11:00:39.975 | INFO     | utils.common:log:12 - step: 60/100 Loss: 10.3407\10.369 Lr: 1.000e-3 Mem: 40.861 GB Throughput_tokens: 52329.2649
+2025-07-01 11:00:39.975 | INFO     | utils.common:log:12 - ETA: 00:00:42 
+2025-07-01 11:00:41.000 | INFO     | utils.common:log:12 - step: 61/100 Loss: 10.3487\10.367 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 44404.3935
+2025-07-01 11:00:42.025 | INFO     | utils.common:log:12 - step: 62/100 Loss: 10.3563\10.366 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 49333.9397
+2025-07-01 11:00:43.535 | INFO     | utils.common:log:12 - step: 63/100 Loss: 10.3503\10.365 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 39244.5126
+2025-07-01 11:00:44.566 | INFO     | utils.common:log:12 - step: 64/100 Loss: 10.3617\10.364 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 52699.1993
+2025-07-01 11:00:45.597 | INFO     | utils.common:log:12 - step: 65/100 Loss: 10.3619\10.364 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 47133.2522
+2025-07-01 11:00:46.582 | INFO     | utils.common:log:12 - step: 66/100 Loss: 10.3245\10.360 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 51652.6386
+2025-07-01 11:00:47.654 | INFO     | utils.common:log:12 - step: 67/100 Loss: 10.3386\10.358 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 46046.9973
+2025-07-01 11:00:48.726 | INFO     | utils.common:log:12 - step: 68/100 Loss: 10.3596\10.358 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 38653.3691
+2025-07-01 11:00:49.805 | INFO     | utils.common:log:12 - step: 69/100 Loss: 10.3549\10.358 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 36279.9134
+2025-07-01 11:00:50.833 | INFO     | utils.common:log:12 - step: 70/100 Loss: 10.3510\10.357 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 45297.7763
+2025-07-01 11:00:50.833 | INFO     | utils.common:log:12 - ETA: 00:00:32 
+2025-07-01 11:00:51.910 | INFO     | utils.common:log:12 - step: 71/100 Loss: 10.3346\10.355 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 46108.3698
+2025-07-01 11:00:52.995 | INFO     | utils.common:log:12 - step: 72/100 Loss: 10.3287\10.352 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 47979.0522
+2025-07-01 11:00:54.093 | INFO     | utils.common:log:12 - step: 73/100 Loss: 10.3431\10.351 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 46423.2260
+2025-07-01 11:00:55.090 | INFO     | utils.common:log:12 - step: 74/100 Loss: 10.3180\10.348 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 55073.5014
+2025-07-01 11:00:56.165 | INFO     | utils.common:log:12 - step: 75/100 Loss: 10.3292\10.346 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 45634.6145
+2025-07-01 11:00:57.252 | INFO     | utils.common:log:12 - step: 76/100 Loss: 10.3390\10.345 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 46496.8986
+2025-07-01 11:00:58.328 | INFO     | utils.common:log:12 - step: 77/100 Loss: 10.3229\10.343 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 43970.4961
+2025-07-01 11:00:59.348 | INFO     | utils.common:log:12 - step: 78/100 Loss: 10.3081\10.340 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 49543.4851
+2025-07-01 11:01:00.753 | INFO     | utils.common:log:12 - step: 79/100 Loss: 10.3453\10.340 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 37309.1881
+2025-07-01 11:01:01.837 | INFO     | utils.common:log:12 - step: 80/100 Loss: 10.3133\10.338 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 43443.7280
+2025-07-01 11:01:01.838 | INFO     | utils.common:log:12 - ETA: 00:00:21 
+2025-07-01 11:01:02.841 | INFO     | utils.common:log:12 - step: 81/100 Loss: 10.3301\10.337 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 47068.8815
+2025-07-01 11:01:03.914 | INFO     | utils.common:log:12 - step: 82/100 Loss: 10.3273\10.336 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 44852.6630
+2025-07-01 11:01:04.979 | INFO     | utils.common:log:12 - step: 83/100 Loss: 10.3220\10.334 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 36605.9739
+2025-07-01 11:01:06.084 | INFO     | utils.common:log:12 - step: 84/100 Loss: 10.3067\10.332 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 42640.4594
+2025-07-01 11:01:07.092 | INFO     | utils.common:log:12 - step: 85/100 Loss: 10.3087\10.329 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 44945.4194
+2025-07-01 11:01:08.193 | INFO     | utils.common:log:12 - step: 86/100 Loss: 10.2934\10.326 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 45366.3112
+2025-07-01 11:01:09.263 | INFO     | utils.common:log:12 - step: 87/100 Loss: 10.3095\10.324 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 38254.7136
+2025-07-01 11:01:10.323 | INFO     | utils.common:log:12 - step: 88/100 Loss: 10.3093\10.323 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 40693.9643
+2025-07-01 11:01:11.302 | INFO     | utils.common:log:12 - step: 89/100 Loss: 10.2959\10.320 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 52484.9112
+2025-07-01 11:01:12.338 | INFO     | utils.common:log:12 - step: 90/100 Loss: 10.2835\10.316 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 47351.4140
+2025-07-01 11:01:12.339 | INFO     | utils.common:log:12 - ETA: 00:00:10 
+2025-07-01 11:01:13.363 | INFO     | utils.common:log:12 - step: 91/100 Loss: 10.2869\10.313 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 49158.7780
+2025-07-01 11:01:14.392 | INFO     | utils.common:log:12 - step: 92/100 Loss: 10.2883\10.311 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 47632.9040
+2025-07-01 11:01:15.420 | INFO     | utils.common:log:12 - step: 93/100 Loss: 10.2840\10.308 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 48272.4233
+2025-07-01 11:01:16.749 | INFO     | utils.common:log:12 - step: 94/100 Loss: 10.2761\10.305 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 41935.4676
+2025-07-01 11:01:17.777 | INFO     | utils.common:log:12 - step: 95/100 Loss: 10.2686\10.301 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 51633.8268
+2025-07-01 11:01:18.805 | INFO     | utils.common:log:12 - step: 96/100 Loss: 10.2833\10.300 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 48320.6051
+2025-07-01 11:01:19.831 | INFO     | utils.common:log:12 - step: 97/100 Loss: 10.2766\10.297 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 43465.6946
+2025-07-01 11:01:20.858 | INFO     | utils.common:log:12 - step: 98/100 Loss: 10.2949\10.297 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 39638.3529
+2025-07-01 11:01:21.887 | INFO     | utils.common:log:12 - step: 99/100 Loss: 10.2669\10.294 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 44010.6088
+2025-07-01 11:01:23.000 | INFO     | utils.common:log:12 - step: 100/100 Loss: 10.2661\10.291 Lr: 1.000e-3 Mem: 40.859 GB Throughput_tokens: 37042.5185
+2025-07-01 11:01:23.000 | INFO     | utils.common:log:12 - ETA: 00:00:00 
+2025-07-01 11:01:24.079 | INFO     | utils.common:log:12 - step: 101/100 Loss: 10.2735\10.289 Lr: 1.000e-3 Mem: 40.861 GB Throughput_tokens: 42330.7706
+2025-07-01 11:01:24.098 | INFO     | utils.common:log:12 - attain assigned training step 100. Stop Training
+Rank 1 stopping trainingRank 0 stopping training
+
+2025-07-01 11:01:24.113 | INFO     | utils.common:log:12 - finish training
+2025-07-01 11:01:24.113 | INFO     | utils.common:log:12 - The total Training Time: Avg_time: 1086.5732104492188, Min_time: 968.6881713867188, Max_time: 1562.756103515625
+2025-07-01 11:01:24.161 | INFO     | utils.common:log:12 - Total Time: 00:01:53

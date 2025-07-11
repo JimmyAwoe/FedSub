@@ -36,6 +36,7 @@ def parse_args(args, remaining_args):
     parser.add_argument("--flash_attn", action="store_true", help="flash_attn is conflicted with mixed precision")
     parser.add_argument("--ckpt", action="store_true", help="checkpoint is conflicted with flash_attention")
     parser.add_argument("--measure_comm", action="store_true", help="measure the time used for communication")
+    parser.add_argument("--measure_all", action="store_true", help="measure all time used for training`")
     parser.add_argument("--change_cd", default=4000, type=int)
     new_args, _ = parser.parse_known_args(remaining_args)
     args = argparse.Namespace(**vars(args), **vars(new_args))
@@ -72,7 +73,7 @@ def main(args):
     tokenizer = AutoTokenizer.from_pretrained("t5-base")
 
     # dataset
-    ds = load_dataset("/data/datasets/c4/en", split="train", streaming=True)
+    ds = load_dataset("/data/datasets/c4_en", split="train", streaming=True)
     
     def tokenize_fun(data):
         output = tokenizer(data["text"],
@@ -210,7 +211,25 @@ def main(args):
         broadcast_times = []
         broadcast_tensors = []
 
-    for _, batch in enumerate(dataloader):
+    if args.measure_all:
+        all_times = []
+
+
+    for batch_idx, batch in enumerate(dataloader):
+
+        if args.measure_all and batch_idx != 0: 
+            end_event.record()
+            torch.cuda.synchronize()
+            all_times.append(start_event.elapsed_time(end_event))
+
+        if args.measure_all:
+            torch.cuda.synchronize()
+            dist.barrier()
+
+            start_event = torch.cuda.Event(enable_timing=True)
+            end_event = torch.cuda.Event(enable_timing=True)
+            start_event.record()
+
         local_step += 1
         if update_step > args.num_training_steps:
             log(f"attain assigned training step {args.num_training_steps}. Stop Training")
@@ -405,15 +424,22 @@ def main(args):
         if args.use_wandb:
             wandb.finish()
         if args.measure_comm:
+            # mix all reduce times and broadcast times 
             all_reduce_times.extend(broadcast_times)
             all_reduce_tensors.extend(broadcast_tensors)
-            avg_time = sum(all_reduce_times) / len(all_reduce_times)
+            avg_time = sum(all_reduce_times) / args.num_training_steps
             min_time = min(all_reduce_times)
             max_time = max(all_reduce_times)
             communication_volumn = 0
             for p in all_reduce_tensors:
                 communication_volumn += p.numel()
             log(f"avg_comm_time: {avg_time}ms, min_comm_time: {min_time}ms, max_time: {max_time}ms, total_comm_volumn: {communication_volumn}")
+        if args.measure_all:
+            avg_time = sum(all_times) / args.num_training_steps
+            min_time = min(all_times)
+            max_time = max(all_times)
+            
+            log(f"The total Training Time: Avg_time: {avg_time}, Min_time: {min_time}, Max_time: {max_time}")
             
 
 if __name__ == "__main__":

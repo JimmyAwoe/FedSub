@@ -25,11 +25,11 @@ do
         --tau 10 \
         --lr 1e-3 \
         --momentum 0 \
-        --measure_comm \
+        --measure_all \
         --constant_lr \
         --dampeniog 0 \
-        --num_training_steps 20 \
-        --update_cp_freq 10 \
+        --num_training_steps 100 \
+        --update_cp_freq 50 \
         --mixed_precision bf16 \
         --use_log \
         --ckpt \
