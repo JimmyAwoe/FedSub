@@ -67,6 +67,7 @@ def plot_assigned_col_linear(df, columns, output_path, title, start_point=0, end
     #plt.title(title)
     plt.xlabel('Communication Rounds')
     plt.ylabel('Error')
+    plt.tick_params(axis='both', which='major', labelsize=14)
     if xl is not None:
         plt.xlabel(xl)
     if yl is not None:
@@ -100,38 +101,38 @@ def plot_assigned_col_linear(df, columns, output_path, title, start_point=0, end
             print(name, ':', df[name].iat[-1])
             plt.axhline(y=df[name].iat[-1], color=color, linestyle='--', alpha=0.4)
     plt.legend()
-    plt.savefig(output_path)
+    plt.savefig(output_path, format='pdf', bbox_inches='tight')
     plt.show()
     plt.close()
 
 
-#plot_assigned_col_linear(
-    #pretrain_loss,
-    #pretrain_columns,
-    #'figures/pretrain_loss.png',
-    #'Pretrain Loss'
-#)
+plot_assigned_col_linear(
+    pretrain_loss,
+    pretrain_columns,
+    'figures/pretrain_loss.pdf',
+    'Pretrain Loss'
+)
 
-#plot_assigned_col_linear(
-    #finetune_loss,
-    #finetune_columns,
-    #'figures/finetune_loss.png',
-    #'Training Loss'
-#)
+plot_assigned_col_linear(
+    finetune_loss,
+    finetune_columns,
+    'figures/finetune_loss.pdf',
+    'Training Loss'
+)
 
-#plot_assigned_col_linear(
-    #finetune_eval_loss,
-    #eval_columns,
-    #'figures/finetune_Eval_loss.png',
-    #'Eval Loss',
-    #if_ewm=False,
-    #assigned_x=[1000, 2000, 2295]
-#)
+plot_assigned_col_linear(
+    finetune_eval_loss,
+    eval_columns,
+    'figures/finetune_Eval_loss.pdf',
+    'Eval Loss',
+    if_ewm=False,
+    assigned_x=[1000, 2000, 2295]
+)
 
 plot_assigned_col_linear(
     resnet_train_loss,
     resnet_train_columns,
-    'figures/resnet_train_acc.png',
+    'figures/resnet_train_acc.pdf',
     'Train acc',
     if_ewm=False,
     xl="Steps",
@@ -141,7 +142,7 @@ plot_assigned_col_linear(
 plot_assigned_col_linear(
     resnet_eval_acc,
     resnet_eval_columns,
-    'figures/resnet_eval_acc.png',
+    'figures/resnet_eval_acc.pdf',
     'Resnet Eval Loss',
     if_ewm=False,
     assigned_x=[390 * i for i in range(12)],

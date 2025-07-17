@@ -95,4 +95,8 @@ class SubScafConv2d(_ConvNd):
         )
 
     def forward(self, input: Tensor) -> Tensor:
-        return self._conv_forward(input, self.weight, self.bias)
+        if self.training == True:
+            res = self._conv_forward(input, self.weight, self.bias) 
+        else:
+            res = self._conv_forward(input, self.x, self.bias)
+        return res
