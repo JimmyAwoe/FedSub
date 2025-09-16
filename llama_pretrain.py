@@ -29,26 +29,16 @@ from pickle import dump
 from torch.amp import GradScaler
 
 
-
-
 def parse_args(args, remaining_args):
     parser = argparse.ArgumentParser()
     parser.add_argument("--flash_attn", action="store_true", help="flash_attn is conflicted with mixed precision")
-    parser.add_argument("--ckpt", action="store_true", help="checkpoint is conflicted with flash_attention")
+    parser.add_argument("--ckpt", action="store_true", help="activation checkpointing is conflicted with flash_attention")
     parser.add_argument("--measure_comm", action="store_true", help="measure the time used for communication")
     parser.add_argument("--measure_all", action="store_true", help="measure all time used for training`")
     parser.add_argument("--change_cd", default=4000, type=int)
     new_args, _ = parser.parse_known_args(remaining_args)
     args = argparse.Namespace(**vars(args), **vars(new_args))
     return args
-
-
-def mem():
-    torch.cuda.empty_cache()
-    log('memory allocated: ' + str((torch.cuda.memory_allocated() / (1024 ** 3))) + 'GB')
-    log('memory reserved: ' + str(torch.cuda.memory_reserved() / (1024 ** 3)) + 'GB')
-    log('max memory allocated: ' + str(torch.cuda.max_memory_allocated() / (1024 ** 3)) + 'GB')
-    log('max memory reserved: ' + str(torch.cuda.max_memory_reserved() / (1024 ** 3)) + 'GB')
 
 def main(args):
     rank = int(os.environ.get("RANK", 0))

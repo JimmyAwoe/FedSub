@@ -15,7 +15,7 @@ do
         --optimizer ${opt} \
         --batch_size 32 \
         --tau 10 \
-        --epochs 11 \
+        --epochs 41 \
         --evaluate \
         --constant_lr \
         --lr 0.1 \
@@ -24,7 +24,6 @@ do
         --use_log \
         --data_hete \
         --print-freq 1 \
-        --gene_method ${gene_method} \
-        > "./logs/${opt}${log_suffix}_resnet_train.log" 2>&1
+        --gene_method ${gene_method}
 done
 

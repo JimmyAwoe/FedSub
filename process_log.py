@@ -37,20 +37,20 @@ def save_to_csv(save_path, *args):
     df.to_csv(save_path, index=False)
 
 if __name__ == "__main__":
-    opt_list = ["subscafsgd", "subscafsgd_full", "fedavgsgd"]
+    opt_list = ["subscafsgd5", "subscafsgd_full", "fedavgsgd"]
     # process llm pretraining
-    #pretrain_pattern_dict = {"Loss": r"Loss: (\d+\.\d+)",
-                    #"Mem": r"Mem: (\d+\.\d+)",
-                    #"Throughput": r"Throughput_tokens: (\d+\.\d+)",
-                    #"lr": r"Lr: (\d+\.\d+)"}
-    #for opt in opt_list:
-        #log_path = f"logs/{opt}_pretrain.log"
-        #save_path = log_path.replace(".log", ".csv")
-        #save_path = save_path.replace("logs", "logs/csv")
-        #data_list = []
-        #for columns_name, pattern in pretrain_pattern_dict.items():
-            #data_list.append((columns_name, process_log(log_path, pattern)))
-        #save_to_csv(save_path, *data_list)
+    pretrain_pattern_dict = {"Loss": r"Loss: (\d+\.\d+)",
+                    "Mem": r"Mem: (\d+\.\d+)",
+                    "Throughput": r"Throughput_tokens: (\d+\.\d+)",
+                    "lr": r"Lr: (\d+\.\d+)"}
+    for opt in opt_list:
+        log_path = f"logs/{opt}_pretrain.log"
+        save_path = log_path.replace(".log", ".csv")
+        save_path = save_path.replace("logs", "logs/csv")
+        data_list = []
+        for columns_name, pattern in pretrain_pattern_dict.items():
+            data_list.append((columns_name, process_log(log_path, pattern)))
+        save_to_csv(save_path, *data_list)
     
     # process llm fine-tune
     #finetune_eval_pattern = r"Eval Loss: (\d+\.\d+)"
@@ -74,24 +74,24 @@ if __name__ == "__main__":
     
 
     # process resnet training
-    resnet_eval_pattern = r"\* Prec@5 (\d+\.\d+)" 
-    eval_loss_data = []
-    for opt in opt_list:
-        log_path = f"logs/{opt}_resnet_train.log"
-        eval_loss_data.append((opt, process_log(f"{log_path}", resnet_eval_pattern)))
-    save_to_csv("logs/csv/resnet_eval_acc.csv", *eval_loss_data)
-    resnet_pattern_dict = {
-                           "train_acc": r"Epoch.*Prec@5: (\d+\.\d+)",
-                           "loss": r"Loss: (\d+\.\d+)",
-                        }
-    for opt in opt_list:
-        log_path = f"logs/{opt}_resnet_train.log"
-        save_path = log_path.replace(".log", ".csv")
-        save_path = save_path.replace("logs", "logs/csv")
-        data_list = []
-        for columns_name, pattern in resnet_pattern_dict.items():
-            data_list.append((columns_name, process_log(log_path, pattern)))
-        save_to_csv(save_path, *data_list)
+    #resnet_eval_pattern = r"\* Prec@5 (\d+\.\d+)" 
+    #eval_loss_data = []
+    #for opt in opt_list:
+        #log_path = f"logs/{opt}_resnet_train.log"
+        #eval_loss_data.append((opt, process_log(f"{log_path}", resnet_eval_pattern)))
+    #save_to_csv("logs/csv/resnet_eval_acc.csv", *eval_loss_data)
+    #resnet_pattern_dict = {
+                           #"train_acc": r"Epoch.*Prec@5: (\d+\.\d+)",
+                           #"loss": r"Loss: (\d+\.\d+)",
+                        #}
+    #for opt in opt_list:
+        #log_path = f"logs/{opt}_resnet_train.log"
+        #save_path = log_path.replace(".log", ".csv")
+        #save_path = save_path.replace("logs", "logs/csv")
+        #data_list = []
+        #for columns_name, pattern in resnet_pattern_dict.items():
+            #data_list.append((columns_name, process_log(log_path, pattern)))
+        #save_to_csv(save_path, *data_list)
 
 
 

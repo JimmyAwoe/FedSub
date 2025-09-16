@@ -38,6 +38,7 @@ def parse_args(args, remaining_args):
                         help='evaluate model on validation set')
     parser.add_argument('--pretrained', dest='pretrained', action='store_true',
                         help='use pre-trained model')
+    parser.add_argument('--measure_comm', action="store_true")
     
     # log
     parser.add_argument('--print-freq', '-p', default=50, type=int,
@@ -75,16 +76,17 @@ def main(args):
     if args.data_hete:
         # set data heterogenity
         train_loader = split_dataset_by_class(train_dataset[0], rank, world_size, args.batch_size)
+        val_loader = split_dataset_by_class(val_dataset[0], rank, world_size, args.batch_size)
     else:
         train_loader = torch.utils.data.DataLoader(
             train_dataset[0],
             batch_size=args.batch_size, shuffle=True,
             num_workers=4, pin_memory=True)
 
-    val_loader = torch.utils.data.DataLoader(
-        val_dataset[0],
-        batch_size=128, shuffle=False,
-        num_workers=4, pin_memory=True)
+        val_loader = torch.utils.data.DataLoader(
+            val_dataset[0],
+            batch_size=128, shuffle=False,
+            num_workers=4, pin_memory=True)
 
     # define loss function (criterion) and optimizer
     criterion = nn.CrossEntropyLoss().to(device)
@@ -218,7 +220,7 @@ def train(train_loader, model, criterion, optimizer, epoch, schedule, args, devi
             else:
                 gene_new_cp = True
             outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
-                            subscaf_params, args, device, jump_modules_list, gene_new_cp)
+                            subscaf_params, args, device, jump_modules_list, gene_new_cp, 'conv2d')
         
         if 'fedavg' in args.optimizer.lower() and update_step % args.tau == 0:
             for p in model.parameters():
@@ -235,7 +237,8 @@ def train(train_loader, model, criterion, optimizer, epoch, schedule, args, devi
         batch_time.update(time.time() - end)
         end = time.time()
 
-        if args.use_log and i % args.print_freq == 0:
+        #if args.use_log and i % args.print_freq == 0:
+        if args.use_log and update_step % args.tau == 0:
             #log('Epoch: [{0}][{1}/{2}]\t'
                   #'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
                   #'Data {data_time.val:.3f} ({data_time.avg:.3f})\t'
