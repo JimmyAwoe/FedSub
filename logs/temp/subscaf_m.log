@@ -1,569 +1,0 @@
-W0602 21:48:08.793000 359144 site-packages/torch/distributed/run.py:766] 
-W0602 21:48:08.793000 359144 site-packages/torch/distributed/run.py:766] *****************************************
-W0602 21:48:08.793000 359144 site-packages/torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
-W0602 21:48:08.793000 359144 site-packages/torch/distributed/run.py:766] *****************************************
-2025-06-02 21:48:20.158 | INFO     | utils.common:log:12 - ****************************************
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - Start training with arguments
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - lr                             0.0001
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - batch_size                     8
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - total_batch_size               8
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - max_length                     256
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - num_training_steps             10000
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - grad_clip                      0.0
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - warmup                         0
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - use_wandb                      False
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - constant_lr                    True
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - seed                           42
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - mixed_precision                None
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - comp_dim                       256
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - tau                            3
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - gene_method                    rd
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - jump_certain_modules           False
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - update_cp_freq                 8
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - adaptive_cp_rate               0.3
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - model_config                   configs/llama_60m.json
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - optimizer                      subscafsgd
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - momentum                       0.9
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - dampening                      0.0
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - weight_decay                   0.0
-2025-06-02 21:48:20.159 | INFO     | utils.common:log:12 - nesterov                       False
-2025-06-02 21:48:20.160 | INFO     | utils.common:log:12 - per_layer_weight_update        True
-2025-06-02 21:48:20.160 | INFO     | utils.common:log:12 - wandb_run_name                 vanilla finetune
-2025-06-02 21:48:20.160 | INFO     | utils.common:log:12 - mem_monitor                    False
-2025-06-02 21:48:20.160 | INFO     | utils.common:log:12 - epoch                          1
-2025-06-02 21:48:20.160 | INFO     | utils.common:log:12 - use_tqdm                       False
-2025-06-02 21:48:20.160 | INFO     | utils.common:log:12 - use_log                        True
-2025-06-02 21:48:20.160 | INFO     | utils.common:log:12 - eval_freq                      1000
-2025-06-02 21:48:20.160 | INFO     | utils.common:log:12 - ****************************************
-Running tokenizer on dataset:   0%|          | 0/4358 [00:00<?, ? examples/s]Running tokenizer on dataset:  23%|██▎       | 1000/4358 [00:00<00:00, 8078.90 examples/s]Running tokenizer on dataset:  46%|████▌     | 2000/4358 [00:00<00:00, 8507.31 examples/s]Running tokenizer on dataset:  69%|██████▉   | 3000/4358 [00:00<00:00, 8555.12 examples/s]Running tokenizer on dataset:  92%|█████████▏| 4000/4358 [00:00<00:00, 8985.95 examples/s]Running tokenizer on dataset: 100%|██████████| 4358/4358 [00:00<00:00, 8546.62 examples/s]
-Running tokenizer on dataset:   0%|          | 0/36718 [00:00<?, ? examples/s]Running tokenizer on dataset:   3%|▎         | 1000/36718 [00:00<00:04, 8360.53 examples/s]Running tokenizer on dataset:   5%|▌         | 2000/36718 [00:00<00:04, 8445.99 examples/s]Running tokenizer on dataset:   8%|▊         | 3000/36718 [00:00<00:03, 8814.27 examples/s]Running tokenizer on dataset:  11%|█         | 4000/36718 [00:00<00:03, 8734.74 examples/s]Running tokenizer on dataset:  14%|█▎        | 5000/36718 [00:00<00:03, 8857.73 examples/s]Running tokenizer on dataset:  16%|█▋        | 6000/36718 [00:00<00:03, 8909.53 examples/s]Running tokenizer on dataset:  19%|█▉        | 7000/36718 [00:01<00:06, 4660.84 examples/s]Running tokenizer on dataset:  22%|██▏       | 8000/36718 [00:01<00:05, 5512.52 examples/s]Running tokenizer on dataset:   0%|          | 0/36718 [00:00<?, ? examples/s]Running tokenizer on dataset:  25%|██▍       | 9000/36718 [00:01<00:04, 6270.90 examples/s]Running tokenizer on dataset:  27%|██▋       | 10000/36718 [00:01<00:03, 6807.68 examples/s]Running tokenizer on dataset:   3%|▎         | 1000/36718 [00:00<00:04, 7326.97 examples/s]Running tokenizer on dataset:  30%|██▉       | 11000/36718 [00:01<00:03, 6995.59 examples/s]Running tokenizer on dataset:   5%|▌         | 2000/36718 [00:00<00:04, 7644.95 examples/s]Running tokenizer on dataset:  33%|███▎      | 12000/36718 [00:01<00:03, 7332.11 examples/s]Running tokenizer on dataset:   8%|▊         | 3000/36718 [00:00<00:04, 8013.30 examples/s]Running tokenizer on dataset:  11%|█         | 4000/36718 [00:00<00:04, 8043.97 examples/s]Running tokenizer on dataset:  35%|███▌      | 13000/36718 [00:01<00:03, 7459.17 examples/s]Running tokenizer on dataset:  14%|█▎        | 5000/36718 [00:00<00:03, 8367.27 examples/s]Running tokenizer on dataset:  38%|███▊      | 14000/36718 [00:01<00:02, 7679.99 examples/s]Running tokenizer on dataset:  16%|█▋        | 6000/36718 [00:00<00:03, 8369.25 examples/s]Running tokenizer on dataset:  41%|████      | 15000/36718 [00:02<00:02, 8004.68 examples/s]Running tokenizer on dataset:  19%|█▉        | 7000/36718 [00:00<00:03, 8201.02 examples/s]Running tokenizer on dataset:  44%|████▎     | 16000/36718 [00:02<00:02, 8006.87 examples/s]Running tokenizer on dataset:  22%|██▏       | 8000/36718 [00:00<00:03, 8247.07 examples/s]Running tokenizer on dataset:  46%|████▋     | 17000/36718 [00:02<00:02, 8105.33 examples/s]Running tokenizer on dataset:  49%|████▉     | 18000/36718 [00:02<00:02, 8253.06 examples/s]Running tokenizer on dataset:  25%|██▍       | 9000/36718 [00:01<00:03, 8297.23 examples/s]Running tokenizer on dataset:  52%|█████▏    | 19000/36718 [00:02<00:02, 8378.42 examples/s]Running tokenizer on dataset:  27%|██▋       | 10000/36718 [00:01<00:03, 8361.75 examples/s]Running tokenizer on dataset:  54%|█████▍    | 20000/36718 [00:02<00:01, 8377.82 examples/s]Running tokenizer on dataset:  30%|██▉       | 11000/36718 [00:01<00:03, 8315.85 examples/s]Running tokenizer on dataset:  57%|█████▋    | 21000/36718 [00:02<00:01, 8384.40 examples/s]Running tokenizer on dataset:  33%|███▎      | 12000/36718 [00:01<00:02, 8374.63 examples/s]Running tokenizer on dataset:  35%|███▌      | 13000/36718 [00:01<00:02, 8346.39 examples/s]Running tokenizer on dataset:  60%|█████▉    | 22000/36718 [00:02<00:01, 8136.61 examples/s]Running tokenizer on dataset:  63%|██████▎   | 23000/36718 [00:03<00:01, 8348.87 examples/s]Running tokenizer on dataset:  68%|██████▊   | 25000/36718 [00:03<00:01, 9026.17 examples/s]Running tokenizer on dataset:  71%|███████   | 26000/36718 [00:03<00:01, 8987.93 examples/s]Running tokenizer on dataset:  38%|███▊      | 14000/36718 [00:02<00:05, 4383.30 examples/s]Running tokenizer on dataset:  74%|███████▎  | 27000/36718 [00:03<00:01, 8767.18 examples/s]Running tokenizer on dataset:  41%|████      | 15000/36718 [00:02<00:04, 5108.60 examples/s]Running tokenizer on dataset:  76%|███████▋  | 28000/36718 [00:03<00:01, 8501.79 examples/s]Running tokenizer on dataset:  44%|████▎     | 16000/36718 [00:02<00:03, 5752.22 examples/s]Running tokenizer on dataset:  79%|███████▉  | 29000/36718 [00:03<00:00, 8576.79 examples/s]Running tokenizer on dataset:  46%|████▋     | 17000/36718 [00:02<00:03, 6309.75 examples/s]Running tokenizer on dataset:  82%|████████▏ | 30000/36718 [00:03<00:00, 8440.35 examples/s]Running tokenizer on dataset:  49%|████▉     | 18000/36718 [00:02<00:02, 6742.18 examples/s]Running tokenizer on dataset:  84%|████████▍ | 31000/36718 [00:03<00:00, 8286.11 examples/s]Running tokenizer on dataset:  52%|█████▏    | 19000/36718 [00:02<00:02, 7194.45 examples/s]Running tokenizer on dataset:  87%|████████▋ | 32000/36718 [00:04<00:00, 8275.04 examples/s]Running tokenizer on dataset:  54%|█████▍    | 20000/36718 [00:02<00:02, 7434.30 examples/s]Running tokenizer on dataset:  90%|████████▉ | 33000/36718 [00:04<00:00, 8154.02 examples/s]Running tokenizer on dataset:  57%|█████▋    | 21000/36718 [00:02<00:02, 7549.17 examples/s]Running tokenizer on dataset:  93%|█████████▎| 34000/36718 [00:04<00:00, 8152.91 examples/s]Running tokenizer on dataset:  60%|█████▉    | 22000/36718 [00:03<00:01, 7699.83 examples/s]Running tokenizer on dataset:  95%|█████████▌| 35000/36718 [00:04<00:00, 8164.72 examples/s]Running tokenizer on dataset:  63%|██████▎   | 23000/36718 [00:03<00:01, 7750.20 examples/s]Running tokenizer on dataset:  98%|█████████▊| 36000/36718 [00:04<00:00, 8231.71 examples/s]Running tokenizer on dataset:  65%|██████▌   | 24000/36718 [00:03<00:01, 8033.61 examples/s]Running tokenizer on dataset:  68%|██████▊   | 25000/36718 [00:03<00:01, 8351.91 examples/s]Running tokenizer on dataset: 100%|██████████| 36718/36718 [00:04<00:00, 7600.94 examples/s]
-Running tokenizer on dataset:  71%|███████   | 26000/36718 [00:03<00:01, 8437.90 examples/s]Running tokenizer on dataset:   0%|          | 0/3760 [00:00<?, ? examples/s]Running tokenizer on dataset:  74%|███████▎  | 27000/36718 [00:03<00:01, 8308.21 examples/s]Running tokenizer on dataset:  27%|██▋       | 1000/3760 [00:00<00:00, 8293.15 examples/s]Running tokenizer on dataset:  53%|█████▎    | 2000/3760 [00:00<00:00, 8508.35 examples/s]Running tokenizer on dataset:  76%|███████▋  | 28000/36718 [00:03<00:01, 8315.73 examples/s]Running tokenizer on dataset:  79%|███████▉  | 29000/36718 [00:03<00:00, 8428.21 examples/s]Running tokenizer on dataset:  80%|███████▉  | 3000/3760 [00:00<00:00, 8533.85 examples/s]Running tokenizer on dataset: 100%|██████████| 3760/3760 [00:00<00:00, 8317.24 examples/s]
-Running tokenizer on dataset:  82%|████████▏ | 30000/36718 [00:03<00:00, 8484.11 examples/s]Running tokenizer on dataset:  84%|████████▍ | 31000/36718 [00:04<00:00, 8497.28 examples/s]Running tokenizer on dataset:  87%|████████▋ | 32000/36718 [00:04<00:00, 8638.73 examples/s]Running tokenizer on dataset:  90%|████████▉ | 33000/36718 [00:04<00:00, 8717.29 examples/s]Running tokenizer on dataset:  93%|█████████▎| 34000/36718 [00:04<00:00, 8736.37 examples/s]Running tokenizer on dataset:  95%|█████████▌| 35000/36718 [00:04<00:00, 8865.60 examples/s]Running tokenizer on dataset:  98%|█████████▊| 36000/36718 [00:04<00:00, 8789.49 examples/s]Running tokenizer on dataset: 100%|██████████| 36718/36718 [00:05<00:00, 7304.38 examples/s]
-2025-06-02 21:48:43.879 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.148 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.149 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.149 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.151 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.152 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.153 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.368 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.369 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.369 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.370 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.370 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.371 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.372 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.373 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.373 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.374 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.374 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.374 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.375 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.376 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.377 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.377 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.377 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.378 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.378 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.379 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.380 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.381 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.381 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.381 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.382 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.382 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.383 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.384 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.384 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.385 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.385 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.385 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.386 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.387 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.387 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.388 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.389 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.389 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.389 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.390 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.390 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.391 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.392 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.392 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.393 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.393 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.393 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.394 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.395 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.396 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.396 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.396 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.397 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.397 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.398 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.398 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.399 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.400 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.400 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.400 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.401 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.402 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.402 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.403 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.403 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.404 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.404 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.405 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.405 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.406 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.407 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.407 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.407 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.408 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.408 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.409 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.410 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.410 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.411 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.411 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.412 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.412 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.413 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.414 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.414 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.415 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.415 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.415 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.416 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.416 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.417 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.418 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.418 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.419 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.419 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.420 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.420 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.421 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.422 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: q_proj
-2025-06-02 21:48:44.422 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: k_proj
-2025-06-02 21:48:44.423 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: v_proj
-2025-06-02 21:48:44.423 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: o_proj
-2025-06-02 21:48:44.423 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: gate_proj
-2025-06-02 21:48:44.424 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: up_proj
-2025-06-02 21:48:44.425 | INFO     | utils.common:log:12 - enable Subspace Scaffold for weights in module: down_proj
-2025-06-02 21:48:44.430 | INFO     | utils.common:log:12 - 
-LlamaForCausalLM(
-  (model): LlamaModel(
-    (embed_tokens): Embedding(128256, 2048)
-    (layers): ModuleList(
-      (0-15): 16 x LlamaDecoderLayer(
-        (self_attn): LlamaAttention(
-          (q_proj): SubScafLinear(in_feartures=614, out_features=2048)
-          (k_proj): SubScafLinear(in_feartures=614, out_features=512)
-          (v_proj): SubScafLinear(in_feartures=614, out_features=512)
-          (o_proj): SubScafLinear(in_feartures=614, out_features=2048)
-        )
-        (mlp): LlamaMLP(
-          (gate_proj): SubScafLinear(in_feartures=614, out_features=8192)
-          (up_proj): SubScafLinear(in_feartures=614, out_features=8192)
-          (down_proj): SubScafLinear(in_feartures=2457, out_features=2048)
-          (act_fn): SiLU()
-        )
-        (input_layernorm): LlamaRMSNorm((2048,), eps=1e-05)
-        (post_attention_layernorm): LlamaRMSNorm((2048,), eps=1e-05)
-      )
-    )
-    (norm): LlamaRMSNorm((2048,), eps=1e-05)
-    (rotary_emb): LlamaRotaryEmbedding()
-  )
-  (lm_head): Linear(in_features=2048, out_features=128256, bias=False)
-)
-
-2025-06-02 21:48:44.430 | INFO     | utils.common:log:12 - Total params: 1235.81M
-2025-06-02 21:48:44.431 | INFO     | utils.common:log:12 - Trainable params before compression: 1235.81M
-2025-06-02 21:48:44.431 | INFO     | utils.common:log:12 - Trainable params after compression: 554.50M
-2025-06-02 21:48:44.431 | INFO     | utils.common:log:12 - Trainable params with Subspace Scaffold Linear Layer: 291.77M
-2025-06-02 21:48:44.431 | INFO     | utils.common:log:12 - All params: 554.50M
-2025-06-02 21:48:44.431 | INFO     | utils.common:log:12 - start epoch: 0
-2025-06-02 21:48:45.907 | INFO     | utils.common:log:12 - step: (1 + 0)/6940 Loss: 8.7055\8.706 Lr: 1.000e-4 Mem: 23.1 GB
-2025-06-02 21:48:47.198 | INFO     | utils.common:log:12 - step: (2 + 0)/6940 Loss: 8.6170\8.697 Lr: 1.000e-4 Mem: 26.6 GB
-2025-06-02 21:48:49.170 | INFO     | utils.common:log:12 - step: (3 + 0)/6940 Loss: 8.0366\8.631 Lr: 1.000e-4 Mem: 29.0 GB
-2025-06-02 21:48:50.863 | INFO     | utils.common:log:12 - step: (4 + 0)/6940 Loss: 7.7980\8.547 Lr: 1.000e-4 Mem: 29.6 GB
-2025-06-02 21:48:52.031 | INFO     | utils.common:log:12 - step: (5 + 0)/6940 Loss: 8.5334\8.546 Lr: 1.000e-4 Mem: 29.6 GB
-2025-06-02 21:48:54.085 | INFO     | utils.common:log:12 - step: (6 + 0)/6940 Loss: 7.9878\8.490 Lr: 1.000e-4 Mem: 29.6 GB
-2025-06-02 21:48:55.996 | INFO     | utils.common:log:12 - step: (7 + 0)/6940 Loss: 8.3384\8.475 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:48:57.161 | INFO     | utils.common:log:12 - step: (8 + 0)/6940 Loss: 8.5922\8.487 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:48:58.702 | INFO     | utils.common:log:12 - step: (9 + 0)/6940 Loss: 8.0673\8.445 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:00.147 | INFO     | utils.common:log:12 - step: (10 + 0)/6940 Loss: 7.8339\8.384 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:00.147 | INFO     | utils.common:log:12 - ETA: 02:36:03
-2025-06-02 21:49:01.313 | INFO     | utils.common:log:12 - step: (11 + 0)/6940 Loss: 8.4074\8.386 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:02.889 | INFO     | utils.common:log:12 - step: (12 + 0)/6940 Loss: 7.8518\8.333 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:04.043 | INFO     | utils.common:log:12 - step: (13 + 0)/6940 Loss: 7.7163\8.271 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:05.210 | INFO     | utils.common:log:12 - step: (14 + 0)/6940 Loss: 7.7419\8.218 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:06.761 | INFO     | utils.common:log:12 - step: (15 + 0)/6940 Loss: 7.9812\8.194 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:07.919 | INFO     | utils.common:log:12 - step: (16 + 0)/6940 Loss: 7.9934\8.174 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:09.097 | INFO     | utils.common:log:12 - step: (17 + 0)/6940 Loss: 7.1746\8.074 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:11.168 | INFO     | utils.common:log:12 - step: (18 + 0)/6940 Loss: 7.5567\8.023 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:12.333 | INFO     | utils.common:log:12 - step: (19 + 0)/6940 Loss: 7.6485\7.985 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:13.638 | INFO     | utils.common:log:12 - step: (20 + 0)/6940 Loss: 7.4381\7.930 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:13.638 | INFO     | utils.common:log:12 - ETA: 02:15:11
-2025-06-02 21:49:15.193 | INFO     | utils.common:log:12 - step: (21 + 0)/6940 Loss: 7.3199\7.869 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:16.346 | INFO     | utils.common:log:12 - step: (22 + 0)/6940 Loss: 7.0024\7.783 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:17.520 | INFO     | utils.common:log:12 - step: (23 + 0)/6940 Loss: 7.4363\7.748 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:20.233 | INFO     | utils.common:log:12 - step: (24 + 0)/6940 Loss: 7.0425\7.677 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:21.390 | INFO     | utils.common:log:12 - step: (25 + 0)/6940 Loss: 7.9345\7.703 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:22.867 | INFO     | utils.common:log:12 - step: (26 + 0)/6940 Loss: 7.0447\7.637 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:25.007 | INFO     | utils.common:log:12 - step: (27 + 0)/6940 Loss: 7.4414\7.618 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:26.472 | INFO     | utils.common:log:12 - step: (28 + 0)/6940 Loss: 7.3741\7.593 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:28.332 | INFO     | utils.common:log:12 - step: (29 + 0)/6940 Loss: 6.4334\7.477 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:29.884 | INFO     | utils.common:log:12 - step: (30 + 0)/6940 Loss: 6.9352\7.423 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:29.884 | INFO     | utils.common:log:12 - ETA: 02:26:22
-2025-06-02 21:49:31.032 | INFO     | utils.common:log:12 - step: (31 + 0)/6940 Loss: 7.8564\7.466 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:32.723 | INFO     | utils.common:log:12 - step: (32 + 0)/6940 Loss: 6.7988\7.400 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:34.836 | INFO     | utils.common:log:12 - step: (33 + 0)/6940 Loss: 6.9088\7.351 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:36.007 | INFO     | utils.common:log:12 - step: (34 + 0)/6940 Loss: 7.2363\7.339 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:37.279 | INFO     | utils.common:log:12 - step: (35 + 0)/6940 Loss: 7.1286\7.318 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:39.469 | INFO     | utils.common:log:12 - step: (36 + 0)/6940 Loss: 6.8610\7.272 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:40.932 | INFO     | utils.common:log:12 - step: (37 + 0)/6940 Loss: 7.1446\7.260 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:42.097 | INFO     | utils.common:log:12 - step: (38 + 0)/6940 Loss: 7.1285\7.247 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:44.036 | INFO     | utils.common:log:12 - step: (39 + 0)/6940 Loss: 7.2669\7.249 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:45.198 | INFO     | utils.common:log:12 - step: (40 + 0)/6940 Loss: 7.2474\7.248 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:45.198 | INFO     | utils.common:log:12 - ETA: 02:22:35
-2025-06-02 21:49:46.741 | INFO     | utils.common:log:12 - step: (41 + 0)/6940 Loss: 7.0085\7.224 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:48.635 | INFO     | utils.common:log:12 - step: (42 + 0)/6940 Loss: 6.6640\7.168 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:50.163 | INFO     | utils.common:log:12 - step: (43 + 0)/6940 Loss: 7.0965\7.161 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:51.328 | INFO     | utils.common:log:12 - step: (44 + 0)/6940 Loss: 7.2806\7.173 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:53.065 | INFO     | utils.common:log:12 - step: (45 + 0)/6940 Loss: 7.2723\7.183 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:54.351 | INFO     | utils.common:log:12 - step: (46 + 0)/6940 Loss: 6.9537\7.160 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:55.523 | INFO     | utils.common:log:12 - step: (47 + 0)/6940 Loss: 7.4264\7.187 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:58.117 | INFO     | utils.common:log:12 - step: (48 + 0)/6940 Loss: 7.4234\7.210 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:49:59.264 | INFO     | utils.common:log:12 - step: (49 + 0)/6940 Loss: 7.0872\7.198 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:50:01.184 | INFO     | utils.common:log:12 - step: (50 + 0)/6940 Loss: 6.5836\7.137 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:50:01.184 | INFO     | utils.common:log:12 - ETA: 02:32:56
-2025-06-02 21:50:02.730 | INFO     | utils.common:log:12 - step: (51 + 0)/6940 Loss: 6.9023\7.113 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:50:03.992 | INFO     | utils.common:log:12 - step: (52 + 0)/6940 Loss: 6.6656\7.068 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:50:05.243 | INFO     | utils.common:log:12 - step: (53 + 0)/6940 Loss: 6.6256\7.024 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:50:06.880 | INFO     | utils.common:log:12 - step: (54 + 0)/6940 Loss: 6.7819\7.000 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:50:08.237 | INFO     | utils.common:log:12 - step: (55 + 0)/6940 Loss: 6.8424\6.984 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:50:09.411 | INFO     | utils.common:log:12 - step: (56 + 0)/6940 Loss: 6.5860\6.944 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:50:11.923 | INFO     | utils.common:log:12 - step: (57 + 0)/6940 Loss: 7.0552\6.955 Lr: 1.000e-4 Mem: 32.9 GB
-2025-06-02 21:50:14.865 | INFO     | utils.common:log:12 - step: (58 + 0)/6940 Loss: 5.9624\6.856 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:16.127 | INFO     | utils.common:log:12 - step: (59 + 0)/6940 Loss: 6.9186\6.862 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:17.677 | INFO     | utils.common:log:12 - step: (60 + 0)/6940 Loss: 6.9723\6.873 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:17.677 | INFO     | utils.common:log:12 - ETA: 02:30:46
-2025-06-02 21:50:18.851 | INFO     | utils.common:log:12 - step: (61 + 0)/6940 Loss: 6.9675\6.883 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:20.890 | INFO     | utils.common:log:12 - step: (62 + 0)/6940 Loss: 6.9281\6.887 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:22.535 | INFO     | utils.common:log:12 - step: (63 + 0)/6940 Loss: 6.7043\6.869 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:23.683 | INFO     | utils.common:log:12 - step: (64 + 0)/6940 Loss: 6.4245\6.825 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:24.849 | INFO     | utils.common:log:12 - step: (65 + 0)/6940 Loss: 6.9651\6.839 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:26.986 | INFO     | utils.common:log:12 - step: (66 + 0)/6940 Loss: 7.0761\6.862 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:28.129 | INFO     | utils.common:log:12 - step: (67 + 0)/6940 Loss: 7.6962\6.946 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:29.400 | INFO     | utils.common:log:12 - step: (68 + 0)/6940 Loss: 7.3085\6.982 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:31.515 | INFO     | utils.common:log:12 - step: (69 + 0)/6940 Loss: 7.1902\7.003 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:32.682 | INFO     | utils.common:log:12 - step: (70 + 0)/6940 Loss: 7.2097\7.024 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:32.683 | INFO     | utils.common:log:12 - ETA: 02:21:35
-2025-06-02 21:50:34.361 | INFO     | utils.common:log:12 - step: (71 + 0)/6940 Loss: 6.4958\6.971 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:36.552 | INFO     | utils.common:log:12 - step: (72 + 0)/6940 Loss: 7.1168\6.985 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:38.655 | INFO     | utils.common:log:12 - step: (73 + 0)/6940 Loss: 6.9989\6.987 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:39.821 | INFO     | utils.common:log:12 - step: (74 + 0)/6940 Loss: 7.1105\6.999 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:41.363 | INFO     | utils.common:log:12 - step: (75 + 0)/6940 Loss: 7.2324\7.022 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:42.513 | INFO     | utils.common:log:12 - step: (76 + 0)/6940 Loss: 7.1292\7.033 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:44.063 | INFO     | utils.common:log:12 - step: (77 + 0)/6940 Loss: 6.5450\6.984 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:46.171 | INFO     | utils.common:log:12 - step: (78 + 0)/6940 Loss: 6.5772\6.944 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:47.318 | INFO     | utils.common:log:12 - step: (79 + 0)/6940 Loss: 7.3039\6.980 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:48.841 | INFO     | utils.common:log:12 - step: (80 + 0)/6940 Loss: 7.1294\6.995 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:48.841 | INFO     | utils.common:log:12 - ETA: 02:29:32
-2025-06-02 21:50:50.618 | INFO     | utils.common:log:12 - step: (81 + 0)/6940 Loss: 7.1675\7.012 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:51.766 | INFO     | utils.common:log:12 - step: (82 + 0)/6940 Loss: 6.9506\7.006 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:53.214 | INFO     | utils.common:log:12 - step: (83 + 0)/6940 Loss: 7.3944\7.045 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:54.742 | INFO     | utils.common:log:12 - step: (84 + 0)/6940 Loss: 9.4053\7.281 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:56.279 | INFO     | utils.common:log:12 - step: (85 + 0)/6940 Loss: 6.8803\7.241 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:57.566 | INFO     | utils.common:log:12 - step: (86 + 0)/6940 Loss: 6.8715\7.204 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:50:59.099 | INFO     | utils.common:log:12 - step: (87 + 0)/6940 Loss: 7.4467\7.228 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:00.372 | INFO     | utils.common:log:12 - step: (88 + 0)/6940 Loss: 6.6631\7.172 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:01.652 | INFO     | utils.common:log:12 - step: (89 + 0)/6940 Loss: 6.7945\7.134 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:03.346 | INFO     | utils.common:log:12 - step: (90 + 0)/6940 Loss: 6.7047\7.091 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:03.346 | INFO     | utils.common:log:12 - ETA: 02:17:58
-2025-06-02 21:51:05.003 | INFO     | utils.common:log:12 - step: (91 + 0)/6940 Loss: 6.7180\7.054 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:06.163 | INFO     | utils.common:log:12 - step: (92 + 0)/6940 Loss: 6.8817\7.036 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:07.833 | INFO     | utils.common:log:12 - step: (93 + 0)/6940 Loss: 7.0194\7.035 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:08.998 | INFO     | utils.common:log:12 - step: (94 + 0)/6940 Loss: 6.9971\7.031 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:10.169 | INFO     | utils.common:log:12 - step: (95 + 0)/6940 Loss: 7.0764\7.036 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:12.265 | INFO     | utils.common:log:12 - step: (96 + 0)/6940 Loss: 6.6240\6.994 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:13.629 | INFO     | utils.common:log:12 - step: (97 + 0)/6940 Loss: 6.7909\6.974 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:15.182 | INFO     | utils.common:log:12 - step: (98 + 0)/6940 Loss: 7.0266\6.979 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:16.935 | INFO     | utils.common:log:12 - step: (99 + 0)/6940 Loss: 6.5844\6.940 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:18.078 | INFO     | utils.common:log:12 - step: (100 + 0)/6940 Loss: 7.1724\6.963 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:18.078 | INFO     | utils.common:log:12 - ETA: 02:21:04
-2025-06-02 21:51:19.238 | INFO     | utils.common:log:12 - step: (101 + 0)/6940 Loss: 6.6522\6.932 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:21.079 | INFO     | utils.common:log:12 - step: (102 + 0)/6940 Loss: 6.5269\6.891 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:22.227 | INFO     | utils.common:log:12 - step: (103 + 0)/6940 Loss: 6.9204\6.894 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:23.402 | INFO     | utils.common:log:12 - step: (104 + 0)/6940 Loss: 6.9354\6.898 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:25.150 | INFO     | utils.common:log:12 - step: (105 + 0)/6940 Loss: 6.7899\6.888 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:26.316 | INFO     | utils.common:log:12 - step: (106 + 0)/6940 Loss: 6.9611\6.895 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:28.748 | INFO     | utils.common:log:12 - step: (107 + 0)/6940 Loss: 6.3710\6.843 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:30.292 | INFO     | utils.common:log:12 - step: (108 + 0)/6940 Loss: 7.0997\6.868 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:31.439 | INFO     | utils.common:log:12 - step: (109 + 0)/6940 Loss: 6.8585\6.867 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:32.730 | INFO     | utils.common:log:12 - step: (110 + 0)/6940 Loss: 6.8518\6.866 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:32.730 | INFO     | utils.common:log:12 - ETA: 02:17:32
-2025-06-02 21:51:34.266 | INFO     | utils.common:log:12 - step: (111 + 0)/6940 Loss: 7.3505\6.914 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:35.411 | INFO     | utils.common:log:12 - step: (112 + 0)/6940 Loss: 6.4794\6.871 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:36.574 | INFO     | utils.common:log:12 - step: (113 + 0)/6940 Loss: 6.6154\6.845 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:38.846 | INFO     | utils.common:log:12 - step: (114 + 0)/6940 Loss: 6.7920\6.840 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:40.320 | INFO     | utils.common:log:12 - step: (115 + 0)/6940 Loss: 6.7149\6.827 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:41.492 | INFO     | utils.common:log:12 - step: (116 + 0)/6940 Loss: 6.8854\6.833 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:44.291 | INFO     | utils.common:log:12 - step: (117 + 0)/6940 Loss: 6.9385\6.844 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:45.805 | INFO     | utils.common:log:12 - step: (118 + 0)/6940 Loss: 6.7099\6.830 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:46.975 | INFO     | utils.common:log:12 - step: (119 + 0)/6940 Loss: 6.6886\6.816 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:49.168 | INFO     | utils.common:log:12 - step: (120 + 0)/6940 Loss: 7.7105\6.906 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:49.168 | INFO     | utils.common:log:12 - ETA: 02:21:53
-2025-06-02 21:51:50.758 | INFO     | utils.common:log:12 - step: (121 + 0)/6940 Loss: 6.8215\6.897 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:51.925 | INFO     | utils.common:log:12 - step: (122 + 0)/6940 Loss: 6.7584\6.883 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:53.904 | INFO     | utils.common:log:12 - step: (123 + 0)/6940 Loss: 6.4338\6.838 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:55.177 | INFO     | utils.common:log:12 - step: (124 + 0)/6940 Loss: 6.2669\6.781 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:56.338 | INFO     | utils.common:log:12 - step: (125 + 0)/6940 Loss: 7.1857\6.822 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:57.986 | INFO     | utils.common:log:12 - step: (126 + 0)/6940 Loss: 6.4606\6.786 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:51:59.134 | INFO     | utils.common:log:12 - step: (127 + 0)/6940 Loss: 6.6212\6.769 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:01.038 | INFO     | utils.common:log:12 - step: (128 + 0)/6940 Loss: 6.2883\6.721 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:02.950 | INFO     | utils.common:log:12 - step: (129 + 0)/6940 Loss: 6.2807\6.677 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:04.120 | INFO     | utils.common:log:12 - step: (130 + 0)/6940 Loss: 6.7489\6.684 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:04.120 | INFO     | utils.common:log:12 - ETA: 02:19:53
-2025-06-02 21:52:05.422 | INFO     | utils.common:log:12 - step: (131 + 0)/6940 Loss: 6.6147\6.677 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:07.475 | INFO     | utils.common:log:12 - step: (132 + 0)/6940 Loss: 6.3278\6.642 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:08.835 | INFO     | utils.common:log:12 - step: (133 + 0)/6940 Loss: 6.7135\6.649 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:10.315 | INFO     | utils.common:log:12 - step: (134 + 0)/6940 Loss: 6.7749\6.662 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:11.855 | INFO     | utils.common:log:12 - step: (135 + 0)/6940 Loss: 7.1633\6.712 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:13.087 | INFO     | utils.common:log:12 - step: (136 + 0)/6940 Loss: 7.0170\6.743 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:14.259 | INFO     | utils.common:log:12 - step: (137 + 0)/6940 Loss: 6.5060\6.719 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:15.985 | INFO     | utils.common:log:12 - step: (138 + 0)/6940 Loss: 6.7590\6.723 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:17.138 | INFO     | utils.common:log:12 - step: (139 + 0)/6940 Loss: 6.6490\6.716 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:18.441 | INFO     | utils.common:log:12 - step: (140 + 0)/6940 Loss: 6.7423\6.718 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:18.441 | INFO     | utils.common:log:12 - ETA: 02:13:52
-2025-06-02 21:52:20.291 | INFO     | utils.common:log:12 - step: (141 + 0)/6940 Loss: 6.9136\6.738 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:21.447 | INFO     | utils.common:log:12 - step: (142 + 0)/6940 Loss: 7.0562\6.770 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:23.144 | INFO     | utils.common:log:12 - step: (143 + 0)/6940 Loss: 6.8146\6.774 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:25.372 | INFO     | utils.common:log:12 - step: (144 + 0)/6940 Loss: 7.0820\6.805 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:27.398 | INFO     | utils.common:log:12 - step: (145 + 0)/6940 Loss: 6.4329\6.768 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:28.924 | INFO     | utils.common:log:12 - step: (146 + 0)/6940 Loss: 7.0861\6.800 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:30.720 | INFO     | utils.common:log:12 - step: (147 + 0)/6940 Loss: 6.7737\6.797 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:31.862 | INFO     | utils.common:log:12 - step: (148 + 0)/6940 Loss: 6.7254\6.790 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:33.039 | INFO     | utils.common:log:12 - step: (149 + 0)/6940 Loss: 6.9123\6.802 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:35.120 | INFO     | utils.common:log:12 - step: (150 + 0)/6940 Loss: 6.5014\6.772 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:35.120 | INFO     | utils.common:log:12 - ETA: 02:27:43
-2025-06-02 21:52:36.266 | INFO     | utils.common:log:12 - step: (151 + 0)/6940 Loss: 7.0873\6.804 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:37.431 | INFO     | utils.common:log:12 - step: (152 + 0)/6940 Loss: 7.3044\6.854 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:39.015 | INFO     | utils.common:log:12 - step: (153 + 0)/6940 Loss: 6.5739\6.826 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:40.709 | INFO     | utils.common:log:12 - step: (154 + 0)/6940 Loss: 6.7161\6.815 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:43.119 | INFO     | utils.common:log:12 - step: (155 + 0)/6940 Loss: 5.9391\6.727 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:44.771 | INFO     | utils.common:log:12 - step: (156 + 0)/6940 Loss: 7.0355\6.758 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:45.917 | INFO     | utils.common:log:12 - step: (157 + 0)/6940 Loss: 7.2813\6.810 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:47.086 | INFO     | utils.common:log:12 - step: (158 + 0)/6940 Loss: 6.9257\6.822 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:49.508 | INFO     | utils.common:log:12 - step: (159 + 0)/6940 Loss: 7.0455\6.844 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:50.658 | INFO     | utils.common:log:12 - step: (160 + 0)/6940 Loss: 6.8661\6.846 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:50.659 | INFO     | utils.common:log:12 - ETA: 02:20:03
-2025-06-02 21:52:51.820 | INFO     | utils.common:log:12 - step: (161 + 0)/6940 Loss: 7.2888\6.891 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:54.337 | INFO     | utils.common:log:12 - step: (162 + 0)/6940 Loss: 6.7593\6.877 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:55.480 | INFO     | utils.common:log:12 - step: (163 + 0)/6940 Loss: 6.5902\6.849 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:56.641 | INFO     | utils.common:log:12 - step: (164 + 0)/6940 Loss: 6.9111\6.855 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:58.706 | INFO     | utils.common:log:12 - step: (165 + 0)/6940 Loss: 6.5085\6.820 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:52:59.849 | INFO     | utils.common:log:12 - step: (166 + 0)/6940 Loss: 6.5811\6.796 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:01.908 | INFO     | utils.common:log:12 - step: (167 + 0)/6940 Loss: 6.6713\6.784 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:03.875 | INFO     | utils.common:log:12 - step: (168 + 0)/6940 Loss: 6.6300\6.769 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:05.145 | INFO     | utils.common:log:12 - step: (169 + 0)/6940 Loss: 6.6576\6.757 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:06.305 | INFO     | utils.common:log:12 - step: (170 + 0)/6940 Loss: 5.4949\6.631 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:06.305 | INFO     | utils.common:log:12 - ETA: 02:22:27
-2025-06-02 21:53:08.290 | INFO     | utils.common:log:12 - step: (171 + 0)/6940 Loss: 7.0072\6.669 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:09.548 | INFO     | utils.common:log:12 - step: (172 + 0)/6940 Loss: 6.6494\6.667 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:10.741 | INFO     | utils.common:log:12 - step: (173 + 0)/6940 Loss: 6.5383\6.654 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:13.756 | INFO     | utils.common:log:12 - step: (174 + 0)/6940 Loss: 6.9085\6.679 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:14.900 | INFO     | utils.common:log:12 - step: (175 + 0)/6940 Loss: 6.9450\6.706 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:16.075 | INFO     | utils.common:log:12 - step: (176 + 0)/6940 Loss: 6.7676\6.712 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:18.178 | INFO     | utils.common:log:12 - step: (177 + 0)/6940 Loss: 6.5985\6.701 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:19.323 | INFO     | utils.common:log:12 - step: (178 + 0)/6940 Loss: 6.4479\6.676 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:20.875 | INFO     | utils.common:log:12 - step: (179 + 0)/6940 Loss: 6.4941\6.657 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:22.419 | INFO     | utils.common:log:12 - step: (180 + 0)/6940 Loss: 6.9524\6.687 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:22.419 | INFO     | utils.common:log:12 - ETA: 02:13:37
-2025-06-02 21:53:23.564 | INFO     | utils.common:log:12 - step: (181 + 0)/6940 Loss: 6.7954\6.698 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:25.611 | INFO     | utils.common:log:12 - step: (182 + 0)/6940 Loss: 6.5280\6.681 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:27.545 | INFO     | utils.common:log:12 - step: (183 + 0)/6940 Loss: 6.4117\6.654 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:28.683 | INFO     | utils.common:log:12 - step: (184 + 0)/6940 Loss: 6.7749\6.666 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:29.852 | INFO     | utils.common:log:12 - step: (185 + 0)/6940 Loss: 6.5061\6.650 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:32.506 | INFO     | utils.common:log:12 - step: (186 + 0)/6940 Loss: 6.5033\6.635 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:33.886 | INFO     | utils.common:log:12 - step: (187 + 0)/6940 Loss: 6.8524\6.657 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:35.047 | INFO     | utils.common:log:12 - step: (188 + 0)/6940 Loss: 6.5411\6.645 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:36.910 | INFO     | utils.common:log:12 - step: (189 + 0)/6940 Loss: 6.8279\6.664 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:38.188 | INFO     | utils.common:log:12 - step: (190 + 0)/6940 Loss: 6.6931\6.667 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:38.189 | INFO     | utils.common:log:12 - ETA: 02:16:51
-2025-06-02 21:53:39.358 | INFO     | utils.common:log:12 - step: (191 + 0)/6940 Loss: 6.7818\6.678 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:41.573 | INFO     | utils.common:log:12 - step: (192 + 0)/6940 Loss: 6.5692\6.667 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:42.709 | INFO     | utils.common:log:12 - step: (193 + 0)/6940 Loss: 5.3208\6.533 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:44.445 | INFO     | utils.common:log:12 - step: (194 + 0)/6940 Loss: 6.4903\6.528 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:46.590 | INFO     | utils.common:log:12 - step: (195 + 0)/6940 Loss: 6.2108\6.497 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:47.739 | INFO     | utils.common:log:12 - step: (196 + 0)/6940 Loss: 6.6689\6.514 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:48.908 | INFO     | utils.common:log:12 - step: (197 + 0)/6940 Loss: 6.7104\6.533 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:51.108 | INFO     | utils.common:log:12 - step: (198 + 0)/6940 Loss: 6.6633\6.546 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:52.244 | INFO     | utils.common:log:12 - step: (199 + 0)/6940 Loss: 6.8804\6.580 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:53.422 | INFO     | utils.common:log:12 - step: (200 + 0)/6940 Loss: 7.0260\6.624 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:53.422 | INFO     | utils.common:log:12 - ETA: 02:15:04
-2025-06-02 21:53:55.275 | INFO     | utils.common:log:12 - step: (201 + 0)/6940 Loss: 6.9132\6.653 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:56.416 | INFO     | utils.common:log:12 - step: (202 + 0)/6940 Loss: 6.2001\6.608 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:57.585 | INFO     | utils.common:log:12 - step: (203 + 0)/6940 Loss: 6.7777\6.625 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:53:59.629 | INFO     | utils.common:log:12 - step: (204 + 0)/6940 Loss: 6.4989\6.612 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:00.779 | INFO     | utils.common:log:12 - step: (205 + 0)/6940 Loss: 6.9578\6.647 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:01.941 | INFO     | utils.common:log:12 - step: (206 + 0)/6940 Loss: 6.7386\6.656 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:04.234 | INFO     | utils.common:log:12 - step: (207 + 0)/6940 Loss: 6.2405\6.615 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:05.374 | INFO     | utils.common:log:12 - step: (208 + 0)/6940 Loss: 6.4904\6.602 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:06.903 | INFO     | utils.common:log:12 - step: (209 + 0)/6940 Loss: 6.4974\6.592 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:08.472 | INFO     | utils.common:log:12 - step: (210 + 0)/6940 Loss: 6.5599\6.588 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:08.472 | INFO     | utils.common:log:12 - ETA: 02:10:47
-2025-06-02 21:54:10.177 | INFO     | utils.common:log:12 - step: (211 + 0)/6940 Loss: 6.3642\6.566 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:11.356 | INFO     | utils.common:log:12 - step: (212 + 0)/6940 Loss: 6.5131\6.561 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:12.916 | INFO     | utils.common:log:12 - step: (213 + 0)/6940 Loss: 6.8058\6.585 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:14.183 | INFO     | utils.common:log:12 - step: (214 + 0)/6940 Loss: 6.2114\6.548 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:15.344 | INFO     | utils.common:log:12 - step: (215 + 0)/6940 Loss: 6.6046\6.554 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:17.640 | INFO     | utils.common:log:12 - step: (216 + 0)/6940 Loss: 7.2144\6.620 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:19.283 | INFO     | utils.common:log:12 - step: (217 + 0)/6940 Loss: 6.2608\6.584 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:20.442 | INFO     | utils.common:log:12 - step: (218 + 0)/6940 Loss: 6.4780\6.573 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:22.014 | INFO     | utils.common:log:12 - step: (219 + 0)/6940 Loss: 6.3055\6.546 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:23.155 | INFO     | utils.common:log:12 - step: (220 + 0)/6940 Loss: 6.7089\6.563 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:23.155 | INFO     | utils.common:log:12 - ETA: 02:15:25
-2025-06-02 21:54:25.020 | INFO     | utils.common:log:12 - step: (221 + 0)/6940 Loss: 6.5413\6.561 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:26.692 | INFO     | utils.common:log:12 - step: (222 + 0)/6940 Loss: 6.7937\6.584 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:28.388 | INFO     | utils.common:log:12 - step: (223 + 0)/6940 Loss: 6.5972\6.585 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:30.504 | INFO     | utils.common:log:12 - step: (224 + 0)/6940 Loss: 6.3683\6.563 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:32.043 | INFO     | utils.common:log:12 - step: (225 + 0)/6940 Loss: 6.7459\6.582 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:33.486 | INFO     | utils.common:log:12 - step: (226 + 0)/6940 Loss: 6.6078\6.584 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:34.654 | INFO     | utils.common:log:12 - step: (227 + 0)/6940 Loss: 6.9675\6.623 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:36.187 | INFO     | utils.common:log:12 - step: (228 + 0)/6940 Loss: 6.7223\6.633 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:37.450 | INFO     | utils.common:log:12 - step: (229 + 0)/6940 Loss: 6.3907\6.608 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:38.615 | INFO     | utils.common:log:12 - step: (230 + 0)/6940 Loss: 6.6249\6.610 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:38.615 | INFO     | utils.common:log:12 - ETA: 02:17:04
-2025-06-02 21:54:41.287 | INFO     | utils.common:log:12 - step: (231 + 0)/6940 Loss: 6.9569\6.645 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:42.560 | INFO     | utils.common:log:12 - step: (232 + 0)/6940 Loss: 6.6314\6.643 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:43.730 | INFO     | utils.common:log:12 - step: (233 + 0)/6940 Loss: 6.8453\6.664 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:46.263 | INFO     | utils.common:log:12 - step: (234 + 0)/6940 Loss: 4.9915\6.496 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:47.410 | INFO     | utils.common:log:12 - step: (235 + 0)/6940 Loss: 6.8475\6.532 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:48.575 | INFO     | utils.common:log:12 - step: (236 + 0)/6940 Loss: 6.6275\6.541 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:50.321 | INFO     | utils.common:log:12 - step: (237 + 0)/6940 Loss: 7.2876\6.616 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:51.853 | INFO     | utils.common:log:12 - step: (238 + 0)/6940 Loss: 6.8858\6.643 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:53.014 | INFO     | utils.common:log:12 - step: (239 + 0)/6940 Loss: 6.7681\6.655 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:55.416 | INFO     | utils.common:log:12 - step: (240 + 0)/6940 Loss: 6.6982\6.660 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:55.416 | INFO     | utils.common:log:12 - ETA: 02:20:27
-2025-06-02 21:54:57.705 | INFO     | utils.common:log:12 - step: (241 + 0)/6940 Loss: 6.0811\6.602 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:54:59.261 | INFO     | utils.common:log:12 - step: (242 + 0)/6940 Loss: 6.6871\6.610 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:00.806 | INFO     | utils.common:log:12 - step: (243 + 0)/6940 Loss: 7.1155\6.661 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:01.956 | INFO     | utils.common:log:12 - step: (244 + 0)/6940 Loss: 6.2162\6.616 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:03.240 | INFO     | utils.common:log:12 - step: (245 + 0)/6940 Loss: 6.3637\6.591 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:05.096 | INFO     | utils.common:log:12 - step: (246 + 0)/6940 Loss: 6.8911\6.621 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:06.462 | INFO     | utils.common:log:12 - step: (247 + 0)/6940 Loss: 6.6252\6.621 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:07.653 | INFO     | utils.common:log:12 - step: (248 + 0)/6940 Loss: 6.7582\6.635 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:09.321 | INFO     | utils.common:log:12 - step: (249 + 0)/6940 Loss: 7.1826\6.690 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:10.471 | INFO     | utils.common:log:12 - step: (250 + 0)/6940 Loss: 6.6748\6.688 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:10.471 | INFO     | utils.common:log:12 - ETA: 02:14:49
-2025-06-02 21:55:12.029 | INFO     | utils.common:log:12 - step: (251 + 0)/6940 Loss: 6.7531\6.695 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:13.575 | INFO     | utils.common:log:12 - step: (252 + 0)/6940 Loss: 6.5371\6.679 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:14.724 | INFO     | utils.common:log:12 - step: (253 + 0)/6940 Loss: 6.8487\6.696 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:16.112 | INFO     | utils.common:log:12 - step: (254 + 0)/6940 Loss: 6.7965\6.706 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:18.364 | INFO     | utils.common:log:12 - step: (255 + 0)/6940 Loss: 6.1885\6.654 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:19.514 | INFO     | utils.common:log:12 - step: (256 + 0)/6940 Loss: 6.9541\6.684 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:21.241 | INFO     | utils.common:log:12 - step: (257 + 0)/6940 Loss: 6.6516\6.681 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:22.906 | INFO     | utils.common:log:12 - step: (258 + 0)/6940 Loss: 6.5142\6.664 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:24.059 | INFO     | utils.common:log:12 - step: (259 + 0)/6940 Loss: 6.9049\6.688 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:25.665 | INFO     | utils.common:log:12 - step: (260 + 0)/6940 Loss: 6.9480\6.714 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:25.665 | INFO     | utils.common:log:12 - ETA: 02:18:38
-2025-06-02 21:55:27.462 | INFO     | utils.common:log:12 - step: (261 + 0)/6940 Loss: 7.1831\6.761 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:28.612 | INFO     | utils.common:log:12 - step: (262 + 0)/6940 Loss: 6.3959\6.725 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:29.782 | INFO     | utils.common:log:12 - step: (263 + 0)/6940 Loss: 6.6122\6.713 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:32.192 | INFO     | utils.common:log:12 - step: (264 + 0)/6940 Loss: 6.2200\6.664 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:33.661 | INFO     | utils.common:log:12 - step: (265 + 0)/6940 Loss: 6.6258\6.660 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:35.136 | INFO     | utils.common:log:12 - step: (266 + 0)/6940 Loss: 6.2645\6.621 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:36.679 | INFO     | utils.common:log:12 - step: (267 + 0)/6940 Loss: 7.1868\6.677 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:37.829 | INFO     | utils.common:log:12 - step: (268 + 0)/6940 Loss: 7.0432\6.714 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:39.003 | INFO     | utils.common:log:12 - step: (269 + 0)/6940 Loss: 6.8474\6.727 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:41.242 | INFO     | utils.common:log:12 - step: (270 + 0)/6940 Loss: 6.5713\6.712 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:41.242 | INFO     | utils.common:log:12 - ETA: 02:15:32
-2025-06-02 21:55:42.419 | INFO     | utils.common:log:12 - step: (271 + 0)/6940 Loss: 6.9218\6.733 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:43.807 | INFO     | utils.common:log:12 - step: (272 + 0)/6940 Loss: 6.9087\6.750 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:45.680 | INFO     | utils.common:log:12 - step: (273 + 0)/6940 Loss: 6.5245\6.728 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:46.820 | INFO     | utils.common:log:12 - step: (274 + 0)/6940 Loss: 6.7826\6.733 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:48.177 | INFO     | utils.common:log:12 - step: (275 + 0)/6940 Loss: 6.4518\6.705 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:49.735 | INFO     | utils.common:log:12 - step: (276 + 0)/6940 Loss: 7.0831\6.743 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:50.883 | INFO     | utils.common:log:12 - step: (277 + 0)/6940 Loss: 6.8180\6.750 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:52.044 | INFO     | utils.common:log:12 - step: (278 + 0)/6940 Loss: 6.5907\6.734 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:53.959 | INFO     | utils.common:log:12 - step: (279 + 0)/6940 Loss: 7.6407\6.825 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:55.107 | INFO     | utils.common:log:12 - step: (280 + 0)/6940 Loss: 7.0140\6.844 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:55.107 | INFO     | utils.common:log:12 - ETA: 02:09:01
-2025-06-02 21:55:56.970 | INFO     | utils.common:log:12 - step: (281 + 0)/6940 Loss: 6.1672\6.776 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:55:58.513 | INFO     | utils.common:log:12 - step: (282 + 0)/6940 Loss: 7.0409\6.803 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:00.240 | INFO     | utils.common:log:12 - step: (283 + 0)/6940 Loss: 6.5802\6.780 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:01.411 | INFO     | utils.common:log:12 - step: (284 + 0)/6940 Loss: 7.8664\6.889 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:03.227 | INFO     | utils.common:log:12 - step: (285 + 0)/6940 Loss: 10.2967\7.230 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:05.484 | INFO     | utils.common:log:12 - step: (286 + 0)/6940 Loss: 6.5860\7.165 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:06.771 | INFO     | utils.common:log:12 - step: (287 + 0)/6940 Loss: 6.4120\7.090 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:08.618 | INFO     | utils.common:log:12 - step: (288 + 0)/6940 Loss: 6.5108\7.032 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:09.765 | INFO     | utils.common:log:12 - step: (289 + 0)/6940 Loss: 6.6937\6.998 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:11.142 | INFO     | utils.common:log:12 - step: (290 + 0)/6940 Loss: 6.7017\6.969 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:11.142 | INFO     | utils.common:log:12 - ETA: 02:20:15
-2025-06-02 21:56:13.257 | INFO     | utils.common:log:12 - step: (291 + 0)/6940 Loss: 7.5305\7.025 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:15.131 | INFO     | utils.common:log:12 - step: (292 + 0)/6940 Loss: 6.7553\6.998 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:16.299 | INFO     | utils.common:log:12 - step: (293 + 0)/6940 Loss: 6.9659\6.995 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:17.949 | INFO     | utils.common:log:12 - step: (294 + 0)/6940 Loss: 6.8954\6.985 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:19.529 | INFO     | utils.common:log:12 - step: (295 + 0)/6940 Loss: 6.5108\6.937 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:20.697 | INFO     | utils.common:log:12 - step: (296 + 0)/6940 Loss: 7.0945\6.953 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:22.801 | INFO     | utils.common:log:12 - step: (297 + 0)/6940 Loss: 12.2807\7.486 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:23.954 | INFO     | utils.common:log:12 - step: (298 + 0)/6940 Loss: 6.8743\7.425 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:25.341 | INFO     | utils.common:log:12 - step: (299 + 0)/6940 Loss: 6.3846\7.321 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:27.758 | INFO     | utils.common:log:12 - step: (300 + 0)/6940 Loss: 6.9923\7.288 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:27.758 | INFO     | utils.common:log:12 - ETA: 02:27:56
-2025-06-02 21:56:29.304 | INFO     | utils.common:log:12 - step: (301 + 0)/6940 Loss: 6.3783\7.197 Lr: 1.000e-4 Mem: 43.3 GB
-2025-06-02 21:56:31.216 | INFO     | utils.common:log:12 - step: (302 + 0)/6940 Loss: 7.5137\7.229 Lr: 1.000e-4 Mem: 43.3 GB
-W0602 21:56:31.434000 359144 site-packages/torch/distributed/elastic/agent/server/api.py:719] Received Signals.SIGINT death signal, shutting down workers
-W0602 21:56:31.436000 359144 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 359295 closing signal SIGINT
-W0602 21:56:31.436000 359144 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 359296 closing signal SIGINT
-[rank1]: Traceback (most recent call last):
-[rank1]:   File "/home/xuyuqi/SubScaf/llama_finetune.py", line 341, in <module>
-[rank1]:     main(args)
-[rank1]:   File "/home/xuyuqi/SubScaf/llama_finetune.py", line 239, in main
-[rank1]:     scaled_loss.backward()
-[rank1]:   File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/_tensor.py", line 648, in backward
-[rank1]:     torch.autograd.backward(
-[rank1]:   File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/__init__.py", line 353, in backward
-[rank1]:     _engine_run_backward(
-[rank1]:   File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
-[rank1]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
-[rank1]: KeyboardInterrupt
-[rank0]: Traceback (most recent call last):
-[rank0]:   File "/home/xuyuqi/SubScaf/llama_finetune.py", line 341, in <module>
-[rank0]:     main(args)
-[rank0]:   File "/home/xuyuqi/SubScaf/llama_finetune.py", line 239, in main
-[rank0]:     scaled_loss.backward()
-[rank0]:   File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/_tensor.py", line 648, in backward
-[rank0]:     torch.autograd.backward(
-[rank0]:   File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/__init__.py", line 353, in backward
-[rank0]:     _engine_run_backward(
-[rank0]:   File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
-[rank0]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
-[rank0]: KeyboardInterrupt
-[rank0]:[W602 21:56:32.850134713 ProcessGroupNCCL.cpp:1476] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
-Traceback (most recent call last):
-  File "/home/xuyuqi/.conda/envs/minimind/bin/torchrun", line 8, in <module>
-    sys.exit(main())
-  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
-    return f(*args, **kwargs)
-  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/run.py", line 892, in main
-    run(args)
-  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/run.py", line 883, in run
-    elastic_launch(
-  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
-    return launch_agent(self._config, self._entrypoint, list(args))
-  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 261, in launch_agent
-    result = agent.run()
-  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 138, in wrapper
-    result = f(*args, **kwargs)
-  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 711, in run
-    result = self._invoke_run(role)
-  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 870, in _invoke_run
-    time.sleep(monitor_interval)
-  File "/home/xuyuqi/.conda/envs/minimind/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 84, in _terminate_process_handler
-    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
-torch.distributed.elastic.multiprocessing.api.SignalException: Process 359144 got signal: 2
