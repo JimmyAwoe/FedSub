@@ -19,6 +19,7 @@ from utils import (
     get_subscaf_optimizer,
     resnet_module,
     outer_update,
+    measure_all_reduce,
 )
 
 
@@ -43,6 +44,9 @@ def parse_args(args, remaining_args):
     # log
     parser.add_argument('--print-freq', '-p', default=50, type=int,
                         metavar='N', help='print frequency (default: 50)')
+
+    # measure communication
+    parser.add_argument("--measure_comm", action="store_true", help="measure the time used for communication")
 
     new_args, _ = parser.parse_known_args(remaining_args)
     args = argparse.Namespace(**vars(args), **vars(new_args))
@@ -174,6 +178,11 @@ def train(train_loader, model, criterion, optimizer, epoch, schedule, args, devi
     # switch to train mode
     model.train()
     update_step = 0
+    if args.measure_comm:
+        all_reduce_times = []
+        all_reduce_tensors = []
+        broadcast_times = []
+        broadcast_tensors = []
 
     end = time.time()
     for i, (input, target) in enumerate(train_loader):
@@ -219,12 +228,28 @@ def train(train_loader, model, criterion, optimizer, epoch, schedule, args, devi
                 gene_new_cp = False 
             else:
                 gene_new_cp = True
-            outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
-                            subscaf_params, args, device, jump_modules_list, gene_new_cp, 'conv2d')
+            if args.measure_comm:
+                temp_all_reduce_times, temp_all_reduce_tensors, temp_broadcast_times, temp_broadcast_tensors =\
+                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
+                                subscaf_params, args, device, jump_modules_list, gene_new_cp, 'conv2d')
+            else:
+                outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
+                                subscaf_params, args, device, jump_modules_list, gene_new_cp, 'conv2d')
+
+            if args.measure_comm:
+                all_reduce_times.extend(temp_all_reduce_times)
+                all_reduce_tensors.extend(temp_all_reduce_tensors)
+                broadcast_tensors.extend(temp_broadcast_tensors)
+                broadcast_times.extend(temp_broadcast_times)
         
         if 'fedavg' in args.optimizer.lower() and update_step % args.tau == 0:
             for p in model.parameters():
-                dist.all_reduce(p, op=dist.ReduceOp.AVG)
+                if not args.measure_comm:
+                    dist.all_reduce(p, op=dist.ReduceOp.AVG)
+                else:
+                    times = measure_all_reduce(p, dist.ReduceOp.AVG)
+                    all_reduce_times.append(times)
+                    all_reduce_tensors.append(p)
 
         output = output.float()
         loss = loss.float()
@@ -253,6 +278,19 @@ def train(train_loader, model, criterion, optimizer, epoch, schedule, args, devi
                   'lr: {lr:.4f}'.format(
                       epoch, i, len(train_loader), 
                       loss=losses, top1=top1, lr=optimizer.param_groups[0]["lr"]))
+    
+    if dist.get_rank() == 0:
+        if args.measure_comm:
+            # mix all reduce times and broadcast times 
+            all_reduce_times.extend(broadcast_times)
+            all_reduce_tensors.extend(broadcast_tensors)
+            avg_time = sum(all_reduce_times) / args.num_training_steps
+            min_time = min(all_reduce_times)
+            max_time = max(all_reduce_times)
+            communication_volumn = 0
+            for p in all_reduce_tensors:
+                communication_volumn += p.numel()
+            log(f"avg_comm_time: {avg_time}ms, min_comm_time: {min_time}ms, max_time: {max_time}ms, total_comm_volumn: {communication_volumn}")
 
 
 def validate(val_loader, model, criterion, args, device):
