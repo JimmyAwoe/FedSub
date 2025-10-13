@@ -39,7 +39,6 @@ def parse_args(args, remaining_args):
                         help='evaluate model on validation set')
     parser.add_argument('--pretrained', dest='pretrained', action='store_true',
                         help='use pre-trained model')
-    parser.add_argument('--measure_comm', action="store_true")
     
     # log
     parser.add_argument('--print-freq', '-p', default=50, type=int,
@@ -231,10 +230,10 @@ def train(train_loader, model, criterion, optimizer, epoch, schedule, args, devi
             if args.measure_comm:
                 temp_all_reduce_times, temp_all_reduce_tensors, temp_broadcast_times, temp_broadcast_tensors =\
                 outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
-                                subscaf_params, args, device, jump_modules_list, gene_new_cp, 'conv2d')
+                                subscaf_params, args, device, jump_modules_list, gene_new_cp, layer='conv2d')
             else:
                 outer_update(model, lbd, comp_mat_rec, target_modules_list, optimizer, 
-                                subscaf_params, args, device, jump_modules_list, gene_new_cp, 'conv2d')
+                                subscaf_params, args, device, jump_modules_list, gene_new_cp, layer='conv2d')
 
             if args.measure_comm:
                 all_reduce_times.extend(temp_all_reduce_times)

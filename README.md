@@ -34,7 +34,6 @@ We summarize the running script of main experiments in our paper in scripts dire
 ```bash 
 bash scripts/llama_pretrain.sh # pretrain llama
 bash scripts/llama_finetune.sh # finetune llama
-bash scripts/resnet_train.sh # resnet experiment
 ```
 
 ### Logging

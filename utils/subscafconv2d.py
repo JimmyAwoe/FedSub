@@ -49,6 +49,8 @@ class SubScafConv2d(_ConvNd):
         del self.weight
         self.comp_dim = comp_dim
         self.comp_mat = comp_mat
+        self.in_features = wraped_model.kernel_size[0]
+        self.out_features = wraped_model.kernel_size[1]
         self.x = wraped_model.weight.detach().clone()
         self.b = nn.Parameter(torch.zeros((self.out_channels, self.in_channels // self.groups, kernel_size_[0], comp_dim), **factory_kwargs))
         del wraped_model

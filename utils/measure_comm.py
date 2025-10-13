@@ -1,6 +1,6 @@
 import torch
 import torch.distributed as dist
-from common import log
+from .common import log
 
 def measure_all_reduce(tensor, op):
     """test all_reduce operator time usage"""

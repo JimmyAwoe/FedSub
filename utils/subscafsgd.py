@@ -294,7 +294,12 @@ def _subscaf_single_tensor_sgd(params: List[Tensor],
 
         if is_comp == True:
             # r / m coefficient
-            m ,r = lbd[i].shape
+            if len(lbd[i].shape) == 2:
+                m, r = lbd[i].shape
+            elif len(lbd[i].shape) == 4:
+                m, r  = lbd[i].shape[-2:]
+            else:
+                assert False, "The shape of lambda is not support."
             #m = lbd[i].in_features
             d_p.mul_(r / m)
             

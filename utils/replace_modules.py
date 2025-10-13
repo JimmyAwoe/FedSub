@@ -45,7 +45,10 @@ def replace_with_subscaf_layer(model, target_modules_list, device, args, jump_mo
 
                 # initialize lambda
                 #lbd.append(torch.zeros((args.comp_dim, module.in_features), device=device, requires_grad=False))
-                layer_lbd = torch.zeros((module.out_features, args.comp_dim), device=device, requires_grad=False, dtype=module.weight.dtype)
+                if subscaf_class == SubScafLinear:
+                    layer_lbd = torch.zeros((module.out_features, args.comp_dim), device=device, requires_grad=False, dtype=module.weight.dtype)
+                else:
+                    layer_lbd = torch.zeros((module.out_channels, module.in_channels // module.groups, module.out_features, args.comp_dim), device=device, requires_grad=False, dtype=module.weight.dtype)
                 # in_features is needed for optimizer later
                 layer_lbd.in_features = module.in_features
                 lbd.append(layer_lbd)
@@ -153,7 +156,7 @@ def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, subscaf_par
                 else:
                     lbd[idx] = (lbd[idx] + module.b - avg_b)
                     lbd[idx].in_features = module.in_features
-                assert lbd[idx].shape == (module.out_features, args.comp_dim)
+                assert lbd[idx].shape == (module.out_features, args.comp_dim) or lbd[idx].shape == (module.out_channels, module.in_channels // module.groups, module.out_features, module.comp_dim)
 
                 # update compression matrix, b and x
                 new_x = (module.x + avg_b @ comp_mat_rec[(args.comp_dim, module.in_features)])
@@ -179,7 +182,7 @@ def outer_update(model, lbd, comp_mat_rec, target_modules_list, opt, subscaf_par
     if layer.lower() == 'linear':
         replace_class = nn.Linear
     elif layer.lower() == 'conv2d':
-        replace_class = nn.Conv2d
+        replace_class = SubScafConv2d
     else:
         assert True, 'Only Support Conv2d and Linear'
 
