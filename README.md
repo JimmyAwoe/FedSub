@@ -1,19 +1,31 @@
+
 <div align="center">
-
-![logo](./figures/comm_comp_100mbs.png)
-
+  <h1>An Efficient Subspace Algorithm for Federated
+Learning on Heterogeneous Data</h1>
 </div>
 
 
-<div align="center">
-  <h3>An Efficient Subspace Algorithm for Federated
-Learning on Heterogeneous Data</h3>
-</div>
+* This repository contains the official code for the paper "An Efficient Subspace Algorithm for Federated Learning on Heterogeneous Data". We propose **FedSub**, a subspace-based federated learning (FL) algorithm that addresses two key challenges in large-scale FL:
+  - **Efficiency Bottlenecks**: Restricts local client updates to low-dimensional subspaces via projection matrices, significantly reducing communication, computation, and memory costs compared to full-space FL methods (e.g., FedAvg).
+  - **Client Drift**: Incorporates low-dimensional dual variables to mitigate performance degradation caused by non-IID (heterogeneous) client data.
 
-<div align="center">
-
-* This is the official repository for the paper An Efficient Subspace Algorithm for Federated Learning on Heterogeneous Data. The paper presents an algorithm designed to reduce memory usage, cut down communication costs, and shorten running time in federated learning scenarios.
 * We used the framework from the [pytorch_resnet_cifar10](https://github.com/akamaster/pytorch_resnet_cifar10.git) to set up experiments of our algorithm on ResNet. Many thanks for that.
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="./figures/comm_comp_100mbs.png" width="400" alt="Communication Cost Comparison"/>
+        <br>
+        <small>Communication Cost (per round)</small>
+      </td>
+      <td align="center">
+        <img src="./figures/mem_ratio.png" width="400" alt="Memory Usage on LLaMA"/>
+        <br>
+        <small>Memory Usage (LLaMA-1B)</small>
+      </td>
+    </tr>
+  </table>
 </div>
 
 ### Environment Setup
