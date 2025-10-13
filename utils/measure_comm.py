@@ -16,7 +16,6 @@ def measure_all_reduce(tensor, op):
     torch.cuda.synchronize()
         
     return start_event.elapsed_time(end_event)
-        #"bandwidth_GBps": (tensor.numel() * 4 * 2) / (avg_time * 1e6)  # 往返通信量/时间
 
 def measure_broadcast(tensor, src):
     """test broadcast operator time usage"""

@@ -7,7 +7,6 @@ def split_dataset_by_class(dataset, node_rank, world_size, batch_size):
     assigned_classes = range(node_rank * classes_per_node, 
                            (node_rank + 1) * classes_per_node)
     
-    # 获取属于当前节点类别的样本索引
     indices = [i for i, target in enumerate(targets) if target in assigned_classes]
     
     train_subset = Subset(dataset, indices)
@@ -16,7 +15,7 @@ def split_dataset_by_class(dataset, node_rank, world_size, batch_size):
         train_subset, 
         num_replicas=1, 
         rank=0,
-        shuffle=True  # 仍可在本地类别内打乱
+        shuffle=True  
     )
 
     train_loader = DataLoader(
