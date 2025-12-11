@@ -157,11 +157,12 @@ def main(args):
             train(train_loader, model, criterion, optimizer, epoch, schedule, args, device)
 
 
-        # evaluate on validation set
-        prec1 = validate(val_loader, model, criterion, args, device)
+        if args.evaluate:
+            # evaluate on validation set
+            prec1 = validate(val_loader, model, criterion, args, device)
 
-        # remember best prec@1 and save checkpoint
-        best_prec1 = max(prec1, best_prec1)
+            # remember best prec@1 and save checkpoint
+            best_prec1 = max(prec1, best_prec1)
 
 def train(train_loader, model, criterion, optimizer, epoch, schedule, args, device, *arg):
     """
@@ -295,7 +296,12 @@ def train(train_loader, model, criterion, optimizer, epoch, schedule, args, devi
 def validate(val_loader, model, criterion, args, device):
     """
     Run evaluation
+    
+    Note: Each call to validate creates new AverageMeter instances,
+    so each evaluation is independent and does not accumulate across different evaluations.
     """
+    # Create new AverageMeter instances for each evaluation
+    # This ensures each evaluation is independent and does not accumulate across calls
     batch_time = AverageMeter()
     losses = AverageMeter()
     top1 = AverageMeter()
@@ -336,6 +342,9 @@ def validate(val_loader, model, criterion, args, device):
                           top1=top1))
 
     log(' * Prec@5 {top1.avg:.3f}'.format(top1=top1))
+
+    # switch back to train mode
+    model.train()
 
     return top1.avg
 
